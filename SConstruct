@@ -5,7 +5,7 @@ import sys
 from methods import print_error
 
 
-libname = "EXTENSION-NAME"
+libname = "number_go_up"
 projectdir = "project"
 
 localEnv = Environment(tools=["default"], PLATFORM="")
@@ -37,8 +37,8 @@ Run the following command to download godot-cpp:
 
 env = SConscript("godot-cpp/SConstruct", {"env": env, "customs": customs})
 
-env.Append(CPPPATH=["src/"])
 sources = Glob("src/*.cpp")
+sources.extend(Glob("src/core/*.cpp"))
 
 if env["target"] in ["editor", "template_debug"]:
     try:
