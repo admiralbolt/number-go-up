@@ -83,12 +83,17 @@ class Modifier extends Resource:
     self.modifier_data = p_modifier_data
 
 class SubModifier extends Resource:
+  enum ModifierType {
+    Additive,
+    Multiplicative
+  }
+
   var target_type: String = ""
   var target_name: String = ""
   var value: float = 0.0
-  var type: String = "Additive"
+  var type: ModifierType = ModifierType.Additive
 
-  func _init(p_target_type: String, p_target_name: String, p_value: float, p_type: String = "Additive") -> void:
+  func _init(p_target_type: String, p_target_name: String, p_value: float, p_type: ModifierType = ModifierType.Additive) -> void:
     self.target_type = p_target_type
     self.target_name = p_target_name
     self.value = p_value
@@ -103,15 +108,15 @@ class SubModifierList extends Resource:
     self.multiplicative_sub_modifiers = []
 
   func add_sub_modifier(sub_modifier: SubModifier) -> void:
-    if sub_modifier.type == "Additive":
+    if sub_modifier.type == SubModifier.ModifierType.Additive:
       additive_sub_modifiers.append(sub_modifier)
-    elif sub_modifier.type == "Multiplicative":
+    elif sub_modifier.type == SubModifier.ModifierType.Multiplicative:
       multiplicative_sub_modifiers.append(sub_modifier)
 
   func remove_sub_modifier(sub_modifier: SubModifier) -> void:
-    if sub_modifier.type == "Additive":
+    if sub_modifier.type == SubModifier.ModifierType.Additive:
       additive_sub_modifiers.erase(sub_modifier)
-    elif sub_modifier.type == "Multiplicative":
+    elif sub_modifier.type == SubModifier.ModifierType.Multiplicative:
       multiplicative_sub_modifiers.erase(sub_modifier)
 
   func apply(base_value: float) -> float:

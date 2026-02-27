@@ -21,7 +21,7 @@ func _ready() -> void:
   ]))
 
   modifier_manager.add_modifier(Modifiers.Modifier.new("Bull Strength", "Potion", 60.0, [
-    Modifiers.SubModifier.new("attribute", "strength", 1.2, "Multiplicative"),
+    Modifiers.SubModifier.new("attribute", "strength", 1.2, Modifiers.SubModifier.ModifierType.Multiplicative),
   ]))
 
   attributes.debug_print(modifier_manager)
