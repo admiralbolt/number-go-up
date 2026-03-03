@@ -1,6 +1,28 @@
 [gd_scene format=3 uid="uid://crp31gygqd1uv"]
 
 [ext_resource type="Script" uid="uid://r8td5bqh7d63" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cv6l513alkvq7" path="res://some_guy.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://drc3f1k158n5h" path="res://core/character_statistics.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://baku335ko4dpd" path="res://core/skills.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://o2atl7eyrrwd" path="res://core/skill.gd" id="5_lquwl"]
+
+[sub_resource type="Resource" id="Resource_1bvp3"]
+script = ExtResource("3_h2yge")
+metadata/_custom_type_script = "uid://drc3f1k158n5h"
+
+[sub_resource type="Resource" id="Resource_7mycd"]
+script = ExtResource("5_lquwl")
+metadata/_custom_type_script = "uid://o2atl7eyrrwd"
+
+[sub_resource type="Resource" id="Resource_272bh"]
+script = ExtResource("4_1bvp3")
+swords = SubResource("Resource_7mycd")
+metadata/_custom_type_script = "uid://baku335ko4dpd"
 
 [node name="Main" type="Node" unique_id=305744600]
 script = ExtResource("1_ig7tw")
+
+[node name="SomeGuy" type="Node2D" parent="." unique_id=500815994]
+script = ExtResource("2_0xm2m")
+attributes = SubResource("Resource_1bvp3")
+skills = SubResource("Resource_272bh")

@@ -1,7 +1,6 @@
-extends Area2D
+extends Node2D
 
-@export var attributes: Attributes
-@export var derived_values: DerivedValues
+@export var attributes: CharacterStatistics
 @export var skills: Skills
 
 

@@ -31,15 +31,15 @@ static var ATTRIBUTE_NAMES = [
 @export var base_charisma: float = 10.0
 @export var base_luck: float = 10.0
 
-@export var total_strength: float = 10.0
-@export var total_constitution: float = 10.0
-@export var total_dexterity: float = 10.0
-@export var total_agility: float = 10.0
-@export var total_spirit: float = 10.0
-@export var total_wisdom: float = 10.0
-@export var total_intelligence: float = 10.0
-@export var total_charisma: float = 10.0
-@export var total_luck: float = 10.0
+var total_strength: float = 10.0
+var total_constitution: float = 10.0
+var total_dexterity: float = 10.0
+var total_agility: float = 10.0
+var total_spirit: float = 10.0
+var total_wisdom: float = 10.0
+var total_intelligence: float = 10.0
+var total_charisma: float = 10.0
+var total_luck: float = 10.0
 
 ### DERIVED VALUES ###
 ######################
@@ -134,15 +134,15 @@ static var DERIVED_VALUE_FORMULAS = {
 @export var base_armor: float = 0.0
 @export var base_dodge: float = 0.0
 
-@export var total_max_health: float = 100.0
-@export var total_max_mana: float = 100.0
-@export var total_max_stamina: float = 100.0
-@export var total_fortitude_save: float = 0.0
-@export var total_reflex_save: float = 0.0
-@export var total_will_save: float = 0.0
-@export var total_mind_save: float = 0.0
-@export var total_armor: float = 0.0
-@export var total_dodge: float = 0.0
+var total_max_health: float = 100.0
+var total_max_mana: float = 100.0
+var total_max_stamina: float = 100.0
+var total_fortitude_save: float = 0.0
+var total_reflex_save: float = 0.0
+var total_will_save: float = 0.0
+var total_mind_save: float = 0.0
+var total_armor: float = 0.0
+var total_dodge: float = 0.0
 
 func recompute_total_values(modifiers: Modifiers) -> void:
   for attribute_name in ATTRIBUTE_NAMES:
