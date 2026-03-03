@@ -1,32 +1,45 @@
 class_name Skills extends Resource
 
-static var skill_names: Array[String] = ["swords", "axes"]
+static var SKILL_NAMES: Array[String] = [
+  "swords",
+  "axes"
+]
 
-@export var skills: Dictionary[String, Skill] = {
-  "swords": Skill.new("swords", 1, 0.0, {
-    "strength": 0.6,
-    "dexterity": 0.35,
-    "agility": 0.05
-  }),
-  "axes": Skill.new("axes", 1, 0.0, {
-    "strength": 0.7,
-    "dexterity": 0.2,
-    "constitution": 0.1
-  }),
-}
+@export var swords = Skill.new("swords", 1, 0.0, {
+  "strength": 0.6,
+  "dexterity": 0.35,
+  "agility": 0.05
+})
 
-func debug_print(attributes: Attributes, modifiers: Modifiers) -> void:
+@export var axes = Skill.new("axes", 1, 0.0, {
+  "strength": 0.7,
+  "dexterity": 0.2,
+  "constitution": 0.1
+})
+
+
+func debug_print() -> void:
   print("Skills:")
   print("==============")
-  for skill in skills.values():
-    print("%s: %.2f (Level %d, XP %.2f)" % [skill.name, skill.get_total_value(attributes, modifiers), skill.level, skill.xp])
+  for skill_name in SKILL_NAMES:
+    var skill = self.get(skill_name)
+    skill.debug_print()
   print("\n")
+
+func recompute_total_values(character_statistics: CharacterStatistics, modifiers: Modifiers) -> void:
+  for skill_name in SKILL_NAMES:
+    var skill = self.get(skill_name)
+    skill.recompute_total_value(character_statistics, modifiers)
 
 
 class Skill extends Resource:
 
+  static var SKILL_BONUS_PER_LEVEL: float = 5.0
+
   var name: String = ""
   var level: int = 1
+  var base_value: float = SKILL_BONUS_PER_LEVEL
+  var total_value: float = SKILL_BONUS_PER_LEVEL
   var xp: float = 0.0
   var xp_to_next_level: float = 1000.0
   var weights: Dictionary[String, float] = {}
@@ -34,17 +47,18 @@ class Skill extends Resource:
   func _init(p_name: String, p_level: int, p_xp: float, p_weights: Dictionary[String, float]) -> void:
     self.name = p_name
     self.level = p_level
+    self.base_value = level
+    self.total_value = level
     self.xp = p_xp
     self.xp_to_next_level = get_xp_for_next_level()
     self.weights = p_weights
 
-  func get_total_value(attributes: Attributes, modifiers: Modifiers) -> float:
-    var val: float = level
+  func recompute_total_value(attributes: CharacterStatistics, modifiers: Modifiers) -> void:
+    self.base_value = level * SKILL_BONUS_PER_LEVEL
     for attribute_name in weights.keys():
-      if attributes.attributes.has(attribute_name):
-        val += attributes.attributes[attribute_name].get_total_value(modifiers) * weights[attribute_name]
-    val = modifiers.compute(val, "skill", name)
-    return snapped(val, 0.01)
+      self.base_value += attributes.get("total_" + attribute_name) * weights[attribute_name]
+
+    self.total_value = modifiers.compute(self.base_value, Modifiers.SubModifier.TargetType.Skill, self.name)
 
   func get_xp_for_next_level() -> float:
     return 500 * (level ** 2.4 + level ** 1.7 + level ** 1.2)
@@ -55,3 +69,6 @@ class Skill extends Resource:
       level += 1
       xp_to_next_level = get_xp_for_next_level()
       SignalBus.skill_level_up.emit(name, level)
+
+  func debug_print() -> void:
+    print("%s: (Level %d, XP %.2f, Base Value: %.2f, Total Value %.2f)" % [name, level, xp, base_value, total_value])

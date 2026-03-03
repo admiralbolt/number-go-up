@@ -5,17 +5,16 @@ class_name Modifiers extends Node
 # In addition to keeping track of the active modifiers in an array, we want
 # a two level mapping of target + name for easy lookup when calculating
 # derived values and skills.
-@export var attribute_map: Dictionary[String, SubModifierList] = {}
-@export var derived_map: Dictionary[String, SubModifierList] = {}
+@export var stat_map: Dictionary[String, SubModifierList] = {}
 @export var skill_map: Dictionary[String, SubModifierList] = {}
 
 func _init() -> void:
   # Initialize the maps with empty lists for each value.
-  for attribute_name in Attributes.attribute_names:
-    attribute_map[attribute_name] = SubModifierList.new()
-  for derived_name in DerivedValues.derived_value_names:
-    derived_map[derived_name] = SubModifierList.new()
-  for skill_name in Skills.skill_names:
+  for attribute_name in CharacterStatistics.ATTRIBUTE_NAMES:
+    stat_map[attribute_name] = SubModifierList.new()
+  for derived_name in CharacterStatistics.DERIVED_VALUE_NAMES:
+    stat_map[derived_name] = SubModifierList.new()
+  for skill_name in Skills.SKILL_NAMES:
     skill_map[skill_name] = SubModifierList.new()
 
 func _process(delta: float) -> void:
@@ -30,11 +29,9 @@ func add_modifier(modifier: Modifier) -> void:
   # When we add a new modifier, we want to update all the corresponding maps
   # for quick lookup later.
   for sub_modifier in modifier.modifier_data:
-    if sub_modifier.target_type == "attribute":
-      attribute_map[sub_modifier.target_name].add_sub_modifier(sub_modifier)
-    elif sub_modifier.target_type == "derived":
-      derived_map[sub_modifier.target_name].add_sub_modifier(sub_modifier)
-    elif sub_modifier.target_type == "skill":
+    if sub_modifier.target_type == SubModifier.TargetType.Stat:
+      stat_map[sub_modifier.target_name].add_sub_modifier(sub_modifier)
+    elif sub_modifier.target_type == SubModifier.TargetType.Skill:
       skill_map[sub_modifier.target_name].add_sub_modifier(sub_modifier)
 
 func find_modifier(modifier_name: String) -> Modifier:
@@ -52,21 +49,17 @@ func remove_modifier(modifier_name: String) -> void:
   active_modifiers.erase(modifier_to_remove)
   # When removing, we also want to update the corresponding maps.
   for sub_modifier in modifier_to_remove.modifier_data:
-    if sub_modifier.target_type == "attribute":
-      attribute_map[sub_modifier.target_name].remove_sub_modifier(sub_modifier)
-    elif sub_modifier.target_type == "derived":
-      derived_map[sub_modifier.target_name].remove_sub_modifier(sub_modifier)
-    elif sub_modifier.target_type == "skill":
+    if sub_modifier.target_type == SubModifier.TargetType.Stat:
+      stat_map[sub_modifier.target_name].remove_sub_modifier(sub_modifier)
+    elif sub_modifier.target_type == SubModifier.TargetType.Skill:
       skill_map[sub_modifier.target_name].remove_sub_modifier(sub_modifier)
 
-func compute(base_value: float, target_type: String, target_name: String) -> float:
-  if target_type == "attribute" and attribute_map.has(target_name):
-    return attribute_map[target_name].apply(base_value)
-  elif target_type == "derived" and derived_map.has(target_name):
-    return derived_map[target_name].apply(base_value)
-  elif target_type == "skill" and skill_map.has(target_name):
+func compute(base_value: float, target_type: SubModifier.TargetType, target_name: String) -> float:
+  if target_type == SubModifier.TargetType.Stat and stat_map.has(target_name):
+    return stat_map[target_name].apply(base_value)
+  elif target_type == SubModifier.TargetType.Skill and skill_map.has(target_name):
     return skill_map[target_name].apply(base_value)
-  
+
   return base_value
 
 
@@ -88,12 +81,17 @@ class SubModifier extends Resource:
     Multiplicative
   }
 
-  var target_type: String = ""
+  enum TargetType {
+    Stat,
+    Skill
+  }
+
+  var target_type: TargetType = TargetType.Stat
   var target_name: String = ""
   var value: float = 0.0
   var type: ModifierType = ModifierType.Additive
 
-  func _init(p_target_type: String, p_target_name: String, p_value: float, p_type: ModifierType = ModifierType.Additive) -> void:
+  func _init(p_target_type: TargetType, p_target_name: String, p_value: float, p_type: ModifierType = ModifierType.Additive) -> void:
     self.target_type = p_target_type
     self.target_name = p_target_name
     self.value = p_value

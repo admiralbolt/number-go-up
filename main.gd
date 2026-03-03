@@ -2,35 +2,38 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-  var attributes = Attributes.new(10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0)
-  var derived_values = DerivedValues.new()
+  var character_statistics = CharacterStatistics.new()
   var skills = Skills.new()
-  var modifier_manager = Modifiers.new()
-  
-  attributes.debug_print(modifier_manager)
-  derived_values.debug_print(attributes, modifier_manager)
-  skills.debug_print(attributes, modifier_manager)
+  var modifiers = Modifiers.new()
 
+  character_statistics.recompute_total_values(modifiers)
+  skills.recompute_total_values(character_statistics, modifiers)
+
+  character_statistics.debug_print()
+  skills.debug_print()
 
   # Now lets add some modifiers.
-  modifier_manager.add_modifier(Modifiers.Modifier.new("Flame Blade", "Spell", 30.0, [
-    Modifiers.SubModifier.new("attribute", "strength", 5.0),
-    Modifiers.SubModifier.new("attribute", "agility", 10.3),
-    Modifiers.SubModifier.new("derived", "health", -15.2),
-    Modifiers.SubModifier.new("skill", "swords", 7.3),
+  modifiers.add_modifier(Modifiers.Modifier.new("Flame Blade", "Spell", 30.0, [
+    Modifiers.SubModifier.new(Modifiers.SubModifier.TargetType.Stat, "strength", 5.0),
+    Modifiers.SubModifier.new(Modifiers.SubModifier.TargetType.Stat, "agility", 10.3),
+    Modifiers.SubModifier.new(Modifiers.SubModifier.TargetType.Stat, "max_health", -15.2),
+    Modifiers.SubModifier.new(Modifiers.SubModifier.TargetType.Skill, "swords", 7.3),
   ]))
 
-  modifier_manager.add_modifier(Modifiers.Modifier.new("Bull Strength", "Potion", 60.0, [
-    Modifiers.SubModifier.new("attribute", "strength", 1.2, Modifiers.SubModifier.ModifierType.Multiplicative),
+  modifiers.add_modifier(Modifiers.Modifier.new("Bull Strength", "Potion", 60.0, [
+    Modifiers.SubModifier.new(Modifiers.SubModifier.TargetType.Stat, "strength", 1.2, Modifiers.SubModifier.ModifierType.Multiplicative),
   ]))
 
-  attributes.debug_print(modifier_manager)
-  derived_values.debug_print(attributes, modifier_manager)
-  skills.debug_print(attributes, modifier_manager)
+  character_statistics.recompute_total_values(modifiers)
+  skills.recompute_total_values(character_statistics, modifiers)
 
-  # Remove our modifier.
-  modifier_manager.remove_modifier("Flame Blade")
+  character_statistics.debug_print()
+  skills.debug_print()
 
-  attributes.debug_print(modifier_manager)
-  derived_values.debug_print(attributes, modifier_manager)
-  skills.debug_print(attributes, modifier_manager)
+  modifiers.remove_modifier("Flame Blade")
+
+  character_statistics.recompute_total_values(modifiers)
+  skills.recompute_total_values(character_statistics, modifiers)
+
+  character_statistics.debug_print()
+  skills.debug_print()
