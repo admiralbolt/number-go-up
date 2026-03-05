@@ -1,7 +1,7 @@
 extends AnimationPlayer
 
 static var DIRECTIONS = ["down", "downright", "right", "upright", "up", "upleft", "left", "downleft"]
-static var ACTIONS = ["walk", "roll", "attack"]
+static var ACTIONS = ["walk", "roll", "attack", "idle"]
 
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var anim_root_node: Node = self.get_node(self.root_node)
@@ -25,7 +25,6 @@ func create_animation(frame_indices: Array[int], duration: float = 0.6) -> Anima
 
   for i in range(frame_indices.size()):
     var time: float = (i / float(frame_indices.size())) * duration
-    print("Inserting key at time: %f for frame index: %d" % [time, frame_indices[i]])
     anim.track_insert_key(frame_track_id, time, frame_indices[i])
 
   return anim
@@ -43,7 +42,3 @@ func initialize_with_duration(duration: float = 0.6) -> void:
       frame += 4
 
   self.add_animation_library("PlayerAnimations", animation_library)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-  pass

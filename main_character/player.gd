@@ -10,16 +10,20 @@ var speed: float = 100.0
 
 func _ready() -> void:
   player_state_machine.initialize2(self)
-  player_state_machine.change_state(PlayerWalkState.NAME)
+  player_state_machine.change_state(PlayerIdleState.NAME)
 
 func _process(_delta: float) -> void:
   direction = Input.get_vector("left", "right", "up", "down")
-  direction_name = Directions.get_direction_name(direction)
+  # Only update direction name if we are pressing something.
+  if direction != Vector2.ZERO:
+    direction_name = Directions.get_direction_name(direction)
 
   if Input.is_key_pressed(Key.KEY_SPACE):
     player_state_machine.change_state(PlayerRollState.NAME)
   elif Input.is_key_pressed(Key.KEY_J):
     player_state_machine.change_state(PlayerAttackState.NAME)
+  elif direction != Vector2.ZERO:
+    player_state_machine.change_state(PlayerWalkState.NAME)
 
 func _physics_process(_delta: float) -> void:
   velocity = direction * speed

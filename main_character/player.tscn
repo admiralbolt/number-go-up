@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://c7tf3s7otpuxe"]
 
-[ext_resource type="Texture2D" uid="uid://b8iexcbjluaix" path="res://assets/character/player_spritesheet.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://x2ahs0qcsk8e" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Script" uid="uid://dk6b0vc6gmae3" path="res://animation_player.gd" id="3_i3pqv"]
-[ext_resource type="Script" uid="uid://citaw2su7m5cg" path="res://player_state_machine.gd" id="4_hqtel"]
-[ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://player_walk_state.gd" id="5_sweqy"]
-[ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://player_roll_state.gd" id="6_2hs0m"]
-[ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://player_attack_state.gd" id="7_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://bm0m3de1whofg" path="res://assets/character/player_spritesheet.png" id="1_8m8cs"]
+[ext_resource type="Script" uid="uid://x2ahs0qcsk8e" path="res://main_character/player.gd" id="1_011kr"]
+[ext_resource type="Script" uid="uid://c66uw3cfl06di" path="res://main_character/animation_player.gd" id="3_4d3ay"]
+[ext_resource type="Script" uid="uid://citaw2su7m5cg" path="res://main_character/player_state_machine.gd" id="4_2oxr7"]
+[ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://main_character/player_walk_state.gd" id="5_q2hn0"]
+[ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://main_character/player_roll_state.gd" id="6_5vaow"]
+[ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/player_attack_state.gd" id="7_kfiix"]
+[ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/player_idle_state.gd" id="8_1la20"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 5.0
@@ -33,14 +34,14 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=762666805]
-script = ExtResource("1_onrkg")
+script = ExtResource("1_011kr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=262927677]
 unique_name_in_owner = true
 position = Vector2(37, 23)
-texture = ExtResource("1_4flbx")
+texture = ExtResource("1_8m8cs")
 hframes = 4
-vframes = 24
+vframes = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51968823]
 position = Vector2(37, 28)
@@ -49,16 +50,19 @@ shape = SubResource("CapsuleShape2D_4flbx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1449608830]
 libraries/ = SubResource("AnimationLibrary_i3pqv")
-script = ExtResource("3_i3pqv")
+script = ExtResource("3_4d3ay")
 
 [node name="PlayerStateMachine" type="Node" parent="." unique_id=360248853]
-script = ExtResource("4_hqtel")
+script = ExtResource("4_2oxr7")
 
 [node name="PlayerWalkState" type="Node" parent="PlayerStateMachine" unique_id=1088316497]
-script = ExtResource("5_sweqy")
+script = ExtResource("5_q2hn0")
 
 [node name="PlayerRollState" type="Node" parent="PlayerStateMachine" unique_id=717010897]
-script = ExtResource("6_2hs0m")
+script = ExtResource("6_5vaow")
 
 [node name="PlayerAttackState" type="Node" parent="PlayerStateMachine" unique_id=1170924147]
-script = ExtResource("7_1jxqw")
+script = ExtResource("7_kfiix")
+
+[node name="PlayerIdleState" type="Node" parent="PlayerStateMachine" unique_id=1301380956]
+script = ExtResource("8_1la20")

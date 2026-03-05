@@ -8,8 +8,11 @@ var attack_timer: float
 func _init() -> void:
   self.state_name = NAME
 
-func can_exit() -> bool:
-  return attack_timer <= 0.3
+func can_exit(next_state: State) -> bool:
+  if attack_timer <= 0:
+    return true
+  
+  return attack_timer <= 0.3 and next_state.state_name in [PlayerRollState.NAME]
 
 func on_enter() -> void:
   self.attack_timer = 0.6
@@ -21,4 +24,12 @@ func on_exit() -> void:
 
 func process(delta: float) -> String:
   self.attack_timer -= delta
-  return State.NULL_STATE if self.attack_timer > 0 else PlayerWalkState.NAME
+  if self.attack_timer > 0:
+    return State.NULL_STATE
+
+  # If the player is still holding a direction, transition to walk, otherwise
+  # we want to go to idle.
+  if self.state_machine.player.direction != Vector2.ZERO:
+    return PlayerWalkState.NAME
+
+  return PlayerIdleState.NAME
