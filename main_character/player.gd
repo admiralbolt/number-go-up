@@ -22,9 +22,9 @@ func _process(_delta: float) -> void:
     facing = held_direction
     direction_name = Directions.get_direction_name(facing)
 
-  if Input.is_key_pressed(Key.KEY_SPACE):
+  if Input.is_action_just_pressed("roll"):
     player_state_machine.change_state(PlayerRollState.NAME)
-  elif Input.is_key_pressed(Key.KEY_J):
+  elif Input.is_action_just_pressed("attack"):
     player_state_machine.change_state(PlayerAttackState.NAME)
   elif held_direction != Vector2.ZERO:
     player_state_machine.change_state(PlayerWalkState.NAME)

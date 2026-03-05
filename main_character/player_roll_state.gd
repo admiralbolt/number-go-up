@@ -12,7 +12,7 @@ func can_exit(next_state: State) -> bool:
   if roll_timer <= 0:
     return true
 
-  return roll_timer <= (PlayerAnimator.ANIMATION_DURATION["roll"] * 0.5) and next_state.state_name in [PlayerAttackState.NAME]
+  return roll_timer <= (PlayerAnimator.ANIMATION_DURATION["roll"] * 0.4) and next_state.state_name in [PlayerAttackState.NAME]
 
 func on_enter() -> void:
   self.roll_timer = PlayerAnimator.ANIMATION_DURATION["roll"]
