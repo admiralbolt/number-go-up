@@ -9,7 +9,6 @@ func _init() -> void:
 
 func on_enter() -> void:
   direction_name = self.state_machine.player.direction_name
-  print("idle direction: %s" % direction_name)
   self.state_machine.player.animation_player.play("PlayerAnimations/idle_%s" % direction_name)
 
 func on_exit() -> void:

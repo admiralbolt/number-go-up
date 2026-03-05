@@ -44,7 +44,7 @@ hframes = 4
 vframes = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51968823]
-position = Vector2(37, 28)
+position = Vector2(37, 25)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_4flbx")
 
