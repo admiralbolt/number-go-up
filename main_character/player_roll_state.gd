@@ -12,10 +12,10 @@ func can_exit(next_state: State) -> bool:
   if roll_timer <= 0:
     return true
 
-  return roll_timer <= 0.3 and next_state.state_name in [PlayerAttackState.NAME]
+  return roll_timer <= (PlayerAnimator.ANIMATION_DURATION["roll"] * 0.5) and next_state.state_name in [PlayerAttackState.NAME]
 
 func on_enter() -> void:
-  self.roll_timer = 0.6
+  self.roll_timer = PlayerAnimator.ANIMATION_DURATION["roll"]
   # Lock the direction for the duration of the roll.
   self.roll_direction = self.state_machine.player.direction
   self.state_machine.player.animation_player.play("PlayerAnimations/roll_%s" % self.state_machine.player.direction_name)

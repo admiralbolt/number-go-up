@@ -1,7 +1,13 @@
-extends AnimationPlayer
+class_name PlayerAnimator extends AnimationPlayer
 
 static var DIRECTIONS = ["down", "downright", "right", "upright", "up", "upleft", "left", "downleft"]
 static var ACTIONS = ["walk", "roll", "attack", "idle"]
+static var ANIMATION_DURATION = {
+  "walk": 0.6,
+  "roll": 0.4,
+  "attack": 0.6,
+  "idle": 0.6
+}
 
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var anim_root_node: Node = self.get_node(self.root_node)
@@ -11,7 +17,7 @@ static var ACTIONS = ["walk", "roll", "attack", "idle"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-  self.initialize_with_duration(0.6)
+  self.initialize()
   pass # Replace with function body.
 
 func create_animation(frame_indices: Array[int], duration: float = 0.6) -> Animation:
@@ -29,7 +35,7 @@ func create_animation(frame_indices: Array[int], duration: float = 0.6) -> Anima
 
   return anim
 
-func initialize_with_duration(duration: float = 0.6) -> void:
+func initialize() -> void:
   var frame: int = 0
   var animation_library: AnimationLibrary = AnimationLibrary.new()
   for action in ACTIONS:
@@ -37,7 +43,7 @@ func initialize_with_duration(duration: float = 0.6) -> void:
       var anim_name: String = "%s_%s" % [action, direction]
       var frame_indices: Array[int] = [frame, frame + 1, frame + 2, frame + 3]
 
-      var anim: Animation = self.create_animation(frame_indices, duration)
+      var anim: Animation = self.create_animation(frame_indices, ANIMATION_DURATION[action])
       animation_library.add_animation(anim_name, anim)
       frame += 4
 

@@ -12,10 +12,10 @@ func can_exit(next_state: State) -> bool:
   if attack_timer <= 0:
     return true
   
-  return attack_timer <= 0.3 and next_state.state_name in [PlayerRollState.NAME]
+  return attack_timer <= (PlayerAnimator.ANIMATION_DURATION["attack"] * 0.5) and next_state.state_name in [PlayerRollState.NAME]
 
 func on_enter() -> void:
-  self.attack_timer = 0.6
+  self.attack_timer = PlayerAnimator.ANIMATION_DURATION["attack"]
   direction_name = self.state_machine.player.direction_name
   self.state_machine.player.animation_player.play("PlayerAnimations/attack_%s" % direction_name)
 
