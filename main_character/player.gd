@@ -3,7 +3,8 @@ class_name Player extends CharacterBody2D
 @onready var animation_player: PlayerAnimator = $PlayerAnimator
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 
-var direction: Vector2 = Vector2.ZERO
+var held_direction: Vector2 = Vector2.DOWN
+var facing: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
 
 var speed: float = 100.0
@@ -13,20 +14,23 @@ func _ready() -> void:
   player_state_machine.change_state(PlayerIdleState.NAME)
 
 func _process(_delta: float) -> void:
-  direction = Input.get_vector("left", "right", "up", "down")
+  held_direction = Input.get_vector("left", "right", "up", "down")
   # Only update direction name if we are pressing something.
-  if direction != Vector2.ZERO:
-    direction_name = Directions.get_direction_name(direction)
+  if held_direction != Vector2.ZERO:
+    # We only update facing if we are pressing something. This way, if we stop
+    # pressing something the facing will still be up to date.
+    facing = held_direction
+    direction_name = Directions.get_direction_name(facing)
 
   if Input.is_key_pressed(Key.KEY_SPACE):
     player_state_machine.change_state(PlayerRollState.NAME)
   elif Input.is_key_pressed(Key.KEY_J):
     player_state_machine.change_state(PlayerAttackState.NAME)
-  elif direction != Vector2.ZERO:
+  elif held_direction != Vector2.ZERO:
     player_state_machine.change_state(PlayerWalkState.NAME)
 
 func _physics_process(_delta: float) -> void:
-  velocity = direction * speed
+  velocity = held_direction * speed
   if player_state_machine.current_state is PlayerAttackState:
     velocity *= 0.5
   elif player_state_machine.current_state is PlayerRollState:

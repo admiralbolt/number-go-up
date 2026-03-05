@@ -29,7 +29,7 @@ func process(delta: float) -> String:
 
   # If the player is still holding a direction, transition to walk, otherwise
   # we want to go to idle.
-  if self.state_machine.player.direction != Vector2.ZERO:
+  if self.state_machine.player.held_direction != Vector2.ZERO:
     return PlayerWalkState.NAME
 
   return PlayerIdleState.NAME

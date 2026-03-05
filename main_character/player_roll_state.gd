@@ -17,7 +17,7 @@ func can_exit(next_state: State) -> bool:
 func on_enter() -> void:
   self.roll_timer = PlayerAnimator.ANIMATION_DURATION["roll"]
   # Lock the direction for the duration of the roll.
-  self.roll_direction = self.state_machine.player.direction
+  self.roll_direction = self.state_machine.player.facing
   self.state_machine.player.animation_player.play("PlayerAnimations/roll_%s" % self.state_machine.player.direction_name)
 
 func on_exit() -> void:
@@ -31,7 +31,7 @@ func process(delta: float) -> String:
 
   # If the player is still holding a direction, transition to walk, otherwise
   # we want to go to idle.
-  if self.state_machine.player.direction != Vector2.ZERO:
+  if self.state_machine.player.held_direction != Vector2.ZERO:
     return PlayerWalkState.NAME
 
   return PlayerIdleState.NAME

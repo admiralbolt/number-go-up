@@ -30,7 +30,7 @@ func change_state(new_state_name: String) -> void:
   if new_state == null or new_state == current_state or not current_state.can_exit(new_state) or not new_state.can_enter(current_state):
     return
 
-  # print("Changing state from %s to %s" % [current_state.state_name, new_state.state_name])
+  print("Changing state from %s to %s" % [current_state.state_name, new_state.state_name])
   current_state.on_exit()
   new_state.on_enter()
   prev_state = current_state
