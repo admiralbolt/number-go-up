@@ -15,10 +15,10 @@ func on_enter() -> void:
 func on_exit() -> void:
   return
 
-func can_enter(prev_state: State) -> bool:
+func can_enter(_prev_state: State) -> bool:
   return true
 
-func can_exit(next_state: State) -> bool:
+func can_exit(_next_state: State) -> bool:
   return true
 
 func process(_delta: float) -> String:
