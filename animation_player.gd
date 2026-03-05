@@ -21,9 +21,11 @@ func create_animation(frame_indices: Array[int], duration: float = 0.6) -> Anima
 
   var frame_track_id: int = anim.add_track(Animation.TYPE_VALUE)
   anim.track_set_path(frame_track_id, sprite_frame_path)
+  anim.value_track_set_update_mode(frame_track_id, Animation.UPDATE_DISCRETE)
 
   for i in range(frame_indices.size()):
     var time: float = (i / float(frame_indices.size())) * duration
+    print("Inserting key at time: %f for frame index: %d" % [time, frame_indices[i]])
     anim.track_insert_key(frame_track_id, time, frame_indices[i])
 
   return anim

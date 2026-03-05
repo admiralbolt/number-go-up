@@ -1,6 +1,7 @@
 class_name StateMachine extends Node
 
 var states: Array[State]
+var state_map: Dictionary[String, State] = {}
 var current_state: State
 var prev_state: State
 
@@ -12,6 +13,7 @@ func initialize() -> void:
   for child in get_children():
     if child is State:
       states.append(child)
+      state_map[child.state_name] = child
 
   for state in states:
     state.state_machine = self
@@ -23,7 +25,8 @@ func initialize() -> void:
     process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func change_state(new_state: State) -> void:
+func change_state(new_state_name: String) -> void:
+  var new_state: State = state_map.get(new_state_name)
   if new_state == null or new_state == current_state or not current_state.can_exit() or not new_state.can_enter():
     return
 
@@ -31,3 +34,15 @@ func change_state(new_state: State) -> void:
   new_state.on_enter()
   prev_state = current_state
   current_state = new_state
+
+func _process(delta: float) -> void:
+  if current_state == null:
+    return
+
+  current_state.process(delta)
+
+func _physics_process(delta: float) -> void:
+  if current_state == null:
+    return
+
+  current_state.physics_process(delta)

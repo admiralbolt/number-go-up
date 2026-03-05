@@ -22,6 +22,6 @@ func can_exit() -> bool:
 func process(_delta: float) -> State:
   return null
 
-func physics(_delta: float) -> State:
+func physics_process(_delta: float) -> State:
   return null
 
