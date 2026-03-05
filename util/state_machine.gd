@@ -39,10 +39,10 @@ func _process(delta: float) -> void:
   if current_state == null:
     return
 
-  current_state.process(delta)
+  self.change_state(current_state.process(delta))
 
 func _physics_process(delta: float) -> void:
   if current_state == null:
     return
 
-  current_state.physics_process(delta)
+  self.change_state(current_state.physics_process(delta))

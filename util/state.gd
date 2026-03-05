@@ -1,5 +1,7 @@
 class_name State extends Node
 
+static var NULL_STATE: String = "this_should_never_be_a_real_state_name"
+
 @export var state_name: String = ""
 
 var state_machine: StateMachine
@@ -19,9 +21,9 @@ func can_enter() -> bool:
 func can_exit() -> bool:
   return true
 
-func process(_delta: float) -> State:
-  return null
+func process(_delta: float) -> String:
+  return NULL_STATE
 
-func physics_process(_delta: float) -> State:
-  return null
+func physics_process(_delta: float) -> String:
+  return NULL_STATE
 

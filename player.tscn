@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://dk6b0vc6gmae3" path="res://animation_player.gd" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://citaw2su7m5cg" path="res://player_state_machine.gd" id="4_hqtel"]
 [ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://player_walk_state.gd" id="5_sweqy"]
+[ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://player_roll_state.gd" id="6_2hs0m"]
+[ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://player_attack_state.gd" id="7_1jxqw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 5.0
@@ -54,3 +56,9 @@ script = ExtResource("4_hqtel")
 
 [node name="PlayerWalkState" type="Node" parent="PlayerStateMachine" unique_id=1088316497]
 script = ExtResource("5_sweqy")
+
+[node name="PlayerRollState" type="Node" parent="PlayerStateMachine" unique_id=717010897]
+script = ExtResource("6_2hs0m")
+
+[node name="PlayerAttackState" type="Node" parent="PlayerStateMachine" unique_id=1170924147]
+script = ExtResource("7_1jxqw")
