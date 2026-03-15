@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 @onready var animation_player: PlayerAnimator = $PlayerAnimator
+@onready var weapon_animator: WeaponAnimator = $Weapon/WeaponAnimator
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 
 var held_direction: Vector2 = Vector2.DOWN

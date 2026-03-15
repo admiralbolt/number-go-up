@@ -1,6 +1,5 @@
 class_name PlayerAnimator extends AnimationPlayer
 
-static var DIRECTIONS = ["down", "downright", "right", "upright", "up", "upleft", "left", "downleft"]
 static var ACTIONS = ["walk", "roll", "attack", "idle"]
 static var ANIMATION_DURATION = {
   "walk": 0.6,
@@ -39,7 +38,7 @@ func initialize() -> void:
   var frame: int = 0
   var animation_library: AnimationLibrary = AnimationLibrary.new()
   for action in ACTIONS:
-    for direction in DIRECTIONS:
+    for direction in Directions.DIRECTION_NAMES:
       var anim_name: String = "%s_%s" % [action, direction]
       var frame_indices: Array[int] = [frame, frame + 1, frame + 2, frame + 3]
 

@@ -18,9 +18,12 @@ func on_enter() -> void:
   self.attack_timer = PlayerAnimator.ANIMATION_DURATION["attack"]
   direction_name = self.state_machine.player.direction_name
   self.state_machine.player.animation_player.play("PlayerAnimations/attack_%s" % direction_name)
+  self.state_machine.player.weapon_animator.play("WeaponAnimations/slash_%s" % direction_name)
 
 func on_exit() -> void:
   self.state_machine.player.animation_player.stop()
+  self.state_machine.player.weapon_animator.stop()
+  self.state_machine.player.weapon_animator.weapon.visible = false
 
 func process(delta: float) -> String:
   self.attack_timer -= delta
