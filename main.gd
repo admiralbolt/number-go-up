@@ -2,6 +2,22 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+  test_loot_pool()
+
+
+func test_loot_pool() -> void:
+  var loot_table = LootTable.new()
+  loot_table.number_of_rolls = 3
+  loot_table.loot.append(LootTable.LootEntry.new("Sword of Flames", 10, 1.5))
+  loot_table.loot.append(LootTable.LootEntry.new("Shield of Ice", 50, 0.1))
+  loot_table.loot.append(LootTable.LootEntry.new("Potion of Healing", 100, -0.1))
+
+
+  for luck in [10, 50, 100]:
+    print("Rolling loot with total luck: ", luck, loot_table.roll_loot(luck))
+
+
+func test_char_stuff() -> void:
   var character_statistics = CharacterStatistics.new()
   var skills = Skills.new()
   var modifiers = Modifiers.new()
