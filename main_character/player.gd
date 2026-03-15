@@ -4,6 +4,9 @@ class_name Player extends CharacterBody2D
 @onready var weapon: Weapon = $Weapon
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 
+@export_category("Player Stats")
+@export var stats: CharacterStatistics = CharacterStatistics.new()
+
 var held_direction: Vector2 = Vector2.DOWN
 var facing: Vector2 = Vector2.DOWN
 var direction_name: String = "down"

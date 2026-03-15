@@ -5,12 +5,14 @@
 [ext_resource type="Script" uid="uid://chyf7wbrbvm8u" path="res://main_character/weapon.gd" id="2_q2hn0"]
 [ext_resource type="Script" uid="uid://cd5rcqyepd0bo" path="res://main_character/player_animator.gd" id="3_011kr"]
 [ext_resource type="Script" uid="uid://citaw2su7m5cg" path="res://main_character/player_state_machine.gd" id="4_2oxr7"]
+[ext_resource type="PackedScene" uid="uid://xr68kfqc3xxm" path="res://util/HitBox.tscn" id="5_kfiix"]
 [ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://main_character/player_walk_state.gd" id="5_q2hn0"]
 [ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://main_character/player_roll_state.gd" id="6_5vaow"]
 [ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/player_attack_state.gd" id="7_kfiix"]
 [ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/player_idle_state.gd" id="8_1la20"]
 [ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/item/red_sword.png" id="9_4d3ay"]
 [ext_resource type="Script" uid="uid://8lj85d5udfx4" path="res://main_character/weapon_animator.gd" id="11_q2hn0"]
+[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/basic_health_bar.tscn" id="12_5vaow"]
 
 [sub_resource type="Animation" id="Animation_q2hn0"]
 resource_name = "RESET"
@@ -92,6 +94,10 @@ _data = {
 &"RESET": SubResource("Animation_q2hn0")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1la20"]
+radius = 4.0
+height = 28.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 4.0
 height = 10.0
@@ -117,6 +123,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=762666805]
+y_sort_enabled = true
 script = ExtResource("1_011kr")
 
 [node name="Weapon" type="Node2D" parent="." unique_id=894592039]
@@ -133,6 +140,14 @@ texture = ExtResource("9_4d3ay")
 libraries/ = SubResource("AnimationLibrary_kfiix")
 autoplay = &"RESET"
 script = ExtResource("11_q2hn0")
+
+[node name="HitBox" parent="Weapon" unique_id=827173607 instance=ExtResource("5_kfiix")]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/HitBox" unique_id=123902274]
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_1la20")
+debug_color = Color(1, 0.078431375, 0, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=262927677]
 unique_name_in_owner = true
@@ -163,3 +178,9 @@ script = ExtResource("7_kfiix")
 
 [node name="PlayerIdleState" type="Node" parent="PlayerStateMachine" unique_id=1301380956]
 script = ExtResource("8_1la20")
+
+[node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("12_5vaow")]
+offset_left = -39.0
+offset_top = -40.0
+offset_right = 50.0
+offset_bottom = -13.0

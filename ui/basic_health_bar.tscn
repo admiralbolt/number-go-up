@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c66loi4ua6wj7"]
+
+[ext_resource type="Script" uid="uid://bt5lpkbkxgxks" path="res://ui/basic_health_bar.gd" id="1_8vobq"]
+
+[node name="BasicHealthBar" type="ProgressBar" unique_id=43895216]
+offset_right = 104.0
+offset_bottom = 27.0
+script = ExtResource("1_8vobq")

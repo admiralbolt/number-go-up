@@ -125,8 +125,8 @@ func create_animation(key_frames: KeyFrameDataList, duration: float = 0.6) -> An
   anim.track_set_path(position_track_id, weapon_position_path)
   anim.track_set_path(rotation_track_id, weapon_rotation_path)
   anim.track_set_path(visible_track_id, weapon_visible_path)
-  anim.value_track_set_update_mode(position_track_id, Animation.UPDATE_DISCRETE)
-  anim.value_track_set_update_mode(rotation_track_id, Animation.UPDATE_DISCRETE)
+  # anim.value_track_set_update_mode(position_track_id, Animation.UPDATE_DISCRETE)
+  # anim.value_track_set_update_mode(rotation_track_id, Animation.UPDATE_DISCRETE)
   anim.value_track_set_update_mode(visible_track_id, Animation.UPDATE_DISCRETE)
 
   for i in range(key_frames.key_frames.size()):

@@ -19,11 +19,13 @@ func on_enter() -> void:
   direction_name = self.state_machine.player.direction_name
   self.state_machine.player.animation_player.play("PlayerAnimations/attack_%s" % direction_name)
   self.state_machine.player.weapon.animator.play("WeaponAnimations/slash_%s" % direction_name)
+  self.state_machine.player.weapon.hit_box.enable()
 
 func on_exit() -> void:
   self.state_machine.player.animation_player.stop()
   self.state_machine.player.weapon.animator.stop()
   self.state_machine.player.weapon.animator.weapon.visible = false
+  self.state_machine.player.weapon.hit_box.disable()
 
 func process(delta: float) -> String:
   self.attack_timer -= delta

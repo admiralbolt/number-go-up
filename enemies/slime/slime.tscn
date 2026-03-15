@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://bij1j62lef3e"]
+
+[ext_resource type="Texture2D" uid="uid://bxw51kblwy745" path="res://assets/monsters/slime1/Slime1_Idle_with_shadow.png" id="1_6ftag"]
+[ext_resource type="Script" uid="uid://bekobmrxdyebl" path="res://enemies/slime/slime.gd" id="1_n1ijq"]
+[ext_resource type="Script" uid="uid://br7wdb154lhbc" path="res://enemies/slime/slime_state_machine.gd" id="2_qtm3c"]
+[ext_resource type="Script" uid="uid://drc3f1k158n5h" path="res://core/character_statistics.gd" id="2_u2l51"]
+[ext_resource type="Script" uid="uid://dnfb742epc744" path="res://enemies/slime/slime_idle_state.gd" id="4_57eei"]
+[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/basic_health_bar.tscn" id="5_u2l51"]
+[ext_resource type="PackedScene" uid="uid://f18k057haeer" path="res://util/HurtBox.tscn" id="7_bkm6f"]
+
+[sub_resource type="Resource" id="Resource_2ui2u"]
+script = ExtResource("2_u2l51")
+current_hp = 400.0
+base_constitution = 100.0
+base_max_health = 200.0
+metadata/_custom_type_script = "uid://drc3f1k158n5h"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ftag"]
+radius = 4.999591
+height = 15.998691
+
+[sub_resource type="Animation" id="Animation_mks6d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0wa70"]
+resource_name = "idle_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xienu"]
+_data = {
+&"RESET": SubResource("Animation_mks6d"),
+&"idle_down": SubResource("Animation_0wa70")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bkm6f"]
+radius = 8.27755
+height = 16.5551
+
+[node name="Slime" type="CharacterBody2D" unique_id=1507265592]
+y_sort_enabled = true
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_n1ijq")
+stats = SubResource("Resource_2ui2u")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1959662034]
+texture = ExtResource("1_6ftag")
+hframes = 6
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2091954640]
+position = Vector2(0.3624115, 1.9546986)
+rotation = -1.5580014
+shape = SubResource("CapsuleShape2D_6ftag")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=935556527]
+libraries/ = SubResource("AnimationLibrary_xienu")
+autoplay = &"idle_down"
+
+[node name="SlimeStateMachine" type="Node" parent="." unique_id=1596179001]
+script = ExtResource("2_qtm3c")
+
+[node name="SlimeIdleState" type="Node" parent="SlimeStateMachine" unique_id=2124990085]
+script = ExtResource("4_57eei")
+
+[node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("5_u2l51")]
+offset_left = -43.890915
+offset_top = 9.579903
+offset_right = 60.109085
+offset_bottom = 36.579903
+
+[node name="HurtBox" parent="." unique_id=103616579 instance=ExtResource("7_bkm6f")]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1503483212]
+position = Vector2(0.33971405, 0.6794281)
+shape = SubResource("CapsuleShape2D_bkm6f")
+debug_color = Color(0.8745098, 0.57254905, 0.21176471, 0.41960785)

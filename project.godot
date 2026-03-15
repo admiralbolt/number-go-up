@@ -62,8 +62,9 @@ roll={
 
 [layer_names]
 
-2d_physics/layer_1="Player"
-2d_physics/layer_5="Walls"
+2d_physics/layer_1="player_hurtbox"
+2d_physics/layer_2="enemy_hurtbox"
+2d_physics/layer_5="walls"
 
 [physics]
 

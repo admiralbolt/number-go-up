@@ -1,6 +1,16 @@
 class_name CharacterStatistics extends Resource
 
 
+## TEST ##
+###########
+@export var current_hp: float = 100.0: set = _on_health_set
+signal health_changed(p_health: float, p_max_health: float)
+
+func _on_health_set(value: float) -> void:
+  print("Setting current health to: ", value)
+  current_hp = value
+  health_changed.emit(current_hp, total_max_health)
+
 ## BASE ##
 ###########
 @export var level: int = 1
