@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bm0m3de1whofg" path="res://assets/character/player_spritesheet.png" id="1_8m8cs"]
 [ext_resource type="Script" uid="uid://x2ahs0qcsk8e" path="res://main_character/player.gd" id="1_011kr"]
+[ext_resource type="Script" uid="uid://chyf7wbrbvm8u" path="res://main_character/weapon.gd" id="2_q2hn0"]
 [ext_resource type="Script" uid="uid://cd5rcqyepd0bo" path="res://main_character/player_animator.gd" id="3_011kr"]
 [ext_resource type="Script" uid="uid://citaw2su7m5cg" path="res://main_character/player_state_machine.gd" id="4_2oxr7"]
 [ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://main_character/player_walk_state.gd" id="5_q2hn0"]
@@ -9,7 +10,6 @@
 [ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/player_attack_state.gd" id="7_kfiix"]
 [ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/player_idle_state.gd" id="8_1la20"]
 [ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/item/red_sword.png" id="9_4d3ay"]
-[ext_resource type="Script" uid="uid://dv4q1g45fmvaa" path="res://main_character/weapon_sprite.gd" id="10_2oxr7"]
 [ext_resource type="Script" uid="uid://8lj85d5udfx4" path="res://main_character/weapon_animator.gd" id="11_q2hn0"]
 
 [sub_resource type="Animation" id="Animation_q2hn0"]
@@ -121,13 +121,13 @@ script = ExtResource("1_011kr")
 
 [node name="Weapon" type="Node2D" parent="." unique_id=894592039]
 visible = false
+script = ExtResource("2_q2hn0")
 
 [node name="WeaponSprite" type="Sprite2D" parent="Weapon" unique_id=254324246]
 position = Vector2(-4.7683716e-07, -11)
 rotation = -0.7853982
 scale = Vector2(0.59509796, 0.59509796)
 texture = ExtResource("9_4d3ay")
-script = ExtResource("10_2oxr7")
 
 [node name="WeaponAnimator" type="AnimationPlayer" parent="Weapon" unique_id=1014265080]
 libraries/ = SubResource("AnimationLibrary_kfiix")

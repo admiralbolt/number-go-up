@@ -137,7 +137,7 @@ func create_animation(key_frames: KeyFrameDataList, duration: float = 0.6) -> An
 
   # Insert visible at start, and hide at end.
   anim.track_insert_key(visible_track_id, 0, true)
-  anim.track_insert_key(visible_track_id, duration - 0.01, false)
+  anim.track_insert_key(visible_track_id, duration - 0.1, false)
 
   return anim
 
