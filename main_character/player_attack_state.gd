@@ -31,14 +31,14 @@ func on_enter() -> void:
 func on_exit() -> void:
   self.state_machine.player.animation_player.stop()
   self.state_machine.player.weapon_renderer.animator.stop()
-  self.state_machine.player.weapon_renderer.visible = false
+  self.state_machine.player.weapon_renderer.sprite_and_shape.visible = false
   self.state_machine.player.weapon_renderer.hit_box.reset()
 
 func process(delta: float) -> String:
   self.attack_timer -= delta
   if self.attack_timer <= (PlayerAnimator.ANIMATION_DURATION["attack"] * 0.4):
     self.state_machine.player.weapon_renderer.hit_box.disable()
-    self.state_machine.player.weapon_renderer.animator.weapon.visible = false
+    self.state_machine.player.weapon_renderer.sprite_and_shape.visible = false
 
   if self.attack_timer > 0:
     return State.NULL_STATE

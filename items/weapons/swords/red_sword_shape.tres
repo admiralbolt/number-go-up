@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="CollisionWithTransform" format=3 uid="uid://b1hfx3j8yd7a4"]
+[gd_resource type="Resource" script_class="SwordShape" format=3 uid="uid://b1hfx3j8yd7a4"]
 
-[ext_resource type="Script" uid="uid://c1q3eykwhquyn" path="res://util/collision_with_transform.gd" id="1_8o3wp"]
+[ext_resource type="Script" uid="uid://tyb4s8ik0smc" path="res://util/sword_shape.gd" id="1_8o3wp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjfh6"]
 radius = 4.949682
@@ -8,7 +8,9 @@ height = 33.941124
 
 [resource]
 script = ExtResource("1_8o3wp")
+parent_scale = Vector2(0.6, 0.6)
+sprite_position = Vector2(12.5605545, -12.616631)
 collision_shape = SubResource("CapsuleShape2D_pjfh6")
-position = Vector2(6.271038, -6.663555)
-rotation = 0.7853064
-scale = Vector2(1, 1)
+shape_position = Vector2(18.831593, -19.280186)
+shape_rotation = 0.7853064
+shape_scale = Vector2(1, 1)

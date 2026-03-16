@@ -1,22 +1,27 @@
 [gd_scene format=3 uid="uid://bonbapxu5yhyv"]
 
 [ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/items/red_sword.png" id="1_pjfh6"]
-[ext_resource type="Resource" uid="uid://b1hfx3j8yd7a4" path="res://items/weapons/swords/red_sword_shape.tres" id="2_f3ju7"]
-[ext_resource type="Script" uid="uid://b8rrr407rntog" path="res://test/collision_shape_2d.gd" id="3_yedie"]
+[ext_resource type="Script" uid="uid://dttqhkwiwb30g" path="res://test/weapon_shaping.gd" id="1_tpe81"]
+[ext_resource type="Resource" uid="uid://b1hfx3j8yd7a4" path="res://items/weapons/swords/red_sword_shape.tres" id="2_pjfh6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjfh6"]
 radius = 4.949682
 height = 33.941124
 
 [node name="WeaponShaping" type="Node2D" unique_id=820197576]
+process_mode = 3
+script = ExtResource("1_tpe81")
+save_data = ExtResource("2_pjfh6")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1846383556]
+[node name="SpriteAndShape" type="Node2D" parent="." unique_id=1349343433]
+scale = Vector2(0.52, 0.52)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteAndShape" unique_id=1846383556]
+position = Vector2(12.5605545, -12.616631)
 texture = ExtResource("1_pjfh6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1624483193]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteAndShape" unique_id=1624483193]
 process_mode = 3
-position = Vector2(6.271038, -6.663555)
+position = Vector2(18.831593, -19.280186)
 rotation = 0.7853064
 shape = SubResource("CapsuleShape2D_pjfh6")
-script = ExtResource("3_yedie")
-save_data = ExtResource("2_f3ju7")
