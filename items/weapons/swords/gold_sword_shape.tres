@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SwordShape" format=3 uid="uid://duhqwauketyki"]
+
+[ext_resource type="Script" uid="uid://tyb4s8ik0smc" path="res://util/sword_shape.gd" id="1_fi5eu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjfh6"]
+radius = 5.443368
+height = 33.941124
+
+[resource]
+script = ExtResource("1_fi5eu")
+parent_scale = Vector2(0.6, 0.6)
+sprite_position = Vector2(12.5605545, -12.616631)
+collision_shape = SubResource("CapsuleShape2D_pjfh6")
+shape_position = Vector2(18.399033, -15.6034155)
+shape_rotation = 0.7853064
+shape_scale = Vector2(1, 1)
