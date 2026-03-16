@@ -20,7 +20,6 @@ enum EquipmentSlot {
 @export var attribute_requirements: Dictionary[String, float] = {}
 
 
-
 func can_equip(attributes: Attributes) -> bool:
   for attribute_name in attribute_requirements.keys():
     if not attributes.attributes.has(attribute_name):

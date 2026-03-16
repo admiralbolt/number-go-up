@@ -4,7 +4,7 @@ static var ACTIONS = ["walk", "roll", "attack", "idle"]
 static var ANIMATION_DURATION = {
   "walk": 0.6,
   "roll": 0.4,
-  "attack": 0.5,
+  "attack": 2,
   "idle": 0.6
 }
 

@@ -1,5 +1,7 @@
 class_name HitBox extends Area2D
 
+@onready var collision_shape: CollisionShape2D = $WeaponCollisionShape
+
 var hit_log: HitLog
 
 func _ready() -> void:

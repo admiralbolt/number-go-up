@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 @onready var animation_player: PlayerAnimator = $PlayerAnimator
-@onready var weapon: Weapon = $Weapon
+@onready var weapon_renderer: WeaponRenderer = $WeaponRenderer
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 
 @export_category("Player Stats")

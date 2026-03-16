@@ -19,26 +19,26 @@ func can_exit(next_state: State) -> bool:
   if next_state.state_name == PlayerRollState.NAME:
     return true
 
-  return self.state_machine.player.weapon.hit_box.has_hit() and next_state.state_name == PlayerAttackState.NAME
+  return self.state_machine.player.weapon_renderer.hit_box.has_hit() and next_state.state_name == PlayerAttackState.NAME
 
 func on_enter() -> void:
   self.attack_timer = PlayerAnimator.ANIMATION_DURATION["attack"]
   direction_name = self.state_machine.player.direction_name
   self.state_machine.player.animation_player.play("PlayerAnimations/attack_%s" % direction_name)
-  self.state_machine.player.weapon.animator.play("WeaponAnimations/slash_%s" % direction_name)
-  self.state_machine.player.weapon.hit_box.enable()
+  self.state_machine.player.weapon_renderer.animator.play("WeaponAnimations/slash_%s" % direction_name)
+  self.state_machine.player.weapon_renderer.hit_box.enable()
 
 func on_exit() -> void:
   self.state_machine.player.animation_player.stop()
-  self.state_machine.player.weapon.animator.stop()
-  self.state_machine.player.weapon.animator.weapon.visible = false
-  self.state_machine.player.weapon.hit_box.reset()
+  self.state_machine.player.weapon_renderer.animator.stop()
+  self.state_machine.player.weapon_renderer.visible = false
+  self.state_machine.player.weapon_renderer.hit_box.reset()
 
 func process(delta: float) -> String:
   self.attack_timer -= delta
   if self.attack_timer <= (PlayerAnimator.ANIMATION_DURATION["attack"] * 0.4):
-    self.state_machine.player.weapon.hit_box.disable()
-    self.state_machine.player.weapon.animator.weapon.visible = false
+    self.state_machine.player.weapon_renderer.hit_box.disable()
+    self.state_machine.player.weapon_renderer.animator.weapon.visible = false
 
   if self.attack_timer > 0:
     return State.NULL_STATE
