@@ -30,6 +30,8 @@ func change_weapon(weapon: Weapon) -> void:
   self.animator.reset()
   self.animator.initialize(weapon)
 
+  self.sprite_and_shape.visible = false
+
 func _ready() -> void:
   # Load our red sword by default, let's see what happens.
   var red_sword = WeaponManager.weapon_registry["red_sword"]
