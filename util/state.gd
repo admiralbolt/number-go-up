@@ -3,6 +3,9 @@ class_name State extends Node
 static var NULL_STATE: String = "this_should_never_be_a_real_state_name"
 
 @export var state_name: String = ""
+# If self_loop is true, the state machine will allow transitions from this
+# state to itself.
+@export var self_loop: bool = false
 
 var state_machine: StateMachine
 

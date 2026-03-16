@@ -13,18 +13,24 @@ func _on_area_entered(area: Area2D) -> void:
     return
 
   var hurt_box_owner = area.owner
-  if hit_log:
-    if hit_log.has_hit(hurt_box_owner):
+  if self.hit_log:
+    if self.hit_log.has_hit(hurt_box_owner):
       return
-    hit_log.log_hit(hurt_box_owner)
+    self.hit_log.log_hit(hurt_box_owner)
 
-  area.receive_hit(owner.stats.base_strength * 2.5)
+  area.receive_hit(self.owner.stats.base_strength * 2.5)
 
 
 func enable() -> void:
-  monitoring = true
-  hit_log = HitLog.new()
+  self.monitoring = true
+  self.hit_log = HitLog.new()
 
 func disable() -> void:
-  monitoring = false
-  hit_log = null
+  self.monitoring = false
+
+func reset() -> void:
+  self.monitoring = false
+  self.hit_log = null
+
+func has_hit() -> bool:
+  return self.hit_log and self.hit_log.hits.size() > 0

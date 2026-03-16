@@ -7,12 +7,19 @@ var attack_timer: float
 
 func _init() -> void:
   self.state_name = NAME
+  self.self_loop = true
 
 func can_exit(next_state: State) -> bool:
-  if attack_timer <= 0:
+  if self.attack_timer <= 0:
     return true
-  
-  return attack_timer <= (PlayerAnimator.ANIMATION_DURATION["attack"] * 0.4) and next_state.state_name in [PlayerRollState.NAME]
+
+  if self.attack_timer >= (PlayerAnimator.ANIMATION_DURATION["attack"] * 0.4):
+    return false
+
+  if next_state.state_name == PlayerRollState.NAME:
+    return true
+
+  return self.state_machine.player.weapon.hit_box.has_hit() and next_state.state_name == PlayerAttackState.NAME
 
 func on_enter() -> void:
   self.attack_timer = PlayerAnimator.ANIMATION_DURATION["attack"]
@@ -25,10 +32,14 @@ func on_exit() -> void:
   self.state_machine.player.animation_player.stop()
   self.state_machine.player.weapon.animator.stop()
   self.state_machine.player.weapon.animator.weapon.visible = false
-  self.state_machine.player.weapon.hit_box.disable()
+  self.state_machine.player.weapon.hit_box.reset()
 
 func process(delta: float) -> String:
   self.attack_timer -= delta
+  if self.attack_timer <= (PlayerAnimator.ANIMATION_DURATION["attack"] * 0.4):
+    self.state_machine.player.weapon.hit_box.disable()
+    self.state_machine.player.weapon.animator.weapon.visible = false
+
   if self.attack_timer > 0:
     return State.NULL_STATE
 
