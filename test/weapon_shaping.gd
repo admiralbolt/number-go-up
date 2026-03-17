@@ -14,7 +14,6 @@ func _ready() -> void:
   self.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func save_settings() -> void:
-  print("Saving settings...")
   save_data.parent_scale = self.sprite_and_shape.scale
   save_data.sprite_position = self.sprite.position
   save_data.collision_shape = self.collision_shape.shape

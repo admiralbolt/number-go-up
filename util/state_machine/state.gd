@@ -9,8 +9,8 @@ static var NULL_STATE: String = "this_should_never_be_a_real_state_name"
 
 var state_machine: StateMachine
 
-func init() -> void:
-  return
+func init(p_state_machine: StateMachine) -> void:
+  self.state_machine = p_state_machine
 
 func on_enter() -> void:
   return

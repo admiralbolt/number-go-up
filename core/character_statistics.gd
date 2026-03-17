@@ -131,6 +131,11 @@ static var DERIVED_VALUE_FORMULAS = {
   "dodge": DerivedFormula.new("dodge", 0.0, {
     "agility": 0.22,
     "luck": 0.01
+  }),
+  "move_speed": DerivedFormula.new("move_speed", 100.0, {
+    "agility": 0.1,
+    "dexterity": 0.02,
+    "strength": 0.01
   })
 }
 
@@ -143,6 +148,7 @@ static var DERIVED_VALUE_FORMULAS = {
 @export var base_mind_save: float = 0.0
 @export var base_armor: float = 0.0
 @export var base_dodge: float = 0.0
+@export var base_move_speed: float = 100.0
 
 var total_max_health: float = 100.0
 var total_max_mana: float = 100.0
@@ -153,6 +159,7 @@ var total_will_save: float = 0.0
 var total_mind_save: float = 0.0
 var total_armor: float = 0.0
 var total_dodge: float = 0.0
+var total_move_speed: float = 100.0
 
 func recompute_total_values(modifiers: Modifiers) -> void:
   for attribute_name in ATTRIBUTE_NAMES:

@@ -16,8 +16,7 @@ func initialize() -> void:
       state_map[child.state_name] = child
 
   for state in states:
-    state.state_machine = self
-    state.init()
+    state.init(self)
 
   if states.size() > 0:
     current_state = states[0]

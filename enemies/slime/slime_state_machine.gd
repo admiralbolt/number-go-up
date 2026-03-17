@@ -1,10 +1,4 @@
-class_name SlimeStateMachine extends StateMachine
+class_name SlimeStateMachine extends EnemyStateMachine
 
-var enemy: Slime
-
-func initialize2(p_enemy: Slime) -> void:
-  self.enemy = p_enemy
-  self.initialize()
-
-
-
+func _ready() -> void:
+  self.enemy = owner

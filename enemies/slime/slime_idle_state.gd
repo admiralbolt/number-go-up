@@ -1,17 +1,28 @@
-class_name SlimeIdleState extends State
+class_name SlimeIdleState extends EnemyState
 
 static var NAME = "idle"
 
-var direction_name: String = "down"
+var timer: float = 0.0
 
 func _init() -> void:
   self.state_name = NAME
 
 func on_enter() -> void:
-  self.state_machine.enemy.animation_player.play("idle_%s" % direction_name)
+  self.enemy.animation_player.play("EnemyAnimations/idle_%s" % self.enemy.facing_name)
+
+  # Set the timer for a random number of full cycles of the walk animation.
+  self.timer = randi_range(3, 5) * self.enemy.animation_player.current_animation_length
 
 func on_exit() -> void:
-  self.state_machine.enemy.animation_player.stop()
+  self.enemy.animation_player.stop()
 
-func process(_delta: float) -> String:
-  return State.NULL_STATE
+func process(delta: float) -> String:
+  self.timer -= delta
+  if self.timer > 0:
+    return State.NULL_STATE
+
+  # If the player is close-ish, start running.
+  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < 250:
+    return SlimeRunState.NAME
+
+  return SlimeWalkState.NAME

@@ -11,6 +11,5 @@ func _ready() -> void:
 
 
 func _on_health_changed(p_health: float, p_max_health: float) -> void:
-  print("updating progress bar with health: ", p_health, " and max health: ", p_max_health)
   max_value = p_max_health
   value = p_health

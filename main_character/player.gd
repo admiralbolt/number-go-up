@@ -14,8 +14,9 @@ var direction_name: String = "down"
 var speed: float = 100.0
 
 func _ready() -> void:
-  player_state_machine.initialize2(self)
-  player_state_machine.change_state(PlayerIdleState.NAME)
+  self.player_state_machine.initialize()
+  self.player_state_machine.change_state(PlayerIdleState.NAME)
+  PlayerManager.player = self
 
 func _process(_delta: float) -> void:
   held_direction = Input.get_vector("left", "right", "up", "down")
