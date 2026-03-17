@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://drc3f1k158n5h" path="res://core/character_statistics.gd" id="2_u2l51"]
 [ext_resource type="Script" uid="uid://gai3csfp6tpk" path="res://enemies/slime/slime_animator.gd" id="3_5ctnu"]
 [ext_resource type="Script" uid="uid://dnfb742epc744" path="res://enemies/slime/slime_idle_state.gd" id="4_57eei"]
-[ext_resource type="Script" uid="uid://cdppuck0yjvnm" path="res://util/animations/animation_entry.gd" id="4_im24l"]
 [ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/basic_health_bar.tscn" id="5_u2l51"]
 [ext_resource type="Script" uid="uid://cvknglif0g3v1" path="res://util/hit_box.gd" id="5_v3fw7"]
 [ext_resource type="Texture2D" uid="uid://bnsg1pe6v0ou1" path="res://assets/monsters/slime1/Slime1_Walk_with_shadow.png" id="6_yu3x6"]
@@ -25,170 +24,14 @@ base_constitution = 100.0
 base_max_health = 200.0
 metadata/_custom_type_script = "uid://drc3f1k158n5h"
 
-[sub_resource type="Resource" id="Resource_beew1"]
-script = ExtResource("4_im24l")
-name = "idle_down"
-texture = ExtResource("1_6ftag")
-texture_h_frames = 6
-texture_v_frames = 4
-frame_indices = Array[int]([0, 1, 2, 3, 4, 5])
-duration = 1.0
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_7tnrn"]
-script = ExtResource("4_im24l")
-name = "idle_up"
-texture = ExtResource("1_6ftag")
-texture_h_frames = 6
-texture_v_frames = 4
-frame_indices = Array[int]([6, 7, 8, 9, 10, 11])
-duration = 1.0
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_441ib"]
-script = ExtResource("4_im24l")
-name = "idle_left"
-texture = ExtResource("1_6ftag")
-texture_h_frames = 6
-texture_v_frames = 4
-frame_indices = Array[int]([12, 13, 14, 15, 16, 17])
-duration = 1.0
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_ndc6n"]
-script = ExtResource("4_im24l")
-name = "idle_right"
-texture = ExtResource("1_6ftag")
-texture_h_frames = 6
-texture_v_frames = 4
-frame_indices = Array[int]([18, 19, 20, 21, 22, 23])
-duration = 1.0
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_j2dvd"]
-script = ExtResource("4_im24l")
-name = "walk_down"
-texture = ExtResource("6_yu3x6")
-texture_h_frames = 8
-texture_v_frames = 4
-frame_indices = Array[int]([0, 1, 2, 3, 4, 5, 6, 7])
-duration = 1.2
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_16mib"]
-script = ExtResource("4_im24l")
-name = "walk_up"
-texture = ExtResource("6_yu3x6")
-texture_h_frames = 8
-texture_v_frames = 4
-frame_indices = Array[int]([8, 9, 10, 11, 12, 13, 14, 15])
-duration = 1.2
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_s3bgs"]
-script = ExtResource("4_im24l")
-name = "walk_left"
-texture = ExtResource("6_yu3x6")
-texture_h_frames = 8
-texture_v_frames = 4
-frame_indices = Array[int]([16, 17, 18, 19, 20, 21, 22, 23])
-duration = 1.2
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_46p2o"]
-script = ExtResource("4_im24l")
-name = "walk_right"
-texture = ExtResource("6_yu3x6")
-texture_h_frames = 8
-texture_v_frames = 4
-frame_indices = Array[int]([24, 25, 26, 27, 28, 29, 30, 31])
-duration = 1.2
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_k2ou5"]
-script = ExtResource("4_im24l")
-name = "run_down"
-texture = ExtResource("7_okhmd")
-texture_h_frames = 8
-texture_v_frames = 4
-frame_indices = Array[int]([0, 1, 2, 3, 4, 5, 6, 7])
-duration = 1.0
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_6d05t"]
-script = ExtResource("4_im24l")
-name = "run_up"
-texture = ExtResource("7_okhmd")
-texture_h_frames = 8
-texture_v_frames = 4
-frame_indices = Array[int]([8, 9, 10, 11, 12, 13, 14, 15])
-duration = 1.0
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_xk5ca"]
-script = ExtResource("4_im24l")
-name = "run_left"
-texture = ExtResource("7_okhmd")
-texture_h_frames = 8
-texture_v_frames = 4
-frame_indices = Array[int]([16, 17, 18, 19, 20, 21, 22, 23])
-duration = 1.0
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_qxyj3"]
-script = ExtResource("4_im24l")
-name = "run_right"
-texture = ExtResource("7_okhmd")
-texture_h_frames = 8
-texture_v_frames = 4
-frame_indices = Array[int]([24, 25, 26, 27, 28, 29, 30, 31])
-duration = 1.0
-loop_mode = 1
-
-[sub_resource type="Resource" id="Resource_mq5nl"]
-script = ExtResource("4_im24l")
-name = "attack_down"
-texture = ExtResource("8_cba7r")
-texture_h_frames = 10
-texture_v_frames = 4
-frame_indices = Array[int]([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-duration = 1.8
-
-[sub_resource type="Resource" id="Resource_3trqc"]
-script = ExtResource("4_im24l")
-name = "attack_up"
-texture = ExtResource("8_cba7r")
-texture_h_frames = 10
-texture_v_frames = 4
-frame_indices = Array[int]([10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
-duration = 1.8
-
-[sub_resource type="Resource" id="Resource_ksjup"]
-script = ExtResource("4_im24l")
-name = "attack_left"
-texture = ExtResource("8_cba7r")
-texture_h_frames = 10
-texture_v_frames = 4
-frame_indices = Array[int]([20, 21, 22, 23, 24, 25, 26, 27, 28, 29])
-duration = 1.8
-
-[sub_resource type="Resource" id="Resource_5jpwh"]
-script = ExtResource("4_im24l")
-name = "attack_right"
-texture = ExtResource("8_cba7r")
-texture_h_frames = 10
-texture_v_frames = 4
-frame_indices = Array[int]([30, 31, 32, 33, 34, 35, 36, 37, 38, 39])
-duration = 1.8
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3fw7"]
 
-[sub_resource type="Animation" id="Animation_cdu7j"]
+[sub_resource type="Animation" id="Animation_mwtj1"]
 length = 1.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -200,7 +43,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -212,7 +55,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -224,7 +67,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -234,12 +77,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_b3a10"]
+[sub_resource type="Animation" id="Animation_im24l"]
 length = 1.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -251,7 +94,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -263,7 +106,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -275,7 +118,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -285,12 +128,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_vuhlk"]
+[sub_resource type="Animation" id="Animation_yu3x6"]
 length = 1.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -302,7 +145,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -314,7 +157,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -326,7 +169,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -336,12 +179,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_dacqj"]
+[sub_resource type="Animation" id="Animation_okhmd"]
 length = 1.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -353,7 +196,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -365,7 +208,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -377,7 +220,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -387,12 +230,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_sc712"]
+[sub_resource type="Animation" id="Animation_cba7r"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -404,7 +247,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -416,7 +259,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -428,7 +271,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -438,12 +281,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_qxt0c"]
+[sub_resource type="Animation" id="Animation_beew1"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -455,7 +298,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -467,7 +310,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -479,7 +322,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -489,12 +332,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_ym0ff"]
+[sub_resource type="Animation" id="Animation_7tnrn"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -506,7 +349,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -518,7 +361,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -530,7 +373,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -540,12 +383,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_g2r6w"]
+[sub_resource type="Animation" id="Animation_441ib"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -557,7 +400,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -569,7 +412,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -581,7 +424,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -591,12 +434,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_js0di"]
+[sub_resource type="Animation" id="Animation_ndc6n"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -608,7 +451,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -620,7 +463,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -632,7 +475,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -642,12 +485,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_xiij8"]
+[sub_resource type="Animation" id="Animation_j2dvd"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -659,7 +502,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -671,7 +514,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -683,7 +526,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -693,12 +536,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_1h161"]
+[sub_resource type="Animation" id="Animation_16mib"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -710,7 +553,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -722,7 +565,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -734,7 +577,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -744,12 +587,12 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_0prs0"]
+[sub_resource type="Animation" id="Animation_s3bgs"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -761,7 +604,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -773,7 +616,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -785,7 +628,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -795,13 +638,13 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_a4vqi"]
+[sub_resource type="Animation" id="Animation_46p2o"]
 length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -813,7 +656,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -825,7 +668,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -837,7 +680,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -847,13 +690,13 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_fpba8"]
+[sub_resource type="Animation" id="Animation_k2ou5"]
 length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -865,7 +708,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -877,7 +720,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -889,7 +732,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -899,13 +742,13 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_non1x"]
+[sub_resource type="Animation" id="Animation_6d05t"]
 length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -917,7 +760,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -929,7 +772,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -941,7 +784,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -951,13 +794,13 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_a2xpo"]
+[sub_resource type="Animation" id="Animation_xk5ca"]
 length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -969,7 +812,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -981,7 +824,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -993,7 +836,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("/root/@EditorNode@18074/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9328/@VSplitContainer@9111/@HSplitContainer@9113/@HSplitContainer@9115/@Control@9116/@SubViewportContainer@9117/@SubViewport@9118/Slime/SlimeAnimator/Sprite2D:vframes")
+tracks/3/path = NodePath("Sprite2D:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1003,24 +846,24 @@ tracks/3/keys = {
 "values": [4]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3nlu3"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qxyj3"]
 _data = {
-&"attack_down": SubResource("Animation_cdu7j"),
-&"attack_left": SubResource("Animation_b3a10"),
-&"attack_right": SubResource("Animation_vuhlk"),
-&"attack_up": SubResource("Animation_dacqj"),
-&"idle_down": SubResource("Animation_sc712"),
-&"idle_left": SubResource("Animation_qxt0c"),
-&"idle_right": SubResource("Animation_ym0ff"),
-&"idle_up": SubResource("Animation_g2r6w"),
-&"run_down": SubResource("Animation_js0di"),
-&"run_left": SubResource("Animation_xiij8"),
-&"run_right": SubResource("Animation_1h161"),
-&"run_up": SubResource("Animation_0prs0"),
-&"walk_down": SubResource("Animation_a4vqi"),
-&"walk_left": SubResource("Animation_fpba8"),
-&"walk_right": SubResource("Animation_non1x"),
-&"walk_up": SubResource("Animation_a2xpo")
+&"attack_down": SubResource("Animation_mwtj1"),
+&"attack_left": SubResource("Animation_im24l"),
+&"attack_right": SubResource("Animation_yu3x6"),
+&"attack_up": SubResource("Animation_okhmd"),
+&"idle_down": SubResource("Animation_cba7r"),
+&"idle_left": SubResource("Animation_beew1"),
+&"idle_right": SubResource("Animation_7tnrn"),
+&"idle_up": SubResource("Animation_441ib"),
+&"run_down": SubResource("Animation_ndc6n"),
+&"run_left": SubResource("Animation_j2dvd"),
+&"run_right": SubResource("Animation_16mib"),
+&"run_up": SubResource("Animation_s3bgs"),
+&"walk_down": SubResource("Animation_46p2o"),
+&"walk_left": SubResource("Animation_k2ou5"),
+&"walk_right": SubResource("Animation_6d05t"),
+&"walk_up": SubResource("Animation_xk5ca")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ftag"]
@@ -1040,17 +883,15 @@ stats = SubResource("Resource_2ui2u")
 
 [node name="SlimeAnimator" type="Node2D" parent="." unique_id=80096710]
 script = ExtResource("3_5ctnu")
-animation_entries = Array[ExtResource("4_im24l")]([SubResource("Resource_beew1"), SubResource("Resource_7tnrn"), SubResource("Resource_441ib"), SubResource("Resource_ndc6n"), SubResource("Resource_j2dvd"), SubResource("Resource_16mib"), SubResource("Resource_s3bgs"), SubResource("Resource_46p2o"), SubResource("Resource_k2ou5"), SubResource("Resource_6d05t"), SubResource("Resource_xk5ca"), SubResource("Resource_qxyj3"), SubResource("Resource_mq5nl"), SubResource("Resource_3trqc"), SubResource("Resource_ksjup"), SubResource("Resource_5jpwh")])
 
 [node name="Sprite2D" type="Sprite2D" parent="SlimeAnimator" unique_id=1959662034]
-texture = ExtResource("1_6ftag")
-hframes = 6
+texture = ExtResource("8_cba7r")
+hframes = 10
 vframes = 4
-frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeAnimator" unique_id=48381187]
 libraries/ = SubResource("AnimationLibrary_v3fw7")
-libraries/EnemyAnimations = SubResource("AnimationLibrary_3nlu3")
+libraries/EnemyAnimations = SubResource("AnimationLibrary_qxyj3")
 
 [node name="HitBox" type="Area2D" parent="SlimeAnimator" unique_id=264941924]
 script = ExtResource("5_v3fw7")

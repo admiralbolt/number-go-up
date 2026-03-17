@@ -58,3 +58,6 @@ static func add_animation_entries(animation_entries: Array[AnimationEntry], base
     var frame_indices: Array[int] = GodotUtil.range(i, i + frames_per_animation)
     animation_entries.append(AnimationEntry.new(anim_name, load(texture_path), frames_per_animation, vframes, frame_indices, duration, loop_mode))
     i += frames_per_animation
+
+static func clear_animations(animation_player: AnimationPlayer) -> void:
+  animation_player.remove_animation_library("EnemyAnimations")

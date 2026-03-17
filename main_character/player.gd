@@ -1,8 +1,9 @@
 class_name Player extends CharacterBody2D
 
-@onready var animation_player: PlayerAnimator = $PlayerAnimator
+@onready var player_animator: PlayerAnimator = $PlayerAnimator
+@onready var animation_player: AnimationPlayer = player_animator.animator
 @onready var weapon_renderer: WeaponRenderer = $WeaponRenderer
-@onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
+@onready var main_player_state_machine: MainPlayerStateMachine = $MainPlayerStateMachine
 
 @export_category("Player Stats")
 @export var stats: CharacterStatistics = CharacterStatistics.new()
@@ -14,8 +15,8 @@ var direction_name: String = "down"
 var speed: float = 100.0
 
 func _ready() -> void:
-  self.player_state_machine.initialize()
-  self.player_state_machine.change_state(PlayerIdleState.NAME)
+  self.main_player_state_machine.initialize()
+  self.main_player_state_machine.change_state(PlayerIdleState.NAME)
   PlayerManager.player = self
 
 func _process(_delta: float) -> void:
@@ -28,18 +29,18 @@ func _process(_delta: float) -> void:
     direction_name = Directions.get_direction_name(facing)
 
   if Input.is_action_just_pressed("roll"):
-    player_state_machine.change_state(PlayerRollState.NAME)
+    self.main_player_state_machine.change_state(PlayerRollState.NAME)
   elif Input.is_action_just_pressed("attack"):
-    player_state_machine.change_state(PlayerAttackState.NAME)
+    self.main_player_state_machine.change_state(PlayerAttackState.NAME)
   elif held_direction != Vector2.ZERO:
-    player_state_machine.change_state(PlayerWalkState.NAME)
+    self.main_player_state_machine.change_state(PlayerWalkState.NAME)
 
 func _physics_process(_delta: float) -> void:
   velocity = held_direction * speed
-  if player_state_machine.current_state is PlayerAttackState:
+  if self.main_player_state_machine.current_state is PlayerAttackState:
     velocity *= 0.5
-  elif player_state_machine.current_state is PlayerRollState:
+  elif self.main_player_state_machine.current_state is PlayerRollState:
     # We also want to ignore any direction instructions right now. So, we will
     # override the velocity to be in the direction of the roll.
-    velocity = player_state_machine.current_state.roll_direction * speed * 1.2
+    velocity = self.main_player_state_machine.current_state.roll_direction * speed * 1.2
   move_and_slide()

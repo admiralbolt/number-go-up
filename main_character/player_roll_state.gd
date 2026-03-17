@@ -1,4 +1,4 @@
-class_name PlayerRollState extends State
+class_name PlayerRollState extends PlayerState
 
 static var NAME = "roll"
 
@@ -17,11 +17,11 @@ func can_exit(next_state: State) -> bool:
 func on_enter() -> void:
   self.roll_timer = PlayerAnimator.ANIMATION_DURATION["roll"]
   # Lock the direction for the duration of the roll.
-  self.roll_direction = self.state_machine.player.facing
-  self.state_machine.player.animation_player.play("PlayerAnimations/roll_%s" % self.state_machine.player.direction_name)
+  self.roll_direction = self.player.facing
+  self.player.animation_player.play("PlayerAnimations/roll_%s" % self.player.direction_name)
 
 func on_exit() -> void:
-  self.state_machine.player.animation_player.stop()
+  self.player.animation_player.stop()
 
 
 func process(delta: float) -> String:
@@ -31,7 +31,7 @@ func process(delta: float) -> String:
 
   # If the player is still holding a direction, transition to walk, otherwise
   # we want to go to idle.
-  if self.state_machine.player.held_direction != Vector2.ZERO:
+  if self.player.held_direction != Vector2.ZERO:
     return PlayerWalkState.NAME
 
   return PlayerIdleState.NAME
