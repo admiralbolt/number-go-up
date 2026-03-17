@@ -85,8 +85,6 @@ func initialize(p_weapon: Weapon) -> void:
   for direction in Directions.DIRECTION_NAMES:
     var anim_name: String = "slash_%s" % direction
 
-    print("Creating animation: %s" % anim_name)
-
     var anim: Animation = self.create_animation(POSITIONS[direction], PlayerAnimator.ANIMATION_DURATION["attack"])
     animation_library.add_animation(anim_name, anim)
 

@@ -14,7 +14,6 @@ func change_weapon(weapon: Weapon) -> void:
 
   # Apply sprite settings.
   self.sprite.position = sword_shape.sprite_position
-  print("Sprite position: %s, sword_shape.sprite_position: %s" % [self.sprite.position, sword_shape.sprite_position])
   self.sprite.rotation_degrees = 0
   self.sprite.texture = load(weapon.icon_path)
   self.sprite.force_update_transform()

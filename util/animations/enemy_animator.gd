@@ -40,8 +40,6 @@ static func frame_change_animation(sprite_path: NodePath, entry: AnimationEntry)
     var time: float = (i / float(entry.frame_indices.size())) * entry.duration
     anim.track_insert_key(frame_track_id, time, entry.frame_indices[i])
 
-  print("creating animation name: %s, with frames: %s, hframes: %s, vframes: %s" % [entry.name, entry.frame_indices, entry.texture_h_frames, entry.texture_v_frames])
-
   return anim
 
 

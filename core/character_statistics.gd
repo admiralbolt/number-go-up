@@ -7,7 +7,6 @@ class_name CharacterStatistics extends Resource
 signal health_changed(p_health: float, p_max_health: float)
 
 func _on_health_set(value: float) -> void:
-  print("Setting current health to: ", value)
   current_hp = value
   health_changed.emit(current_hp, total_max_health)
 
