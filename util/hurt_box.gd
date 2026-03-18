@@ -1,7 +1,5 @@
 class_name HurtBox extends Area2D
 
-@onready var owner_stats: CharacterStatistics = owner.stats
-
 func _ready() -> void:
   monitoring = false
 
@@ -10,4 +8,5 @@ func _ready() -> void:
   set_collision_layer_value(GodotUtil.ENEMY_LAYER, true)
 
 func receive_hit(damage: float) -> void:
-  owner_stats.current_hp -= damage
+  # owner_stats.current_hp -= damage
+  pass

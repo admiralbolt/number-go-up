@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var attributes: CharacterStatistics
 @export var skills: Skills
 
 
