@@ -16,10 +16,18 @@ func test_new_char_stuff() -> void:
   m.target_type = Modifier.ModifierTarget.ATTRIBUTE
   m.stat_name = Attributes.STRENGTH
   m.value = 5
+  m.is_decaying = true
 
-  hero.modifier_manager.add_modifier(m)
-  hero.modifier_manager.debug_print()
+  var b: BuffEffect = BuffEffect.new()
+  b.modifier = m
+  b.duration = 10.0
 
+  hero.effect_manager.apply_effect(b)
+
+  hero.debug_print()
+
+  # Sleep for 5 seconds to let the effect tick down.
+  await get_tree().create_timer(5.0).timeout
 
   hero.debug_print()
 

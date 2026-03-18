@@ -5,8 +5,14 @@ class_name DerivedStatistics extends Resource
   "constitution": 0.08,
 })
 
+@export var movement_speed: DerivedStatistic = DerivedStatistic.make("Movement Speed", 80.0, {
+  "agility": 0.1,
+  "dexterity": 0.02
+})
+
 var ALL_DERIVED_STATISTICS: Array[DerivedStatistic] = [
   fortitude_save,
+  movement_speed,
 ]
 
 func initialize(p_entity: Entity) -> void:

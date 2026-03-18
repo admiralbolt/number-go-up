@@ -19,7 +19,6 @@ func add_modifiers(modifiers: Array[Modifier]) -> void:
   if recompute_targets.size() > 0:
     self.recomputes.emit(recompute_targets)
 
-
 func add_modifier(modifier: Modifier, emit_recompute: bool = true) -> bool:
   """Returns a bool value indicating if we need to recompute."""
   self.all_modifiers.modifiers.append(modifier)
@@ -30,11 +29,31 @@ func add_modifier(modifier: Modifier, emit_recompute: bool = true) -> bool:
 
   var should_emit: bool = modifier_queue.add_modifier(modifier)
   if emit_recompute and should_emit:
-    var target_list: RecomputeTargetList = RecomputeTargetList.new()
-    target_list.targets.append(RecomputeTarget.new(modifier.target_type, modifier.stat_name))
-    var emit_data: Dictionary[Modifier.ModifierTarget, RecomputeTargetList] = {modifier.target_type: target_list}
-    self.recomputes.emit(emit_data)
+    self.recomputes.emit(emit_data(modifier))
   return should_emit
+
+func update_modifier(modifier: Modifier, delta: float) -> void:
+  if not modifier.is_timed:
+    return
+
+  modifier.timer -= delta
+  if modifier.timer <= 0:
+    # If it's a stackable modifier, we want to reduce the stack count, reset
+    # the timer, and emit a recompute.
+    if modifier.is_stackable and modifier.stack_count > 1:
+      modifier.stack_count -= 1
+      modifier.timer = modifier.duration
+      self.recomputes.emit(emit_data(modifier))
+      return
+
+    # Otherwise, it's either not stackable OR down to the last stack.
+    self.remove_modifier(modifier)
+    return
+
+  # Finally, if it's a decaying modifier, we do need to emit a recompute.
+  if modifier.is_decaying:
+    self.recomputes.emit(emit_data(modifier)) 
+  
 
 func remove_modifier(modifier: Modifier) -> void:
   var index: int = self.all_modifiers.get_index(modifier)
@@ -44,6 +63,7 @@ func remove_modifier(modifier: Modifier) -> void:
   self.all_modifiers.modifiers.remove_at(index)
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(modifier.stat_name)
   modifier_queue.remove_modifier(modifier)
+  self.recomputes.emit(emit_data(modifier))
 
 func compute_total(stat_name: String, base_value: float) -> float:
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(stat_name)
@@ -149,6 +169,11 @@ class ModifierList extends Resource:
 
     return -1
 
+
+static func emit_data(modifier: Modifier) -> Dictionary[Modifier.ModifierTarget, RecomputeTargetList]:
+  var target_list: RecomputeTargetList = RecomputeTargetList.new()
+  target_list.targets.append(RecomputeTarget.new(modifier.target_type, modifier.stat_name))
+  return {modifier.target_type: target_list}
 
 class RecomputeTargetList:
   var targets: Array[RecomputeTarget] = []

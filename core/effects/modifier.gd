@@ -48,16 +48,22 @@ enum ModifierSentiment {
 @export var modifier_priority: ModifierPriority = ModifierPriority.APPLY_ADDITIVE
 @export var sentiment: ModifierSentiment = ModifierSentiment.NEUTRAL
 
-@export var duration: float = -1
-@export var timer: float = 0
+@export var duration: float = -1: set = _set_duration
+@export var is_decaying: bool = false
 @export var is_timed: bool = false
 @export var is_stackable: bool = false
 @export var stack_count: int = 1
-@export var stack_fall_off: int = 999_999
+@export var stack_fall_off: int = 1
 
-var unique_name: String = "": get = get_unique_name
+var unique_name: String = "": get = _get_unique_name
+var timer: float = 0
 
-func get_unique_name() -> String:
+func _set_duration(p_duration: float) -> void:
+  duration = p_duration
+  is_timed = duration > 0
+  timer = duration
+
+func _get_unique_name() -> String:
   if unique_name == "":
      unique_name = "%s_%s_%s" % [self.source_name, ModifierSource.keys()[self.source_type], self.stat_name]
   return unique_name
@@ -71,6 +77,9 @@ func can_stack(other: Modifier) -> bool:
 func get_total_value() -> float:
   if self.is_stackable:
     return self.value * self.stack_count
+
+  if self.is_decaying:
+    return self.value * (self.timer / self.duration)
 
   return self.value
 
