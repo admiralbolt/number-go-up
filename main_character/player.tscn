@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/items/red_sword.png" id="9_4d3ay"]
 [ext_resource type="Script" uid="uid://8lj85d5udfx4" path="res://main_character/weapon_animator.gd" id="11_q2hn0"]
 [ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/basic_health_bar.tscn" id="12_5vaow"]
+[ext_resource type="Script" uid="uid://bohi8b8eyfv86" path="res://util/hurt_box.gd" id="15_rqnw4"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfiix"]
 
@@ -574,7 +575,8 @@ script = ExtResource("2_q2hn0")
 texture = ExtResource("9_4d3ay")
 
 [node name="HitBox" parent="WeaponRenderer/SpriteAndShape" unique_id=827173607 instance=ExtResource("5_kfiix")]
-collision_mask = 3
+collision_layer = 0
+collision_mask = 2
 
 [node name="WeaponCollisionShape" type="CollisionShape2D" parent="WeaponRenderer/SpriteAndShape/HitBox" unique_id=123902274]
 debug_color = Color(1, 0.078431375, 0, 0.41960785)
@@ -629,7 +631,18 @@ script = ExtResource("7_kfiix")
 script = ExtResource("8_1la20")
 
 [node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("12_5vaow")]
-offset_left = -39.0
-offset_top = -40.0
-offset_right = 50.0
-offset_bottom = -13.0
+offset_left = -15.0
+offset_top = -17.0
+offset_right = 40.0
+offset_bottom = -8.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=211399231]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("15_rqnw4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1129137333]
+position = Vector2(0, 2)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_4flbx")

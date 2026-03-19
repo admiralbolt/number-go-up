@@ -21,7 +21,49 @@ script = ExtResource("2_mwtj1")
 base_max_health = 50.0
 metadata/_custom_type_script = "uid://bmfbvt3fb0ywl"
 
+[sub_resource type="Animation" id="Animation_qxyj3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3fw7"]
+_data = {
+&"RESET": SubResource("Animation_qxyj3")
+}
 
 [sub_resource type="Animation" id="Animation_mwtj1"]
 length = 1.4
@@ -72,6 +114,42 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitBox:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.84, 0.98, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(3.6, 3.6), Vector2(4, 4), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(-0.06666666, 0, 0.7, 0.84, 0.98, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -7), Vector2(0, -8.5), Vector2(0, -8.5), Vector2(0, -4)]
 }
 
 [sub_resource type="Animation" id="Animation_im24l"]
@@ -124,6 +202,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [4]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitBox:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.84, 0.98, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(3.6, 3.6), Vector2(4, 4), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(-0.06666666, 0, 0.7, 0.84, 0.98, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -7), Vector2(0, -8.5), Vector2(0, -8.5), Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_yu3x6"]
 length = 1.4
@@ -175,6 +289,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [4]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitBox:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.84, 0.98, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(3.6, 3.6), Vector2(4, 4), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(-0.06666666, 0, 0.7, 0.84, 0.98, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -7), Vector2(0, -8.5), Vector2(0, -8.5), Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_okhmd"]
 length = 1.4
@@ -225,6 +375,42 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitBox:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.84, 0.98, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(3.6, 3.6), Vector2(4, 4), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(-0.06666666, 0, 0.7, 0.84, 0.98, 1.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -7), Vector2(0, -8.5), Vector2(0, -8.5), Vector2(0, -4)]
 }
 
 [sub_resource type="Animation" id="Animation_cba7r"]
@@ -863,6 +1049,9 @@ _data = {
 &"walk_up": SubResource("Animation_xk5ca")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mwtj1"]
+radius = 6.548278
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ftag"]
 radius = 4.999591
 height = 15.998691
@@ -885,18 +1074,25 @@ script = ExtResource("3_5ctnu")
 texture = ExtResource("8_cba7r")
 hframes = 10
 vframes = 4
+frame = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeAnimator" unique_id=48381187]
 libraries/ = SubResource("AnimationLibrary_v3fw7")
 libraries/EnemyAnimations = SubResource("AnimationLibrary_qxyj3")
 
 [node name="HitBox" type="Area2D" parent="SlimeAnimator" unique_id=264941924]
+collision_layer = 0
+collision_mask = 256
 script = ExtResource("5_v3fw7")
 metadata/_custom_type_script = "uid://cvknglif0g3v1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeAnimator/HitBox" unique_id=91592714]
+position = Vector2(0.35382652, 1.0614796)
+shape = SubResource("CircleShape2D_mwtj1")
+debug_color = Color(0.89411765, 0, 0, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2091954640]
+visible = false
 position = Vector2(0.3624115, 1.9546986)
 rotation = -1.5580014
 shape = SubResource("CapsuleShape2D_6ftag")
@@ -916,17 +1112,19 @@ script = ExtResource("8_knvw0")
 [node name="SlimeAttackState" type="Node" parent="SlimeStateMachine" unique_id=62740102]
 script = ExtResource("9_yuirh")
 
-[node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("5_u2l51")]
-offset_left = -43.890915
-offset_top = 9.579903
-offset_right = 60.109085
-offset_bottom = 36.579903
-
 [node name="HurtBox" parent="." unique_id=103616579 instance=ExtResource("7_bkm6f")]
-collision_layer = 3
-collision_mask = 3
+visible = false
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1503483212]
 position = Vector2(0.33971405, 0.6794281)
 shape = SubResource("CapsuleShape2D_bkm6f")
 debug_color = Color(0.8745098, 0.57254905, 0.21176471, 0.41960785)
+
+[node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("5_u2l51")]
+offset_left = -13.279449
+offset_top = -15.059168
+offset_right = 43.72055
+offset_bottom = -7.059168
+scale = Vector2(0.5, 0.5)

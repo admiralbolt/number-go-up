@@ -1,5 +1,7 @@
 extends ProgressBar
 
+@onready var label: Label = $HealthLabel
+
 func _ready() -> void:
   if owner is not Entity:
     visible = false
@@ -17,6 +19,8 @@ func _on_owner_initialized() -> void:
 
 func _on_current_health_changed(p_current_health: float) -> void:
   value = p_current_health
+  label.text = "%d / %d" % [self.value, self.max_value]
 
 func _on_max_health_changed(p_max_health: float) -> void:
   max_value = p_max_health
+  label.text = "%d / %d" % [self.value, self.max_value]

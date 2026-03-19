@@ -2,7 +2,25 @@
 
 [ext_resource type="Script" uid="uid://bt5lpkbkxgxks" path="res://ui/basic_health_bar.gd" id="1_8vobq"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vobq"]
+bg_color = Color(1, 0, 0, 1)
+
 [node name="BasicHealthBar" type="ProgressBar" unique_id=43895216]
-offset_right = 104.0
-offset_bottom = 27.0
+offset_right = 57.0
+offset_bottom = 8.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8vobq")
+show_percentage = false
 script = ExtResource("1_8vobq")
+
+[node name="HealthLabel" type="Label" parent="." unique_id=1361945467]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.0
+offset_right = 52.0
+offset_bottom = 11.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 6
+text = "69 / 420"
+horizontal_alignment = 1

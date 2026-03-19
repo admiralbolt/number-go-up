@@ -17,7 +17,6 @@ func on_enter() -> void:
 
 func on_exit() -> void:
   self.enemy.animation_player.stop()
-  self.enemy.animation_player.seek(0)
 
 func process(delta: float) -> String:
   self.timer -= delta

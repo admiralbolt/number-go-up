@@ -1,14 +1,19 @@
 class_name HitBox extends Area2D
 
-@onready var collision_shape: CollisionShape2D = $WeaponCollisionShape
-
+var collision_shape: CollisionShape2D
 var hit_log: HitLog
 
 func _ready() -> void:
-  area_entered.connect(_on_area_entered)
+  # The collision shape should always be a child of the hit box.
+  for child in get_children():
+    if child is CollisionShape2D:
+      self.collision_shape = child
+      break
 
-  set_collision_layer_value(1, false)
-  set_collision_mask_value(1, false)
+  if self.collision_shape == null:
+    push_error("HitBox: %s does not have a CollisionShape2D child." % self.name)
+  
+  area_entered.connect(_on_area_entered)
 
 func _on_area_entered(area: Area2D) -> void:
   if area is not HurtBox:
