@@ -3,9 +3,9 @@ class_name Slime extends Enemy
 @onready var slime_state_machine: StateMachine = $SlimeStateMachine
 @onready var slime_animator: SlimeAnimator = $SlimeAnimator
 
-func _init() -> void:
-  print("SLIME INIT")
-  super._init()
+@export var slime_attributes: Attributes = Attributes.new()
+@export var slime_derived_statistics: DerivedStatistics = DerivedStatistics.new()
+@export var slime_skills: Skills = Skills.new()
 
 func _ready() -> void:
   self.state_machine = slime_state_machine
@@ -14,8 +14,6 @@ func _ready() -> void:
 
   self.state_machine.initialize()
 
-  print("derived")
-  print("-------")
-  print(self.derived_statistics)
+  super.initialize(slime_attributes, slime_derived_statistics, slime_skills)
 
 

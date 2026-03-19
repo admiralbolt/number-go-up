@@ -5,6 +5,10 @@ func _ready() -> void:
     visible = false
     return
 
+  owner.initialized.connect(_on_owner_initialized)
+
+func _on_owner_initialized() -> void:
+
   owner.derived_statistics.max_health.changed.connect(_on_max_health_changed)
   _on_max_health_changed(owner.derived_statistics.max_health.total_value)
 

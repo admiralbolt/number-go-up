@@ -1,15 +1,19 @@
 class_name SlimeAttackState extends EnemyState
 
 static var NAME = "attack"
+static var DECELERATION: float = 0.98
 
 func _init() -> void:
   self.state_name = NAME
   self.self_loop = true
 
 func on_enter() -> void:
-  self.enemy.velocity = Vector2.ZERO
   self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_name)
   self.enemy.animation_player.animation_finished.connect(self._on_animation_finished)
+
+func process(_delta: float) -> String:
+  self.enemy.velocity *= DECELERATION
+  return State.NULL_STATE
 
 func on_exit() -> void:
   self.enemy.animation_player.stop()

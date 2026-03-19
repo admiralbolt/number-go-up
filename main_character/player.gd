@@ -5,6 +5,10 @@ class_name Player extends Entity
 @onready var weapon_renderer: WeaponRenderer = $WeaponRenderer
 @onready var main_player_state_machine: MainPlayerStateMachine = $MainPlayerStateMachine
 
+@export var player_attributes: Attributes = Attributes.new()
+@export var player_derived_statistics: DerivedStatistics = DerivedStatistics.new()
+@export var player_skills: Skills = Skills.new()
+
 var held_direction: Vector2 = Vector2.DOWN
 var facing: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
@@ -15,6 +19,8 @@ func _ready() -> void:
   self.main_player_state_machine.initialize()
   self.main_player_state_machine.change_state(PlayerIdleState.NAME)
   PlayerManager.player = self
+
+  super.initialize(player_attributes, player_derived_statistics, player_skills)
 
   self._test_buff_effect()
 

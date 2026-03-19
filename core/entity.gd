@@ -1,8 +1,10 @@
 class_name Entity extends CharacterBody2D
 
-@export var attributes: Attributes = Attributes.new()
-@export var derived_statistics: DerivedStatistics = DerivedStatistics.new()
-@export var skills: Skills = Skills.new()
+signal initialized()
+
+var attributes: Attributes
+var derived_statistics: DerivedStatistics
+var skills: Skills
 
 var modifier_manager: ModifierManager = ModifierManager.new()
 var effect_manager: EffectManager = EffectManager.new()
@@ -16,8 +18,11 @@ var current_health: float = 100.0: set = _set_current_health
 var current_mana: float = 100.0
 var current_stamina: float = 100.0
 
-func _init() -> void:
-  print("ENTITY INIT")
+func initialize(p_attributes: Attributes, p_derived_statistics: DerivedStatistics, p_skills: Skills) -> void:
+  self.attributes = p_attributes
+  self.derived_statistics = p_derived_statistics
+  self.skills = p_skills
+
   self.attributes.initialize(self)
   self.derived_statistics.initialize(self)
   self.skills.initialize(self)
@@ -32,6 +37,8 @@ func _init() -> void:
 
   # Finally set the values based on the maxes.
   self.current_health = self.derived_statistics.max_health.total_value
+
+  self.initialized.emit()
 
 func take_damage(hit_box: HitBox) -> void:
   # Eventually we'll do some math here based on stats n' stuff.

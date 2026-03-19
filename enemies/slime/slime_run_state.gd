@@ -16,7 +16,8 @@ func on_enter() -> void:
   self.enemy.animation_player.play("EnemyAnimations/run_%s" % self.enemy.facing_name)
 
 func on_exit() -> void:
-  self.state_machine.enemy.animation_player.stop()
+  self.enemy.animation_player.stop()
+  self.enemy.animation_player.seek(0)
 
 func process(delta: float) -> String:
   self.timer -= delta

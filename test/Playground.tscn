@@ -19,3 +19,6 @@ collision_mask = 16
 
 [node name="Slime" parent="." unique_id=1507265592 instance=ExtResource("3_rma7k")]
 position = Vector2(98.18708, 153.70792)
+
+[node name="Slime2" parent="." unique_id=345214799 instance=ExtResource("3_rma7k")]
+position = Vector2(106.78277, 122.7936)
