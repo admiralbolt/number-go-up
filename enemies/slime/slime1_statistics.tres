@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DerivedStatistics" format=3 uid="uid://dvj7w60vai48e"]
+
+[ext_resource type="Script" uid="uid://bmfbvt3fb0ywl" path="res://core/stats/derived_statistics.gd" id="1_56if6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_56if6")
+base_max_health = 233.0
+metadata/_custom_type_script = "uid://bmfbvt3fb0ywl"

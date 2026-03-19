@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr6r7y26stubu" path="res://assets/background/dungeon_tileset1/DungeonTileSet1.tscn" id="1_gncqu"]
 [ext_resource type="PackedScene" uid="uid://c7tf3s7otpuxe" path="res://main_character/player.tscn" id="2_mne48"]
+[ext_resource type="PackedScene" uid="uid://bij1j62lef3e" path="res://enemies/slime/slime.tscn" id="3_rma7k"]
 
 [node name="Playground" type="Node2D" unique_id=1977047386]
 y_sort_enabled = true
@@ -15,3 +16,6 @@ tile_map_data = PackedByteArray("AAAEAAQAAAABAAMAAAAEAAUAAAABAAQAAAAFAAQAAAABAAM
 [node name="Player" parent="." unique_id=762666805 instance=ExtResource("2_mne48")]
 position = Vector2(13, 169)
 collision_mask = 16
+
+[node name="Slime" parent="." unique_id=1507265592 instance=ExtResource("3_rma7k")]
+position = Vector2(98.18708, 153.70792)

@@ -20,8 +20,7 @@ func _on_area_entered(area: Area2D) -> void:
       return
     self.hit_log.log_hit(hurt_box_owner)
 
-  area.receive_hit(self.owner.stats.base_strength * 2.5)
-
+  area.receive_hit(self)
 
 func enable() -> void:
   self.monitoring = true

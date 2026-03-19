@@ -32,7 +32,6 @@ func _process(_delta: float) -> void:
     self.main_player_state_machine.change_state(PlayerRollState.NAME)
   elif Input.is_action_just_pressed("attack"):
     self.main_player_state_machine.change_state(PlayerAttackState.NAME)
-    self.debug_print()
   elif held_direction != Vector2.ZERO:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)
 

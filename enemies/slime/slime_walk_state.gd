@@ -11,7 +11,7 @@ func _init() -> void:
 func on_enter() -> void:
   # Pick a random direction to walk in!
   self.enemy.facing = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-  self.enemy.velocity = self.enemy.facing * self.enemy.stats.total_move_speed * randf_range(0.2, 0.4)
+  self.enemy.velocity = self.enemy.facing * self.enemy.derived_statistics.movement_speed.total_value * randf_range(0.2, 0.4)
 
   self.enemy.slime_animator.sprite.hframes = 8
   self.enemy.animation_player.play("EnemyAnimations/walk_%s" % self.enemy.facing_name)

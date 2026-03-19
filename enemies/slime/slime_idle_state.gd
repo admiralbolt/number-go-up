@@ -22,7 +22,7 @@ func process(delta: float) -> String:
     return State.NULL_STATE
 
   # If the player is close-ish, start running.
-  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < 250:
-    return SlimeRunState.NAME
+  # if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < 250:
+  #   return SlimeRunState.NAME
 
   return SlimeWalkState.NAME

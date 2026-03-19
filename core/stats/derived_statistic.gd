@@ -1,8 +1,9 @@
 class_name DerivedStatistic extends Resource
 
-@export var name: String = ""
 @export var base_value: float = 0.0
-@export var weights: Dictionary[String, float] = {}
+
+var name: String = ""
+var weights: Dictionary[String, float] = {}
 var attr_references: Dictionary[String, Attribute] = {}
 var entity: Entity
 var total_value: float = base_value
@@ -25,11 +26,21 @@ func compute_total() -> void:
     var attribute = self.attr_references[attr_name]
     var weight = self.weights[attr_name]
     val += attribute.total_value * weight
-  self.total_value = val
 
-static func make(p_name: String, p_base_value: float, p_weights: Dictionary[String, float]) -> DerivedStatistic:
+  var new_total: float = self.entity.modifier_manager.compute_total(self.name, val)
+  if new_total == self.total_value:
+    return
+
+  self.total_value = val
+  self.emit_changed()
+
+func _to_string() -> String:
+  return "%s: %.2f (base: %.2f)" % [self.name, self.total_value, self.base_value]
+
+static func make(p_name: String, p_base_value: float, p_weights: Dictionary[String, float], p_entity: Entity) -> DerivedStatistic:
   var ds = DerivedStatistic.new()
   ds.name = p_name
   ds.base_value = p_base_value
   ds.weights = p_weights
+  ds.initialize(p_entity)
   return ds

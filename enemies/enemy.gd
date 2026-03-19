@@ -1,7 +1,4 @@
-class_name Enemy extends CharacterBody2D
-
-@export var stats: CharacterStatistics
-
+class_name Enemy extends Entity
 
 var state_machine: StateMachine
 var animation_player: AnimationPlayer

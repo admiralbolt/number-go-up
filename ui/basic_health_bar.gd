@@ -1,15 +1,18 @@
 extends ProgressBar
 
 func _ready() -> void:
-  # Load character stats from our parent. Abort and hide if we can't.
-  if not owner.get("stats"):
+  if owner is not Entity:
     visible = false
     return
 
-  owner.stats.health_changed.connect(_on_health_changed)
-  _on_health_changed(owner.stats.current_hp, owner.stats.total_max_health)
+  owner.derived_statistics.max_health.changed.connect(_on_max_health_changed)
+  _on_max_health_changed(owner.derived_statistics.max_health.total_value)
 
+  owner.current_health_changed.connect(_on_current_health_changed)
+  _on_current_health_changed(owner.current_health)
 
-func _on_health_changed(p_health: float, p_max_health: float) -> void:
+func _on_current_health_changed(p_current_health: float) -> void:
+  value = p_current_health
+
+func _on_max_health_changed(p_max_health: float) -> void:
   max_value = p_max_health
-  value = p_health
