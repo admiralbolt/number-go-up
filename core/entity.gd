@@ -45,9 +45,9 @@ func take_damage(hit_box: HitBox) -> void:
   var damage: float = 10
   if hit_box.owner is Entity:
     damage += hit_box.owner.attributes.strength.total_value * 0.6
-  print("Entity: %s, is taking: %f damage" % [self.name, damage])
+  # print("Entity: %s, is taking: %f damage" % [self.name, damage])
   self.current_health -= damage
-  print("Entity has %f current_health and %f max_health" % [self.current_health, self.derived_statistics.max_health.total_value])
+  # print("Entity has %f current_health and %f max_health" % [self.current_health, self.derived_statistics.max_health.total_value])
 
 func _set_current_health(p_health: float) -> void:
   if p_health == current_health:
@@ -102,6 +102,3 @@ func debug_print() -> void:
   self.attributes.debug_print()
   self.derived_statistics.debug_print()
   self.skills.debug_print()
-
-
-

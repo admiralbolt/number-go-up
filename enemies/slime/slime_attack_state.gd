@@ -8,7 +8,6 @@ func _init() -> void:
   self.self_loop = true
 
 func on_enter() -> void:
-  self.enemy.animation_player.seek(0)
   self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_name)
 
 func on_exit() -> void:

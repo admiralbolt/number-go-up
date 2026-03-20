@@ -6,6 +6,10 @@ var player: Player = null
 var player_spawned: bool = false
 
 func _ready() -> void:
+  # Don't inject the player if we aren't in a level.
+  if get_tree().current_scene is not Level:
+    return
+
   add_player_instance()
   await get_tree().create_timer(1).timeout
   player_spawned = true

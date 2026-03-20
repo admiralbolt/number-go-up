@@ -5,6 +5,8 @@ var state_map: Dictionary[String, State] = {}
 var current_state: State
 var prev_state: State
 
+var debug: bool = false
+
 func _ready() -> void:
   process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -29,8 +31,11 @@ func change_state(new_state_name: String) -> void:
   if new_state == null:
     return
   
-  if new_state == null or (new_state == current_state and not new_state.self_loop) or not current_state.can_exit(new_state) or not new_state.can_enter(current_state):
+  if (new_state == current_state and not new_state.self_loop) or not current_state.can_exit(new_state) or not new_state.can_enter(current_state):
     return
+
+  if debug:
+    print("Changing from state: ", current_state.state_name, " to state: ", new_state_name)
 
   current_state.on_exit()
   new_state.on_enter()

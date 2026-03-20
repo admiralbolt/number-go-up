@@ -21,7 +21,7 @@ func on_exit() -> void:
 func process(delta: float) -> String:
   self.timer -= delta
   # If we get close enough to the player, attack!
-  if self.state_machine.enemy.global_position.distance_to(PlayerManager.player.global_position) < 25:
+  if self.state_machine.enemy.global_position.distance_to(PlayerManager.player.global_position) < 30:
     return SlimeAttackState.NAME
 
   # If we've been running for a while, give up and idle.
