@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://c7tf3s7otpuxe"]
 
-[ext_resource type="Texture2D" uid="uid://bm0m3de1whofg" path="res://assets/character/player_spritesheet.png" id="1_8m8cs"]
-[ext_resource type="Script" uid="uid://x2ahs0qcsk8e" path="res://main_character/player.gd" id="1_011kr"]
-[ext_resource type="Script" uid="uid://chyf7wbrbvm8u" path="res://main_character/weapon_renderer.gd" id="2_q2hn0"]
-[ext_resource type="Script" uid="uid://cd5rcqyepd0bo" path="res://main_character/player_animator.gd" id="3_011kr"]
-[ext_resource type="Script" uid="uid://citaw2su7m5cg" path="res://main_character/main_player_state_machine.gd" id="4_2oxr7"]
-[ext_resource type="PackedScene" uid="uid://xr68kfqc3xxm" path="res://util/HitBox.tscn" id="5_kfiix"]
-[ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://main_character/player_walk_state.gd" id="5_q2hn0"]
-[ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://main_character/player_roll_state.gd" id="6_5vaow"]
-[ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/player_attack_state.gd" id="7_kfiix"]
-[ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/player_idle_state.gd" id="8_1la20"]
-[ext_resource type="Script" uid="uid://cvknglif0g3v1" path="res://util/hit_box.gd" id="8_rqnw4"]
-[ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/items/red_sword.png" id="9_4d3ay"]
-[ext_resource type="Script" uid="uid://8lj85d5udfx4" path="res://main_character/weapon_animator.gd" id="11_q2hn0"]
-[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/basic_health_bar.tscn" id="12_5vaow"]
-[ext_resource type="Script" uid="uid://bohi8b8eyfv86" path="res://util/hurt_box.gd" id="15_rqnw4"]
+[ext_resource type="Script" uid="uid://x2ahs0qcsk8e" path="res://main_character/player.gd" id="1_n18hu"]
+[ext_resource type="Script" uid="uid://chyf7wbrbvm8u" path="res://main_character/weapon_renderer.gd" id="2_cy1eu"]
+[ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/items/red_sword.png" id="3_e0qqe"]
+[ext_resource type="PackedScene" uid="uid://xr68kfqc3xxm" path="res://util/HitBox.tscn" id="4_xj3nd"]
+[ext_resource type="Script" uid="uid://8lj85d5udfx4" path="res://main_character/weapon_animator.gd" id="5_8li3l"]
+[ext_resource type="Script" uid="uid://cd5rcqyepd0bo" path="res://main_character/player_animator.gd" id="6_gabxs"]
+[ext_resource type="Texture2D" uid="uid://bm0m3de1whofg" path="res://assets/character/player_spritesheet.png" id="7_kpxvp"]
+[ext_resource type="Script" uid="uid://citaw2su7m5cg" path="res://main_character/main_player_state_machine.gd" id="8_k84kw"]
+[ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://main_character/player_walk_state.gd" id="9_yo0ru"]
+[ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://main_character/player_roll_state.gd" id="10_526fb"]
+[ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/player_attack_state.gd" id="11_rjnhc"]
+[ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/player_idle_state.gd" id="12_mxorp"]
+[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/basic_health_bar.tscn" id="13_326by"]
+[ext_resource type="Script" uid="uid://bohi8b8eyfv86" path="res://util/hurt_box.gd" id="14_itdfg"]
+[ext_resource type="Script" uid="uid://cnjcvq0ovhqlq" path="res://main_character/player_camera.gd" id="15_nxc8y"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfiix"]
 
@@ -564,17 +564,18 @@ height = 10.0
 
 [node name="Player" type="CharacterBody2D" unique_id=762666805]
 y_sort_enabled = true
-script = ExtResource("1_011kr")
+collision_mask = 17
+script = ExtResource("1_n18hu")
 
 [node name="WeaponRenderer" type="Node2D" parent="." unique_id=894592039]
-script = ExtResource("2_q2hn0")
+script = ExtResource("2_cy1eu")
 
 [node name="SpriteAndShape" type="Node2D" parent="WeaponRenderer" unique_id=411614442]
 
 [node name="WeaponSprite" type="Sprite2D" parent="WeaponRenderer/SpriteAndShape" unique_id=254324246]
-texture = ExtResource("9_4d3ay")
+texture = ExtResource("3_e0qqe")
 
-[node name="HitBox" parent="WeaponRenderer/SpriteAndShape" unique_id=827173607 instance=ExtResource("5_kfiix")]
+[node name="HitBox" parent="WeaponRenderer/SpriteAndShape" unique_id=827173607 instance=ExtResource("4_xj3nd")]
 collision_layer = 0
 collision_mask = 2
 
@@ -583,14 +584,14 @@ debug_color = Color(1, 0.078431375, 0, 0.41960785)
 
 [node name="WeaponAnimator" type="AnimationPlayer" parent="WeaponRenderer" unique_id=1014265080]
 libraries/ = SubResource("AnimationLibrary_kfiix")
-script = ExtResource("11_q2hn0")
+script = ExtResource("5_8li3l")
 
 [node name="PlayerAnimator" type="Node2D" parent="." unique_id=395515138]
-script = ExtResource("3_011kr")
+script = ExtResource("6_gabxs")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator" unique_id=262927677]
 unique_name_in_owner = true
-texture = ExtResource("1_8m8cs")
+texture = ExtResource("7_kpxvp")
 hframes = 4
 vframes = 32
 frame = 60
@@ -600,49 +601,42 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_i3pqv")
 libraries/PlayerAnimations = SubResource("AnimationLibrary_i0yx3")
 
-[node name="HitBox" type="Area2D" parent="PlayerAnimator" unique_id=1917466276]
-script = ExtResource("8_rqnw4")
-metadata/_custom_type_script = "uid://cvknglif0g3v1"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnimator/HitBox" unique_id=1204908940]
-position = Vector2(0, 2)
-rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_4flbx")
-debug_color = Color(0.9372549, 0.5372549, 0.003921569, 0.41960785)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51968823]
 position = Vector2(0, 2)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_4flbx")
 
 [node name="MainPlayerStateMachine" type="Node" parent="." unique_id=360248853]
-script = ExtResource("4_2oxr7")
+script = ExtResource("8_k84kw")
 
 [node name="PlayerWalkState" type="Node" parent="MainPlayerStateMachine" unique_id=1088316497]
-script = ExtResource("5_q2hn0")
+script = ExtResource("9_yo0ru")
 
 [node name="PlayerRollState" type="Node" parent="MainPlayerStateMachine" unique_id=717010897]
-script = ExtResource("6_5vaow")
+script = ExtResource("10_526fb")
 
 [node name="PlayerAttackState" type="Node" parent="MainPlayerStateMachine" unique_id=1170924147]
-script = ExtResource("7_kfiix")
+script = ExtResource("11_rjnhc")
 
 [node name="PlayerIdleState" type="Node" parent="MainPlayerStateMachine" unique_id=1301380956]
-script = ExtResource("8_1la20")
+script = ExtResource("12_mxorp")
 
-[node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("12_5vaow")]
+[node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("13_326by")]
 offset_left = -15.0
 offset_top = -17.0
 offset_right = 40.0
 offset_bottom = -8.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=211399231]
+[node name="PlayerHurtBox" type="Area2D" parent="." unique_id=211399231]
 collision_layer = 256
 collision_mask = 0
-script = ExtResource("15_rqnw4")
+script = ExtResource("14_itdfg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1129137333]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox" unique_id=1129137333]
 position = Vector2(0, 2)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_4flbx")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1576934257]
+script = ExtResource("15_nxc8y")

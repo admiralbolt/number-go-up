@@ -1,4 +1,4 @@
-class_name LootTable extends Node
+class_name LootTable extends Resource
 
 @export var number_of_rolls: int = 1
 @export var loot: Array[LootEntry] = []

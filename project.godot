@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SignalBus="*uid://ccoafian0chyt"
 WeaponManager="*uid://bytvljuc6bnme"
 PlayerManager="*uid://m1tk3ap253pa"
+LevelManager="*uid://c7d70uy3m3v0m"
 
 [display]
 
