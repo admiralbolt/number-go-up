@@ -11,18 +11,19 @@ func on_enter() -> void:
   self.enemy.animation_player.play("EnemyAnimations/idle_%s" % self.enemy.facing_name)
 
   # Set the timer for a random number of full cycles of the walk animation.
-  self.timer = randi_range(3, 5) * self.enemy.animation_player.current_animation_length
+  self.timer = randf_range(3.5, 5.5)
 
 func on_exit() -> void:
   self.enemy.animation_player.stop()
 
 func process(delta: float) -> String:
   self.timer -= delta
-  if self.timer > 0:
-    return State.NULL_STATE
 
   # If the player is close-ish, start running.
-  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < 250:
+  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < 200:
     return SlimeRunState.NAME
+
+  if self.timer > 0:
+    return State.NULL_STATE
 
   return SlimeWalkState.NAME

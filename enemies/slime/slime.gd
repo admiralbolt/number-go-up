@@ -13,6 +13,5 @@ func _ready() -> void:
   self.animation_player = slime_animator.animator
 
   self.state_machine.initialize()
-  await get_tree().create_timer(1).timeout
 
   super.initialize(slime_attributes, slime_derived_statistics, slime_skills)

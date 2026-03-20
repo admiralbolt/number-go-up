@@ -3,17 +3,16 @@ extends Node
 const PLAYER = preload("res://main_character/Player.tscn")
 
 var player: Player = null
-var player_spawned: bool = false
+var is_player_spawning: bool = false
 
 func _ready() -> void:
   # Don't inject the player if we aren't in a level.
   if get_tree().current_scene is not Level:
     return
 
-  add_player_instance()
-  await get_tree().create_timer(1).timeout
-  player_spawned = true
-
+  self.is_player_spawning = true
+  self.add_player_instance()
+  
 
 func add_player_instance() -> void:
   self.player = PLAYER.instantiate()

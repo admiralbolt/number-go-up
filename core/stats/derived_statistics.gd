@@ -7,7 +7,7 @@ const MAX_MANA: String = "max_mana"
 const MAX_STAMINA: String = "max_stamina"
 
 @export var base_fortitude_save: float = 0.0
-@export var base_movement_speed: float = 80.0
+@export var base_movement_speed: float = 95.0
 @export var base_max_health: float = 200.0
 @export var base_max_mana: float = 100.0
 @export var base_max_stamina: float = 100.0
