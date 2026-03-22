@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
   elif held_direction != Vector2.ZERO:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
   velocity = held_direction * self.derived_statistics.movement_speed.total_value
   if self.main_player_state_machine.current_state is PlayerAttackState:
     velocity *= 0.5
@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
     # We also want to ignore any direction instructions right now. So, we will
     # override the velocity to be in the direction of the roll.
     velocity = self.main_player_state_machine.current_state.roll_direction * self.derived_statistics.movement_speed.total_value * PlayerRollState.ROLL_SPEED_BOOST
-  move_and_slide()
+  self.move_and_collide(velocity * delta)
 
 
 func _test_buff_effect() -> void:
