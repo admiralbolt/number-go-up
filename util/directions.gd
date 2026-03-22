@@ -1,7 +1,7 @@
 class_name Directions
 
-static var PRIMARY_DIRECTION_NAMES = ["down", "right", "up", "left"]
-static var DIRECTION_NAMES = ["down", "downright", "right", "upright", "up", "upleft", "left", "downleft"]
+static var PRIMARY_DIRECTION_NAMES: Array[String] = ["down", "right", "up", "left"]
+static var DIRECTION_NAMES: Array[String] = ["down", "downright", "right", "upright", "up", "upleft", "left", "downleft"]
 
 static func get_direction_name(direction: Vector2) -> String:
   if direction == Vector2.ZERO:

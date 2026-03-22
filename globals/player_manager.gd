@@ -12,7 +12,6 @@ func _ready() -> void:
 
   self.is_player_spawning = true
   self.add_player_instance()
-  
 
 func add_player_instance() -> void:
   self.player = PLAYER.instantiate()

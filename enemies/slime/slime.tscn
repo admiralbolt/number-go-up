@@ -1072,10 +1072,9 @@ slime_derived_statistics = SubResource("Resource_im24l")
 script = ExtResource("3_5ctnu")
 
 [node name="Sprite2D" type="Sprite2D" parent="SlimeAnimator" unique_id=1959662034]
-texture = ExtResource("6_yu3x6")
-hframes = 8
+texture = ExtResource("1_6ftag")
+hframes = 6
 vframes = 4
-frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeAnimator" unique_id=48381187]
 libraries/ = SubResource("AnimationLibrary_v3fw7")

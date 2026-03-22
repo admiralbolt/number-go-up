@@ -23,3 +23,9 @@ func _ready() -> void:
     max_bound.y = max(max_bound.y, child_max_bound.y)
 
   LevelManager.update_tilemap_bounds([min_bound, max_bound])
+
+  SignalBus.level_load_started.connect(_free_level)
+
+func _free_level() -> void:
+  PlayerManager.unparent_player(self)
+  queue_free()
