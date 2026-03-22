@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/player_attack_state.gd" id="11_rjnhc"]
 [ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/player_idle_state.gd" id="12_mxorp"]
 [ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/basic_health_bar.tscn" id="13_326by"]
+[ext_resource type="PackedScene" uid="uid://cror3fam525f4" path="res://ui/basic_stamina_bar.tscn" id="14_cy1eu"]
 [ext_resource type="Script" uid="uid://bohi8b8eyfv86" path="res://util/hurt_box.gd" id="14_itdfg"]
 [ext_resource type="Script" uid="uid://cnjcvq0ovhqlq" path="res://main_character/player_camera.gd" id="15_nxc8y"]
 
@@ -624,6 +625,13 @@ offset_left = -15.0
 offset_top = -17.0
 offset_right = 40.0
 offset_bottom = -8.0
+scale = Vector2(0.5, 0.5)
+
+[node name="BasicStaminaBar" parent="." unique_id=187294876 instance=ExtResource("14_cy1eu")]
+offset_left = -15.0
+offset_top = -24.0
+offset_right = 42.0
+offset_bottom = -16.0
 scale = Vector2(0.5, 0.5)
 
 [node name="PlayerHurtBox" type="Area2D" parent="." unique_id=211399231]

@@ -15,8 +15,8 @@ signal current_mana_changed(new_mana: float)
 signal current_stamina_changed(new_stamina: float)
 
 var current_health: float = 100.0: set = _set_current_health
-var current_mana: float = 100.0
-var current_stamina: float = 100.0
+var current_mana: float = 100.0: set = _set_current_mana
+var current_stamina: float = 100.0: set = _set_current_stamina
 
 func initialize(p_attributes: Attributes, p_derived_statistics: DerivedStatistics, p_skills: Skills) -> void:
   self.attributes = p_attributes
@@ -31,9 +31,9 @@ func initialize(p_attributes: Attributes, p_derived_statistics: DerivedStatistic
   self.modifier_manager.recomputes.connect(self._recompute_properties)
 
   # We need to hook into changes to the max hp/mp/sp.
-  self.derived_statistics.max_health.connect("changed", self._on_max_health_changed)
-  self.derived_statistics.max_mana.connect("changed", self._on_max_mana_changed)
-  self.derived_statistics.max_stamina.connect("changed", self._on_max_stamina_changed)
+  self.derived_statistics.max_health.value_changed.connect(self._on_max_health_changed)
+  self.derived_statistics.max_mana.value_changed.connect(self._on_max_mana_changed)
+  self.derived_statistics.max_stamina.value_changed.connect(self._on_max_stamina_changed)
 
   # Finally set the values based on the maxes.
   self.current_health = self.derived_statistics.max_health.total_value
@@ -53,27 +53,46 @@ func _set_current_health(p_health: float) -> void:
   if p_health == current_health:
     return
 
-  current_health = p_health
+  current_health = clamp(p_health, 0, self.derived_statistics.max_health.total_value)
   current_health_changed.emit(p_health)
 
+func _set_current_mana(p_mana: float) -> void:
+  if p_mana == current_mana:
+    return
+
+  current_mana = clamp(p_mana, 0, self.derived_statistics.max_mana.total_value)
+  current_mana_changed.emit(p_mana)
+
+func _set_current_stamina(p_stamina: float) -> void:
+  if p_stamina == current_stamina:
+    return
+
+  current_stamina = clamp(p_stamina, 0, self.derived_statistics.max_stamina.total_value)
+  current_stamina_changed.emit(p_stamina)
+
 # The logic for these three functions is the same.
-func _on_max_health_changed() -> void:
+func _on_max_health_changed(_p_max_health: float) -> void:
   if self.current_health >= self.derived_statistics.max_health.total_value:
     self.current_health = self.derived_statistics.max_health.total_value
     return
 
-func _on_max_mana_changed() -> void:
+func _on_max_mana_changed(_p_max_mana: float) -> void:
   if self.current_mana >= self.derived_statistics.max_mana.total_value:
     self.current_mana = self.derived_statistics.max_mana.total_value
     return
 
-func _on_max_stamina_changed() -> void:
+func _on_max_stamina_changed(_p_max_stamina: float) -> void:
   if self.current_stamina >= self.derived_statistics.max_stamina.total_value:
     self.current_stamina = self.derived_statistics.max_stamina.total_value
     return
 
 func _process(delta: float) -> void:
   self.effect_manager.process(delta)
+
+  # Update regeneration of health, mana, and stamina.
+  self.current_health += self.derived_statistics.health_regen.total_value * delta
+  self.current_mana += self.derived_statistics.mana_regen.total_value * delta
+  self.current_stamina += self.derived_statistics.stamina_regen.total_value * delta
 
 func _recompute_properties(recompute_targets: Dictionary[Modifier.ModifierTarget, ModifierManager.RecomputeTargetList]) -> void:
   for target_type in [Modifier.ModifierTarget.ATTRIBUTE, Modifier.ModifierTarget.DERIVED_STATISTIC, Modifier.ModifierTarget.SKILL]:

@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
   elif self.main_player_state_machine.current_state is PlayerRollState:
     # We also want to ignore any direction instructions right now. So, we will
     # override the velocity to be in the direction of the roll.
-    velocity = self.main_player_state_machine.current_state.roll_direction * self.derived_statistics.movement_speed.total_value * 1.2
+    velocity = self.main_player_state_machine.current_state.roll_direction * self.derived_statistics.movement_speed.total_value * PlayerRollState.ROLL_SPEED_BOOST
   move_and_slide()
 
 

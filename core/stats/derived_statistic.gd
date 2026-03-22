@@ -1,5 +1,7 @@
 class_name DerivedStatistic extends Resource
 
+signal value_changed(new_value: float)
+
 @export var base_value: float = 0.0
 
 var name: String = ""
@@ -32,7 +34,7 @@ func compute_total() -> void:
     return
 
   self.total_value = val
-  self.emit_changed()
+  self.value_changed.emit(self.total_value)
 
 func _to_string() -> String:
   return "%s: %.2f (base: %.2f)" % [self.name, self.total_value, self.base_value]

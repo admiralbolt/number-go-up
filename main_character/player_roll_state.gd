@@ -1,12 +1,17 @@
 class_name PlayerRollState extends PlayerState
 
-static var NAME = "roll"
+static var NAME: String = "roll"
+static var ROLL_STAMINA_COST: float = 25
+static var ROLL_SPEED_BOOST: float = 1.3
 
 var roll_direction: Vector2
 var roll_timer: float
 
 func _init() -> void:
   self.state_name = NAME
+
+func can_enter(_prev_state: State) -> bool:
+  return self.player.current_stamina >= ROLL_STAMINA_COST
 
 func can_exit(next_state: State) -> bool:
   if roll_timer <= 0:
@@ -15,6 +20,7 @@ func can_exit(next_state: State) -> bool:
   return roll_timer <= (PlayerAnimator.ANIMATION_DURATION["roll"] * 0.4) and next_state.state_name in [PlayerAttackState.NAME]
 
 func on_enter() -> void:
+  self.player.current_stamina -= ROLL_STAMINA_COST
   self.roll_timer = PlayerAnimator.ANIMATION_DURATION["roll"]
   # Lock the direction for the duration of the roll.
   self.roll_direction = self.player.facing

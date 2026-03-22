@@ -8,15 +8,23 @@ const MAX_STAMINA: String = "max_stamina"
 
 @export var base_fortitude_save: float = 0.0
 @export var base_movement_speed: float = 95.0
+
 @export var base_max_health: float = 200.0
 @export var base_max_mana: float = 100.0
 @export var base_max_stamina: float = 100.0
+@export var base_health_regen: float = 0.0
+@export var base_mana_regen: float = 1.5
+@export var base_stamina_regen: float = 3.5
+
 
 var fortitude_save: DerivedStatistic
 var movement_speed: DerivedStatistic
 var max_health: DerivedStatistic
 var max_mana: DerivedStatistic
 var max_stamina: DerivedStatistic
+var health_regen: DerivedStatistic
+var mana_regen: DerivedStatistic
+var stamina_regen: DerivedStatistic
 
 
 func initialize(p_entity: Entity) -> void:
@@ -47,6 +55,26 @@ func initialize(p_entity: Entity) -> void:
     "strength": 0.04,
     "agility": 0.03,
     "spirit": 0.02,
+  }, p_entity)
+
+  self.health_regen = DerivedStatistic.make("Health Regeneration", base_health_regen, {
+    "constitution": 0.014,
+    "strength": 0.007,
+    "agility": 0.002
+  }, p_entity)
+
+  self.mana_regen = DerivedStatistic.make("Mana Regeneration", base_mana_regen, {
+    "intelligence": 0.02,
+    "spirit": 0.01,
+    "wisdom": 0.01,
+    "charisma": 0.005
+  }, p_entity)
+
+  self.stamina_regen = DerivedStatistic.make("Stamina Regeneration", base_stamina_regen, {
+    "constitution": 0.01,
+    "strength": 0.01,
+    "agility": 0.01,
+    "spirit": 0.01,
   }, p_entity)
 
   
