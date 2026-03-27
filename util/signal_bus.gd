@@ -9,4 +9,8 @@ signal level_load_started
 signal level_loaded
 signal tilemap_bounds_changed(bounds: Array[Vector2])
 
+### Pause Menu Signals
+signal pause_menu_opened
+signal pause_menu_closed
+
 @warning_ignore_restore("unused_signal")
