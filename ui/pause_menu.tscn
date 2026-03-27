@@ -1,21 +1,17 @@
 [gd_scene format=3 uid="uid://bi0j0pp4w8exd"]
 
-[ext_resource type="Theme" uid="uid://chksvfhplcrsa" path="res://ui/menu_button_theme.tres" id="1_50142"]
 [ext_resource type="Script" uid="uid://dyetri0hrmpmm" path="res://ui/pause_menu.gd" id="1_ejwgg"]
+[ext_resource type="PackedScene" uid="uid://csg8gnfcousg0" path="res://ui/button_sidebar.tscn" id="2_ejwgg"]
+[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/content_panel.gd" id="3_fob5h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejwgg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fob5h"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=47176982]
 script = ExtResource("1_ejwgg")
 
-[node name="Control" type="Control" parent="." unique_id=544125542]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1666295132]
-layout_mode = 1
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1666295132]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,63 +19,36 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.27450982)
 
-[node name="ButtonMargins" type="MarginContainer" parent="Control" unique_id=1259588835]
-layout_mode = 1
-anchors_preset = 9
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1152653075]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.0
-offset_right = 128.0
+offset_right = 88.0
+grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ButtonVBoxContainer" type="VBoxContainer" parent="Control/ButtonMargins" unique_id=1136001759]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=394745350]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 120
+
+[node name="ButtonPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=783810894]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ejwgg")
+
+[node name="ButtonSidebar" parent="MarginContainer/HBoxContainer/ButtonPanel" unique_id=1600686584 instance=ExtResource("2_ejwgg")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="MapButton" type="Button" parent="Control/ButtonMargins/ButtonVBoxContainer" unique_id=1781281076]
-custom_minimum_size = Vector2(50, 28)
+[node name="ContentPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=813909074]
+unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../IOButton")
-theme = ExtResource("1_50142")
-text = "Map"
-
-[node name="CharacterButton" type="Button" parent="Control/ButtonMargins/ButtonVBoxContainer" unique_id=1212795684]
-custom_minimum_size = Vector2(50, 28)
-layout_mode = 2
-theme = ExtResource("1_50142")
-text = "Character"
-
-[node name="InventoryButton" type="Button" parent="Control/ButtonMargins/ButtonVBoxContainer" unique_id=1908253167]
-custom_minimum_size = Vector2(50, 28)
-layout_mode = 2
-theme = ExtResource("1_50142")
-text = "Inventory"
-
-[node name="MagicButton" type="Button" parent="Control/ButtonMargins/ButtonVBoxContainer" unique_id=1219328252]
-custom_minimum_size = Vector2(50, 28)
-layout_mode = 2
-theme = ExtResource("1_50142")
-text = "Magic"
-
-[node name="CompendiumButton" type="Button" parent="Control/ButtonMargins/ButtonVBoxContainer" unique_id=77262231]
-custom_minimum_size = Vector2(50, 28)
-layout_mode = 2
-theme = ExtResource("1_50142")
-text = "Compendium"
-
-[node name="SettingsButton" type="Button" parent="Control/ButtonMargins/ButtonVBoxContainer" unique_id=1538267968]
-custom_minimum_size = Vector2(50, 28)
-layout_mode = 2
-theme = ExtResource("1_50142")
-text = "Settings"
-
-[node name="IOButton" type="Button" parent="Control/ButtonMargins/ButtonVBoxContainer" unique_id=566992944]
-custom_minimum_size = Vector2(50, 28)
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../MapButton")
-theme = ExtResource("1_50142")
-text = "IO"
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fob5h")
+script = ExtResource("3_fob5h")

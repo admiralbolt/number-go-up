@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://csg8gnfcousg0"]
+
+[ext_resource type="Theme" uid="uid://chksvfhplcrsa" path="res://ui/menu_button_theme.tres" id="1_4w8ka"]
+[ext_resource type="Script" uid="uid://n4bimeeeub81" path="res://ui/button_sidebar.gd" id="1_sqplw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4w8ka"]
+
+[node name="ButtonSidebar" type="Control" unique_id=1600686584]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 98.0
+offset_bottom = -6.0
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_sqplw")
+
+[node name="ButtonPanelContainer" type="PanelContainer" parent="." unique_id=905073548]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 112.0
+grow_vertical = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4w8ka")
+
+[node name="ButtonVBoxContainer" type="VBoxContainer" parent="ButtonPanelContainer" unique_id=56612876]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MapButton" type="Button" parent="ButtonPanelContainer/ButtonVBoxContainer" unique_id=1354906252]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../IOButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../CharacterButton")
+theme = ExtResource("1_4w8ka")
+text = "Map"
+
+[node name="CharacterButton" type="Button" parent="ButtonPanelContainer/ButtonVBoxContainer" unique_id=835649097]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+theme = ExtResource("1_4w8ka")
+text = "Character"
+
+[node name="InventoryButton" type="Button" parent="ButtonPanelContainer/ButtonVBoxContainer" unique_id=1135146780]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+theme = ExtResource("1_4w8ka")
+text = "Inventory"
+
+[node name="MagicButton" type="Button" parent="ButtonPanelContainer/ButtonVBoxContainer" unique_id=1092675439]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+theme = ExtResource("1_4w8ka")
+text = "Magic"
+
+[node name="CompendiumButton" type="Button" parent="ButtonPanelContainer/ButtonVBoxContainer" unique_id=273253046]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+theme = ExtResource("1_4w8ka")
+text = "Compendium"
+
+[node name="SettingsButton" type="Button" parent="ButtonPanelContainer/ButtonVBoxContainer" unique_id=93658369]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+theme = ExtResource("1_4w8ka")
+text = "Settings"
+
+[node name="IOButton" type="Button" parent="ButtonPanelContainer/ButtonVBoxContainer" unique_id=972436026]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../MapButton")
+theme = ExtResource("1_4w8ka")
+text = "IO"

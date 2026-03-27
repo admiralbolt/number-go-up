@@ -23,6 +23,7 @@ PlayerManager="*uid://m1tk3ap253pa"
 LevelManager="*uid://c7d70uy3m3v0m"
 SceneTransition="*uid://x28qgxagmoqx"
 PauseMenu="*uid://bi0j0pp4w8exd"
+PauseMenuState="*uid://ibgco1ew5s6g"
 
 [display]
 
