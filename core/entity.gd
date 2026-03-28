@@ -18,6 +18,14 @@ var current_health: float = 100.0: set = _set_current_health
 var current_mana: float = 100.0: set = _set_current_mana
 var current_stamina: float = 100.0: set = _set_current_stamina
 
+func _ready() -> void:
+  self.modifier_manager.recomputes.connect(self._recompute_properties)
+
+  # We need to hook into changes to the max hp/mp/sp.
+  self.derived_statistics.max_health.value_changed.connect(self._on_max_health_changed)
+  self.derived_statistics.max_mana.value_changed.connect(self._on_max_mana_changed)
+  self.derived_statistics.max_stamina.value_changed.connect(self._on_max_stamina_changed)
+
 func initialize(p_attributes: Attributes, p_derived_statistics: DerivedStatistics, p_skills: Skills) -> void:
   self.attributes = p_attributes
   self.derived_statistics = p_derived_statistics
@@ -27,13 +35,6 @@ func initialize(p_attributes: Attributes, p_derived_statistics: DerivedStatistic
   self.derived_statistics.initialize(self)
   self.skills.initialize(self)
   self.effect_manager.initialize(self)
-
-  self.modifier_manager.recomputes.connect(self._recompute_properties)
-
-  # We need to hook into changes to the max hp/mp/sp.
-  self.derived_statistics.max_health.value_changed.connect(self._on_max_health_changed)
-  self.derived_statistics.max_mana.value_changed.connect(self._on_max_mana_changed)
-  self.derived_statistics.max_stamina.value_changed.connect(self._on_max_stamina_changed)
 
   # Finally set the values based on the maxes.
   self.current_health = self.derived_statistics.max_health.total_value

@@ -31,3 +31,12 @@ func _on_button_focused(index: int, button_name: String) -> void:
 
 func _on_button_pressed(index: int, button_name: String) -> void:
   button_pressed.emit(index, button_name)
+
+  if button_name == "SaveButton":
+    SaveManager.save_game()
+  elif button_name == "LoadButton":
+    SaveManager.load_game()
+
+
+  elif button_name == "QuitButton":
+    get_tree().quit()

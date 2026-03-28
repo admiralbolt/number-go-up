@@ -15,3 +15,4 @@ func _ready() -> void:
   self.state_machine.initialize()
 
   super.initialize(slime_attributes, slime_derived_statistics, slime_skills)
+  super._ready()

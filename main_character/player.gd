@@ -23,6 +23,7 @@ func _ready() -> void:
   super.initialize(player_attributes, player_derived_statistics, player_skills)
 
   self.player_attributes.agility.value = 20
+  super._ready()
 
   # self._test_buff_effect()
 

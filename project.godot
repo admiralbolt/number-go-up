@@ -19,11 +19,12 @@ config/icon="res://icon.svg"
 
 SignalBus="*uid://ccoafian0chyt"
 WeaponManager="*uid://bytvljuc6bnme"
-PlayerManager="*uid://m1tk3ap253pa"
-LevelManager="*uid://c7d70uy3m3v0m"
 SceneTransition="*uid://x28qgxagmoqx"
 PauseMenu="*uid://bi0j0pp4w8exd"
 PauseMenuState="*uid://ibgco1ew5s6g"
+PlayerManager="*uid://cr0ehaih2ydy6"
+LevelManager="*uid://c3e1mhvhxt8y6"
+SaveManager="*uid://cl4xqarhgi8bd"
 
 [display]
 

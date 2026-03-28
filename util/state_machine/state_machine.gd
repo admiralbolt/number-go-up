@@ -26,13 +26,14 @@ func initialize() -> void:
     process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func change_state(new_state_name: String) -> void:
+func change_state(new_state_name: String, force_change: bool = false) -> void:
   var new_state: State = self.state_map.get(new_state_name)
   if new_state == null:
     return
   
-  if (new_state == current_state and not new_state.self_loop) or not current_state.can_exit(new_state) or not new_state.can_enter(current_state):
-    return
+  if not force_change:
+    if (new_state == current_state and not new_state.self_loop) or not current_state.can_exit(new_state) or not new_state.can_enter(current_state):
+      return
 
   if debug:
     print("Changing from state: ", current_state.state_name, " to state: ", new_state_name)

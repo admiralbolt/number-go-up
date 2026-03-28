@@ -22,6 +22,8 @@ func _ready() -> void:
   button_sidebar.button_pressed.connect(self._on_button_pressed)
   content_panel.content_panel_closed.connect(self._on_content_panel_closed)
 
+  SaveManager.game_loaded.connect(self._on_game_loaded)
+
 func _on_button_focused(_index: int, button_name: String) -> void:
   var content_scene: PackedScene = CONTENT_PANEL_MAPPING.get(button_name, null)
   content_panel.change_child(content_scene)
@@ -49,6 +51,10 @@ func close_menu() -> void:
   get_tree().paused = false
   self.visible = false
   SignalBus.pause_menu_closed.emit()
+
+func _on_game_loaded() -> void:
+  PauseMenuState.content_focused = false
+  self.close_menu()
 
 func _unhandled_input(event: InputEvent) -> void:
   if event.is_action_pressed("pause"):

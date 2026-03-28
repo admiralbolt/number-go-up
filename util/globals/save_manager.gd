@@ -1,0 +1,46 @@
+extends Node
+
+const SAVE_PATH: String = "user://"
+
+signal game_loaded
+signal game_saved
+
+func save_game() -> void:
+  var save_data: SaveData = SaveData.new()
+  save_data.scene_path = get_tree().current_scene.scene_file_path
+  save_data.player_attributes = PlayerManager.player.attributes
+  save_data.player_derived_statistics = PlayerManager.player.derived_statistics
+  save_data.player_skills = PlayerManager.player.skills
+  save_data.current_health = PlayerManager.player.current_health
+  save_data.current_mana = PlayerManager.player.current_mana
+  save_data.current_stamina = PlayerManager.player.current_stamina
+  save_data.player_position = PlayerManager.player.position
+
+  ResourceSaver.save(save_data, SAVE_PATH + "save_game.tres")
+  self.game_saved.emit()
+
+func load_game() -> void:
+  var save_data: Resource = ResourceLoader.load(SAVE_PATH + "save_game.tres")
+  if save_data == null:
+    print("No save data found.")
+    return
+
+  if save_data is not SaveData:
+    print("Save data is corrupted!")
+    return
+
+  LevelManager.load_new_level(save_data.scene_path, "", Vector2.ZERO, true)
+  await SignalBus.level_load_started
+
+  PlayerManager.player.attributes = save_data.player_attributes
+  PlayerManager.player.derived_statistics = save_data.player_derived_statistics
+  PlayerManager.player.skills = save_data.player_skills
+  PlayerManager.player.initialize(PlayerManager.player.attributes, PlayerManager.player.derived_statistics, PlayerManager.player.skills)
+
+  PlayerManager.player.current_health = save_data.current_health
+  PlayerManager.player.current_mana = save_data.current_mana
+  PlayerManager.player.current_stamina = save_data.current_stamina
+
+  PlayerManager.player.position = save_data.player_position
+
+  self.game_loaded.emit()

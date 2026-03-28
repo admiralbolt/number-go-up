@@ -10,11 +10,12 @@ func _ready() -> void:
   owner.initialized.connect(_on_owner_initialized)
 
 func _on_owner_initialized() -> void:
-  owner.derived_statistics.max_stamina.value_changed.connect(_on_max_stamina_changed)
-  _on_max_stamina_changed(owner.derived_statistics.max_stamina.total_value)
+  self.owner.derived_statistics.max_stamina.value_changed.connect(self._on_max_stamina_changed)
+  _on_max_stamina_changed(self.owner.derived_statistics.max_stamina.total_value)
 
-  owner.current_stamina_changed.connect(_on_current_stamina_changed)
+  self.owner.current_stamina_changed.connect(self._on_current_stamina_changed)
   _on_current_stamina_changed(owner.current_stamina)
+  self.owner.initialized.disconnect(_on_owner_initialized)
 
 func _on_current_stamina_changed(p_current_stamina: float) -> void:
   value = p_current_stamina
