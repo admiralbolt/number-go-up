@@ -12,6 +12,19 @@ const INTELLIGENCE: String = "intelligence"
 const CHARISMA: String = "charisma"
 const LUCK: String = "luck"
 
+const ALL_ATTRIBUTES: Array = [
+  LEVEL,
+  STRENGTH,
+  CONSTITUTION,
+  DEXTERITY,
+  AGILITY,
+  SPIRIT,
+  WISDOM,
+  INTELLIGENCE,
+  CHARISMA,
+  LUCK,
+]
+
 @export var level: Attribute = Attribute.make(LEVEL, 1.0)
 
 @export var strength: Attribute = Attribute.make(STRENGTH, 50.0)
