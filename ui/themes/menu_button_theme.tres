@@ -25,17 +25,8 @@ texture = SubResource("CompressedTexture2D_umaci")
 region_rect = Rect2(576.5, 256.5, 63, 32)
 modulate_color = Color(1, 0.8392157, 0.43137255, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev83e"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d82im"]
+modulate_color = Color(0.93333334, 1, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tdstk"]
 content_margin_left = 4.0
@@ -77,6 +68,6 @@ Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_umaci")
 Button/styles/disabled = SubResource("StyleBoxFlat_ddv3y")
 Button/styles/focus = SubResource("StyleBoxTexture_r6ink")
-Button/styles/hover = SubResource("StyleBoxFlat_ev83e")
+Button/styles/hover = SubResource("StyleBoxTexture_d82im")
 Button/styles/normal = SubResource("StyleBoxTexture_tdstk")
 Button/styles/pressed = SubResource("StyleBoxFlat_u44be")

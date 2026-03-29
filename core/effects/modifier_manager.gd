@@ -72,6 +72,13 @@ func compute_total(stat_name: String, base_value: float) -> float:
 
   return modifier_queue.compute_total(base_value)
 
+func compute_total_description(stat_name: String, base_value: float) -> Array[String]:
+  var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(stat_name)
+  if modifier_queue == null:
+    return []
+
+  return modifier_queue.compute_total_description(base_value)
+
 func debug_print() -> void:
   for modifier in self.all_modifiers.modifiers:
     print(modifier)
@@ -125,6 +132,14 @@ class ModifierPriorityQueue extends Resource:
     val = self.last_modifiers.compute(val)
     return val
 
+  func compute_total_description(base_value: float) -> Array[String]:
+    var descriptions: Array[String] = []
+    descriptions += self.first_modifiers.compute_total_description(base_value)
+    descriptions += self.additive_modifiers.compute_total_description(base_value)
+    descriptions += self.multiplicative_modifiers.compute_total_description(base_value)
+    descriptions += self.last_modifiers.compute_total_description(base_value)
+    return descriptions
+
 
   class ModifierQueue extends Resource:
     """A queue for modifiers.
@@ -157,6 +172,15 @@ class ModifierPriorityQueue extends Resource:
       for modifier in self.modifiers_by_name.values():
         val = modifier.apply(val)
       return val
+
+    func compute_total_description(base_value: float) -> Array[String]:
+      var descriptions: Array[String] = []
+      var val = base_value
+      for modifier in self.modifiers_by_name.values():
+        descriptions.append("%s:\n\t%.2f -> %.2f" % [modifier.readable_string(), val, modifier.apply(val)] )
+        val = modifier.apply(val)
+
+      return descriptions
 
 
 class ModifierList extends Resource:

@@ -24,6 +24,12 @@ func compute_total() -> void:
   self.total_value = new_total
   self.emit_changed()
 
+func compute_total_description() -> Array[String]:
+  if self.entity == null:
+    return []
+
+  return self.entity.modifier_manager.compute_total_description(self.name, self.value)
+
 func _to_string() -> String:
   return "%s: %.2f (Base: %.2f)" % [name, total_value, value]
 

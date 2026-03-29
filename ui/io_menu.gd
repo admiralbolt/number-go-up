@@ -1,4 +1,4 @@
-class_name IOMenu extends ContentPanel.ContentPanelChild
+class_name IOMenu extends Control
 
 signal button_focused(index: int, button_name: String)
 signal button_pressed(index: int, button_name: String)
@@ -22,8 +22,14 @@ func _ready() -> void:
     button.focus_neighbor_right = button.get_path()
     button.focus_neighbor_bottom = children[(i + 1) % children.size()].get_path()
 
-func focus() -> void:
+  self.focus_entered.connect(self._on_focus_entered)
+  self.focus_exited.connect(self._on_focus_exited)
+
+func _on_focus_entered() -> void:
   button_container.get_child(PauseMenuState.io_menu_focus_index).grab_focus()
+
+func _on_focus_exited() -> void:
+  return
 
 func _on_button_focused(index: int, button_name: String) -> void:
   PauseMenuState.io_menu_focus_index = index

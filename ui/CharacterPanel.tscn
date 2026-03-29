@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cg2gdct4c40h7"]
+
+[ext_resource type="Script" uid="uid://cia1shis4fmsw" path="res://ui/character_panel.gd" id="1_fggyi"]
+[ext_resource type="Theme" uid="uid://chksvfhplcrsa" path="res://ui/themes/menu_button_theme.tres" id="1_ved6e"]
+[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/content_panel.gd" id="2_hm050"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fggyi"]
+
+[node name="CharacterPanel" type="Control" unique_id=1444621635]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_fggyi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=780194859]
+layout_mode = 1
+offset_right = 344.0
+offset_bottom = 28.0
+focus_mode = 2
+
+[node name="AttributesButton" type="Button" parent="HBoxContainer" unique_id=841390179]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+focus_neighbor_left = NodePath("../SkillsButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../StatisticsButton")
+focus_neighbor_bottom = NodePath(".")
+theme = ExtResource("1_ved6e")
+text = "Attributes"
+
+[node name="StatisticsButton" type="Button" parent="HBoxContainer" unique_id=220023096]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+focus_neighbor_left = NodePath("../AttributesButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../SkillsButton")
+focus_neighbor_bottom = NodePath(".")
+theme = ExtResource("1_ved6e")
+text = "Statistics"
+
+[node name="SkillsButton" type="Button" parent="HBoxContainer" unique_id=1044073234]
+custom_minimum_size = Vector2(112, 28)
+layout_mode = 2
+focus_neighbor_left = NodePath("../StatisticsButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../AttributesButton")
+focus_neighbor_bottom = NodePath(".")
+theme = ExtResource("1_ved6e")
+text = "Skills"
+
+[node name="CharacterContentPanel" type="PanelContainer" parent="." unique_id=1822809482]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 0
+offset_top = 26.0
+offset_right = 3840.0
+offset_bottom = 426.0
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fggyi")
+script = ExtResource("2_hm050")
+metadata/_custom_type_script = "uid://8q5s1rcnp7c7"

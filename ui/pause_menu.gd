@@ -6,8 +6,10 @@ extends CanvasLayer
 # Preload all our content panel scenes.
 const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
   "IOButton": preload("res://ui/io_menu.tscn"),
-  "CharacterButton": preload("res://ui/CharacterStatsDisplay.tscn"),
+  "CharacterButton": preload("res://ui/CharacterPanel.tscn"),
 }
+
+var first: bool = true
 
 func _ready() -> void:
   # Importantly, this needs to be run here because this script *ALSO* runs in
@@ -30,9 +32,11 @@ func _on_button_focused(_index: int, button_name: String) -> void:
   content_panel.change_child(content_scene)
 
 func _on_button_pressed(_index: int, _button_name: String) -> void:
-  content_panel.focus()
+  PauseMenuState.content_focused = true
+  content_panel.grab_focus()
 
 func _on_content_panel_closed() -> void:
+  PauseMenuState.content_focused = false
   self.focus()
 
 func open_menu() -> void:
@@ -43,7 +47,7 @@ func open_menu() -> void:
 
 func focus() -> void:
   if PauseMenuState.content_focused:
-    content_panel.focus()
+    content_panel.grab_focus()
     return
 
   button_sidebar.focus()

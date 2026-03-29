@@ -96,3 +96,14 @@ func apply(base_value: float) -> float:
 
 func _to_string() -> String:
   return "Modifier(%s) %s, %s, %s, value: %.2f, type: %s, priority: %s, sentiment: %s, duration: %s, timer: %s, is_timed: %s, is_stackable: %s, stack_count: %s, stack_fall_off: %s" % [self.unique_name, self.source_name, ModifierSource.keys()[self.source_type], self.stat_name, self.value, ModifierType.keys()[self.modifier_type], ModifierPriority.keys()[self.modifier_priority], ModifierSentiment.keys()[self.sentiment], self.duration, self.timer, self.is_timed, self.is_stackable, self.stack_count, self.stack_fall_off]
+
+func _get_mod_char() -> String:
+  if self.modifier_type == ModifierType.ADDITIVE:
+    return "+" if self.value >= 0 else "-"
+  elif self.modifier_type == ModifierType.MULTIPLICATIVE:
+    return "x" if self.value >= 0 else "/"
+  
+  return "?"
+
+func readable_string() -> String:
+  return "%s (%s%s)" % [self.source_name, self._get_mod_char(), self.get_total_value()]
