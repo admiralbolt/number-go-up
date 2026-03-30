@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://bi0j0pp4w8exd"]
 
-[ext_resource type="Script" uid="uid://dyetri0hrmpmm" path="res://ui/pause_menu.gd" id="1_ejwgg"]
-[ext_resource type="PackedScene" uid="uid://csg8gnfcousg0" path="res://ui/button_sidebar.tscn" id="2_ejwgg"]
-[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/content_panel.gd" id="3_fob5h"]
+[ext_resource type="Script" uid="uid://dyetri0hrmpmm" path="res://ui/pause_menu.gd" id="1_1q10k"]
+[ext_resource type="PackedScene" uid="uid://csg8gnfcousg0" path="res://ui/ButtonSidebar.tscn" id="2_4dg4t"]
+[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/content_panel.gd" id="3_ptdjk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejwgg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fob5h"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=47176982]
-script = ExtResource("1_ejwgg")
+script = ExtResource("1_1q10k")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1666295132]
 anchors_preset = 15
@@ -17,7 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.47058824)
+color = Color(0, 0, 0, 0.7058824)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1152653075]
 anchors_preset = 15
@@ -42,7 +42,7 @@ layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ejwgg")
 
-[node name="ButtonSidebar" parent="MarginContainer/HBoxContainer/ButtonPanel" unique_id=1600686584 instance=ExtResource("2_ejwgg")]
+[node name="ButtonSidebar" parent="MarginContainer/HBoxContainer/ButtonPanel" unique_id=1600686584 instance=ExtResource("2_4dg4t")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -52,4 +52,4 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fob5h")
-script = ExtResource("3_fob5h")
+script = ExtResource("3_ptdjk")

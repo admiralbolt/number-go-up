@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bpjj04i6mcpgr" path="res://map/level.gd" id="1_khyor"]
 [ext_resource type="PackedScene" uid="uid://cr6r7y26stubu" path="res://map/DungeonTileSet1.tscn" id="2_rsf30"]
 [ext_resource type="PackedScene" uid="uid://chip2p6yekyqb" path="res://map/PlayerSpawner.tscn" id="3_uaud5"]
-[ext_resource type="PackedScene" uid="uid://bij1j62lef3e" path="res://enemies/slime/slime.tscn" id="4_p0l4u"]
+[ext_resource type="PackedScene" uid="uid://bij1j62lef3e" path="res://enemies/slime/Slime.tscn" id="4_p0l4u"]
 [ext_resource type="PackedScene" uid="uid://bxby4uyjmvx1u" path="res://map/LevelTransition.tscn" id="5_rsf30"]
 
 [node name="Area1" type="Node2D" unique_id=523815770]

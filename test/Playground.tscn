@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr6r7y26stubu" path="res://map/DungeonTileSet1.tscn" id="1_gncqu"]
 [ext_resource type="Script" uid="uid://bpjj04i6mcpgr" path="res://map/level.gd" id="1_mbuax"]
-[ext_resource type="PackedScene" uid="uid://bij1j62lef3e" path="res://enemies/slime/slime.tscn" id="3_rma7k"]
+[ext_resource type="PackedScene" uid="uid://bij1j62lef3e" path="res://enemies/slime/Slime.tscn" id="3_rma7k"]
 [ext_resource type="PackedScene" uid="uid://chip2p6yekyqb" path="res://map/PlayerSpawner.tscn" id="4_mbuax"]
 
 [node name="Playground" type="Node2D" unique_id=1977047386]

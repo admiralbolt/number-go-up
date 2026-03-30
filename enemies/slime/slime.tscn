@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bmfbvt3fb0ywl" path="res://core/stats/derived_statistics.gd" id="2_mwtj1"]
 [ext_resource type="Script" uid="uid://gai3csfp6tpk" path="res://enemies/slime/slime_animator.gd" id="3_5ctnu"]
 [ext_resource type="Script" uid="uid://dnfb742epc744" path="res://enemies/slime/slime_idle_state.gd" id="4_57eei"]
-[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/basic_health_bar.tscn" id="5_u2l51"]
+[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/BasicHealthBar.tscn" id="5_u2l51"]
 [ext_resource type="Script" uid="uid://cvknglif0g3v1" path="res://util/hit_box.gd" id="5_v3fw7"]
 [ext_resource type="Texture2D" uid="uid://bnsg1pe6v0ou1" path="res://assets/monsters/slime1/Slime1_Walk_with_shadow.png" id="6_yu3x6"]
 [ext_resource type="PackedScene" uid="uid://f18k057haeer" path="res://util/HurtBox.tscn" id="7_bkm6f"]

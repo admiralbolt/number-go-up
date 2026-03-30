@@ -1,5 +1,14 @@
 class_name AttributeDescriptions extends Node
 
 const DESCRIPTIONS: Dictionary[String, String] = {
-  "strength": "Strength increases your damage with physical attacks, increases your maximum carrying capacity, and gives a small bonus to your maximum health."
+  "level": "What level your character is! Higher is better. Makes number go up.",
+  "strength": "How much you can bench. Increases damage with physical attacks, carrying capacity, and max health.",
+  "constitution": "Makes you beefier. Increases armor, max health, max stamina, health regeneration, and stamina regeneration.",
+  "dexterity": "How deft your hands are. Increases accuracy & damage with physical attacks.",
+  "agility": "How nimble you are. Increases movement speed & dodge.",
+  "spirit": "The force of your soul. Increases damage with magical attacks, max mana, and affects health, mana, and stamina regeneration.",
+  "wisdom": "Street-smarts. Increases magic resistance, and mana regeneration.",
+  "intelligence": "How smart you are. Increase max mana, and affects what spells you can learn.",
+  "charisma": "How charming you are. Better shop prices, better quest rewards, larger access to factions.",
+  "luck": "How lucky you are. Increases your chances of finding better loot. Has a small impact on all saving throws."
 }
