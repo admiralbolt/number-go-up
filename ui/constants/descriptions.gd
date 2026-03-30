@@ -1,6 +1,6 @@
-class_name AttributeDescriptions extends Node
+class_name Descriptions extends Node
 
-const DESCRIPTIONS: Dictionary[String, String] = {
+const ATTRIBUTE_DESCRIPTIONS: Dictionary[String, String] = {
   "level": "What level your character is! Higher is better. Makes number go up.",
   "strength": "How much you can bench. Increases damage with physical attacks, carrying capacity, and max health.",
   "constitution": "Makes you beefier. Increases armor, max health, max stamina, health regeneration, and stamina regeneration.",

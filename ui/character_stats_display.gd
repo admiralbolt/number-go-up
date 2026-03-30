@@ -53,7 +53,7 @@ func _calculate_description(child_name: String) -> String:
 func _calculate_attribute_description(attribute_name: String) -> String:
   var attr: Attribute = self.attributes.get(attribute_name)
   var builder: Array[String] = []
-  builder.append(AttributeDescriptions.DESCRIPTIONS.get(attribute_name, ""))
+  builder.append(Descriptions.ATTRIBUTE_DESCRIPTIONS.get(attribute_name, ""))
   builder.append("-----------------\n")
   builder.append("BaseValue: %s" % str(attr.value))
 
