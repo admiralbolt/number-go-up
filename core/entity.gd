@@ -22,9 +22,9 @@ func _ready() -> void:
   self.modifier_manager.recomputes.connect(self._recompute_properties)
 
   # We need to hook into changes to the max hp/mp/sp.
-  self.derived_statistics.max_health.value_changed.connect(self._on_max_health_changed)
-  self.derived_statistics.max_mana.value_changed.connect(self._on_max_mana_changed)
-  self.derived_statistics.max_stamina.value_changed.connect(self._on_max_stamina_changed)
+  self.derived_statistics.max_health.changed.connect(self._on_max_health_changed.bind(self.derived_statistics.max_health.total_value))
+  self.derived_statistics.max_mana.changed.connect(self._on_max_mana_changed.bind(self.derived_statistics.max_mana.total_value))
+  self.derived_statistics.max_stamina.changed.connect(self._on_max_stamina_changed.bind(self.derived_statistics.max_stamina.total_value))
 
 func initialize(p_attributes: Attributes, p_derived_statistics: DerivedStatistics, p_skills: Skills) -> void:
   self.attributes = p_attributes

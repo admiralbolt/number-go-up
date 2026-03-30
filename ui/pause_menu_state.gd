@@ -14,3 +14,6 @@ var character_menu_focus_index: int = 0
 
 # Which item is selected in the attributes sub menu.
 var attribute_focus_index: int = 0
+
+# Which item is selected in the derived statistics sub menu.
+var derived_statistic_focus_index: int = 0

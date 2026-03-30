@@ -1,7 +1,5 @@
 class_name DerivedStatistic extends Resource
 
-signal value_changed(new_value: float)
-
 @export var base_value: float = 0.0
 
 var name: String = ""
@@ -34,7 +32,24 @@ func compute_total() -> void:
     return
 
   self.total_value = val
-  self.value_changed.emit(self.total_value)
+  self.changed.emit()
+
+func compute_total_description() -> Array[String]:
+  var builder: Array[String] = []
+  var val = self.base_value
+  for attr_name in self.weights.keys():
+    var attribute: Attribute = self.attr_references[attr_name]
+    var weight: float = self.weights[attr_name]
+    var new_val: float = val + attribute.total_value * weight
+
+    builder.append("%s (%s%%):\n\t%.2f -> %.2f" % [attr_name.capitalize(), weight * 100, val, new_val])
+
+    val = new_val
+
+  for line in self.entity.modifier_manager.compute_total_description(self.name, val):
+    builder.append(line)
+
+  return builder
 
 func _to_string() -> String:
   return "%s: %.2f (base: %.2f)" % [self.name, self.total_value, self.base_value]

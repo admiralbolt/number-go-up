@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c8t358deb24ji"]
+
+[ext_resource type="Theme" uid="uid://dai8ta2qbpjfn" path="res://ui/themes/menu_label_theme.tres" id="1_4n7tw"]
+[ext_resource type="Script" uid="uid://cqqoq8d3rf4ao" path="res://ui/components/derived_statistic_display.gd" id="1_qirre"]
+
+[node name="DerivedStatisticDisplay" type="Control" unique_id=743088842]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 646.0
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_qirre")
+
+[node name="DerivedStatisticName" type="Label" parent="." unique_id=2054040116]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 60.0
+offset_bottom = 18.0
+theme = ExtResource("1_4n7tw")
+theme_override_font_sizes/font_size = 14
+text = "Max Health"
+
+[node name="DerivedStatisticValue" type="Label" parent="." unique_id=928663145]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 2.0
+offset_right = 161.0
+offset_bottom = 19.0
+theme = ExtResource("1_4n7tw")
+theme_override_font_sizes/font_size = 14
+text = "233"

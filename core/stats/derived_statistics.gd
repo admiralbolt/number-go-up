@@ -253,8 +253,8 @@ func initialize(p_entity: Entity) -> void:
   }, p_entity)
 
   self.critical_gain = DerivedStatistic.make("Critical Gain", base_critical_gain, {
-    "luck": 0.004,
-    "dexterity": 0.0009
+    "luck": 0.0004,
+    "dexterity": 0.0002
   }, p_entity)
 
   self.critical_multiplier = DerivedStatistic.make("Critical Multiplier", base_critical_multiplier, {

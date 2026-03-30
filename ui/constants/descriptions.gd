@@ -12,3 +12,7 @@ const ATTRIBUTE_DESCRIPTIONS: Dictionary[String, String] = {
   "charisma": "How charming you are. Better shop prices, better quest rewards, larger access to factions.",
   "luck": "How lucky you are. Increases your chances of finding better loot. Has a small impact on all saving throws."
 }
+
+const DERIVED_STATISTIC_DESCRIPTIONS: Dictionary[String, String] = {
+  "max_health": "B E E F. Some extra lines of text and stuff here to make sure that this is actually filling to the screen width."
+}

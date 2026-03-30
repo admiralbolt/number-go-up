@@ -24,7 +24,7 @@ offset_right = -3480.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 12
 
 [node name="StatsListContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1972742809]
 custom_minimum_size = Vector2(150, 0)
