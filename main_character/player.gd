@@ -24,6 +24,8 @@ func _ready() -> void:
 
   super._ready()
 
+  self.skills._analysis()
+
   self._test_buff_effect()
 
 func _process(_delta: float) -> void:

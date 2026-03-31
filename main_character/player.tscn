@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://x2ahs0qcsk8e" path="res://main_character/player.gd" id="1_n18hu"]
 [ext_resource type="Script" uid="uid://chyf7wbrbvm8u" path="res://main_character/weapon_renderer.gd" id="2_cy1eu"]
+[ext_resource type="Script" uid="uid://dv757fpkfes2v" path="res://core/stats/skills.gd" id="2_xj3nd"]
+[ext_resource type="Script" uid="uid://cj8xlgfbjalfm" path="res://core/stats/skill.gd" id="3_8li3l"]
 [ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/items/red_sword.png" id="3_e0qqe"]
 [ext_resource type="PackedScene" uid="uid://xr68kfqc3xxm" path="res://util/HitBox.tscn" id="4_xj3nd"]
 [ext_resource type="Script" uid="uid://8lj85d5udfx4" path="res://main_character/weapon_animator.gd" id="5_8li3l"]
@@ -16,6 +18,15 @@
 [ext_resource type="PackedScene" uid="uid://cror3fam525f4" path="res://ui/BasicStaminaBar.tscn" id="14_cy1eu"]
 [ext_resource type="Script" uid="uid://bohi8b8eyfv86" path="res://util/hurt_box.gd" id="14_itdfg"]
 [ext_resource type="Script" uid="uid://cnjcvq0ovhqlq" path="res://main_character/player_camera.gd" id="15_nxc8y"]
+
+[sub_resource type="Resource" id="Resource_gabxs"]
+script = ExtResource("3_8li3l")
+metadata/_custom_type_script = "uid://cj8xlgfbjalfm"
+
+[sub_resource type="Resource" id="Resource_kpxvp"]
+script = ExtResource("2_xj3nd")
+swords = SubResource("Resource_gabxs")
+metadata/_custom_type_script = "uid://dv757fpkfes2v"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfiix"]
 
@@ -567,6 +578,7 @@ height = 8.0
 y_sort_enabled = true
 collision_mask = 17
 script = ExtResource("1_n18hu")
+player_skills = SubResource("Resource_kpxvp")
 
 [node name="WeaponRenderer" type="Node2D" parent="." unique_id=894592039]
 script = ExtResource("2_cy1eu")
