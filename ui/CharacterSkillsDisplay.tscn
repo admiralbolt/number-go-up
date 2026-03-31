@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://7hb0g6do8agn"]
+
+[ext_resource type="Script" uid="uid://cwl3ijp8tmjed" path="res://ui/character_skills_display.gd" id="1_6q3fd"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="1_rk404"]
+
+[node name="CharacterSkillsDisplay" type="Control" unique_id=1546370693]
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("1_6q3fd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1268223046]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 180.0
+focus_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer" unique_id=1795382529]
+custom_minimum_size = Vector2(180, 222)
+layout_mode = 2
+focus_mode = 2
+follow_focus = true
+scroll_vertical_custom_step = 40.0
+vertical_scroll_mode = 2
+
+[node name="SkillListContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer" unique_id=669038075]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SkillDescription" type="RichTextLabel" parent="HBoxContainer" unique_id=423034092]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_rk404")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://0lu3b6yelc7p"]
+
+[ext_resource type="Theme" uid="uid://dai8ta2qbpjfn" path="res://ui/themes/menu_label_theme.tres" id="1_xpo72"]
+[ext_resource type="Script" uid="uid://c8ms8as0x6pv1" path="res://ui/components/skill_display.gd" id="1_ynp1w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7y4pk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfvnm"]
+bg_color = Color(0.9296627, 0.5932999, 0.25262436, 1)
+
+[node name="SkillDisplay" type="Control" unique_id=1472418200]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("1_ynp1w")
+
+[node name="SkillName" type="Label" parent="." unique_id=516168530]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 60.0
+offset_bottom = 18.0
+theme = ExtResource("1_xpo72")
+theme_override_font_sizes/font_size = 14
+text = "Max Health"
+vertical_alignment = 1
+
+[node name="SkillValue" type="Label" parent="." unique_id=908584421]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 2.0
+offset_right = 138.0
+offset_bottom = 19.0
+theme = ExtResource("1_xpo72")
+theme_override_font_sizes/font_size = 14
+text = "233"
+vertical_alignment = 1
+
+[node name="SkillLevel" type="Label" parent="." unique_id=743443154]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 2.0
+offset_right = 105.0
+offset_bottom = 19.0
+theme = ExtResource("1_xpo72")
+theme_override_font_sizes/font_size = 14
+text = "Lvl. 1"
+vertical_alignment = 1
+
+[node name="SkillXPBar" type="ProgressBar" parent="." unique_id=834386656]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 129.0
+offset_bottom = 16.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_7y4pk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cfvnm")
+show_percentage = false

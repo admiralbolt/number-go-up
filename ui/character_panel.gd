@@ -4,6 +4,7 @@ class_name CharacterPanel extends Control
 const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
   "AttributesButton": preload("res://ui/CharacterStatsDisplay.tscn"),
   "StatisticsButton": preload("res://ui/CharacterDerivedStatisticsDisplay.tscn"),
+  "SkillsButton": preload("res://ui/CharacterSkillsDisplay.tscn"),
 }
 
 signal button_focused(index: int, button_name: String)

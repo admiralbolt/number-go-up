@@ -31,12 +31,12 @@ func _on_focus_exited() -> void:
   return
 
 func change_child(scene: PackedScene) -> void:
+  for child in self.get_children():
+    self.remove_child(child)
+    child.queue_free()
+
   if scene == null:
-    for child in self.get_children():
-      self.remove_child(child)
-      child.queue_free()
     return
 
   var content_instance: Node = scene.instantiate()
-
   self.add_child(content_instance)

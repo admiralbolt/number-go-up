@@ -16,3 +16,7 @@ const ATTRIBUTE_DESCRIPTIONS: Dictionary[String, String] = {
 const DERIVED_STATISTIC_DESCRIPTIONS: Dictionary[String, String] = {
   "max_health": "B E E F. Some extra lines of text and stuff here to make sure that this is actually filling to the screen width."
 }
+
+const SKILL_DESCRIPTIONS: Dictionary[String, String] = {
+  "swords": "Swords. Swords. Swords. Everybody likes having a sword. You can use it to cut things. Slay monsters. e.t.c"
+}
