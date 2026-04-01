@@ -14,12 +14,14 @@ var animation_entries: Array[AnimationEntry]
 func generate_animations() -> void:
   var direction_order: Array[String] = ["down", "up", "left", "right"]
 
-  EnemyAnimator.add_animation_entries(animation_entries, "idle", "res://assets/monsters/slime1/Slime1_Idle_with_shadow.png", 6, direction_order, 4, 1.0, Animation.LoopMode.LOOP_LINEAR)
-  EnemyAnimator.add_animation_entries(animation_entries, "walk", "res://assets/monsters/slime1/Slime1_Walk_with_shadow.png", 8, direction_order, 4, 1.2, Animation.LoopMode.LOOP_LINEAR)
-  EnemyAnimator.add_animation_entries(animation_entries, "run", "res://assets/monsters/slime1/Slime1_Run_with_shadow.png", 8, direction_order, 4, 1.0, Animation.LoopMode.LOOP_LINEAR)
-  EnemyAnimator.add_animation_entries(animation_entries, "attack", "res://assets/monsters/slime1/slime1_attack_full.png", 10, direction_order, 4, 1.4, Animation.LoopMode.LOOP_NONE)
+  # EnemyAnimator.add_animation_entries(animation_entries, "idle", "res://assets/monsters/slime1/Slime1_Idle_with_shadow.png", 6, direction_order, 4, 1.0, Animation.LoopMode.LOOP_LINEAR)
+  # EnemyAnimator.add_animation_entries(animation_entries, "walk", "res://assets/monsters/slime1/Slime1_Walk_with_shadow.png", 8, direction_order, 4, 1.2, Animation.LoopMode.LOOP_LINEAR)
+  # EnemyAnimator.add_animation_entries(animation_entries, "run", "res://assets/monsters/slime1/Slime1_Run_with_shadow.png", 8, direction_order, 4, 1.0, Animation.LoopMode.LOOP_LINEAR)
+  # EnemyAnimator.add_animation_entries(animation_entries, "attack", "res://assets/monsters/slime1/slime1_attack_full.png", 10, direction_order, 4, 1.4, Animation.LoopMode.LOOP_NONE)
+  EnemyAnimator.add_animation_entries(animation_entries, "hurt", "res://assets/monsters/slime1/Slime1_Hurt_with_shadow.png", 5, direction_order, 4, 0.25, Animation.LoopMode.LOOP_NONE)
+  EnemyAnimator.add_animation_entries(animation_entries, "death", "res://assets/monsters/slime1/Slime1_Death_with_shadow.png", 10, direction_order, 4, 0.7, Animation.LoopMode.LOOP_NONE)
 
-  EnemyAnimator.create_animations(animator, self.get_path_to(sprite), animation_entries)
+  EnemyAnimator.create_or_replace_animations(animator, self.get_path_to(sprite), animation_entries)
 
 func clear_animations() -> void:
   EnemyAnimator.clear_animations(animator)

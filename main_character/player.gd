@@ -14,6 +14,7 @@ func _ready() -> void:
   self.main_player_state_machine.change_state(PlayerIdleState.NAME)
   PlayerManager.player = self
 
+  self.hurt_box = $PlayerHurtBox
   super._ready()
 
 func _process(_delta: float) -> void:

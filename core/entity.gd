@@ -1,11 +1,20 @@
 class_name Entity extends CharacterBody2D
 
+signal damaged(hit_box: HitBox)
+signal died(hit_box: HitBox)
+
 @export var attributes: Attributes = Attributes.new()
 @export var derived_statistics: DerivedStatistics = DerivedStatistics.new()
 @export var skills: Skills = Skills.new()
 
 var modifier_manager: ModifierManager = ModifierManager.new()
 var effect_manager: EffectManager = EffectManager.new()
+
+# All entities should have a hurt box.
+var hurt_box: HurtBox
+
+# Typically only enemies will have a hit box set.
+var hit_box: HitBox
 
 # Current values for bar resources + signals for them.
 signal current_health_changed(new_current_health: float)
@@ -38,14 +47,18 @@ func _ready() -> void:
   self.derived_statistics.max_mana.changed.connect(self._on_max_mana_changed.bind(self.derived_statistics.max_mana.total_value))
   self.derived_statistics.max_stamina.changed.connect(self._on_max_stamina_changed.bind(self.derived_statistics.max_stamina.total_value))
 
-func take_damage(hit_box: HitBox) -> void:
+func take_damage(p_hit_box: HitBox) -> void:
   # Eventually we'll do some math here based on stats n' stuff.
   var damage: float = 10
-  if hit_box.owner is Entity:
-    damage += hit_box.owner.attributes.strength.total_value * 0.6
+  if p_hit_box.owner is Entity:
+    damage += p_hit_box.owner.attributes.strength.total_value * 0.6
   # print("Entity: %s, is taking: %f damage" % [self.name, damage])
   self.current_health -= damage
   # print("Entity has %f current_health and %f max_health" % [self.current_health, self.derived_statistics.max_health.total_value])
+  damaged.emit(p_hit_box)
+
+  if self.current_health <= 0:
+    died.emit(p_hit_box)
 
 func _set_current_health(p_health: float) -> void:
   if p_health == current_health:

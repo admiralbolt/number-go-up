@@ -1,11 +1,11 @@
 class_name StateMachine extends Node
 
+@export var debug: bool = false
+
 var states: Array[State]
 var state_map: Dictionary[String, State] = {}
 var current_state: State
 var prev_state: State
-
-var debug: bool = false
 
 func _ready() -> void:
   process_mode = Node.PROCESS_MODE_DISABLED

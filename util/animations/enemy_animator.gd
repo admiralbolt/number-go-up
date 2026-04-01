@@ -42,7 +42,6 @@ static func frame_change_animation(sprite_path: NodePath, entry: AnimationEntry)
 
   return anim
 
-
 static func create_animations(animation_player: AnimationPlayer, sprite_path: NodePath, animation_entries: Array[AnimationEntry]) -> void:
   var animation_library: AnimationLibrary = AnimationLibrary.new()
   for entry in animation_entries:
@@ -50,6 +49,18 @@ static func create_animations(animation_player: AnimationPlayer, sprite_path: No
     animation_library.add_animation(entry.name, anim)
 
   animation_player.add_animation_library("EnemyAnimations", animation_library)
+
+static func create_or_replace_animations(animation_player: AnimationPlayer, sprite_path: NodePath, animation_entries: Array[AnimationEntry]) -> void:
+  var animation_library: AnimationLibrary = animation_player.get_animation_library("EnemyAnimations")
+  if animation_library == null:
+    create_animations(animation_player, sprite_path, animation_entries)
+    return
+
+  for entry in animation_entries:
+    if animation_library.has_animation(entry.name):
+      animation_library.remove_animation(entry.name)
+    var anim: Animation = frame_change_animation(sprite_path, entry)
+    animation_library.add_animation(entry.name, anim)
 
 static func add_animation_entries(animation_entries: Array[AnimationEntry], base_name: String, texture_path: String, frames_per_animation: int, direction_order: Array[String], vframes: int = 4, duration: float = 1.0, loop_mode: Animation.LoopMode = Animation.LoopMode.LOOP_NONE) -> void:
   var i: int = 0

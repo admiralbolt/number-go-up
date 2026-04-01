@@ -8,5 +8,8 @@ func _ready() -> void:
   self.state_machine.enemy = self
   self.animation_player = slime_animator.animator
 
+  self.hurt_box = $HurtBox
+  self.hit_box = $SlimeAnimator/HitBox
+
   self.state_machine.initialize()
   super._ready()

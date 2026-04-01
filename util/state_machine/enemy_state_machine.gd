@@ -2,5 +2,6 @@ class_name EnemyStateMachine extends StateMachine
 
 var enemy: Enemy
 
-func _ready() -> void:
+func initialize() -> void:
   self.enemy = owner
+  super.initialize()
