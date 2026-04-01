@@ -15,3 +15,5 @@ class_name SaveData extends Resource
 @export var current_stamina: float
 @export var current_mana: float
 @export var player_position: Vector2
+@export var active_static_modifiers: ModifierList
+@export var active_effects: Array[Effect]

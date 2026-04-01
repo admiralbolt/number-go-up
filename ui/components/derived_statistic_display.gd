@@ -11,7 +11,6 @@ func _ready() -> void:
   if self.derived_statistic == null:
     # Make a fake slime :p
     var slime: Slime = Slime.new()
-    slime.initialize(slime.slime_attributes, slime.slime_derived_statistics, slime.slime_skills)
     self.set_derived_statistic(DerivedStatistic.make("Max Health", 100.0, {
       "constitution": 0.1,
       "strength": 0.03,

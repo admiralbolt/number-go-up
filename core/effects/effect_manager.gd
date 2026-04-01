@@ -15,11 +15,23 @@ func process(delta: float) -> void:
 
     # The effect is over!
     removal_indices.append(i)
-
   
   for i in removal_indices.size():
     # Make sure we shift the index back since we're deleting as we go.
+    var index: int = removal_indices[i] - i
+    active_effects[index].remove(self.entity)
     active_effects.remove_at(removal_indices[i] - i)
+
+func clear() -> void:
+  for effect in self.active_effects:
+    effect.remove(self.entity)
+
+  self.active_effects.clear()
+
+func reinitialize(p_effects: Array[Effect]) -> void:
+  self.clear()
+  for effect in p_effects:
+    self.apply_effect(effect)
 
 func apply_effect(effect: Effect) -> void:
   effect.apply(self.entity)

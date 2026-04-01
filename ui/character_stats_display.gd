@@ -7,17 +7,17 @@ var attributes: Attributes
 
 func _ready() -> void:
   self.process_mode = Node.PROCESS_MODE_ALWAYS
-  self.attributes = Attributes.new() if not PlayerManager.player else PlayerManager.player.player_attributes
+  self.attributes = Attributes.new() if not PlayerManager.player else PlayerManager.player.attributes
 
-  for attribute_name in Attributes.ALL_ATTRIBUTES:
-    var attribute_display: AttributeDisplay = stats_list.get_node("%sDisplay" % attribute_name.capitalize())
-    if attribute_display == null:
-      continue
+  print("STATS DISPLAY\n--------------------")
+  PlayerManager.player.attributes.debug_print()
+  print("END\n--------")
 
-    attribute_display.set_attribute(self.attributes.get(attribute_name))
+  self._set_attributes()
 
   self.focus_entered.connect(self._on_focus_entered)
   self.focus_exited.connect(self._on_focus_exited)
+
 
   # Set neighbors.
   var children: Array[Node] = stats_list.get_children()
@@ -28,6 +28,15 @@ func _ready() -> void:
     child.focus_neighbor_left = child.get_path()
     child.focus_neighbor_right = child.get_path()
     child.focus_neighbor_bottom = children[(i + 1) % children.size()].get_path()
+
+func _set_attributes() -> void:
+  print("SETTING ATTRIBUTES")
+  for attribute_name in Attributes.ALL_ATTRIBUTES:
+    var attribute_display: AttributeDisplay = stats_list.get_node("%sDisplay" % attribute_name.capitalize())
+    if attribute_display == null:
+      continue
+
+    attribute_display.set_attribute(PlayerManager.player.attributes.get(attribute_name))
 
 
 func _on_focus_entered() -> void:

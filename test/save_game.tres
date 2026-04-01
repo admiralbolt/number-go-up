@@ -1,0 +1,415 @@
+[gd_resource type="Resource" script_class="SaveData" format=3 uid="uid://bt0bchelx1xjo"]
+
+[ext_resource type="Script" uid="uid://b2ar0jlsqv60m" path="res://core/effects/effect.gd" id="1_okl7c"]
+[ext_resource type="Script" uid="uid://dysd1lpotnrnw" path="res://core/effects/modifier.gd" id="2_lllui"]
+[ext_resource type="Script" uid="uid://vto855qss6ps" path="res://core/effects/generic/buff_effect.gd" id="3_7abcr"]
+[ext_resource type="Script" uid="uid://b17og5u8nokwx" path="res://core/effects/modifier_list.gd" id="4_6gwku"]
+[ext_resource type="Script" uid="uid://r46nrj1pav1l" path="res://core/stats/attribute.gd" id="5_ap364"]
+[ext_resource type="Script" uid="uid://d1u8cbsl3xgp6" path="res://core/stats/attributes.gd" id="6_5mic3"]
+[ext_resource type="Script" uid="uid://bmfbvt3fb0ywl" path="res://core/stats/derived_statistics.gd" id="7_18h0r"]
+[ext_resource type="Script" uid="uid://cj8xlgfbjalfm" path="res://core/stats/skill.gd" id="8_6n3m6"]
+[ext_resource type="Script" uid="uid://dv757fpkfes2v" path="res://core/stats/skills.gd" id="9_04uj3"]
+[ext_resource type="Script" uid="uid://cs34ioc1gflxf" path="res://util/globals/save_data.gd" id="10_snqql"]
+
+[sub_resource type="Resource" id="Resource_yvt8j"]
+script = ExtResource("2_lllui")
+source_name = "FIRE MANG"
+source_type = 2
+stat_name = "agility"
+value = 1200.0
+duration = 10.0
+timer = 9.169992666666705
+is_decaying = true
+is_timed = true
+
+[sub_resource type="Resource" id="Resource_cdn5r"]
+script = ExtResource("3_7abcr")
+modifier = SubResource("Resource_yvt8j")
+effect_type = 0
+duration = 10.0
+timer = 9.169992666666705
+
+[sub_resource type="Resource" id="Resource_2bx37"]
+script = ExtResource("4_6gwku")
+
+[sub_resource type="Resource" id="Resource_s6x8u"]
+script = ExtResource("5_ap364")
+name = "agility"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_a2mgc"]
+script = ExtResource("5_ap364")
+name = "charisma"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_gbtiq"]
+script = ExtResource("5_ap364")
+name = "constitution"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_acu36"]
+script = ExtResource("5_ap364")
+name = "dexterity"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_n14ce"]
+script = ExtResource("5_ap364")
+name = "intelligence"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_yirk2"]
+script = ExtResource("5_ap364")
+name = "level"
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_tj1v2"]
+script = ExtResource("5_ap364")
+name = "luck"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_b40j7"]
+script = ExtResource("5_ap364")
+name = "spirit"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_4d0o0"]
+script = ExtResource("5_ap364")
+name = "strength"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_s4xc2"]
+script = ExtResource("5_ap364")
+name = "wisdom"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_s2r1a"]
+script = ExtResource("6_5mic3")
+level = SubResource("Resource_yirk2")
+strength = SubResource("Resource_4d0o0")
+constitution = SubResource("Resource_gbtiq")
+dexterity = SubResource("Resource_acu36")
+agility = SubResource("Resource_s6x8u")
+spirit = SubResource("Resource_b40j7")
+wisdom = SubResource("Resource_s4xc2")
+intelligence = SubResource("Resource_n14ce")
+charisma = SubResource("Resource_a2mgc")
+luck = SubResource("Resource_tj1v2")
+
+[sub_resource type="Resource" id="Resource_c68mw"]
+script = ExtResource("7_18h0r")
+
+[sub_resource type="Resource" id="Resource_e3ckm"]
+script = ExtResource("8_6n3m6")
+name = "acrobatics"
+weights = Dictionary[String, float]({
+"agility": 0.12,
+"strength": 0.04
+})
+
+[sub_resource type="Resource" id="Resource_kewtv"]
+script = ExtResource("8_6n3m6")
+name = "alchemy"
+weights = Dictionary[String, float]({
+"dexterity": 0.03,
+"intelligence": 0.12
+})
+
+[sub_resource type="Resource" id="Resource_ok5hv"]
+script = ExtResource("8_6n3m6")
+name = "alteration"
+weights = Dictionary[String, float]({
+"intelligence": 0.05,
+"spirit": 0.05,
+"wisdom": 0.05
+})
+
+[sub_resource type="Resource" id="Resource_y7e31"]
+script = ExtResource("8_6n3m6")
+name = "appraisal"
+weights = Dictionary[String, float]({
+"intelligence": 0.11,
+"wisdom": 0.04
+})
+
+[sub_resource type="Resource" id="Resource_2pe0c"]
+script = ExtResource("8_6n3m6")
+name = "axes"
+weights = Dictionary[String, float]({
+"dexterity": 0.02,
+"strength": 0.14
+})
+
+[sub_resource type="Resource" id="Resource_i2tca"]
+script = ExtResource("8_6n3m6")
+name = "bows"
+weights = Dictionary[String, float]({
+"dexterity": 0.125,
+"strength": 0.05
+})
+
+[sub_resource type="Resource" id="Resource_t4n1y"]
+script = ExtResource("8_6n3m6")
+name = "climb"
+weights = Dictionary[String, float]({
+"constitution": 0.05,
+"dexterity": 0.01,
+"strength": 0.1
+})
+
+[sub_resource type="Resource" id="Resource_rf44f"]
+script = ExtResource("8_6n3m6")
+name = "conjuration"
+weights = Dictionary[String, float]({
+"charisma": 0.05,
+"intelligence": 0.1
+})
+
+[sub_resource type="Resource" id="Resource_5e6v5"]
+script = ExtResource("8_6n3m6")
+name = "construction"
+weights = Dictionary[String, float]({
+"dexterity": 0.05,
+"intelligence": 0.04,
+"strength": 0.07
+})
+
+[sub_resource type="Resource" id="Resource_1lls3"]
+script = ExtResource("8_6n3m6")
+name = "cooking"
+weights = Dictionary[String, float]({
+"dexterity": 0.04,
+"intelligence": 0.05,
+"wisdom": 0.05
+})
+
+[sub_resource type="Resource" id="Resource_ua1pr"]
+script = ExtResource("8_6n3m6")
+name = "destruction"
+weights = Dictionary[String, float]({
+"intelligence": 0.05,
+"spirit": 0.1
+})
+
+[sub_resource type="Resource" id="Resource_3sro4"]
+script = ExtResource("8_6n3m6")
+name = "enchanting"
+weights = Dictionary[String, float]({
+"intelligence": 0.12
+})
+
+[sub_resource type="Resource" id="Resource_y4swu"]
+script = ExtResource("8_6n3m6")
+name = "fishing"
+weights = Dictionary[String, float]({
+"dexterity": 0.06,
+"luck": 0.04,
+"wisdom": 0.06
+})
+
+[sub_resource type="Resource" id="Resource_vy68m"]
+script = ExtResource("8_6n3m6")
+name = "fletching"
+weights = Dictionary[String, float]({
+"dexterity": 0.1,
+"intelligence": 0.05
+})
+
+[sub_resource type="Resource" id="Resource_k80r6"]
+script = ExtResource("8_6n3m6")
+name = "hammers"
+weights = Dictionary[String, float]({
+"constitution": 0.015,
+"strength": 0.125
+})
+
+[sub_resource type="Resource" id="Resource_lqsxe"]
+script = ExtResource("8_6n3m6")
+name = "handle_animal"
+weights = Dictionary[String, float]({
+"charisma": 0.12,
+"wisdom": 0.04
+})
+
+[sub_resource type="Resource" id="Resource_b5kv2"]
+script = ExtResource("8_6n3m6")
+name = "illusion"
+weights = Dictionary[String, float]({
+"charisma": 0.1,
+"spirit": 0.05,
+"wisdom": 0.05
+})
+
+[sub_resource type="Resource" id="Resource_v80hp"]
+script = ExtResource("8_6n3m6")
+name = "intimidation"
+weights = Dictionary[String, float]({
+"charisma": 0.12,
+"strength": 0.04
+})
+
+[sub_resource type="Resource" id="Resource_h23cc"]
+script = ExtResource("8_6n3m6")
+name = "mining"
+weights = Dictionary[String, float]({
+"constitution": 0.05,
+"luck": 0.01,
+"strength": 0.09,
+"wisdom": 0.02
+})
+
+[sub_resource type="Resource" id="Resource_1pfem"]
+script = ExtResource("8_6n3m6")
+name = "necromancy"
+weights = Dictionary[String, float]({
+"charisma": 0.05,
+"spirit": 0.1
+})
+
+[sub_resource type="Resource" id="Resource_xd273"]
+script = ExtResource("8_6n3m6")
+name = "perception"
+weights = Dictionary[String, float]({
+"intelligence": 0.04,
+"wisdom": 0.11
+})
+
+[sub_resource type="Resource" id="Resource_kyfcp"]
+script = ExtResource("8_6n3m6")
+name = "performance"
+weights = Dictionary[String, float]({
+"charisma": 0.12,
+"dexterity": 0.04
+})
+
+[sub_resource type="Resource" id="Resource_44agu"]
+script = ExtResource("8_6n3m6")
+name = "persuasion"
+weights = Dictionary[String, float]({
+"charisma": 0.12,
+"spirit": 0.04
+})
+
+[sub_resource type="Resource" id="Resource_0012d"]
+script = ExtResource("8_6n3m6")
+name = "restoration"
+weights = Dictionary[String, float]({
+"spirit": 0.05,
+"wisdom": 0.1
+})
+
+[sub_resource type="Resource" id="Resource_ctsbl"]
+script = ExtResource("8_6n3m6")
+name = "smithing"
+weights = Dictionary[String, float]({
+"dexterity": 0.08,
+"intelligence": 0.04,
+"strength": 0.04
+})
+
+[sub_resource type="Resource" id="Resource_p0q2c"]
+script = ExtResource("8_6n3m6")
+name = "spears"
+weights = Dictionary[String, float]({
+"dexterity": 0.07,
+"strength": 0.07
+})
+
+[sub_resource type="Resource" id="Resource_w7y5i"]
+script = ExtResource("8_6n3m6")
+name = "stealth"
+weights = Dictionary[String, float]({
+"agility": 0.13,
+"dexterity": 0.03
+})
+
+[sub_resource type="Resource" id="Resource_rx2rs"]
+script = ExtResource("8_6n3m6")
+name = "swim"
+weights = Dictionary[String, float]({
+"agility": 0.04,
+"constitution": 0.05,
+"strength": 0.07
+})
+
+[sub_resource type="Resource" id="Resource_alqky"]
+script = ExtResource("8_6n3m6")
+name = "swords"
+weights = Dictionary[String, float]({
+"dexterity": 0.05,
+"strength": 0.1
+})
+
+[sub_resource type="Resource" id="Resource_ob6nv"]
+script = ExtResource("8_6n3m6")
+name = "throwing"
+weights = Dictionary[String, float]({
+"dexterity": 0.08,
+"strength": 0.09
+})
+
+[sub_resource type="Resource" id="Resource_7nl85"]
+script = ExtResource("8_6n3m6")
+name = "tinkering"
+weights = Dictionary[String, float]({
+"dexterity": 0.11,
+"intelligence": 0.02,
+"wisdom": 0.02
+})
+
+[sub_resource type="Resource" id="Resource_fywpa"]
+script = ExtResource("8_6n3m6")
+name = "woodcutting"
+weights = Dictionary[String, float]({
+"constitution": 0.05,
+"luck": 0.01,
+"strength": 0.09,
+"wisdom": 0.02
+})
+
+[sub_resource type="Resource" id="Resource_hh4at"]
+script = ExtResource("9_04uj3")
+swords = SubResource("Resource_alqky")
+axes = SubResource("Resource_2pe0c")
+hammers = SubResource("Resource_k80r6")
+spears = SubResource("Resource_p0q2c")
+bows = SubResource("Resource_i2tca")
+throwing = SubResource("Resource_ob6nv")
+alteration = SubResource("Resource_ok5hv")
+conjuration = SubResource("Resource_rf44f")
+destruction = SubResource("Resource_ua1pr")
+enchanting = SubResource("Resource_3sro4")
+illusion = SubResource("Resource_b5kv2")
+necromancy = SubResource("Resource_1pfem")
+restoration = SubResource("Resource_0012d")
+mining = SubResource("Resource_h23cc")
+smithing = SubResource("Resource_ctsbl")
+woodcutting = SubResource("Resource_fywpa")
+construction = SubResource("Resource_5e6v5")
+fletching = SubResource("Resource_vy68m")
+fishing = SubResource("Resource_y4swu")
+cooking = SubResource("Resource_1lls3")
+alchemy = SubResource("Resource_kewtv")
+tinkering = SubResource("Resource_7nl85")
+acrobatics = SubResource("Resource_e3ckm")
+climb = SubResource("Resource_t4n1y")
+swim = SubResource("Resource_rx2rs")
+stealth = SubResource("Resource_w7y5i")
+persuasion = SubResource("Resource_44agu")
+intimidation = SubResource("Resource_v80hp")
+handle_animal = SubResource("Resource_lqsxe")
+performance = SubResource("Resource_kyfcp")
+appraisal = SubResource("Resource_y7e31")
+perception = SubResource("Resource_xd273")
+
+[resource]
+script = ExtResource("10_snqql")
+scene_path = "res://map/dungeon/Area2.tscn"
+player_attributes = SubResource("Resource_s2r1a")
+player_derived_statistics = SubResource("Resource_c68mw")
+player_skills = SubResource("Resource_hh4at")
+current_health = 206.5
+current_stamina = 93.67493949953467
+current_mana = 106.22661999999994
+player_position = Vector2(114.27861, 387.26242)
+active_static_modifiers = SubResource("Resource_2bx37")
+active_effects = Array[ExtResource("1_okl7c")]([SubResource("Resource_cdn5r")])

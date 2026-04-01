@@ -5,28 +5,20 @@ class_name Player extends Entity
 @onready var weapon_renderer: WeaponRenderer = $WeaponRenderer
 @onready var main_player_state_machine: MainPlayerStateMachine = $MainPlayerStateMachine
 
-@export var player_attributes: Attributes = Attributes.new()
-@export var player_derived_statistics: DerivedStatistics = DerivedStatistics.new()
-@export var player_skills: Skills = Skills.new()
+# @export var player_attributes: Attributes = Attributes.new()
+# @export var player_derived_statistics: DerivedStatistics = DerivedStatistics.new()
+# @export var player_skills: Skills = Skills.new()
 
 var held_direction: Vector2 = Vector2.DOWN
 var facing: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
-
-var speed: float = 100.0
 
 func _ready() -> void:
   self.main_player_state_machine.initialize()
   self.main_player_state_machine.change_state(PlayerIdleState.NAME)
   PlayerManager.player = self
 
-  super.initialize(player_attributes, player_derived_statistics, player_skills)
-
   super._ready()
-
-  self.skills._analysis()
-
-  self._test_buff_effect()
 
 func _process(_delta: float) -> void:
   super._process(_delta)
@@ -40,6 +32,7 @@ func _process(_delta: float) -> void:
 
   if Input.is_action_just_pressed("roll"):
     self.main_player_state_machine.change_state(PlayerRollState.NAME)
+    self._test_buff_effect()
   elif Input.is_action_just_pressed("attack"):
     self.main_player_state_machine.change_state(PlayerAttackState.NAME)
   elif held_direction != Vector2.ZERO:

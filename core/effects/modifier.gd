@@ -49,6 +49,7 @@ enum ModifierSentiment {
 @export var sentiment: ModifierSentiment = ModifierSentiment.NEUTRAL
 
 @export var duration: float = -1: set = _set_duration
+@export var timer: float = 0
 @export var is_decaying: bool = false
 @export var is_timed: bool = false
 @export var is_stackable: bool = false
@@ -56,7 +57,6 @@ enum ModifierSentiment {
 @export var stack_fall_off: int = 1
 
 var unique_name: String = "": get = _get_unique_name
-var timer: float = 0
 
 func _set_duration(p_duration: float) -> void:
   duration = p_duration

@@ -7,15 +7,11 @@ func _ready() -> void:
     visible = false
     return
 
-  self.owner.initialized.connect(_on_owner_initialized)
-
-func _on_owner_initialized() -> void:
   owner.derived_statistics.max_health.changed.connect(_on_max_health_changed.bind(owner.derived_statistics.max_health.total_value))
   _on_max_health_changed(owner.derived_statistics.max_health.total_value)
 
   owner.current_health_changed.connect(_on_current_health_changed)
   _on_current_health_changed(owner.current_health)
-  self.owner.initialized.disconnect(_on_owner_initialized)
 
 func _on_current_health_changed(p_current_health: float) -> void:
   value = p_current_health

@@ -344,7 +344,8 @@ func initialize(p_entity: Entity) -> void:
   
 func debug_print() -> void:
   print("Derived Statistics:")
-  print("  ", self.max_health)
-  print("  ", self.health_regen)
+  for stat_name in ALL_DERIVED_STATISTICS:
+    var stat: DerivedStatistic = self.get(stat_name)
+    print(stat)
 
 

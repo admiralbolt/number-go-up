@@ -1,5 +1,10 @@
-"""A class representing a single effect that can be applied to an entity."""
-@abstract class_name Effect extends Resource
+"""A class representing a single effect that can be applied to an entity.
+
+I would like to have this be a base class that other effect types extend from.
+Resources don't save nicely when they extend a parent class though.
+
+"""
+class_name Effect extends Resource
 
 enum EffectType {
   BUFF,
@@ -7,14 +12,16 @@ enum EffectType {
   DAMAGE,
   HEAL
 }
-
-@export var effect_type: EffectType = EffectType.BUFF
+@export var effect_type: Effect.EffectType = Effect.EffectType.DAMAGE
 @export var is_instant: bool = false
 @export var duration: float = 0.0
+@export var timer: float = duration
 
-var timer: float = duration
+func apply(_target: Entity) -> void:
+  return
 
-@abstract func apply(_target: Entity) -> void
+func remove(_target: Entity) -> void:
+  return
 
 func process(_target: Entity, delta: float) -> bool:
   """Processes the effect.
@@ -26,3 +33,6 @@ func process(_target: Entity, delta: float) -> bool:
     return true
 
   return false
+
+func _to_string() -> String:
+  return "Effect(type=%s, is_instant=%s, duration=%f, timer=%f)" % [effect_type, is_instant, duration, timer]

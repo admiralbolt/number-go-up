@@ -15,6 +15,8 @@ func save_game() -> void:
   save_data.current_mana = PlayerManager.player.current_mana
   save_data.current_stamina = PlayerManager.player.current_stamina
   save_data.player_position = PlayerManager.player.position
+  save_data.active_static_modifiers = PlayerManager.player.modifier_manager.get_static_modifiers()
+  save_data.active_effects = PlayerManager.player.effect_manager.active_effects
 
   ResourceSaver.save(save_data, SAVE_PATH + "save_game.tres")
   self.game_saved.emit()
@@ -35,12 +37,15 @@ func load_game() -> void:
   PlayerManager.player.attributes = save_data.player_attributes
   PlayerManager.player.derived_statistics = save_data.player_derived_statistics
   PlayerManager.player.skills = save_data.player_skills
-  PlayerManager.player.initialize(PlayerManager.player.attributes, PlayerManager.player.derived_statistics, PlayerManager.player.skills)
+  PlayerManager.player.initialize_stats()
 
   PlayerManager.player.current_health = save_data.current_health
   PlayerManager.player.current_mana = save_data.current_mana
   PlayerManager.player.current_stamina = save_data.current_stamina
 
   PlayerManager.player.position = save_data.player_position
+
+  PlayerManager.player.modifier_manager.reinitialize(save_data.active_static_modifiers)
+  PlayerManager.player.effect_manager.reinitialize(save_data.active_effects)
 
   self.game_loaded.emit()

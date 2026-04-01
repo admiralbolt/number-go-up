@@ -79,6 +79,30 @@ func compute_total_description(stat_name: String, base_value: float) -> Array[St
 
   return modifier_queue.compute_total_description(base_value)
 
+func clear() -> void:
+  self.all_modifiers.modifiers.clear()
+  self.modifier_by_stat.clear()
+
+func reinitialize(modifiers: ModifierList) -> void:
+  self.clear()
+  for modifier in modifiers.modifiers:
+    self.add_modifier(modifier)
+
+func get_static_modifiers() -> ModifierList:
+  """This returns a modifier list of NON-EFFECT modifiers.
+
+  These are typically added directly to the manager, and not through an effect,
+  so we need to save and reload these when save and load our game. The effect
+  manager will reinitialize all of the active effects, and those will reapply
+  their modifiers properly.
+  """
+  var static_modifiers: ModifierList = ModifierList.new()
+  for modifier in self.all_modifiers.modifiers:
+    if modifier.source_type == Modifier.ModifierSource.EQUIPMENT:
+      static_modifiers.modifiers.append(modifier)
+
+  return static_modifiers
+
 func debug_print() -> void:
   for modifier in self.all_modifiers.modifiers:
     print(modifier)
@@ -181,17 +205,6 @@ class ModifierPriorityQueue extends Resource:
         val = modifier.apply(val)
 
       return descriptions
-
-
-class ModifierList extends Resource:
-  @export var modifiers: Array[Modifier] = []
-
-  func get_index(p_modifier: Modifier) -> int:
-    for i in range(modifiers.size()):
-      if modifiers[i].eq(p_modifier):
-        return i
-
-    return -1
 
 
 static func emit_data(modifier: Modifier) -> Dictionary[Modifier.ModifierTarget, RecomputeTargetList]:
