@@ -241,9 +241,9 @@ func initialize(p_entity: Entity) -> void:
 
   self.stamina_regen = DerivedStatistic.make("Stamina Regeneration", base_stamina_regen, {
     "constitution": 0.01,
-    "strength": 0.01,
-    "agility": 0.01,
-    "spirit": 0.01,
+    "strength": 0.008,
+    "agility": 0.006,
+    "spirit": 0.004,
   }, p_entity)
 
   # Offense!

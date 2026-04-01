@@ -9,10 +9,6 @@ func _ready() -> void:
   self.process_mode = Node.PROCESS_MODE_ALWAYS
   self.attributes = Attributes.new() if not PlayerManager.player else PlayerManager.player.attributes
 
-  print("STATS DISPLAY\n--------------------")
-  PlayerManager.player.attributes.debug_print()
-  print("END\n--------")
-
   self._set_attributes()
 
   self.focus_entered.connect(self._on_focus_entered)
