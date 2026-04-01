@@ -5,10 +5,6 @@ class_name Player extends Entity
 @onready var weapon_renderer: WeaponRenderer = $WeaponRenderer
 @onready var main_player_state_machine: MainPlayerStateMachine = $MainPlayerStateMachine
 
-# @export var player_attributes: Attributes = Attributes.new()
-# @export var player_derived_statistics: DerivedStatistics = DerivedStatistics.new()
-# @export var player_skills: Skills = Skills.new()
-
 var held_direction: Vector2 = Vector2.DOWN
 var facing: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
@@ -38,15 +34,16 @@ func _process(_delta: float) -> void:
   elif held_direction != Vector2.ZERO:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)
 
-func _physics_process(delta: float) -> void:
-  velocity = held_direction * self.derived_statistics.movement_speed.total_value
+func _physics_process(_delta: float) -> void:
+  self.velocity = held_direction * self.derived_statistics.movement_speed.total_value
   if self.main_player_state_machine.current_state is PlayerAttackState:
-    velocity *= 0.5
+    self.velocity *= 0.5
   elif self.main_player_state_machine.current_state is PlayerRollState:
     # We also want to ignore any direction instructions right now. So, we will
     # override the velocity to be in the direction of the roll.
-    velocity = self.main_player_state_machine.current_state.roll_direction * self.derived_statistics.movement_speed.total_value * PlayerRollState.ROLL_SPEED_BOOST
-  self.move_and_collide(velocity * delta)
+    self.velocity = self.main_player_state_machine.current_state.roll_direction * self.derived_statistics.movement_speed.total_value * PlayerRollState.ROLL_SPEED_BOOST
+  # self.move_and_collide(velocity * delta)
+  self.move_and_slide()
 
 
 func _test_buff_effect() -> void:

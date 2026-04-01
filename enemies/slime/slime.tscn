@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bxw51kblwy745" path="res://assets/monsters/slime1/Slime1_Idle_with_shadow.png" id="1_6ftag"]
 [ext_resource type="Script" uid="uid://bekobmrxdyebl" path="res://enemies/slime/slime.gd" id="1_n1ijq"]
-[ext_resource type="Script" uid="uid://bmfbvt3fb0ywl" path="res://core/stats/derived_statistics.gd" id="2_mwtj1"]
 [ext_resource type="Script" uid="uid://gai3csfp6tpk" path="res://enemies/slime/slime_animator.gd" id="3_5ctnu"]
 [ext_resource type="Script" uid="uid://dnfb742epc744" path="res://enemies/slime/slime_idle_state.gd" id="4_57eei"]
 [ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/BasicHealthBar.tscn" id="5_u2l51"]
@@ -15,11 +14,6 @@
 [ext_resource type="Script" uid="uid://ch4nlw2j7f1mb" path="res://enemies/slime/slime_run_state.gd" id="8_knvw0"]
 [ext_resource type="Script" uid="uid://ojbhd0klbb1m" path="res://util/state_machine/enemy_state_machine.gd" id="9_mwtj1"]
 [ext_resource type="Script" uid="uid://cuxlvq2iigixc" path="res://enemies/slime/slime_attack_state.gd" id="9_yuirh"]
-
-[sub_resource type="Resource" id="Resource_im24l"]
-script = ExtResource("2_mwtj1")
-base_max_health = 50.0
-metadata/_custom_type_script = "uid://bmfbvt3fb0ywl"
 
 [sub_resource type="Animation" id="Animation_qxyj3"]
 length = 0.001
@@ -1065,8 +1059,8 @@ y_sort_enabled = true
 position = Vector2(45, 39)
 collision_layer = 16
 collision_mask = 16
+motion_mode = 1
 script = ExtResource("1_n1ijq")
-slime_derived_statistics = SubResource("Resource_im24l")
 
 [node name="SlimeAnimator" type="Node2D" parent="." unique_id=80096710]
 script = ExtResource("3_5ctnu")

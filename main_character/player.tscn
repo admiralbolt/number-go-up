@@ -566,6 +566,7 @@ height = 8.0
 [node name="Player" type="CharacterBody2D" unique_id=762666805]
 y_sort_enabled = true
 collision_mask = 17
+motion_mode = 1
 script = ExtResource("1_n18hu")
 
 [node name="WeaponRenderer" type="Node2D" parent="." unique_id=894592039]
