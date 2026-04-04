@@ -52,6 +52,7 @@ func take_damage(p_hit_box: HitBox) -> void:
   var damage: float = 10
   if p_hit_box.owner is Entity:
     damage += p_hit_box.owner.attributes.strength.total_value * 0.6
+    p_hit_box.owner.skills.get(Skills.SWORDS).add_xp(damage)
   # print("Entity: %s, is taking: %f damage" % [self.name, damage])
   self.current_health -= damage
   # print("Entity has %f current_health and %f max_health" % [self.current_health, self.derived_statistics.max_health.total_value])

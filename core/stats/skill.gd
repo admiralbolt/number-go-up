@@ -61,9 +61,21 @@ func compute_total_description() -> Array[String]:
 
 func level_up() -> void:
   self.level += 1
-  self.starting_xp_this_level = self.xp
+  self.starting_xp_this_level = self.total_xp_to_next_level
   self.total_xp_to_next_level = RPGUtil.total_xp_for_next_skill_level(self.level)
   self.compute_total()
+  SignalBus.skill_level_up.emit(self.name, self.level)
+
+func add_xp(amount: float) -> void:
+  self.xp += amount * self.xp_multiplier
+  if self.xp >= self.total_xp_to_next_level:
+    self.level_up()
+    self.changed.emit()
+    return
+
+  # Wait to call emit until after we check for level up so that we don't call
+  # it twice.
+  self.changed.emit()
 
 func _to_string() -> String:
   return "%s (Level %d, XP: %.2f, Total Value: %.2f)" % [self.name, self.level, self.xp, self.total_value]
