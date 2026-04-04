@@ -10,7 +10,7 @@ var attr_references: Dictionary[String, Attribute] = {}
 var entity: Entity
 var total_value: float = self.level
 var starting_xp_this_level: float = 0.0
-var total_xp_to_next_level: float = 1000.0
+var total_xp_to_next_level: float = RPGUtil.total_xp_for_next_skill_level(1)
 
 const BONUS_PER_LEVEL: float = 2.0
 
@@ -25,6 +25,8 @@ func initialize(p_entity: Entity) -> void:
     # recompute the total value.
     if not attribute.is_connected("changed", self.compute_total):
       attribute.changed.connect(self.compute_total)
+
+  self.total_xp_to_next_level = RPGUtil.total_xp_for_next_skill_level(self.level)
   self.compute_total()
 
 func compute_total() -> void:
