@@ -11,5 +11,9 @@ func _ready() -> void:
   self.hurt_box = $HurtBox
   self.hit_box = $SlimeAnimator/HitBox
 
+  self.hit_box.min_damage = 30.0
+  self.hit_box.max_damage = 50.0
+  self.hit_box.governing_skill = Skills.UNARMED
+
   self.state_machine.initialize()
   super._ready()

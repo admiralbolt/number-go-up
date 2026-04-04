@@ -1489,7 +1489,6 @@ script = ExtResource("3_5ctnu")
 texture = ExtResource("3_4ur3v")
 hframes = 10
 vframes = 4
-frame = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeAnimator" unique_id=48381187]
 libraries/ = SubResource("AnimationLibrary_v3fw7")

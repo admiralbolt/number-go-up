@@ -13,6 +13,9 @@ class_name HitBox extends Area2D
 
 var collision_shape: CollisionShape2D
 var hit_log: HitLog
+var min_damage: float
+var max_damage: float
+var governing_skill: String = Skills.UNARMED
 
 func _ready() -> void:
   # The collision shape should always be a child of the hit box.

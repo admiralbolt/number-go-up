@@ -6,6 +6,7 @@ const AXES: String = "axes"
 const HAMMERS: String = "hammers"
 const SPEARS: String = "spears"
 const BOWS: String = "bows"
+const UNARMED: String = "unarmed"
 const THROWING: String = "throwing"
 
 # Magic
@@ -48,7 +49,7 @@ const APPRAISAL: String = "appraisal"
 const PERCEPTION: String = "perception"
 
 const ALL_SKILLS: Array[String] = [
-  SWORDS, AXES, HAMMERS, SPEARS, BOWS, THROWING,
+  SWORDS, AXES, HAMMERS, SPEARS, BOWS, UNARMED, THROWING,
   ALTERATION, CONJURATION, DESTRUCTION, ENCHANTING, ILLUSION, NECROMANCY, RESTORATION,
   MINING, SMITHING, WOODCUTTING, CONSTRUCTION, FLETCHING, FISHING, COOKING, ALCHEMY, TINKERING,
   ACROBATICS, CLIMB, SWIM, STEALTH,
@@ -80,6 +81,11 @@ const ALL_SKILLS: Array[String] = [
 @export var bows: Skill = Skill.make_default(BOWS, {
   Attributes.STRENGTH: 0.05,
   Attributes.DEXTERITY: 0.125,
+})
+
+@export var unarmed: Skill = Skill.make_default(UNARMED, {
+  Attributes.STRENGTH: 0.084,
+  Attributes.DEXTERITY: 0.064,
 })
 
 @export var throwing: Skill = Skill.make_default(THROWING, {
