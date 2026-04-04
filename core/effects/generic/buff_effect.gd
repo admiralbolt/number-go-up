@@ -11,13 +11,6 @@ func _set_modifier(p_modifier: Modifier) -> void:
   duration = modifier.duration
   timer = modifier.timer + 20
 
-  # var p_effect_base: EffectBase = EffectBase.new()
-  # p_effect_base.effect_type = EffectType.BUFF
-  # p_effect_base.is_instant = false
-  # p_effect_base.duration = duration
-  # p_effect_base.timer = timer
-  # effect_base = p_effect_base
-
 func apply(target: Entity) -> void:
   target.modifier_manager.add_modifier(modifier)
 
@@ -29,6 +22,9 @@ func process(target: Entity, delta: float) -> bool:
   self.timer -= delta
 
   return modifier.timer <= 0
+
+func get_unique_name() -> String:
+  return "BuffEffect_%s" % modifier.unique_name
 
 func _to_string() -> String:
   return "Effect(type=%s, is_instant=%s, duration=%f, timer=%f)\n%s" % [effect_type, is_instant, duration, timer, modifier]

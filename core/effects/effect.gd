@@ -23,6 +23,9 @@ func apply(_target: Entity) -> void:
 func remove(_target: Entity) -> void:
   return
 
+func get_unique_name() -> String:
+  return ""
+
 func process(_target: Entity, delta: float) -> bool:
   """Processes the effect.
 

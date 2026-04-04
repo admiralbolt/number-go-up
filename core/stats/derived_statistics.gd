@@ -113,6 +113,7 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
 @export var base_critical_gain: float = 0.01
 @export var base_critical_multiplier: float = 2.0
 @export var base_range_multiplier: float = 1.0
+@export var base_knockback: float = 50.0
 
 # Defence!
 @export var base_fortitude_save: float = 0.0
@@ -121,6 +122,7 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
 @export var base_mind_save: float = 0.0
 
 @export var base_armor: float = 0.0
+@export var base_poise: float = 10.0
 @export var base_force_resistance: float = 0.0
 @export var base_fire_resistance: float = 0.0
 @export var base_cold_resistance: float = 0.0
@@ -165,6 +167,7 @@ var attack_speed: DerivedStatistic
 var critical_gain: DerivedStatistic
 var critical_multiplier: DerivedStatistic
 var range_multiplier: DerivedStatistic
+var knockback: DerivedStatistic
 
 # Defence!
 var fortitude_save: DerivedStatistic
@@ -173,6 +176,7 @@ var will_save: DerivedStatistic
 var mind_save: DerivedStatistic
 
 var armor: DerivedStatistic
+var poise: DerivedStatistic
 var force_resistance: DerivedStatistic
 var fire_resistance: DerivedStatistic
 var cold_resistance: DerivedStatistic
@@ -264,6 +268,10 @@ func initialize(p_entity: Entity) -> void:
 
   self.range_multiplier = DerivedStatistic.make("Range Multiplier", base_range_multiplier, {}, p_entity)
 
+  self.knockback = DerivedStatistic.make("Knockback", base_knockback, {
+    "strength": 0.21
+  }, p_entity)
+
   # Defence!
   self.fortitude_save = DerivedStatistic.make("Fortitude Save", base_fortitude_save, {
     "constitution": 0.08,
@@ -290,6 +298,10 @@ func initialize(p_entity: Entity) -> void:
   }, p_entity)
 
   self.armor = DerivedStatistic.make("Armor", base_armor, {}, p_entity)
+  self.poise = DerivedStatistic.make("Poise", base_poise, {
+    "constitution": 0.06,
+    "strength": 0.04
+  }, p_entity)
   self.force_resistance = DerivedStatistic.make("Force Resistance", base_force_resistance, {}, p_entity)
   self.fire_resistance = DerivedStatistic.make("Fire Resistance", base_fire_resistance, {}, p_entity)
   self.cold_resistance = DerivedStatistic.make("Cold Resistance", base_cold_resistance, {}, p_entity)

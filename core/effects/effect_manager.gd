@@ -38,5 +38,14 @@ func apply_effect(effect: Effect) -> void:
   if effect.is_instant:
     return
 
-  effect.timer = effect.duration
-  active_effects.append(effect)
+  var existing_effect: Effect = self.get_effect(effect)
+  if existing_effect == null:
+    effect.timer = effect.duration
+    active_effects.append(effect)
+
+func get_effect(effect: Effect) -> Effect:
+  for active_effect in active_effects:
+    if active_effect.get_unique_name() == effect.get_unique_name():
+      return active_effect
+
+  return null

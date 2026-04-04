@@ -21,16 +21,49 @@ func add_modifiers(modifiers: Array[Modifier]) -> void:
 
 func add_modifier(modifier: Modifier, emit_recompute: bool = true) -> bool:
   """Returns a bool value indicating if we need to recompute."""
-  self.all_modifiers.modifiers.append(modifier)
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(modifier.stat_name)
   if modifier_queue == null:
     modifier_queue = ModifierPriorityQueue.new()
     modifier_by_stat[modifier.stat_name] = modifier_queue
 
-  var should_emit: bool = modifier_queue.add_modifier(modifier)
-  if emit_recompute and should_emit:
-    self.recomputes.emit(emit_data(modifier))
-  return should_emit
+  # If a modifier doesn't exist, add it and return.
+  var existing_modifier: Modifier = self.get_modifier(modifier)
+
+  if existing_modifier == null:
+    self.all_modifiers.modifiers.append(modifier)
+    var should_emit: bool = modifier_queue.add_modifier(modifier)
+    if emit_recompute and should_emit:
+      self.recomputes.emit(emit_data(modifier))
+    return should_emit
+
+  # If the modifier does exist, we want to refresh the duration and/or
+  # potentially add stacks to it.
+  existing_modifier.timer = max(existing_modifier.duration, modifier.duration)
+
+  if existing_modifier.is_stackable:
+    existing_modifier.stack_count += modifier.stack_count
+    if emit_recompute:
+      self.recomputes.emit(emit_data(modifier))
+      return true
+
+  return false
+
+func get_modifier(modifier: Modifier) -> Modifier:
+  var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(modifier.stat_name)
+  if modifier_queue == null:
+    return null
+
+  match modifier.modifier_priority:
+    Modifier.ModifierPriority.APPLY_FIRST:
+      return modifier_queue.first_modifiers.modifiers_by_name.get(modifier.unique_name)
+    Modifier.ModifierPriority.APPLY_ADDITIVE:
+      return modifier_queue.additive_modifiers.modifiers_by_name.get(modifier.unique_name)
+    Modifier.ModifierPriority.APPLY_MULTIPLICATIVE:
+      return modifier_queue.multiplicative_modifiers.modifiers_by_name.get(modifier.unique_name)
+    Modifier.ModifierPriority.APPLY_LAST:
+      return modifier_queue.last_modifiers.modifiers_by_name.get(modifier.unique_name)
+
+  return null
 
 func update_modifier(modifier: Modifier, delta: float) -> void:
   if not modifier.is_timed:

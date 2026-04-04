@@ -26,7 +26,6 @@ func _ready() -> void:
     child.focus_neighbor_bottom = children[(i + 1) % children.size()].get_path()
 
 func _set_attributes() -> void:
-  print("SETTING ATTRIBUTES")
   for attribute_name in Attributes.ALL_ATTRIBUTES:
     var attribute_display: AttributeDisplay = stats_list.get_node("%sDisplay" % attribute_name.capitalize())
     if attribute_display == null:
