@@ -34,7 +34,10 @@ const COLD_RESISTANCE: String = "cold_resistance"
 const LIGHTNING_RESISTANCE: String = "lightning_resistance"
 const SONIC_RESISTANCE: String = "sonic_resistance"
 const ACID_RESISTANCE: String = "acid_resistance"
+const POISON_RESISTANCE: String = "poison_resistance"
 const BLEED_RESISTANCE: String = "bleed_resistance"
+const HOLY_RESISTANCE: String = "holy_resistance"
+const DARK_RESISTANCE: String = "dark_resistance"
 
 const PIERCING_REDUCTION: String = "piercing_reduction"
 const SLASHING_REDUCTION: String = "slashing_reduction"
@@ -45,7 +48,10 @@ const COLD_REDUCTION: String = "cold_reduction"
 const LIGHTNING_REDUCTION: String = "lightning_reduction"
 const SONIC_REDUCTION: String = "sonic_reduction"
 const ACID_REDUCTION: String = "acid_reduction"
+const POISON_REDUCTION: String = "poison_reduction"
 const BLEED_REDUCTION: String = "bleed_reduction"
+const HOLY_REDUCTION: String = "holy_reduction"
+const DARK_REDUCTION: String = "dark_reduction"
 
 # Misc.
 const MOVEMENT_SPEED: String = "movement_speed"
@@ -80,7 +86,10 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
   LIGHTNING_RESISTANCE,
   SONIC_RESISTANCE,
   ACID_RESISTANCE,
+  POISON_RESISTANCE,
   BLEED_RESISTANCE,
+  HOLY_RESISTANCE,
+  DARK_RESISTANCE,
   PIERCING_REDUCTION,
   SLASHING_REDUCTION,
   BLUDGEONING_REDUCTION,
@@ -90,7 +99,10 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
   LIGHTNING_REDUCTION,
   SONIC_REDUCTION,
   ACID_REDUCTION,
+  POISON_REDUCTION,
   BLEED_REDUCTION,
+  HOLY_REDUCTION,
+  DARK_REDUCTION,
   MOVEMENT_SPEED,
   XP_MULTIPLIER,
   PROC_COEFFICIENT_MULTIPLIER,
@@ -129,7 +141,10 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
 @export var base_lightning_resistance: float = 0.0
 @export var base_sonic_resistance: float = 0.0
 @export var base_acid_resistance: float = 0.0
+@export var base_poison_resistance: float = 0.0
 @export var base_bleed_resistance: float = 0.0
+@export var base_holy_resistance: float = 0.0
+@export var base_dark_resistance: float = 0.0
 
 @export var base_piercing_reduction: float = 0.0
 @export var base_slashing_reduction: float = 0.0
@@ -140,7 +155,10 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
 @export var base_lightning_reduction: float = 0.0
 @export var base_sonic_reduction: float = 0.0
 @export var base_acid_reduction: float = 0.0
+@export var base_poison_reduction: float = 0.0
 @export var base_bleed_reduction: float = 0.0
+@export var base_holy_reduction: float = 0.0
+@export var base_dark_reduction: float = 0.0
 
 # Misc.
 @export var base_movement_speed: float = 95.0
@@ -183,7 +201,10 @@ var cold_resistance: DerivedStatistic
 var lightning_resistance: DerivedStatistic
 var sonic_resistance: DerivedStatistic
 var acid_resistance: DerivedStatistic
+var poison_resistance: DerivedStatistic
 var bleed_resistance: DerivedStatistic
+var holy_resistance: DerivedStatistic
+var dark_resistance: DerivedStatistic
 
 var piercing_reduction: DerivedStatistic
 var slashing_reduction: DerivedStatistic
@@ -194,7 +215,10 @@ var cold_reduction: DerivedStatistic
 var lightning_reduction: DerivedStatistic
 var sonic_reduction: DerivedStatistic
 var acid_reduction: DerivedStatistic
+var poison_reduction: DerivedStatistic
 var bleed_reduction: DerivedStatistic
+var holy_reduction: DerivedStatistic
+var dark_reduction: DerivedStatistic
 
 # Misc.
 var movement_speed: DerivedStatistic
@@ -308,7 +332,10 @@ func initialize(p_entity: Entity) -> void:
   self.lightning_resistance = DerivedStatistic.make("Lightning Resistance", base_lightning_resistance, {}, p_entity)
   self.sonic_resistance = DerivedStatistic.make("Sonic Resistance", base_sonic_resistance, {}, p_entity)
   self.acid_resistance = DerivedStatistic.make("Acid Resistance", base_acid_resistance, {}, p_entity)
+  self.poison_resistance = DerivedStatistic.make("Poison Resistance", base_poison_resistance, {}, p_entity)
   self.bleed_resistance = DerivedStatistic.make("Bleed Resistance", base_bleed_resistance, {}, p_entity)
+  self.holy_resistance = DerivedStatistic.make("Holy Resistance", base_holy_resistance, {}, p_entity)
+  self.dark_resistance = DerivedStatistic.make("Dark Resistance", base_dark_resistance, {}, p_entity)
 
   self.piercing_reduction = DerivedStatistic.make("Piercing Reduction", base_piercing_reduction, {}, p_entity)
   self.slashing_reduction = DerivedStatistic.make("Slashing Reduction", base_slashing_reduction, {}, p_entity)
@@ -319,7 +346,10 @@ func initialize(p_entity: Entity) -> void:
   self.lightning_reduction = DerivedStatistic.make("Lightning Reduction", base_lightning_reduction, {}, p_entity)
   self.sonic_reduction = DerivedStatistic.make("Sonic Reduction", base_sonic_reduction, {}, p_entity)
   self.acid_reduction = DerivedStatistic.make("Acid Reduction", base_acid_reduction, {}, p_entity)
+  self.poison_reduction = DerivedStatistic.make("Poison Reduction", base_poison_reduction, {}, p_entity)
   self.bleed_reduction = DerivedStatistic.make("Bleed Reduction", base_bleed_reduction, {}, p_entity)
+  self.holy_reduction = DerivedStatistic.make("Holy Reduction", base_holy_reduction, {}, p_entity)
+  self.dark_reduction = DerivedStatistic.make("Dark Reduction", base_dark_reduction, {}, p_entity)
 
   # Misc.
   self.movement_speed = DerivedStatistic.make("Movement Speed", base_movement_speed, {
@@ -359,5 +389,3 @@ func debug_print() -> void:
   for stat_name in ALL_DERIVED_STATISTICS:
     var stat: DerivedStatistic = self.get(stat_name)
     print(stat)
-
-

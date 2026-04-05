@@ -1,5 +1,7 @@
 class_name Skills extends Resource
 
+const NULL: String = "this_should_never_be_a_real_skill_name"
+
 # Weapons
 const SWORDS: String = "swords"
 const AXES: String = "axes"

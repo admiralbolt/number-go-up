@@ -11,9 +11,10 @@ func _ready() -> void:
   self.hurt_box = $HurtBox
   self.hit_box = $SlimeAnimator/HitBox
 
-  self.hit_box.min_damage = 30.0
-  self.hit_box.max_damage = 50.0
-  self.hit_box.governing_skill = Skills.UNARMED
+  self.hit_box.damage_ranges = [
+    HitBox.DamageRange.make_without_skill(Damage.DamageType.BLUDGEONING, 40.0, 40.1),
+    HitBox.DamageRange.make_without_skill(Damage.DamageType.ACID, 20.0, 20.1)
+  ]
 
   self.state_machine.initialize()
   super._ready()

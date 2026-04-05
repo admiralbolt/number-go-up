@@ -29,6 +29,8 @@ enum AttackAnimationEffectType {
 @export var min_damage: float = 1.0
 # The maximum damage this weapon can do before bonuses.
 @export var max_damage: float = 10.0
+# The damage type of the weapon.
+@export var damage_type: Damage.DamageType = Damage.DamageType.SLASHING
 # The governing skill for this weapon. Determines both which skill will get XP
 # and which bonus applies to the damage.
 @export var governing_skill: String = Skills.SWORDS

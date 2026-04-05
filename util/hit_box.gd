@@ -8,14 +8,12 @@ For Enemies:
   HitBox: Should have Collision Monitoring 9 set (and nothing else).
   HurtBox: Should have Collision Layer 2 set (and nothing else).
 """
-
 class_name HitBox extends Area2D
 
 var collision_shape: CollisionShape2D
 var hit_log: HitLog
-var min_damage: float
-var max_damage: float
-var governing_skill: String = Skills.UNARMED
+
+var damage_ranges: Array[DamageRange]
 
 func _ready() -> void:
   # The collision shape should always be a child of the hit box.
@@ -54,3 +52,24 @@ func reset() -> void:
 
 func has_hit() -> bool:
   return self.hit_log and self.hit_log.hits.size() > 0
+
+class DamageRange extends Resource:
+  @export var damage_type: Damage.DamageType
+  @export var min_damage: float
+  @export var max_damage: float
+  @export var governing_skill: String = Skills.NULL
+
+  static func make_without_skill(p_damage_type: Damage.DamageType, p_min_damage: float, p_max_damage: float) -> DamageRange:
+    var dr = DamageRange.new()
+    dr.damage_type = p_damage_type
+    dr.min_damage = p_min_damage
+    dr.max_damage = p_max_damage
+    return dr
+
+  static func make_with_skill(p_damage_type: Damage.DamageType, p_min_damage: float, p_max_damage: float, p_governing_skill: String) -> DamageRange:
+    var dr = DamageRange.new()
+    dr.damage_type = p_damage_type
+    dr.min_damage = p_min_damage
+    dr.max_damage = p_max_damage
+    dr.governing_skill = p_governing_skill
+    return dr

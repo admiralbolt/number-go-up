@@ -31,9 +31,9 @@ func change_weapon(weapon: Weapon) -> void:
 
   self.sprite_and_shape.visible = false
 
-  self.hit_box.min_damage = weapon.min_damage
-  self.hit_box.max_damage = weapon.max_damage
-  self.hit_box.governing_skill = weapon.governing_skill
+  self.hit_box.damage_ranges = [
+    HitBox.DamageRange.make_with_skill(weapon.damage_type, weapon.min_damage, weapon.max_damage, weapon.governing_skill)
+  ]
 
 func _ready() -> void:
   # Load our red sword by default, let's see what happens.

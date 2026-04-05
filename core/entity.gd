@@ -47,20 +47,6 @@ func _ready() -> void:
   self.derived_statistics.max_mana.changed.connect(self._on_max_mana_changed.bind(self.derived_statistics.max_mana.total_value))
   self.derived_statistics.max_stamina.changed.connect(self._on_max_stamina_changed.bind(self.derived_statistics.max_stamina.total_value))
 
-func take_damage(p_hit_box: HitBox) -> void:
-  # Eventually we'll do some math here based on stats n' stuff.
-  # print("Entity: %s, is taking: %f damage" % [self.name, damage])
-  var governing_skill: Skill = p_hit_box.owner.skills.get(p_hit_box.governing_skill)
-  var damage = RPGUtil.calculate_damage(p_hit_box.owner, self, p_hit_box.min_damage, p_hit_box.max_damage, governing_skill.total_value)
-  governing_skill.add_xp(damage)
-
-  self.current_health -= damage
-  # print("Entity has %f current_health and %f max_health" % [self.current_health, self.derived_statistics.max_health.total_value])
-  damaged.emit(p_hit_box)
-
-  if self.current_health <= 0:
-    died.emit(p_hit_box)
-
 func _set_current_health(p_health: float) -> void:
   if p_health == current_health:
     return
