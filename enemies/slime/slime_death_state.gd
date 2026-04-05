@@ -14,6 +14,9 @@ func on_enter() -> void:
   self.enemy.velocity = Vector2.ZERO
   self.enemy.hurt_box.monitoring = false
   self.enemy.hit_box.monitoring = false
+
+  self.enemy.hurt_box.set_collision_layer_value(2, false)
+
   self.enemy.set_collision_layer_value(5, false)
   self.enemy.set_collision_layer_value(9, false)
 

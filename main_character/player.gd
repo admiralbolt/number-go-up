@@ -9,6 +9,9 @@ var held_direction: Vector2 = Vector2.DOWN
 var facing: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
 
+var starting_xp_this_level: float = 0.0
+var total_xp_to_next_level: float = RPGUtil.total_xp_for_next_level(1)
+
 func _ready() -> void:
   self.main_player_state_machine.initialize()
   self.main_player_state_machine.change_state(PlayerIdleState.NAME)
@@ -16,6 +19,18 @@ func _ready() -> void:
 
   self.hurt_box = $PlayerHurtBox
   super._ready()
+
+func level_up() -> void:
+  self.attributes.level.value += 1
+  self.attributes.level.compute_total()
+
+  self.starting_xp_this_level = self.total_xp_to_next_level
+  self.total_xp_to_next_level = RPGUtil.total_xp_for_next_skill_level(int(self.attributes.level.value))
+
+func add_xp(amount: float) -> void:
+  self.xp += amount
+  if self.xp >= self.total_xp_to_next_level:
+    self.level_up()
 
 func _process(_delta: float) -> void:
   super._process(_delta)

@@ -85,3 +85,6 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
 
   if target.current_health <= 0:
     target.died.emit(hit_box)
+    if owner is Player:
+      owner.add_xp(target.xp)
+    

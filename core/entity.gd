@@ -6,6 +6,7 @@ signal died(hit_box: HitBox)
 @export var attributes: Attributes = Attributes.new()
 @export var derived_statistics: DerivedStatistics = DerivedStatistics.new()
 @export var skills: Skills = Skills.new()
+@export var xp: float = 0.0
 
 var modifier_manager: ModifierManager = ModifierManager.new()
 var effect_manager: EffectManager = EffectManager.new()

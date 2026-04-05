@@ -2,6 +2,8 @@ class_name CharacterStatsDisplay extends Control
 
 @onready var stats_list: VBoxContainer = $HBoxContainer/StatsListContainer
 @onready var stat_description: RichTextLabel = $HBoxContainer/StatDescription
+@onready var xp_bar: ProgressBar = $HBoxContainer/StatsListContainer/XPBar
+@onready var xp_label: Label = $HBoxContainer/StatsListContainer/XPBar/XPLabel
 
 var attributes: Attributes
 
@@ -10,10 +12,11 @@ func _ready() -> void:
   self.attributes = Attributes.new() if not PlayerManager.player else PlayerManager.player.attributes
 
   self._set_attributes()
+  self._update_xp()
 
   self.focus_entered.connect(self._on_focus_entered)
   self.focus_exited.connect(self._on_focus_exited)
-
+  SignalBus.pause_menu_opened.connect(self._update_xp)
 
   # Set neighbors.
   var children: Array[Node] = stats_list.get_children()
@@ -32,6 +35,13 @@ func _set_attributes() -> void:
       continue
 
     attribute_display.set_attribute(PlayerManager.player.attributes.get(attribute_name))
+
+func _update_xp() -> void:
+  xp_bar.min_value = PlayerManager.player.starting_xp_this_level
+  xp_bar.max_value = PlayerManager.player.total_xp_to_next_level
+  xp_bar.value = PlayerManager.player.xp
+
+  xp_label.text = "%d / %d" % [PlayerManager.player.xp, PlayerManager.player.total_xp_to_next_level]
 
 
 func _on_focus_entered() -> void:
