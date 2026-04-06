@@ -17,7 +17,7 @@ func initialize(p_entity: Entity) -> void:
     self.attr_references[attr_name] = attribute
     # When any of the attributes that affect this statistic change, we need to
     # recompute the total value.
-    attribute.connect("changed", compute_total)
+    attribute.changed.connect(self.compute_total)
   self.compute_total()
 
 func compute_total() -> void:

@@ -35,6 +35,7 @@ func _init() -> void:
   self.current_stamina = self.derived_statistics.max_stamina.total_value
 
 func initialize_stats() -> void:
+  print("Initializing stats for entity: %s" % self.name)
   self.attributes.initialize(self)
   self.derived_statistics.initialize(self)
   self.skills.initialize(self)

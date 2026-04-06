@@ -236,11 +236,13 @@ func initialize(p_entity: Entity) -> void:
   """Lord forgive me for I have sinned. This is a lot."""
   # Bar stats.
   self.max_health = DerivedStatistic.make("Max Health", base_max_health, {
+    "level": 5.0,
     "constitution": 0.1,
     "strength": 0.03,
   }, p_entity)
 
   self.max_mana = DerivedStatistic.make("Max Mana", base_max_mana, {
+    "level": 2.0,
     "intelligence": 0.1,
     "spirit": 0.04,
     "wisdom": 0.02,
@@ -248,6 +250,7 @@ func initialize(p_entity: Entity) -> void:
   }, p_entity)
 
   self.max_stamina = DerivedStatistic.make("Max Stamina", base_max_stamina, {
+    "level": 3.0,
     "constitution": 0.05,
     "strength": 0.04,
     "agility": 0.03,

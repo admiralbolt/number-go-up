@@ -43,7 +43,6 @@ func _update_xp() -> void:
 
   xp_label.text = "%d / %d" % [PlayerManager.player.xp, PlayerManager.player.total_xp_to_next_level]
 
-
 func _on_focus_entered() -> void:
   self.stats_list.get_child(PauseMenuState.attribute_focus_index).grab_focus()
 
@@ -55,7 +54,6 @@ func _on_attribute_focused(index: int, child_name: String) -> void:
 
   # Calculate the description!
   self.stat_description.text = _calculate_description(child_name)
-
 
 func _calculate_description(child_name: String) -> String:
   for attribute_name in Attributes.ALL_ATTRIBUTES:

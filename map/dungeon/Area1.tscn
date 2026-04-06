@@ -20,6 +20,7 @@ position = Vector2(497, 87)
 
 [node name="Slime" parent="." unique_id=1507265592 instance=ExtResource("4_p0l4u")]
 position = Vector2(320, 99)
+xp = 9900.0
 
 [node name="LevelTransition" parent="." unique_id=1459471275 instance=ExtResource("5_rsf30")]
 position = Vector2(584, 80)

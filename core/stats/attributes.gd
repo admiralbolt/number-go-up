@@ -38,12 +38,12 @@ const ALL_ATTRIBUTES: Array = [
 @export var luck: Attribute = Attribute.make(LUCK, 50.0)
 
 func initialize(p_entity: Entity) -> void:
-  for attr in [strength, constitution, dexterity, agility, spirit, wisdom, intelligence, charisma, luck]:
+  for attr in [level, strength, constitution, dexterity, agility, spirit, wisdom, intelligence, charisma, luck]:
     attr.entity = p_entity
     attr.compute_total()
 
 
 func debug_print() -> void:
   print("Attributes:")
-  for attr in [strength, constitution, dexterity, agility, spirit, wisdom, intelligence, charisma, luck]:
+  for attr in [level, strength, constitution, dexterity, agility, spirit, wisdom, intelligence, charisma, luck]:
     print("  %s" % attr)
