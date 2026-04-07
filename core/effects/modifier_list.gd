@@ -8,3 +8,10 @@ func get_index(p_modifier: Modifier) -> int:
       return i
 
   return -1
+
+func _to_string() -> String:
+  var modifier_strings: Array[String] = []
+  for modifier in modifiers:
+    modifier_strings.append(modifier._to_string())
+
+  return "ModifierList(%s)" % ", ".join(modifier_strings)

@@ -5,6 +5,9 @@ class_name Player extends Entity
 @onready var weapon_renderer: WeaponRenderer = $WeaponRenderer
 @onready var main_player_state_machine: MainPlayerStateMachine = $MainPlayerStateMachine
 
+# Character customization options.
+@export var stat_ordering: StatOrdering = StatOrdering.make_default()
+
 var held_direction: Vector2 = Vector2.DOWN
 var facing: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
@@ -21,6 +24,9 @@ func _ready() -> void:
   super._ready()
 
 func level_up() -> void:
+  for attr_name in self.stat_ordering.stat_weights:
+    self.attributes.get(attr_name).value += RPGUtil.get_attribute_level_bonus(int(self.attributes.level.value), self.stat_ordering.stat_weights[attr_name])
+  
   self.attributes.level.value += 1
   self.attributes.level.compute_total()
 

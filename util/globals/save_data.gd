@@ -11,6 +11,8 @@ class_name SaveData extends Resource
 @export var player_attributes: Attributes
 @export var player_derived_statistics: DerivedStatistics
 @export var player_skills: Skills
+@export var player_stat_ordering: StatOrdering
+
 @export var current_xp: float
 @export var starting_xp_this_level: float
 @export var total_xp_to_next_level: float
@@ -18,5 +20,6 @@ class_name SaveData extends Resource
 @export var current_stamina: float
 @export var current_mana: float
 @export var player_position: Vector2
+
 @export var active_static_modifiers: ModifierList
 @export var active_effects: Array[Effect]

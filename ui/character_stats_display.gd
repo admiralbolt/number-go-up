@@ -67,10 +67,10 @@ func _calculate_attribute_description(attribute_name: String) -> String:
   var builder: Array[String] = []
   builder.append(Descriptions.ATTRIBUTE_DESCRIPTIONS.get(attribute_name, ""))
   builder.append("-----------------\n")
-  builder.append("BaseValue: %s" % str(attr.value))
+  builder.append("BaseValue: %.2f" % attr.value)
 
   for line in attr.compute_total_description():
     builder.append(line)
 
-  builder.append("Total Value: %s" % str(snapped(attr.total_value, 0.01)))
+  builder.append("Total Value: %.2f" % attr.total_value)
   return "\n".join(builder)

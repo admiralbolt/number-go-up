@@ -19,10 +19,10 @@ func _ready() -> void:
   self.focus_entered.connect(self._on_focus_entered)
   self.focus_exited.connect(self._on_focus_exited)
   
-func set_derived_statistic(p_DerivedStatistic: DerivedStatistic) -> void:
-  self.derived_statistic = p_DerivedStatistic
+func set_derived_statistic(p_derived_statistic: DerivedStatistic) -> void:
+  self.derived_statistic = p_derived_statistic
   self.derived_statistic.changed.connect(self.update)
-  self.derived_statistic_name_label.text = derived_statistic.name.capitalize()
+  self.derived_statistic_name_label.text = self.derived_statistic.name.capitalize()
   self.update()
 
 func update() -> void:

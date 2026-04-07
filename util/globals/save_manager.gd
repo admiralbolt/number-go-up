@@ -11,6 +11,8 @@ func save_game() -> void:
   save_data.player_attributes = PlayerManager.player.attributes
   save_data.player_derived_statistics = PlayerManager.player.derived_statistics
   save_data.player_skills = PlayerManager.player.skills
+  save_data.player_stat_ordering = PlayerManager.player.stat_ordering
+
   save_data.current_xp = PlayerManager.player.xp
   save_data.starting_xp_this_level = PlayerManager.player.starting_xp_this_level
   save_data.total_xp_to_next_level = PlayerManager.player.total_xp_to_next_level
@@ -18,6 +20,7 @@ func save_game() -> void:
   save_data.current_mana = PlayerManager.player.current_mana
   save_data.current_stamina = PlayerManager.player.current_stamina
   save_data.player_position = PlayerManager.player.position
+
   save_data.active_static_modifiers = PlayerManager.player.modifier_manager.get_static_modifiers()
   save_data.active_effects = PlayerManager.player.effect_manager.active_effects
 
@@ -37,23 +40,23 @@ func load_game() -> void:
   LevelManager.load_new_level(save_data.scene_path, "", Vector2.ZERO, true)
   await SignalBus.level_load_started
 
+  PlayerManager.player.modifier_manager.reinitialize(save_data.active_static_modifiers)
+  PlayerManager.player.effect_manager.reinitialize(save_data.active_effects)
+
   PlayerManager.player.attributes = save_data.player_attributes
   PlayerManager.player.derived_statistics = save_data.player_derived_statistics
   PlayerManager.player.skills = save_data.player_skills
   PlayerManager.player.initialize_stats()
+  PlayerManager.player.stat_ordering = save_data.player_stat_ordering
 
   PlayerManager.player.xp = save_data.current_xp
   PlayerManager.player.starting_xp_this_level = save_data.starting_xp_this_level
   PlayerManager.player.total_xp_to_next_level = save_data.total_xp_to_next_level
-
 
   PlayerManager.player.current_health = save_data.current_health
   PlayerManager.player.current_mana = save_data.current_mana
   PlayerManager.player.current_stamina = save_data.current_stamina
 
   PlayerManager.player.position = save_data.player_position
-
-  PlayerManager.player.modifier_manager.reinitialize(save_data.active_static_modifiers)
-  PlayerManager.player.effect_manager.reinitialize(save_data.active_effects)
 
   self.game_loaded.emit()

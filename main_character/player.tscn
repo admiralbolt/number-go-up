@@ -8,10 +8,10 @@
 [ext_resource type="Script" uid="uid://cd5rcqyepd0bo" path="res://main_character/player_animator.gd" id="6_gabxs"]
 [ext_resource type="Texture2D" uid="uid://bm0m3de1whofg" path="res://assets/character/player_spritesheet.png" id="7_kpxvp"]
 [ext_resource type="Script" uid="uid://citaw2su7m5cg" path="res://main_character/main_player_state_machine.gd" id="8_k84kw"]
-[ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://main_character/player_walk_state.gd" id="9_yo0ru"]
-[ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://main_character/player_roll_state.gd" id="10_526fb"]
-[ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/player_attack_state.gd" id="11_rjnhc"]
-[ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/player_idle_state.gd" id="12_mxorp"]
+[ext_resource type="Script" uid="uid://wtgjdx5x8irb" path="res://main_character/states/player_walk_state.gd" id="9_yo0ru"]
+[ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://main_character/states/player_roll_state.gd" id="10_cy1eu"]
+[ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/states/player_attack_state.gd" id="11_e0qqe"]
+[ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/states/player_idle_state.gd" id="12_xj3nd"]
 [ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/BasicHealthBar.tscn" id="13_326by"]
 [ext_resource type="PackedScene" uid="uid://cror3fam525f4" path="res://ui/BasicStaminaBar.tscn" id="14_cy1eu"]
 [ext_resource type="Script" uid="uid://bohi8b8eyfv86" path="res://util/hurt_box.gd" id="14_itdfg"]
@@ -613,13 +613,13 @@ script = ExtResource("8_k84kw")
 script = ExtResource("9_yo0ru")
 
 [node name="PlayerRollState" type="Node" parent="MainPlayerStateMachine" unique_id=717010897]
-script = ExtResource("10_526fb")
+script = ExtResource("10_cy1eu")
 
 [node name="PlayerAttackState" type="Node" parent="MainPlayerStateMachine" unique_id=1170924147]
-script = ExtResource("11_rjnhc")
+script = ExtResource("11_e0qqe")
 
 [node name="PlayerIdleState" type="Node" parent="MainPlayerStateMachine" unique_id=1301380956]
-script = ExtResource("12_mxorp")
+script = ExtResource("12_xj3nd")
 
 [node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("13_326by")]
 offset_left = -15.0

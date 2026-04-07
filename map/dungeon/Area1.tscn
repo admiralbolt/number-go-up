@@ -22,6 +22,18 @@ position = Vector2(497, 87)
 position = Vector2(320, 99)
 xp = 9900.0
 
+[node name="Slime2" parent="." unique_id=239371194 instance=ExtResource("4_p0l4u")]
+position = Vector2(266, 96)
+xp = 9900.0
+
+[node name="Slime3" parent="." unique_id=2145704635 instance=ExtResource("4_p0l4u")]
+position = Vector2(286, 59)
+xp = 9900.0
+
+[node name="Slime4" parent="." unique_id=1170439229 instance=ExtResource("4_p0l4u")]
+position = Vector2(286, 135)
+xp = 9900.0
+
 [node name="LevelTransition" parent="." unique_id=1459471275 instance=ExtResource("5_rsf30")]
 position = Vector2(584, 80)
 collision_layer = 16

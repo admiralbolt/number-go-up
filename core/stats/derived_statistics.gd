@@ -384,7 +384,6 @@ func initialize(p_entity: Entity) -> void:
   self.block_coefficient_multiplier = DerivedStatistic.make("Block Coefficient Multiplier", base_block_coefficient_multiplier, {
     "luck": 0.0001
   }, p_entity)
-  
 
   
 func debug_print() -> void:
