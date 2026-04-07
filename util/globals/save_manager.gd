@@ -11,7 +11,7 @@ func save_game() -> void:
   save_data.player_attributes = PlayerManager.player.attributes
   save_data.player_derived_statistics = PlayerManager.player.derived_statistics
   save_data.player_skills = PlayerManager.player.skills
-  save_data.player_stat_ordering = PlayerManager.player.stat_ordering
+  save_data.player_class = PlayerManager.player.character_class
 
   save_data.current_xp = PlayerManager.player.xp
   save_data.starting_xp_this_level = PlayerManager.player.starting_xp_this_level
@@ -47,7 +47,7 @@ func load_game() -> void:
   PlayerManager.player.derived_statistics = save_data.player_derived_statistics
   PlayerManager.player.skills = save_data.player_skills
   PlayerManager.player.initialize_stats()
-  PlayerManager.player.stat_ordering = save_data.player_stat_ordering
+  PlayerManager.player.character_class = save_data.player_class
 
   PlayerManager.player.xp = save_data.current_xp
   PlayerManager.player.starting_xp_this_level = save_data.starting_xp_this_level

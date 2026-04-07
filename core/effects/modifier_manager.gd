@@ -131,7 +131,7 @@ func get_static_modifiers() -> ModifierList:
   """
   var static_modifiers: ModifierList = ModifierList.new()
   for modifier in self.all_modifiers.modifiers:
-    if modifier.source_type == Modifier.ModifierSource.EQUIPMENT:
+    if modifier.source_type == Modifier.ModifierSource.EQUIPMENT or modifier.source_type == Modifier.ModifierSource.SKILL_NODE:
       static_modifiers.modifiers.append(modifier)
 
   return static_modifiers

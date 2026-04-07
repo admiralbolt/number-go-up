@@ -10,7 +10,8 @@ class_name Modifier extends Resource
 enum ModifierSource {
   DIVINE,
   EQUIPMENT,
-  SPELL
+  SPELL,
+  SKILL_NODE,
 }
 
 enum ModifierTarget {
@@ -106,4 +107,4 @@ func _get_mod_char() -> String:
   return "?"
 
 func readable_string() -> String:
-  return "%s (%s%s)" % [self.source_name, self._get_mod_char(), self.get_total_value()]
+  return "%s (%s%s)" % [self.source_name, self._get_mod_char(), self.get_total_value() + (1 if self.modifier_type == ModifierType.MULTIPLICATIVE else 0)]

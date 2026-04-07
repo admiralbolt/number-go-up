@@ -6,7 +6,7 @@ class_name Player extends Entity
 @onready var main_player_state_machine: MainPlayerStateMachine = $MainPlayerStateMachine
 
 # Character customization options.
-@export var stat_ordering: StatOrdering = StatOrdering.make_default()
+@export var character_class: CharacterClass = SlayerClass.new()
 
 var held_direction: Vector2 = Vector2.DOWN
 var facing: Vector2 = Vector2.DOWN
@@ -24,14 +24,16 @@ func _ready() -> void:
   super._ready()
 
 func level_up() -> void:
-  for attr_name in self.stat_ordering.stat_weights:
-    self.attributes.get(attr_name).value += RPGUtil.get_attribute_level_bonus(int(self.attributes.level.value), self.stat_ordering.stat_weights[attr_name])
+  for attr_name in self.character_class.stat_ordering.stat_weights:
+    self.attributes.get(attr_name).value += RPGUtil.get_attribute_level_bonus(int(self.attributes.level.value), self.character_class.stat_ordering.stat_weights[attr_name])
   
   self.attributes.level.value += 1
   self.attributes.level.compute_total()
 
   self.starting_xp_this_level = self.total_xp_to_next_level
   self.total_xp_to_next_level = RPGUtil.total_xp_for_next_skill_level(int(self.attributes.level.value))
+
+  self.character_class.skill_tree.skill_nodes[SkillProwess.NAME].add_stack()
 
 func add_xp(amount: float) -> void:
   self.xp += amount
