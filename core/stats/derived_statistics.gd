@@ -20,6 +20,7 @@ const ATTACK_SPEED: String = "attack_speed"
 const CRITICAL_GAIN: String = "critical_gain"
 const CRITICAL_MULTIPLIER: String = "critical_multiplier"
 const RANGE_MULTIPLIER: String = "range_multiplier"
+const KNOCKBACK: String = "knockback"
 
 # Defence!
 const FORTITUDE_SAVE: String = "fortitude_save"
@@ -28,6 +29,7 @@ const WILL_SAVE: String = "will_save"
 const MIND_SAVE: String = "mind_save"
 
 const ARMOR: String = "armor"
+const POISE: String = "poise"
 const FORCE_RESISTANCE: String = "force_resistance"
 const FIRE_RESISTANCE: String = "fire_resistance"
 const COLD_RESISTANCE: String = "cold_resistance"
@@ -235,13 +237,13 @@ var block_coefficient_multiplier: DerivedStatistic
 func initialize(p_entity: Entity) -> void:
   """Lord forgive me for I have sinned. This is a lot."""
   # Bar stats.
-  self.max_health = DerivedStatistic.make("Max Health", base_max_health, {
+  self.max_health = DerivedStatistic.make(MAX_HEALTH, "Max Health", base_max_health, {
     "level": 5.0,
     "constitution": 0.1,
     "strength": 0.03,
   }, p_entity)
 
-  self.max_mana = DerivedStatistic.make("Max Mana", base_max_mana, {
+  self.max_mana = DerivedStatistic.make(MAX_MANA, "Max Mana", base_max_mana, {
     "level": 2.0,
     "intelligence": 0.1,
     "spirit": 0.04,
@@ -249,7 +251,7 @@ func initialize(p_entity: Entity) -> void:
     "charisma": 0.01
   }, p_entity)
 
-  self.max_stamina = DerivedStatistic.make("Max Stamina", base_max_stamina, {
+  self.max_stamina = DerivedStatistic.make(MAX_STAMINA, "Max Stamina", base_max_stamina, {
     "level": 3.0,
     "constitution": 0.05,
     "strength": 0.04,
@@ -257,20 +259,20 @@ func initialize(p_entity: Entity) -> void:
     "spirit": 0.02,
   }, p_entity)
 
-  self.health_regen = DerivedStatistic.make("Health Regeneration", base_health_regen, {
+  self.health_regen = DerivedStatistic.make(HEALTH_REGEN, "Health Regeneration", base_health_regen, {
     "constitution": 0.014,
     "strength": 0.007,
     "agility": 0.002
   }, p_entity)
 
-  self.mana_regen = DerivedStatistic.make("Mana Regeneration", base_mana_regen, {
+  self.mana_regen = DerivedStatistic.make(MANA_REGEN, "Mana Regeneration", base_mana_regen, {
     "intelligence": 0.02,
     "spirit": 0.01,
     "wisdom": 0.01,
     "charisma": 0.005
   }, p_entity)
 
-  self.stamina_regen = DerivedStatistic.make("Stamina Regeneration", base_stamina_regen, {
+  self.stamina_regen = DerivedStatistic.make(STAMINA_REGEN, "Stamina Regeneration", base_stamina_regen, {
     "constitution": 0.01,
     "strength": 0.008,
     "agility": 0.006,
@@ -278,110 +280,110 @@ func initialize(p_entity: Entity) -> void:
   }, p_entity)
 
   # Offense!
-  self.attack_speed = DerivedStatistic.make("Attack Speed", base_attack_speed, {
+  self.attack_speed = DerivedStatistic.make(ATTACK_SPEED, "Attack Speed", base_attack_speed, {
     "agility": 0.008,
     "dexterity": 0.004
   }, p_entity)
 
-  self.critical_gain = DerivedStatistic.make("Critical Gain", base_critical_gain, {
+  self.critical_gain = DerivedStatistic.make(CRITICAL_GAIN, "Critical Gain", base_critical_gain, {
     "luck": 0.0004,
     "dexterity": 0.0002
   }, p_entity)
 
-  self.critical_multiplier = DerivedStatistic.make("Critical Multiplier", base_critical_multiplier, {
+  self.critical_multiplier = DerivedStatistic.make(CRITICAL_MULTIPLIER, "Critical Multiplier", base_critical_multiplier, {
     "luck": 0.005,
     "strength": 0.002
   }, p_entity)
 
-  self.range_multiplier = DerivedStatistic.make("Range Multiplier", base_range_multiplier, {}, p_entity)
+  self.range_multiplier = DerivedStatistic.make(RANGE_MULTIPLIER, "Range Multiplier", base_range_multiplier, {}, p_entity)
 
-  self.knockback = DerivedStatistic.make("Knockback", base_knockback, {
+  self.knockback = DerivedStatistic.make(KNOCKBACK, "Knockback", base_knockback, {
     "strength": 0.21
   }, p_entity)
 
   # Defence!
-  self.fortitude_save = DerivedStatistic.make("Fortitude Save", base_fortitude_save, {
+  self.fortitude_save = DerivedStatistic.make(FORTITUDE_SAVE, "Fortitude Save", base_fortitude_save, {
     "constitution": 0.08,
     "strength": 0.03,
     "luck": 0.009
   }, p_entity)
 
-  self.reflex_save = DerivedStatistic.make("Reflex Save", base_reflex_save, {
+  self.reflex_save = DerivedStatistic.make(REFLEX_SAVE, "Reflex Save", base_reflex_save, {
     "agility": 0.08,
     "dexterity": 0.03,
     "luck": 0.009
   }, p_entity)
 
-  self.will_save = DerivedStatistic.make("Will Save", base_will_save, {
+  self.will_save = DerivedStatistic.make(WILL_SAVE, "Will Save", base_will_save, {
     "wisdom": 0.08,
     "spirit": 0.03,
     "luck": 0.009
   }, p_entity)
 
-  self.mind_save = DerivedStatistic.make("Mind Save", base_mind_save, {
+  self.mind_save = DerivedStatistic.make(MIND_SAVE, "Mind Save", base_mind_save, {
     "intelligence": 0.08,
     "charisma": 0.03,
     "luck": 0.009
   }, p_entity)
 
-  self.armor = DerivedStatistic.make("Armor", base_armor, {}, p_entity)
-  self.poise = DerivedStatistic.make("Poise", base_poise, {
+  self.armor = DerivedStatistic.make(ARMOR, "Armor", base_armor, {}, p_entity)
+  self.poise = DerivedStatistic.make(POISE, "Poise", base_poise, {
     "constitution": 0.06,
     "strength": 0.04
   }, p_entity)
-  self.force_resistance = DerivedStatistic.make("Force Resistance", base_force_resistance, {}, p_entity)
-  self.fire_resistance = DerivedStatistic.make("Fire Resistance", base_fire_resistance, {}, p_entity)
-  self.cold_resistance = DerivedStatistic.make("Cold Resistance", base_cold_resistance, {}, p_entity)
-  self.lightning_resistance = DerivedStatistic.make("Lightning Resistance", base_lightning_resistance, {}, p_entity)
-  self.sonic_resistance = DerivedStatistic.make("Sonic Resistance", base_sonic_resistance, {}, p_entity)
-  self.acid_resistance = DerivedStatistic.make("Acid Resistance", base_acid_resistance, {}, p_entity)
-  self.poison_resistance = DerivedStatistic.make("Poison Resistance", base_poison_resistance, {}, p_entity)
-  self.bleed_resistance = DerivedStatistic.make("Bleed Resistance", base_bleed_resistance, {}, p_entity)
-  self.holy_resistance = DerivedStatistic.make("Holy Resistance", base_holy_resistance, {}, p_entity)
-  self.dark_resistance = DerivedStatistic.make("Dark Resistance", base_dark_resistance, {}, p_entity)
+  self.force_resistance = DerivedStatistic.make(FORCE_RESISTANCE, "Force Resistance", base_force_resistance, {}, p_entity)
+  self.fire_resistance = DerivedStatistic.make(FIRE_RESISTANCE, "Fire Resistance", base_fire_resistance, {}, p_entity)
+  self.cold_resistance = DerivedStatistic.make(COLD_RESISTANCE, "Cold Resistance", base_cold_resistance, {}, p_entity)
+  self.lightning_resistance = DerivedStatistic.make(LIGHTNING_RESISTANCE, "Lightning Resistance", base_lightning_resistance, {}, p_entity)
+  self.sonic_resistance = DerivedStatistic.make(SONIC_RESISTANCE, "Sonic Resistance", base_sonic_resistance, {}, p_entity)
+  self.acid_resistance = DerivedStatistic.make(ACID_RESISTANCE, "Acid Resistance", base_acid_resistance, {}, p_entity)
+  self.poison_resistance = DerivedStatistic.make(POISON_RESISTANCE, "Poison Resistance", base_poison_resistance, {}, p_entity)
+  self.bleed_resistance = DerivedStatistic.make(BLEED_RESISTANCE, "Bleed Resistance", base_bleed_resistance, {}, p_entity)
+  self.holy_resistance = DerivedStatistic.make(HOLY_RESISTANCE, "Holy Resistance", base_holy_resistance, {}, p_entity)
+  self.dark_resistance = DerivedStatistic.make(DARK_RESISTANCE, "Dark Resistance", base_dark_resistance, {}, p_entity)
 
-  self.piercing_reduction = DerivedStatistic.make("Piercing Reduction", base_piercing_reduction, {}, p_entity)
-  self.slashing_reduction = DerivedStatistic.make("Slashing Reduction", base_slashing_reduction, {}, p_entity)
-  self.bludgeoning_reduction = DerivedStatistic.make("Bludgeoning Reduction", base_bludgeoning_reduction, {}, p_entity)
-  self.force_reduction = DerivedStatistic.make("Force Reduction", base_force_reduction, {}, p_entity)
-  self.fire_reduction = DerivedStatistic.make("Fire Reduction", base_fire_reduction, {}, p_entity)
-  self.cold_reduction = DerivedStatistic.make("Cold Reduction", base_cold_reduction, {}, p_entity)
-  self.lightning_reduction = DerivedStatistic.make("Lightning Reduction", base_lightning_reduction, {}, p_entity)
-  self.sonic_reduction = DerivedStatistic.make("Sonic Reduction", base_sonic_reduction, {}, p_entity)
-  self.acid_reduction = DerivedStatistic.make("Acid Reduction", base_acid_reduction, {}, p_entity)
-  self.poison_reduction = DerivedStatistic.make("Poison Reduction", base_poison_reduction, {}, p_entity)
-  self.bleed_reduction = DerivedStatistic.make("Bleed Reduction", base_bleed_reduction, {}, p_entity)
-  self.holy_reduction = DerivedStatistic.make("Holy Reduction", base_holy_reduction, {}, p_entity)
-  self.dark_reduction = DerivedStatistic.make("Dark Reduction", base_dark_reduction, {}, p_entity)
+  self.piercing_reduction = DerivedStatistic.make(PIERCING_REDUCTION, "Piercing Reduction", base_piercing_reduction, {}, p_entity)
+  self.slashing_reduction = DerivedStatistic.make(SLASHING_REDUCTION, "Slashing Reduction", base_slashing_reduction, {}, p_entity)
+  self.bludgeoning_reduction = DerivedStatistic.make(BLUDGEONING_REDUCTION, "Bludgeoning Reduction", base_bludgeoning_reduction, {}, p_entity)
+  self.force_reduction = DerivedStatistic.make(FORCE_REDUCTION, "Force Reduction", base_force_reduction, {}, p_entity)
+  self.fire_reduction = DerivedStatistic.make(FIRE_REDUCTION, "Fire Reduction", base_fire_reduction, {}, p_entity)
+  self.cold_reduction = DerivedStatistic.make(COLD_REDUCTION, "Cold Reduction", base_cold_reduction, {}, p_entity)
+  self.lightning_reduction = DerivedStatistic.make(LIGHTNING_REDUCTION, "Lightning Reduction", base_lightning_reduction, {}, p_entity)
+  self.sonic_reduction = DerivedStatistic.make(SONIC_REDUCTION, "Sonic Reduction", base_sonic_reduction, {}, p_entity)
+  self.acid_reduction = DerivedStatistic.make(ACID_REDUCTION, "Acid Reduction", base_acid_reduction, {}, p_entity)
+  self.poison_reduction = DerivedStatistic.make(POISON_REDUCTION, "Poison Reduction", base_poison_reduction, {}, p_entity)
+  self.bleed_reduction = DerivedStatistic.make(BLEED_REDUCTION, "Bleed Reduction", base_bleed_reduction, {}, p_entity)
+  self.holy_reduction = DerivedStatistic.make(HOLY_REDUCTION, "Holy Reduction", base_holy_reduction, {}, p_entity)
+  self.dark_reduction = DerivedStatistic.make(DARK_REDUCTION, "Dark Reduction", base_dark_reduction, {}, p_entity)
 
   # Misc.
-  self.movement_speed = DerivedStatistic.make("Movement Speed", base_movement_speed, {
+  self.movement_speed = DerivedStatistic.make(MOVEMENT_SPEED, "Movement Speed", base_movement_speed, {
     "agility": 0.1,
     "dexterity": 0.02
   }, p_entity)
 
-  self.xp_multiplier = DerivedStatistic.make("XP Multiplier", base_xp_multiplier, {
+  self.xp_multiplier = DerivedStatistic.make(XP_MULTIPLIER, "XP Multiplier", base_xp_multiplier, {
     "luck": 0.0001
   }, p_entity)
 
   # Lucky.
-  self.proc_coefficient_multiplier = DerivedStatistic.make("Proc Coefficient Multiplier", base_proc_coefficient_multiplier, {
+  self.proc_coefficient_multiplier = DerivedStatistic.make(PROC_COEFFICIENT_MULTIPLIER, "Proc Coefficient Multiplier", base_proc_coefficient_multiplier, {
     "luck": 0.0001
   }, p_entity)
 
-  self.kill_coefficient_multiplier = DerivedStatistic.make("Kill Coefficient Multiplier", base_kill_coefficient_multiplier, {
+  self.kill_coefficient_multiplier = DerivedStatistic.make(KILL_COEFFICIENT_MULTIPLIER, "Kill Coefficient Multiplier", base_kill_coefficient_multiplier, {
     "luck": 0.0001
   }, p_entity)
 
-  self.damaged_coefficient_multiplier = DerivedStatistic.make("Damaged Coefficient Multiplier", base_damaged_coefficient_multiplier, {
+  self.damaged_coefficient_multiplier = DerivedStatistic.make(DAMAGED_COEFFICIENT_MULTIPLIER, "Damaged Coefficient Multiplier", base_damaged_coefficient_multiplier, {
     "luck": 0.0001
   }, p_entity)
 
-  self.dodge_coefficient_multiplier = DerivedStatistic.make("Dodge Coefficient Multiplier", base_dodge_coefficient_multiplier, {
+  self.dodge_coefficient_multiplier = DerivedStatistic.make(DODGE_COEFFICIENT_MULTIPLIER, "Dodge Coefficient Multiplier", base_dodge_coefficient_multiplier, {
     "luck": 0.0001
   }, p_entity)
 
-  self.block_coefficient_multiplier = DerivedStatistic.make("Block Coefficient Multiplier", base_block_coefficient_multiplier, {
+  self.block_coefficient_multiplier = DerivedStatistic.make(BLOCK_COEFFICIENT_MULTIPLIER, "Block Coefficient Multiplier", base_block_coefficient_multiplier, {
     "luck": 0.0001
   }, p_entity)
 

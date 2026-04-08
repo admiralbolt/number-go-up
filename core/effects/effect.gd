@@ -26,6 +26,9 @@ func remove(_target: Entity) -> void:
 func get_unique_name() -> String:
   return ""
 
+func merge(_target:Entity, _other: Effect) -> void:
+  return
+
 func process(_target: Entity, delta: float) -> bool:
   """Processes the effect.
 

@@ -11,7 +11,8 @@ enum ModifierSource {
   DIVINE,
   EQUIPMENT,
   SPELL,
-  SKILL_NODE,
+  SKILL_NODE_PASSIVE,
+  SKILL_NODE_TRIGGERED
 }
 
 enum ModifierTarget {
@@ -94,6 +95,11 @@ func apply(base_value: float) -> float:
   print("Unknown modifier type: %s" % self.modifier_type)
   return base_value
 
+func get_total_time_left() -> float:
+  if not self.is_stackable:
+    return self.timer
+
+  return self.timer + (self.stack_count - 1) * self.duration
 
 func _to_string() -> String:
   return "Modifier(%s) %s, %s, %s, value: %.2f, type: %s, priority: %s, sentiment: %s, duration: %s, timer: %s, is_timed: %s, is_stackable: %s, stack_count: %s, stack_fall_off: %s" % [self.unique_name, self.source_name, ModifierSource.keys()[self.source_type], self.stat_name, self.value, ModifierType.keys()[self.modifier_type], ModifierPriority.keys()[self.modifier_priority], ModifierSentiment.keys()[self.sentiment], self.duration, self.timer, self.is_timed, self.is_stackable, self.stack_count, self.stack_fall_off]

@@ -11,7 +11,7 @@ func _ready() -> void:
   if self.derived_statistic == null:
     # Make a fake slime :p
     var slime: Slime = Slime.new()
-    self.set_derived_statistic(DerivedStatistic.make("Max Health", 100.0, {
+    self.set_derived_statistic(DerivedStatistic.make(DerivedStatistics.MAX_HEALTH, "Max Health", 100.0, {
       "constitution": 0.1,
       "strength": 0.03,
     }, slime))
@@ -22,7 +22,7 @@ func _ready() -> void:
 func set_derived_statistic(p_derived_statistic: DerivedStatistic) -> void:
   self.derived_statistic = p_derived_statistic
   self.derived_statistic.changed.connect(self.update)
-  self.derived_statistic_name_label.text = self.derived_statistic.name.capitalize()
+  self.derived_statistic_name_label.text = self.derived_statistic.pretty_name
   self.update()
 
 func update() -> void:

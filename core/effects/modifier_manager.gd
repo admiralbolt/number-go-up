@@ -6,10 +6,10 @@ signal recomputes(recompute_targets: Dictionary[Modifier.ModifierTarget, Recompu
 
 var modifier_by_stat: Dictionary[String, ModifierPriorityQueue] = {}
 
-func add_modifiers(modifiers: Array[Modifier]) -> void:
+func add_modifiers(modifiers: Array[Modifier], debug: bool = false) -> void:
   var recompute_targets: Dictionary[Modifier.ModifierTarget, RecomputeTargetList] = {}
   for modifier in modifiers:
-    if self.add_modifier(modifier, false):
+    if self.add_modifier(modifier, false, debug):
       var target_list: RecomputeTargetList = recompute_targets.get(modifier.target_type)
       if target_list == null:
         target_list = RecomputeTargetList.new()
@@ -17,9 +17,15 @@ func add_modifiers(modifiers: Array[Modifier]) -> void:
       target_list.targets.append(RecomputeTarget.new(modifier.target_type, modifier.stat_name))
 
   if recompute_targets.size() > 0:
+    if debug:
+      print("Emitting recomputes...")
+      for target_type in recompute_targets:
+        print("Target type: %s" % target_type)
+        for target in recompute_targets[target_type].targets:
+          print("\tStat name: %s" % target.stat_name)
     self.recomputes.emit(recompute_targets)
 
-func add_modifier(modifier: Modifier, emit_recompute: bool = true) -> bool:
+func add_modifier(modifier: Modifier, emit_recompute: bool = true, debug: bool = false) -> bool:
   """Returns a bool value indicating if we need to recompute."""
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(modifier.stat_name)
   if modifier_queue == null:
@@ -28,6 +34,9 @@ func add_modifier(modifier: Modifier, emit_recompute: bool = true) -> bool:
 
   # If a modifier doesn't exist, add it and return.
   var existing_modifier: Modifier = self.get_modifier(modifier)
+
+  if debug:
+    print("Adding modifier: %s. Existing modifier: %s" % [modifier.readable_string(), existing_modifier.readable_string() if existing_modifier else "None"])
 
   if existing_modifier == null:
     self.all_modifiers.modifiers.append(modifier)
@@ -44,7 +53,7 @@ func add_modifier(modifier: Modifier, emit_recompute: bool = true) -> bool:
     existing_modifier.stack_count += modifier.stack_count
     if emit_recompute:
       self.recomputes.emit(emit_data(modifier))
-      return true
+    return true
 
   return false
 
@@ -98,8 +107,12 @@ func remove_modifier(modifier: Modifier) -> void:
   modifier_queue.remove_modifier(modifier)
   self.recomputes.emit(emit_data(modifier))
 
-func compute_total(stat_name: String, base_value: float) -> float:
+func compute_total(stat_name: String, base_value: float, debug: bool = false) -> float:
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(stat_name)
+  if debug:
+    print("Computing total for stat: %s with base value: %.2f" % [stat_name, base_value])
+    print("List of keys in modifier_by_stat:")
+    print(modifier_by_stat.keys())
   if modifier_queue == null:
     return base_value
 
@@ -131,7 +144,7 @@ func get_static_modifiers() -> ModifierList:
   """
   var static_modifiers: ModifierList = ModifierList.new()
   for modifier in self.all_modifiers.modifiers:
-    if modifier.source_type == Modifier.ModifierSource.EQUIPMENT or modifier.source_type == Modifier.ModifierSource.SKILL_NODE:
+    if modifier.source_type == Modifier.ModifierSource.EQUIPMENT or modifier.source_type == Modifier.ModifierSource.SKILL_NODE_PASSIVE:
       static_modifiers.modifiers.append(modifier)
 
   return static_modifiers
@@ -248,6 +261,12 @@ static func emit_data(modifier: Modifier) -> Dictionary[Modifier.ModifierTarget,
 class RecomputeTargetList:
   var targets: Array[RecomputeTarget] = []
 
+  func _to_string() -> String:
+    if targets.size() == 0:
+      return "RecomputeTargetList []"
+
+    var stat_names: String = ", ".join(targets.map(func(target: RecomputeTarget) -> String: return target.stat_name))
+    return "RecomputeTargetList [%s] -> %s" % [targets[0].target_type, stat_names]
 
 class RecomputeTarget:
   var target_type: Modifier.ModifierTarget

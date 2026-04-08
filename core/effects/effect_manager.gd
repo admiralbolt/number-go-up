@@ -42,6 +42,9 @@ func apply_effect(effect: Effect) -> void:
   if existing_effect == null:
     effect.timer = effect.duration
     active_effects.append(effect)
+    return
+
+  existing_effect.merge(self.entity, effect)
 
 func get_effect(effect: Effect) -> Effect:
   for active_effect in active_effects:

@@ -80,6 +80,12 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
   # Damage should be a minimum of 1.
   total_damage = max(total_damage, 1)
 
+  if owner is Player:
+    SignalBus.on_player_attack_landed.emit(target, hit_box, total_damage)
+
+  if target is Player:
+    SignalBus.on_player_damaged.emit(target, hit_box, total_damage)
+
   target.current_health -= total_damage
   target.damaged.emit(hit_box)
 
@@ -87,4 +93,4 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
     target.died.emit(hit_box)
     if owner is Player:
       owner.add_xp(target.xp)
-    
+      SignalBus.on_player_killed_enemy.emit(target, hit_box, total_damage)

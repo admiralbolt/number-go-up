@@ -33,7 +33,8 @@ func level_up() -> void:
   self.starting_xp_this_level = self.total_xp_to_next_level
   self.total_xp_to_next_level = RPGUtil.total_xp_for_next_skill_level(int(self.attributes.level.value))
 
-  self.character_class.skill_tree.skill_nodes[SkillProwess.NAME].add_stack()
+  self.character_class.skill_tree.skill_nodes[SkillProwess.NAME].add_rank()
+  self.character_class.skill_tree.skill_nodes[SkillHuntress.NAME].add_rank()
 
 func add_xp(amount: float) -> void:
   self.xp += amount

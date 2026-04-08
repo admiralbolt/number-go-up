@@ -11,7 +11,7 @@ func save_game() -> void:
   save_data.player_attributes = PlayerManager.player.attributes
   save_data.player_derived_statistics = PlayerManager.player.derived_statistics
   save_data.player_skills = PlayerManager.player.skills
-  save_data.player_class = PlayerManager.player.character_class
+  save_data.player_class = PlayerManager.player.character_class.duplicate(true)
 
   save_data.current_xp = PlayerManager.player.xp
   save_data.starting_xp_this_level = PlayerManager.player.starting_xp_this_level
@@ -21,14 +21,14 @@ func save_game() -> void:
   save_data.current_stamina = PlayerManager.player.current_stamina
   save_data.player_position = PlayerManager.player.position
 
-  save_data.active_static_modifiers = PlayerManager.player.modifier_manager.get_static_modifiers()
-  save_data.active_effects = PlayerManager.player.effect_manager.active_effects
+  save_data.active_static_modifiers = PlayerManager.player.modifier_manager.get_static_modifiers().duplicate(true)
+  save_data.active_effects = PlayerManager.player.effect_manager.active_effects.duplicate(true)
 
   ResourceSaver.save(save_data, SAVE_PATH + "save_game.tres")
   self.game_saved.emit()
 
 func load_game() -> void:
-  var save_data: Resource = ResourceLoader.load(SAVE_PATH + "save_game.tres")
+  var save_data: Resource = ResourceLoader.load(SAVE_PATH + "save_game.tres", "SaveData", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
   if save_data == null:
     print("No save data found.")
     return
@@ -39,9 +39,12 @@ func load_game() -> void:
 
   LevelManager.load_new_level(save_data.scene_path, "", Vector2.ZERO, true)
   await SignalBus.level_load_started
+  
+  PlayerManager.player.modifier_manager.reinitialize(save_data.active_static_modifiers.duplicate(true))
+  PlayerManager.player.modifier_manager.debug_print()
 
-  PlayerManager.player.modifier_manager.reinitialize(save_data.active_static_modifiers)
-  PlayerManager.player.effect_manager.reinitialize(save_data.active_effects)
+  PlayerManager.player.effect_manager.reinitialize(save_data.active_effects.duplicate(true))
+  PlayerManager.player.modifier_manager.debug_print()
 
   PlayerManager.player.attributes = save_data.player_attributes
   PlayerManager.player.derived_statistics = save_data.player_derived_statistics
