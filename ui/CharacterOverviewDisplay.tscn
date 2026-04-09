@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://sngq2qccwxk8"]
+
+[ext_resource type="Script" uid="uid://cqeyhqbcies0q" path="res://ui/character_overview_display.gd" id="1_yx8ui"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="2_wcim4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yx8ui"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lhdq"]
+bg_color = Color(0.8535184, 0.49865788, 0.2167539, 1)
+
+[node name="CharacterOverviewDisplay" type="Control" unique_id=1653443344]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_yx8ui")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1293597877]
+layout_mode = 0
+offset_right = 888.0
+offset_bottom = 1132.0
+focus_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1947148164]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 2
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1149677878]
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("2_wcim4")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yx8ui")
+text = "Lvl. 5"
+
+[node name="ClassLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=738586974]
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("2_wcim4")
+theme_override_font_sizes/font_size = 18
+text = "Barbarian"
+
+[node name="XPLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=2086556547]
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("2_wcim4")
+theme_override_font_sizes/font_size = 16
+text = "343 / 1500"
+
+[node name="XPBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/XPLabel" unique_id=1279751843]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 61.0
+offset_bottom = 19.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_2lhdq")
+show_percentage = false

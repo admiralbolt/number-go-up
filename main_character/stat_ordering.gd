@@ -10,9 +10,6 @@ static func make_default() -> StatOrdering:
   var base_weight: float = 12.0
 
   for attr_name in Attributes.ALL_ATTRIBUTES:
-    if attr_name == Attributes.LEVEL:
-      continue
-    
     stat_ordering.stat_weights[attr_name] = base_weight
     base_weight -= 1
 

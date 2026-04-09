@@ -12,6 +12,7 @@ class_name SaveData extends Resource
 @export var player_derived_statistics: DerivedStatistics
 @export var player_skills: Skills
 @export var player_class: CharacterClass
+@export var player_level: int
 
 @export var current_xp: float
 @export var starting_xp_this_level: float

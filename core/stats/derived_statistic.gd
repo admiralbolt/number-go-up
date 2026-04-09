@@ -1,6 +1,6 @@
 class_name DerivedStatistic extends Resource
 
-@export var base_value: float = 0.0
+@export var base_value: float = 0.0: set = _set_base_value
 
 var name: String = ""
 var pretty_name: String = ""
@@ -8,6 +8,16 @@ var weights: Dictionary[String, float] = {}
 var attr_references: Dictionary[String, Attribute] = {}
 var entity: Entity
 var total_value: float = base_value
+
+func _set_base_value(p_base_value: float) -> void:
+  if p_base_value == base_value:
+    return
+  
+  base_value = p_base_value
+  # We only want to trigger a recompute if the statistic has been initialized
+  # with an entity.
+  if entity != null:
+    compute_total()
 
 func initialize(p_entity: Entity) -> void:
   # This is being done separate from the constructor because the attribute

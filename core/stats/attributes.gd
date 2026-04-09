@@ -1,7 +1,5 @@
 class_name Attributes extends Resource
 
-const LEVEL: String = "level"
-
 const STRENGTH: String = "strength"
 const CONSTITUTION: String = "constitution"
 const DEXTERITY: String = "dexterity"
@@ -13,7 +11,6 @@ const CHARISMA: String = "charisma"
 const LUCK: String = "luck"
 
 const ALL_ATTRIBUTES: Array = [
-  LEVEL,
   STRENGTH,
   CONSTITUTION,
   DEXTERITY,
@@ -24,8 +21,6 @@ const ALL_ATTRIBUTES: Array = [
   CHARISMA,
   LUCK,
 ]
-
-@export var level: Attribute = Attribute.make(LEVEL, 1.0)
 
 @export var strength: Attribute = Attribute.make(STRENGTH, 50.0)
 @export var constitution: Attribute = Attribute.make(CONSTITUTION, 50.0)
@@ -38,12 +33,12 @@ const ALL_ATTRIBUTES: Array = [
 @export var luck: Attribute = Attribute.make(LUCK, 50.0)
 
 func initialize(p_entity: Entity) -> void:
-  for attr in [level, strength, constitution, dexterity, agility, spirit, wisdom, intelligence, charisma, luck]:
+  for attr in [strength, constitution, dexterity, agility, spirit, wisdom, intelligence, charisma, luck]:
     attr.entity = p_entity
     attr.compute_total()
 
 
 func debug_print() -> void:
   print("Attributes:")
-  for attr in [level, strength, constitution, dexterity, agility, spirit, wisdom, intelligence, charisma, luck]:
+  for attr in [strength, constitution, dexterity, agility, spirit, wisdom, intelligence, charisma, luck]:
     print("  %s" % attr)

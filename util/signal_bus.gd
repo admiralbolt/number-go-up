@@ -14,6 +14,10 @@ signal pause_menu_closed
 ### Level up!
 signal skill_level_up(skill_name: String, new_level: int)
 
+### Class Stuffs.
+signal skill_node_rank_up(skill_node_name: String, new_rank: int)
+signal skill_node_rank_down(skill_node_name: String, new_rank: int)
+
 ### Damage Signals
 signal on_player_damaged(target: Entity, hit_box: HitBox, total_damage: float)
 signal on_player_attack_landed(target: Entity, hit_box: HitBox, total_damage: float)

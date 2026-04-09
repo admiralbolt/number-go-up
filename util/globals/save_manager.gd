@@ -12,6 +12,7 @@ func save_game() -> void:
   save_data.player_derived_statistics = PlayerManager.player.derived_statistics
   save_data.player_skills = PlayerManager.player.skills
   save_data.player_class = PlayerManager.player.character_class.duplicate(true)
+  save_data.player_level = PlayerManager.player.level
 
   save_data.current_xp = PlayerManager.player.xp
   save_data.starting_xp_this_level = PlayerManager.player.starting_xp_this_level
@@ -39,18 +40,16 @@ func load_game() -> void:
 
   LevelManager.load_new_level(save_data.scene_path, "", Vector2.ZERO, true)
   await SignalBus.level_load_started
-  
-  PlayerManager.player.modifier_manager.reinitialize(save_data.active_static_modifiers.duplicate(true))
-  PlayerManager.player.modifier_manager.debug_print()
 
+  PlayerManager.player.modifier_manager.reinitialize(save_data.active_static_modifiers.duplicate(true))
   PlayerManager.player.effect_manager.reinitialize(save_data.active_effects.duplicate(true))
-  PlayerManager.player.modifier_manager.debug_print()
 
   PlayerManager.player.attributes = save_data.player_attributes
   PlayerManager.player.derived_statistics = save_data.player_derived_statistics
   PlayerManager.player.skills = save_data.player_skills
   PlayerManager.player.initialize_stats()
   PlayerManager.player.character_class = save_data.player_class
+  PlayerManager.player.level = save_data.player_level
 
   PlayerManager.player.xp = save_data.current_xp
   PlayerManager.player.starting_xp_this_level = save_data.starting_xp_this_level

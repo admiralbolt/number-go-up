@@ -43,6 +43,7 @@ func add_rank() -> void:
   for modifier in self.create_modifiers().modifiers:
     PlayerManager.player.modifier_manager.add_modifier(modifier)
   self.ranks += 1
+  SignalBus.skill_node_rank_up.emit(self.name, self.ranks)
 
 func remove_rank() -> void:
   if self.ranks <= 0:
@@ -51,3 +52,4 @@ func remove_rank() -> void:
   for modifier in self.create_modifiers().modifiers:
     PlayerManager.player.modifier_manager.remove_modifier(modifier)
   self.ranks -= 1
+  SignalBus.skill_node_rank_down.emit(self.name, self.ranks)

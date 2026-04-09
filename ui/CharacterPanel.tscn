@@ -22,8 +22,28 @@ offset_right = 344.0
 offset_bottom = 28.0
 focus_mode = 2
 
+[node name="OverviewButton" type="Button" parent="HBoxContainer" unique_id=218054600]
+custom_minimum_size = Vector2(64, 26)
+layout_mode = 2
+focus_neighbor_left = NodePath("../SkillsButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../StatisticsButton")
+focus_neighbor_bottom = NodePath(".")
+theme = ExtResource("1_ved6e")
+text = "Overview"
+
+[node name="ClassButton" type="Button" parent="HBoxContainer" unique_id=1079575598]
+custom_minimum_size = Vector2(64, 28)
+layout_mode = 2
+focus_neighbor_left = NodePath("../SkillsButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../StatisticsButton")
+focus_neighbor_bottom = NodePath(".")
+theme = ExtResource("1_ved6e")
+text = "Class"
+
 [node name="AttributesButton" type="Button" parent="HBoxContainer" unique_id=841390179]
-custom_minimum_size = Vector2(112, 28)
+custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 focus_neighbor_left = NodePath("../SkillsButton")
 focus_neighbor_top = NodePath(".")
@@ -33,7 +53,7 @@ theme = ExtResource("1_ved6e")
 text = "Attributes"
 
 [node name="StatisticsButton" type="Button" parent="HBoxContainer" unique_id=220023096]
-custom_minimum_size = Vector2(112, 28)
+custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 focus_neighbor_left = NodePath("../AttributesButton")
 focus_neighbor_top = NodePath(".")
@@ -43,7 +63,7 @@ theme = ExtResource("1_ved6e")
 text = "Statistics"
 
 [node name="SkillsButton" type="Button" parent="HBoxContainer" unique_id=1044073234]
-custom_minimum_size = Vector2(112, 28)
+custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 focus_neighbor_left = NodePath("../StatisticsButton")
 focus_neighbor_top = NodePath(".")

@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://h1mhae5g4s8a"]
+
+[ext_resource type="Script" uid="uid://bdjbanssplv07" path="res://ui/character_attributes_display.gd" id="1_fjoic"]
+[ext_resource type="PackedScene" uid="uid://b4sl7ganhfmgi" path="res://ui/components/AttributeDisplay.tscn" id="2_pmkfh"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="3_b72xo"]
+
+[node name="CharacterAttributesDisplay" type="Control" unique_id=1004367970]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_fjoic")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1259468616]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3480.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AttrListContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1972742809]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StrengthDisplay" parent="HBoxContainer/AttrListContainer" unique_id=1456681720 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ConstitutionDisplay" parent="HBoxContainer/AttrListContainer" unique_id=1181899049 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="DexterityDisplay" parent="HBoxContainer/AttrListContainer" unique_id=1983532897 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="AgilityDisplay" parent="HBoxContainer/AttrListContainer" unique_id=1599919530 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="SpiritDisplay" parent="HBoxContainer/AttrListContainer" unique_id=1169569223 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="WisdomDisplay" parent="HBoxContainer/AttrListContainer" unique_id=205675864 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="IntelligenceDisplay" parent="HBoxContainer/AttrListContainer" unique_id=729686269 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="CharismaDisplay" parent="HBoxContainer/AttrListContainer" unique_id=1180403354 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LuckDisplay" parent="HBoxContainer/AttrListContainer" unique_id=1424851159 instance=ExtResource("2_pmkfh")]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="AttrDescription" type="RichTextLabel" parent="HBoxContainer" unique_id=1905932167]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_b72xo")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16

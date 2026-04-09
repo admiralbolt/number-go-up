@@ -61,3 +61,4 @@ func _on_kill(_target: Entity, _hit_box: HitBox, _total_damage: float) -> void:
     return
 
   PlayerManager.player.effect_manager.apply_effect(self._create_on_kill_effect())
+ 

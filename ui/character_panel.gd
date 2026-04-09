@@ -2,7 +2,9 @@ class_name CharacterPanel extends Control
 
 # Preload all our sub panel scene.
 const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
-  "AttributesButton": preload("res://ui/CharacterStatsDisplay.tscn"),
+  "OverviewButton": preload("res://ui/CharacterOverviewDisplay.tscn"),
+  "ClassButton": preload("res://ui/CharacterClassDisplay.tscn"),
+  "AttributesButton": preload("res://ui/CharacterAttributesDisplay.tscn"),
   "StatisticsButton": preload("res://ui/CharacterDerivedStatisticsDisplay.tscn"),
   "SkillsButton": preload("res://ui/CharacterSkillsDisplay.tscn"),
 }
