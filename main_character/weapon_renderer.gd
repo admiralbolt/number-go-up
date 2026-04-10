@@ -24,6 +24,7 @@ func change_weapon(weapon: Weapon) -> void:
   self.hit_box.position = sword_shape.shape_position
   self.hit_box.rotation = sword_shape.shape_rotation
   self.hit_box.scale = sword_shape.shape_scale
+  self.hit_box.owning_entity = PlayerManager.player
 
   # Reload animation library.
   self.animator.reset()

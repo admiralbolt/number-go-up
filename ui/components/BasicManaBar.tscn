@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://d1ov70lbgcbfr"]
+
+[ext_resource type="Script" uid="uid://boatgwtuewk2c" path="res://ui/components/basic_mana_bar.gd" id="1_cqsdu"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="1_m7aki"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqsdu"]
+bg_color = Color(0.047058824, 0.19215687, 0.8862745, 1)
+
+[node name="BasicManaBar" type="ProgressBar" unique_id=359831643]
+offset_right = 57.0
+offset_bottom = 8.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_cqsdu")
+value = 100.0
+show_percentage = false
+script = ExtResource("1_cqsdu")
+
+[node name="ManaLabel" type="Label" parent="." unique_id=1523868655]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m7aki")
+theme_override_font_sizes/font_size = 10
+text = "69 / 420"
+horizontal_alignment = 1
+vertical_alignment = 1
