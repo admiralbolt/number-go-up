@@ -119,8 +119,8 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
 @export var base_max_mana: float = 100.0
 @export var base_max_stamina: float = 100.0
 @export var base_health_regen: float = 0.0
-@export var base_mana_regen: float = 1.5
-@export var base_stamina_regen: float = 3.5
+@export var base_mana_regen: float = 1
+@export var base_stamina_regen: float = 2
 
 # Offense!
 @export var base_attack_speed: float = 1.0
@@ -257,23 +257,23 @@ func initialize(p_entity: Entity) -> void:
   }, p_entity)
 
   self.health_regen = DerivedStatistic.make(HEALTH_REGEN, "Health Regeneration", base_health_regen, {
-    "constitution": 0.014,
-    "strength": 0.007,
-    "agility": 0.002
+    "constitution": 0.007,
+    "strength": 0.004,
+    "agility": 0.001
   }, p_entity)
 
   self.mana_regen = DerivedStatistic.make(MANA_REGEN, "Mana Regeneration", base_mana_regen, {
-    "intelligence": 0.02,
-    "spirit": 0.01,
-    "wisdom": 0.01,
-    "charisma": 0.005
+    "intelligence": 0.005,
+    "spirit": 0.003,
+    "wisdom": 0.002,
+    "charisma": 0.001
   }, p_entity)
 
   self.stamina_regen = DerivedStatistic.make(STAMINA_REGEN, "Stamina Regeneration", base_stamina_regen, {
-    "constitution": 0.01,
-    "strength": 0.008,
-    "agility": 0.006,
-    "spirit": 0.004,
+    "constitution": 0.009,
+    "strength": 0.003,
+    "agility": 0.002,
+    "spirit": 0.002,
   }, p_entity)
 
   # Offense!
