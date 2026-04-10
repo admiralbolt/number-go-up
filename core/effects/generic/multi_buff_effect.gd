@@ -24,6 +24,10 @@ func merge(target: Entity, other: Effect) -> void:
     new_list.modifiers.append(modifier)
   self.modifiers = new_list
 
+  # Reset the duration and timer of the entire effect.
+  self.duration = modifiers_from_manager.map(func(m) -> float: return m.get_total_time_left()).max()
+  self.timer = self.duration
+
 func remove(target: Entity) -> void:
   for modifier in self.modifiers.modifiers:
     target.modifier_manager.remove_modifier(modifier)

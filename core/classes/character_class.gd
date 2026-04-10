@@ -38,8 +38,13 @@ func level_up() -> void:
     self.total_skill_points += 1
     self.total_skill_points_from_levels += 1
 
+  # We need to update both the exported base var AND the base value set in the
+  # derived statistic itself.
+  PlayerManager.player.derived_statistics.base_max_health += self.health_per_level
   PlayerManager.player.derived_statistics.max_health.base_value += self.health_per_level
+  PlayerManager.player.derived_statistics.base_max_stamina += self.stamina_per_level
   PlayerManager.player.derived_statistics.max_stamina.base_value += self.stamina_per_level
+  PlayerManager.player.derived_statistics.base_max_mana += self.mana_per_level
   PlayerManager.player.derived_statistics.max_mana.base_value += self.mana_per_level
 
 func should_gain_skill_point() -> bool:

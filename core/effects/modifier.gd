@@ -55,6 +55,7 @@ enum ModifierSentiment {
 @export var is_decaying: bool = false
 @export var is_timed: bool = false
 @export var is_stackable: bool = false
+@export var refresh_on_stack: bool = false
 @export var stack_count: int = 1
 @export var stack_fall_off: int = 1
 

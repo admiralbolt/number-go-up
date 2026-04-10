@@ -45,16 +45,17 @@ func add_modifier(modifier: Modifier, emit_recompute: bool = true, debug: bool =
       self.recomputes.emit(emit_data(modifier))
     return should_emit
 
-  # If the modifier does exist, we want to refresh the duration and/or
-  # potentially add stacks to it.
-  existing_modifier.timer = max(existing_modifier.duration, modifier.duration)
-
   if existing_modifier.is_stackable:
+    # Only refresh if the flag is set.
+    if existing_modifier.refresh_on_stack:
+      existing_modifier.timer = max(existing_modifier.duration, modifier.duration)
+    
     existing_modifier.stack_count += modifier.stack_count
     if emit_recompute:
       self.recomputes.emit(emit_data(modifier))
     return true
 
+  existing_modifier.timer = max(existing_modifier.duration, modifier.duration)
   return false
 
 func get_modifier(modifier: Modifier) -> Modifier:
