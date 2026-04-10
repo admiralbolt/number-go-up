@@ -16,4 +16,4 @@ func _ready() -> void:
   monitoring = false
 
 func receive_hit(hit_box: HitBox) -> void:
-  Damage.apply_hit(hit_box.owner, self.entity, hit_box)
+  Damage.apply_hit(hit_box.owning_entity, self.entity, hit_box)

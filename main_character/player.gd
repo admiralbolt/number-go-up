@@ -47,9 +47,13 @@ func _process(_delta: float) -> void:
     facing = held_direction
     direction_name = Directions.get_direction_name(facing)
 
+  if Input.is_action_just_pressed("hotbar1"):
+    AbilityManager.use_ability(AbilityBlast.NAME)
+    return
+
   if Input.is_action_just_pressed("roll"):
     self.main_player_state_machine.change_state(PlayerRollState.NAME)
-    self._test_buff_effect()
+    # self._test_buff_effect()
   elif Input.is_action_just_pressed("attack"):
     self.main_player_state_machine.change_state(PlayerAttackState.NAME)
   elif held_direction != Vector2.ZERO:

@@ -15,6 +15,7 @@ func _ready() -> void:
     HitBox.DamageRange.make_without_skill(Damage.DamageType.BLUDGEONING, 40.0, 40.1),
     HitBox.DamageRange.make_without_skill(Damage.DamageType.ACID, 20.0, 20.1)
   ]
+  self.hit_box.owning_entity = self
 
   self.state_machine.initialize()
   super._ready()

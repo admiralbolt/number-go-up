@@ -10,6 +10,7 @@ For Enemies:
 """
 class_name HitBox extends Area2D
 
+var owning_entity: Entity = null
 var collision_shape: CollisionShape2D
 var hit_log: HitLog
 
