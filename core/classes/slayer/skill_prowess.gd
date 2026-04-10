@@ -5,11 +5,20 @@ static var NAME: String = "Prowess"
 func _init() -> void:
   self.name = NAME
   self.description = "Increase strength and dexterity by 1% per stack."
+  self.icon_path = "res://assets/classes/slayer/prowess.png"
   self.node_type = SkillNodeType.PASSIVE_MODIFIER
   self.max_ranks = 10
 
 func dynamic_description() -> String:
-  return "Increase strength and dexterity by %d%%." % self.ranks
+  var lines: Array[String] = []
+
+  lines.append("Increase strength and dexterity by %d%%." % self.ranks)
+  lines.append("-----------")
+  lines.append(SKILL_NODE_TYPE_NAMES[self.node_type])
+  lines.append("")
+  lines.append("Increase strength and dexterity by 1% per rank.")
+
+  return "\n".join(lines)
 
 func create_modifiers() -> ModifierList:
   var modifier_list = ModifierList.new()

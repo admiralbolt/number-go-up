@@ -13,6 +13,15 @@ func _ready() -> void:
   self.is_player_spawning = true
   self.add_player_instance()
 
+func create_player_for_test() -> void:
+  if self.player != null:
+    return
+
+  if get_tree().current_scene is Level:
+    return
+
+  self.player = PLAYER.instantiate()
+
 func add_player_instance() -> void:
   self.player = PLAYER.instantiate()
   add_child(self.player)

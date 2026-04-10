@@ -4,9 +4,11 @@ extends CanvasLayer
 
 func _init() -> void:
   self.process_mode = Node.PROCESS_MODE_ALWAYS
+  self.visible = false
 
 
 func fade_out() -> bool:
+  self.visible = true
   animation_player.play("fade_out")
   await animation_player.animation_finished
   return true
@@ -14,4 +16,5 @@ func fade_out() -> bool:
 func fade_in() -> bool:
   animation_player.play("fade_in")
   await animation_player.animation_finished
+  self.visible = false
   return true

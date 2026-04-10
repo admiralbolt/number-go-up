@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dil54srrk57q0"]
 
-[ext_resource type="Script" uid="uid://i1r8damlpc2d" path="res://ui/character_derived_statistics_display.gd" id="1_x3as4"]
+[ext_resource type="Script" uid="uid://i1r8damlpc2d" path="res://ui/pause_menu/character_derived_statistics_display.gd" id="1_x3as4"]
 [ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="2_x3as4"]
 
 [node name="CharacterDerivedStatisticsDisplay" type="Control" unique_id=818878548]

@@ -57,6 +57,7 @@ _data = {
 }
 
 [node name="SceneTransition" type="CanvasLayer" unique_id=1525637366]
+visible = false
 script = ExtResource("1_rjxgj")
 
 [node name="Control" type="Control" parent="." unique_id=944318770]

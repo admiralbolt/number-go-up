@@ -12,6 +12,7 @@ signal pause_menu_opened
 signal pause_menu_closed
 
 ### Level up!
+signal player_level_up(new_level: int)
 signal skill_level_up(skill_name: String, new_level: int)
 
 ### Class Stuffs.

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b5dpsnkjuq35o"]
+
+[ext_resource type="Script" uid="uid://b6lxppivxnx4k" path="res://ui/tooltip_manager.gd" id="1_nyofi"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="2_51dg7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51dg7"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.078431375, 0.078431375, 0.09803922, 0.88235295)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="TooltipManager" type="CanvasLayer" unique_id=2110895998]
+script = ExtResource("1_nyofi")
+
+[node name="TooltipPanel" type="PanelContainer" parent="." unique_id=1188359491]
+offset_right = 110.0
+offset_bottom = 52.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_51dg7")
+
+[node name="TooltipContent" type="RichTextLabel" parent="TooltipPanel" unique_id=1094445987]
+custom_minimum_size = Vector2(102, 46)
+layout_mode = 2
+theme = ExtResource("2_51dg7")
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+bbcode_enabled = true
+text = "Ahhh"
+fit_content = true

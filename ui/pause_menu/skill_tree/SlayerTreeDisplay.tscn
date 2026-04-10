@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dka1h70x1xvnj"]
+
+[ext_resource type="Script" uid="uid://2mso2udab1r5" path="res://ui/pause_menu/skill_tree/slayer_tree_display.gd" id="1_4uofy"]
+[ext_resource type="PackedScene" uid="uid://cpngsq2mjqyer" path="res://ui/pause_menu/skill_tree/SkillNodeDisplay.tscn" id="2_4uofy"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="3_f2txr"]
+
+[node name="SlayerTreeDisplay" type="Control" unique_id=2018663446]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 1
+script = ExtResource("1_4uofy")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1051032513]
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 240.0
+
+[node name="Control" type="Control" parent="ScrollContainer" unique_id=2094054258]
+custom_minimum_size = Vector2(190, 800)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Huntress" parent="ScrollContainer/Control" unique_id=410149581 instance=ExtResource("2_4uofy")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 41.0
+offset_bottom = 37.0
+mouse_filter = 0
+
+[node name="Prowess" parent="ScrollContainer/Control" unique_id=1728297857 instance=ExtResource("2_4uofy")]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 190.0
+offset_right = 51.0
+offset_bottom = 221.0
+
+[node name="InvestmentLabel" type="RichTextLabel" parent="." unique_id=1710389455]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 1.0
+offset_right = 192.0
+offset_bottom = 24.0
+focus_mode = 0
+mouse_filter = 2
+theme = ExtResource("3_f2txr")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Total Invested: 3
+Available:  1"

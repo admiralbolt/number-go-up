@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cpngsq2mjqyer"]
+
+[ext_resource type="Script" uid="uid://cn7lp4ot2wxy6" path="res://ui/pause_menu/skill_tree/skill_node_display.gd" id="1_c2oxp"]
+[ext_resource type="Texture2D" uid="uid://cq0wacr2056yt" path="res://assets/classes/slayer/prowess.png" id="1_dp4js"]
+[ext_resource type="Texture2D" uid="uid://d3irlcl3q3rst" path="res://assets/classes/skill_frames/red_yellow_frame.png" id="2_6ao8o"]
+[ext_resource type="Material" uid="uid://bnfnlgsfp3b01" path="res://materials/grayscale_material.tres" id="2_c2oxp"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="5_50rac"]
+[ext_resource type="Texture2D" uid="uid://mk25ig8fiun8" path="res://assets/ui/menu/red_x_icon.png" id="6_har22"]
+
+[node name="SkillNodeDisplay" type="Control" unique_id=410149581]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 31.0
+offset_bottom = 31.0
+focus_mode = 2
+mouse_filter = 1
+script = ExtResource("1_c2oxp")
+
+[node name="SkillIcon" type="Sprite2D" parent="." unique_id=1571628586]
+material = ExtResource("2_c2oxp")
+position = Vector2(15.980003, 15.9120035)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("1_dp4js")
+
+[node name="SkillFrame" type="Sprite2D" parent="." unique_id=2066232222]
+position = Vector2(15.98, 15.912)
+scale = Vector2(0.47, 0.468)
+texture = ExtResource("2_6ao8o")
+hframes = 10
+vframes = 8
+
+[node name="SkillPointsInvested" type="Label" parent="." unique_id=1800055792]
+layout_mode = 0
+offset_left = 0.98000145
+offset_top = 19.912
+offset_right = 30.980001
+offset_bottom = 29.912
+theme = ExtResource("5_50rac")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 9
+text = "0 / 5"
+horizontal_alignment = 1
+
+[node name="RedXIcon" type="Sprite2D" parent="." unique_id=122721589]
+position = Vector2(15.980001, 15.912002)
+texture = ExtResource("6_har22")

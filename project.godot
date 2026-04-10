@@ -22,9 +22,12 @@ WeaponManager="*uid://bytvljuc6bnme"
 SceneTransition="*uid://x28qgxagmoqx"
 PauseMenu="*uid://bi0j0pp4w8exd"
 PauseMenuState="*uid://ibgco1ew5s6g"
+TooltipManager="*uid://b5dpsnkjuq35o"
 PlayerManager="*uid://cr0ehaih2ydy6"
 LevelManager="*uid://c3e1mhvhxt8y6"
 SaveManager="*uid://cl4xqarhgi8bd"
+ThemeManager="*uid://cc3op3ntw3kw6"
+MaterialManager="*uid://cohud5py8spkb"
 
 [display]
 

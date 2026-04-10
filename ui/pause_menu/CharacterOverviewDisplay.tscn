@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://sngq2qccwxk8"]
 
-[ext_resource type="Script" uid="uid://cqeyhqbcies0q" path="res://ui/character_overview_display.gd" id="1_yx8ui"]
+[ext_resource type="Script" uid="uid://cqeyhqbcies0q" path="res://ui/pause_menu/character_overview_display.gd" id="1_yx8ui"]
 [ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="2_wcim4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yx8ui"]
@@ -23,6 +23,7 @@ layout_mode = 0
 offset_right = 888.0
 offset_bottom = 1132.0
 focus_mode = 2
+theme_override_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1947148164]
 layout_mode = 2
@@ -58,3 +59,6 @@ offset_right = 61.0
 offset_bottom = 19.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_2lhdq")
 show_percentage = false
+
+[node name="Column2" type="VBoxContainer" parent="HBoxContainer" unique_id=1846579007]
+layout_mode = 2

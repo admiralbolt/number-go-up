@@ -5,8 +5,8 @@ extends CanvasLayer
 
 # Preload all our content panel scenes.
 const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
-  "IOButton": preload("res://ui/IOMenu.tscn"),
-  "CharacterButton": preload("res://ui/CharacterPanel.tscn"),
+  "IOButton": preload("res://ui/pause_menu/IOMenu.tscn"),
+  "CharacterButton": preload("res://ui/pause_menu/CharacterPanel.tscn"),
 }
 
 var first: bool = true

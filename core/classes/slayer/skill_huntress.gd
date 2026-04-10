@@ -10,12 +10,21 @@ static var DURATION_PER_RANK: float = 0.5
 func _init() -> void:
   self.name = NAME
   self.description = "On kill, increases movement speed and health regeneration."
+  self.icon_path = "res://assets/classes/slayer/huntress.png"
   self.node_type = SkillNodeType.TRIGGERED_ABILITY
   self.max_ranks = 10
   SignalBus.on_player_killed_enemy.connect(_on_kill)
 
 func dynamic_description() -> String:
-  return "On kill, increases movement speed (+%.2f) and health regeneration (+%.2f) for %.2f seconds." % [(SPEED_PER_RANK * self.ranks), (REGEN_PER_RANK * self.ranks), (DURATION_BASE + (DURATION_PER_RANK * self.ranks))]
+  var lines: Array[String] = []
+
+  lines.append("On kill, increases movement speed (+%.2f) and health regeneration (+%.2f) for %.2f seconds." % [(SPEED_PER_RANK * self.ranks), (REGEN_PER_RANK * self.ranks), (DURATION_BASE + (DURATION_PER_RANK * self.ranks))])
+  lines.append("-----------")
+  lines.append(SKILL_NODE_TYPE_NAMES[self.node_type])
+  lines.append("")
+  lines.append("On kill, increases movement speed by (%.2f * ranks) and health regeneration by (%.2f * ranks) for (%.2f + %.2f * ranks) seconds, per stack." % [SPEED_PER_RANK, REGEN_PER_RANK, DURATION_BASE, DURATION_PER_RANK])
+
+  return "\n".join(lines)
 
 func _create_on_kill_effect() -> MultiBuffEffect:
   var effect: MultiBuffEffect = MultiBuffEffect.new()

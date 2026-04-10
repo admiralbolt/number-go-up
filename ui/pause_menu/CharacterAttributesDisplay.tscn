@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://h1mhae5g4s8a"]
 
-[ext_resource type="Script" uid="uid://bdjbanssplv07" path="res://ui/character_attributes_display.gd" id="1_fjoic"]
+[ext_resource type="Script" uid="uid://bdjbanssplv07" path="res://ui/pause_menu/character_attributes_display.gd" id="1_fjoic"]
 [ext_resource type="PackedScene" uid="uid://b4sl7ganhfmgi" path="res://ui/components/AttributeDisplay.tscn" id="2_pmkfh"]
 [ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="3_b72xo"]
 

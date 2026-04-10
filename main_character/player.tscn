@@ -12,8 +12,8 @@
 [ext_resource type="Script" uid="uid://d32rc7ste32s8" path="res://main_character/states/player_roll_state.gd" id="10_cy1eu"]
 [ext_resource type="Script" uid="uid://dpxwsplxoioyy" path="res://main_character/states/player_attack_state.gd" id="11_e0qqe"]
 [ext_resource type="Script" uid="uid://dujbxkfjkrdf0" path="res://main_character/states/player_idle_state.gd" id="12_xj3nd"]
-[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/BasicHealthBar.tscn" id="13_326by"]
-[ext_resource type="PackedScene" uid="uid://cror3fam525f4" path="res://ui/BasicStaminaBar.tscn" id="14_cy1eu"]
+[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/components/BasicHealthBar.tscn" id="13_326by"]
+[ext_resource type="PackedScene" uid="uid://cror3fam525f4" path="res://ui/components/BasicStaminaBar.tscn" id="14_cy1eu"]
 [ext_resource type="Script" uid="uid://bohi8b8eyfv86" path="res://util/hurt_box.gd" id="14_itdfg"]
 [ext_resource type="Script" uid="uid://cnjcvq0ovhqlq" path="res://main_character/player_camera.gd" id="15_nxc8y"]
 

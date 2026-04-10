@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cg2gdct4c40h7"]
 
-[ext_resource type="Script" uid="uid://cia1shis4fmsw" path="res://ui/character_panel.gd" id="1_fggyi"]
+[ext_resource type="Script" uid="uid://cia1shis4fmsw" path="res://ui/pause_menu/character_panel.gd" id="1_fggyi"]
 [ext_resource type="Theme" uid="uid://chksvfhplcrsa" path="res://ui/themes/menu_button_theme.tres" id="1_ved6e"]
-[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/content_panel.gd" id="2_hm050"]
+[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/pause_menu/content_panel.gd" id="2_hm050"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fggyi"]
 

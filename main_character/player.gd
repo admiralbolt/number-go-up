@@ -30,6 +30,7 @@ func level_up() -> void:
 
   self.starting_xp_this_level = self.total_xp_to_next_level
   self.total_xp_to_next_level = RPGUtil.total_xp_for_next_skill_level(self.level)
+  SignalBus.player_level_up.emit(self.level)
 
 func add_xp(amount: float) -> void:
   self.xp += amount

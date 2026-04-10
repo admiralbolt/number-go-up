@@ -2,11 +2,11 @@ class_name CharacterPanel extends Control
 
 # Preload all our sub panel scene.
 const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
-  "OverviewButton": preload("res://ui/CharacterOverviewDisplay.tscn"),
-  "ClassButton": preload("res://ui/CharacterClassDisplay.tscn"),
-  "AttributesButton": preload("res://ui/CharacterAttributesDisplay.tscn"),
-  "StatisticsButton": preload("res://ui/CharacterDerivedStatisticsDisplay.tscn"),
-  "SkillsButton": preload("res://ui/CharacterSkillsDisplay.tscn"),
+  "OverviewButton": preload("res://ui/pause_menu/CharacterOverviewDisplay.tscn"),
+  "ClassButton": preload("res://ui/pause_menu/CharacterClassDisplay.tscn"),
+  "AttributesButton": preload("res://ui/pause_menu/CharacterAttributesDisplay.tscn"),
+  "StatisticsButton": preload("res://ui/pause_menu/CharacterDerivedStatisticsDisplay.tscn"),
+  "SkillsButton": preload("res://ui/pause_menu/CharacterSkillsDisplay.tscn"),
 }
 
 signal button_focused(index: int, button_name: String)

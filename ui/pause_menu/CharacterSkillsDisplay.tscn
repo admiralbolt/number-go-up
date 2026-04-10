@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7hb0g6do8agn"]
 
-[ext_resource type="Script" uid="uid://cwl3ijp8tmjed" path="res://ui/character_skills_display.gd" id="1_6q3fd"]
+[ext_resource type="Script" uid="uid://cwl3ijp8tmjed" path="res://ui/pause_menu/character_skills_display.gd" id="1_6q3fd"]
 [ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="1_rk404"]
 
 [node name="CharacterSkillsDisplay" type="Control" unique_id=1546370693]
