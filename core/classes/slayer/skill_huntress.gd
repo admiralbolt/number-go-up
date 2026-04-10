@@ -2,10 +2,12 @@ class_name SkillHuntress extends SkillNode
 
 static var NAME: String = "Huntress"
 
-static var SPEED_PER_RANK: float = 3
-static var REGEN_PER_RANK: float = 1
-static var DURATION_BASE: float = 5
-static var DURATION_PER_RANK: float = 0.5
+static var SPEED_BASE: float = 2
+static var SPEED_PER_RANK: float = 0.25
+static var REGEN_BASE: float = 0.5
+static var REGEN_PER_RANK: float = 0.1
+static var DURATION_BASE: float = 4
+static var DURATION_PER_RANK: float = 0.4
 
 func _init() -> void:
   self.name = NAME
@@ -18,11 +20,11 @@ func _init() -> void:
 func dynamic_description() -> String:
   var lines: Array[String] = []
 
-  lines.append("On kill, increases movement speed (+%.2f) and health regeneration (+%.2f) for %.2f seconds." % [(SPEED_PER_RANK * self.ranks), (REGEN_PER_RANK * self.ranks), (DURATION_BASE + (DURATION_PER_RANK * self.ranks))])
+  lines.append("On kill, increases movement speed (+%.2f) and health regeneration (+%.2f) for %.2f seconds." % [(SPEED_BASE + SPEED_PER_RANK * self.ranks), (REGEN_BASE + REGEN_PER_RANK * self.ranks), (DURATION_BASE + (DURATION_PER_RANK * self.ranks))])
   lines.append("-----------")
   lines.append(SKILL_NODE_TYPE_NAMES[self.node_type])
   lines.append("")
-  lines.append("On kill, increases movement speed by (%.2f * ranks) and health regeneration by (%.2f * ranks) for (%.2f + %.2f * ranks) seconds, per stack." % [SPEED_PER_RANK, REGEN_PER_RANK, DURATION_BASE, DURATION_PER_RANK])
+  lines.append("On kill, increases movement speed by (%.2f + %.2f * ranks) and health regeneration by (%.2f + %.2f * ranks) for (%.2f + %.2f * ranks) seconds, per stack." % [SPEED_BASE, SPEED_PER_RANK, REGEN_BASE, REGEN_PER_RANK, DURATION_BASE, DURATION_PER_RANK])
 
   return "\n".join(lines)
 
@@ -35,7 +37,7 @@ func _create_on_kill_effect() -> MultiBuffEffect:
   speed_mod.source_type = Modifier.ModifierSource.SKILL_NODE_TRIGGERED
   speed_mod.target_type = Modifier.ModifierTarget.DERIVED_STATISTIC
   speed_mod.stat_name = DerivedStatistics.MOVEMENT_SPEED
-  speed_mod.value = (SPEED_PER_RANK * self.ranks)
+  speed_mod.value = SPEED_BASE + (SPEED_PER_RANK * self.ranks)
   speed_mod.modifier_type = Modifier.ModifierType.ADDITIVE
   speed_mod.modifier_priority = Modifier.ModifierPriority.APPLY_ADDITIVE
   speed_mod.sentiment = Modifier.ModifierSentiment.BUFF
@@ -49,7 +51,7 @@ func _create_on_kill_effect() -> MultiBuffEffect:
   regen_mod.source_type = Modifier.ModifierSource.SKILL_NODE_TRIGGERED
   regen_mod.target_type = Modifier.ModifierTarget.DERIVED_STATISTIC
   regen_mod.stat_name = DerivedStatistics.HEALTH_REGEN
-  regen_mod.value = (REGEN_PER_RANK * self.ranks)
+  regen_mod.value = REGEN_BASE + (REGEN_PER_RANK * self.ranks)
   regen_mod.modifier_type = Modifier.ModifierType.ADDITIVE
   regen_mod.modifier_priority = Modifier.ModifierPriority.APPLY_ADDITIVE
   regen_mod.sentiment = Modifier.ModifierSentiment.BUFF
