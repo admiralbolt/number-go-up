@@ -14,14 +14,16 @@ signal pause_menu_closed
 ### Level up!
 signal player_level_up(new_level: int)
 signal skill_level_up(skill_name: String, new_level: int)
+signal skill_xp_gained(event: Skill.SkillXPEvent)
 
 ### Class Stuffs.
 signal skill_node_rank_up(skill_node_name: String, new_rank: int)
 signal skill_node_rank_down(skill_node_name: String, new_rank: int)
 
-### Damage Signals
-signal on_player_damaged(target: Entity, hit_box: HitBox, total_damage: float)
-signal on_player_attack_landed(target: Entity, hit_box: HitBox, total_damage: float)
-signal on_player_killed_enemy(target: Entity, hit_box: HitBox, total_damage: float)
+### Damage Signals, but better.
+signal on_damage_pre_apply(event: Damage.DamageCalculationEvent)
+signal on_player_damaged(event: Damage.FinalDamageEvent)
+signal on_player_attack_landed(event: Damage.FinalDamageEvent)
+signal on_player_killed_enemy(event: Damage.FinalDamageEvent)
 
 @warning_ignore_restore("unused_signal")

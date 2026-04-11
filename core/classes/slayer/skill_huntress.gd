@@ -67,7 +67,7 @@ func _create_on_kill_effect() -> MultiBuffEffect:
 
   return effect
 
-func _on_kill(_target: Entity, _hit_box: HitBox, _total_damage: float) -> void:
+func _on_kill(_event: Damage.FinalDamageEvent) -> void:
   if not self.is_unlocked():
     return
 

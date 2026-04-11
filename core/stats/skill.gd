@@ -69,7 +69,10 @@ func level_up() -> void:
   SignalBus.skill_level_up.emit(self.name, self.level)
 
 func add_xp(amount: float) -> void:
-  self.xp += amount * self.xp_multiplier
+  var event: SkillXPEvent = SkillXPEvent.make(self, amount)
+  SignalBus.skill_xp_gained.emit(event)
+
+  self.xp += event.amount * self.xp_multiplier
   if self.xp >= self.total_xp_to_next_level:
     self.level_up()
     self.changed.emit()
@@ -93,3 +96,13 @@ static func make(p_name: String, p_level: int, p_xp: float, p_xp_multiplier: flo
 
 static func make_default(p_name: String, p_weights: Dictionary[String, float]) -> Skill:
   return Skill.make(p_name, 1, 0.0, 1.0, p_weights)
+
+class SkillXPEvent:
+  var skill: Skill
+  var amount: float
+
+  static func make(p_skill: Skill, p_amount: float) -> SkillXPEvent:
+    var event = SkillXPEvent.new()
+    event.skill = p_skill
+    event.amount = p_amount
+    return event
