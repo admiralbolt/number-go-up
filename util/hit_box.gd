@@ -15,6 +15,7 @@ var collision_shape: CollisionShape2D
 var hit_log: HitLog
 
 var damage_ranges: Array[DamageRange]
+var knockback: float
 
 func _ready() -> void:
   # The collision shape should always be a child of the hit box.

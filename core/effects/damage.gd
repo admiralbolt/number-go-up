@@ -86,6 +86,8 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
   if target is Player:
     SignalBus.on_player_damaged.emit(target, hit_box, total_damage)
 
+  apply_knockback(target, hit_box)
+
   target.current_health -= total_damage
   target.damaged.emit(hit_box)
 
@@ -94,3 +96,10 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
     if owner is Player:
       owner.add_xp(target.xp)
       SignalBus.on_player_killed_enemy.emit(target, hit_box, total_damage)
+
+static func apply_knockback(target: Entity, hit_box: HitBox) -> void:
+  var knockback_efficacy: float = SavingThrows.calculate_save(target, DerivedStatistics.FORTITUDE_SAVE, hit_box.knockback)
+  var direction: Vector2 = target.global_position.direction_to(hit_box.global_position)
+  target.facing = direction.normalized()
+  target.velocity = -1 * direction * hit_box.knockback * knockback_efficacy
+  print("Applying knockback with base knockback: %f, efficacy: %f, resulting velocity change: %s" % [hit_box.knockback, knockback_efficacy, target.velocity])

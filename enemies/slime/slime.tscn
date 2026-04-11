@@ -57,6 +57,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3fw7"]
 _data = {
@@ -1487,8 +1499,8 @@ xp = 1450.0
 script = ExtResource("3_5ctnu")
 
 [node name="Sprite2D" type="Sprite2D" parent="SlimeAnimator" unique_id=1959662034]
-texture = ExtResource("3_4ur3v")
-hframes = 10
+texture = ExtResource("1_6ftag")
+hframes = 6
 vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeAnimator" unique_id=48381187]

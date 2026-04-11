@@ -1,8 +1,28 @@
 extends Node
 
+class SignalObject:
+
+  var some_value: float = 10.0
+
+signal test_signal(object: SignalObject)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-  test_new_char_stuff()
+  test_signal.connect(signal_handler)
+  test_signal_stuff()
+
+func signal_handler(object: SignalObject) -> void:
+  print("Signal handler processing.")
+  object.some_value += 10
+  print("Signal handler done processing.")
+
+
+func test_signal_stuff() -> void:
+  var object: SignalObject = SignalObject.new()
+  object.some_value = 25
+  print("Emitting signal with object some_value: ", object.some_value)
+  test_signal.emit(object)
+  print("After signal emitted, object some_value: ", object.some_value)
 
 
 func test_new_char_stuff() -> void:

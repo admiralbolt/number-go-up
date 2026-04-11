@@ -14,9 +14,6 @@ func init(p_state_machine: StateMachine) -> void:
 
 func on_enter() -> void:
   self.animation_finished = false
-  var direction: Vector2 = self.enemy.global_position.direction_to(self.hit_box_position)
-  self.enemy.facing = direction.normalized()
-  self.enemy.velocity = direction * -100
 
   self.enemy.animation_player.play("EnemyAnimations/hurt_%s" % self.enemy.facing_name)
   self.enemy.animation_player.animation_finished.connect(self._on_animation_finished)
@@ -28,7 +25,7 @@ func process(delta: float) -> String:
   if self.animation_finished:
     return SlimeRunState.NAME
 
-  self.enemy.velocity -= self.enemy.velocity * 10 * delta
+  self.enemy.velocity -= self.enemy.velocity * 7 * delta
   return State.NULL_STATE
 
 func _on_damaged(hit_box: HitBox) -> void:
