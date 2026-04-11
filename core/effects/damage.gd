@@ -103,11 +103,12 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
       SignalBus.on_player_killed_enemy.emit(final_event)
 
 static func apply_knockback(target: Entity, hit_box: HitBox) -> void:
-  var knockback_efficacy: float = SavingThrows.calculate_save(target, DerivedStatistics.FORTITUDE_SAVE, hit_box.knockback)
+  var total_knockback: float = hit_box.knockback * (1 - target.derived_statistics.knockback_resistance.total_value)
   var direction: Vector2 = target.global_position.direction_to(hit_box.global_position)
   target.facing = direction.normalized()
-  target.velocity = -1 * direction * hit_box.knockback * knockback_efficacy
-  print("Applying knockback with base knockback: %f, efficacy: %f, resulting velocity change: %s" % [hit_box.knockback, knockback_efficacy, target.velocity])
+  target.velocity = -1 * direction * total_knockback
+  # print("Applying knockback with base knockback: %f, total_knockback: %f, resulting velocity change: %s" % [hit_box.knockback, total_knockback, target.velocity])
+
 
 class DamageCalculationEvent:
   # Root objects incase we need to recalculate anything.

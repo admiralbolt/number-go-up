@@ -10,7 +10,7 @@ func initialize(p_position: Vector2) -> void:
   self.hit_box.knockback = 200
 
   self.hit_box.damage_ranges = [
-    HitBox.DamageRange.make_without_skill(Damage.DamageType.BLUDGEONING, 100.0, 120.1),  
+    HitBox.DamageRange.make_with_skill(Damage.DamageType.LIGHTNING, 100.0, 120.1, Skills.DESTRUCTION),
   ]
 
 func play() -> void:

@@ -1487,6 +1487,7 @@ radius = 8.27755
 height = 16.5551
 
 [node name="Slime" type="CharacterBody2D" unique_id=1507265592]
+physics_interpolation_mode = 1
 y_sort_enabled = true
 position = Vector2(45, 39)
 collision_layer = 16

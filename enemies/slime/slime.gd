@@ -17,5 +17,8 @@ func _ready() -> void:
   ]
   self.hit_box.owning_entity = self
 
+  self.derived_statistics.movement_speed.base_value = 70
+  self.derived_statistics.movement_speed.compute_total()
+
   self.state_machine.initialize()
   super._ready()

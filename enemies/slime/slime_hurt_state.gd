@@ -9,7 +9,7 @@ func _init() -> void:
 
 func init(p_state_machine: StateMachine) -> void:
   super.init(p_state_machine)
-  self.enemy.damaged.connect(self._on_damaged)
+  # self.enemy.damaged.connect(self._on_damaged)
 
 func on_enter() -> void:
   self.animation_finished = false
