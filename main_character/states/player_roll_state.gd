@@ -24,11 +24,11 @@ func on_enter() -> void:
   self.roll_timer = PlayerAnimator.ANIMATION_DURATION["roll"]
   # Lock the direction for the duration of the roll.
   self.roll_direction = self.player.facing
+  self.player.velocity = self.roll_direction * self.player.derived_statistics.movement_speed.total_value * ROLL_SPEED_BOOST
   self.player.animation_player.play("PlayerAnimations/roll_%s" % self.player.direction_name)
 
 func on_exit() -> void:
   self.player.animation_player.stop()
-
 
 func process(delta: float) -> String:
   self.roll_timer -= delta
@@ -40,4 +40,7 @@ func process(delta: float) -> String:
   if self.player.held_direction != Vector2.ZERO:
     return PlayerWalkState.NAME
 
+  # When we transition to idle, we slide a little too much. So, we reset the
+  # velocity to zero to prevent that.
+  self.player.velocity = Vector2.ZERO
   return PlayerIdleState.NAME

@@ -14,5 +14,8 @@ func on_enter() -> void:
 func on_exit() -> void:
   self.player.animation_player.stop()
 
-func process(_delta: float) -> String:
+func process(delta: float) -> String:
+  # Apply deceleration.
+  self.player.velocity = PhysicsUtil.apply_deceleration(self.player.velocity, self.player.derived_statistics.friction.total_value, delta)
+
   return State.NULL_STATE

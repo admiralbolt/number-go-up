@@ -45,6 +45,12 @@ func add_modifier(modifier: Modifier, emit_recompute: bool = true, debug: bool =
       self.recomputes.emit(emit_data(modifier))
     return should_emit
 
+  # If we add a duplicate version of an existing modifier, the exact values
+  # may not match exactly. We want to update these to the highest number between
+  # the two. If we apply bleed, then get a buff that makes our bleed deal more
+  # damage and apply bleed again, we want it to update ALL stacks.
+  existing_modifier.value = max(existing_modifier.value, modifier.value)
+
   if existing_modifier.is_stackable:
     # Only refresh if the flag is set.
     if existing_modifier.refresh_on_stack:

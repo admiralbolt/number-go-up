@@ -107,7 +107,7 @@ static func apply_knockback(target: Entity, hit_box: HitBox) -> void:
   var direction: Vector2 = target.global_position.direction_to(hit_box.global_position)
   target.facing = direction.normalized()
   target.velocity = -1 * direction * total_knockback
-  # print("Applying knockback with base knockback: %f, total_knockback: %f, resulting velocity change: %s" % [hit_box.knockback, total_knockback, target.velocity])
+  print("Applying knockback with base knockback: %f, total_knockback: %f, resulting velocity change: %s" % [hit_box.knockback, total_knockback, target.velocity])
 
 
 class DamageCalculationEvent:

@@ -24,7 +24,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HitBox:scale")
+tracks/0/path = NodePath("ExplodeAttackHitBox:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,7 +36,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HitBox:monitoring")
+tracks/1/path = NodePath("ExplodeAttackHitBox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -48,7 +48,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:position")
+tracks/2/path = NodePath("ExplodeAttackHitBox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -128,7 +128,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox:scale")
+tracks/4/path = NodePath("ExplodeAttackHitBox:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -140,7 +140,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox:monitoring")
+tracks/5/path = NodePath("ExplodeAttackHitBox:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -152,7 +152,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox:position")
+tracks/6/path = NodePath("ExplodeAttackHitBox:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -215,7 +215,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox:scale")
+tracks/4/path = NodePath("ExplodeAttackHitBox:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -227,7 +227,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox:monitoring")
+tracks/5/path = NodePath("ExplodeAttackHitBox:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -239,7 +239,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox:position")
+tracks/6/path = NodePath("ExplodeAttackHitBox:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -302,7 +302,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox:scale")
+tracks/4/path = NodePath("ExplodeAttackHitBox:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -314,7 +314,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox:monitoring")
+tracks/5/path = NodePath("ExplodeAttackHitBox:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -326,7 +326,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox:position")
+tracks/6/path = NodePath("ExplodeAttackHitBox:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -389,7 +389,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox:scale")
+tracks/4/path = NodePath("ExplodeAttackHitBox:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -401,7 +401,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox:monitoring")
+tracks/5/path = NodePath("ExplodeAttackHitBox:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -413,7 +413,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitBox:position")
+tracks/6/path = NodePath("ExplodeAttackHitBox:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1475,8 +1475,11 @@ _data = {
 &"walk_up": SubResource("Animation_xk5ca")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sypct"]
+radius = 6.969195
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwtj1"]
-radius = 6.548278
+radius = 9.126878
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ftag"]
 radius = 4.999591
@@ -1500,24 +1503,35 @@ xp = 1450.0
 script = ExtResource("3_5ctnu")
 
 [node name="Sprite2D" type="Sprite2D" parent="SlimeAnimator" unique_id=1959662034]
-texture = ExtResource("1_6ftag")
-hframes = 6
+texture = ExtResource("8_cba7r")
+hframes = 10
 vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeAnimator" unique_id=48381187]
 libraries/ = SubResource("AnimationLibrary_v3fw7")
 libraries/EnemyAnimations = SubResource("AnimationLibrary_qxyj3")
 
-[node name="HitBox" type="Area2D" parent="SlimeAnimator" unique_id=264941924]
+[node name="ExplodeAttackHitBox" type="Area2D" parent="SlimeAnimator" unique_id=264941924]
 collision_layer = 0
 collision_mask = 256
 script = ExtResource("5_v3fw7")
 metadata/_custom_type_script = "uid://cvknglif0g3v1"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeAnimator/HitBox" unique_id=91592714]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeAnimator/ExplodeAttackHitBox" unique_id=91592714]
 position = Vector2(0.35382652, 1.0614796)
-shape = SubResource("CircleShape2D_mwtj1")
+shape = SubResource("CircleShape2D_sypct")
 debug_color = Color(0.89411765, 0, 0, 0.41960785)
+
+[node name="ContactHitBox" type="Area2D" parent="SlimeAnimator" unique_id=843080159]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("5_v3fw7")
+metadata/_custom_type_script = "uid://cvknglif0g3v1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeAnimator/ContactHitBox" unique_id=1674269188]
+position = Vector2(0.5412197, -1.4077969)
+shape = SubResource("CircleShape2D_mwtj1")
+debug_color = Color(0.89411765, 0.38431373, 0, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2091954640]
 visible = false

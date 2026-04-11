@@ -41,9 +41,10 @@ func _on_area_entered(area: Area2D) -> void:
 
   area.receive_hit(self)
 
-func enable() -> void:
+func enable(with_hit_logging: bool = true) -> void:
   self.monitoring = true
-  self.hit_log = HitLog.new()
+  if with_hit_logging:
+    self.hit_log = HitLog.new()
 
 func disable() -> void:
   self.monitoring = false

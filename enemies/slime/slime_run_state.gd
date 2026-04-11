@@ -31,6 +31,6 @@ func process(delta: float) -> String:
   var desired_facing: Vector2 = (PlayerManager.player.global_position - self.enemy.global_position).normalized()
   self.enemy.facing = self.enemy.facing.slerp(desired_facing, 0.05)
   var target_vector: Vector2 = self.enemy.facing * self.enemy.derived_statistics.movement_speed.total_value
-  self.enemy.velocity = self.enemy.velocity.move_toward(target_vector, self.enemy.derived_statistics.movement_speed.total_value * delta * 10)
+  self.enemy.velocity = PhysicsUtil.apply_acceleration(self.enemy.velocity, target_vector, self.enemy.derived_statistics.movement_speed.total_value * 0.5, delta)
   
   return State.NULL_STATE

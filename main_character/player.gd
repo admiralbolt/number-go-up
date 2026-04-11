@@ -16,6 +16,8 @@ var direction_name: String = "down"
 var starting_xp_this_level: float = 0.0
 var total_xp_to_next_level: float = RPGUtil.total_xp_for_next_level(1)
 
+var max_speed: float = 0
+
 func _ready() -> void:
   self.main_player_state_machine.initialize()
   self.main_player_state_machine.change_state(PlayerIdleState.NAME)
@@ -23,6 +25,7 @@ func _ready() -> void:
 
   self.hurt_box = $PlayerHurtBox
   super._ready()
+  self.max_speed = self.derived_statistics.movement_speed.total_value
 
 func level_up() -> void:
   self.character_class.level_up()
@@ -60,14 +63,6 @@ func _process(_delta: float) -> void:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)
 
 func _physics_process(_delta: float) -> void:
-  self.velocity = held_direction * self.derived_statistics.movement_speed.total_value
-  if self.main_player_state_machine.current_state is PlayerAttackState:
-    self.velocity *= 0.5
-  elif self.main_player_state_machine.current_state is PlayerRollState:
-    # We also want to ignore any direction instructions right now. So, we will
-    # override the velocity to be in the direction of the roll.
-    self.velocity = self.main_player_state_machine.current_state.roll_direction * self.derived_statistics.movement_speed.total_value * PlayerRollState.ROLL_SPEED_BOOST
-  # self.move_and_collide(velocity * delta)
   self.move_and_slide()
 
 

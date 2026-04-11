@@ -561,8 +561,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
-radius = 3.0
-height = 8.0
+radius = 4.0
+height = 10.0
 
 [node name="Player" type="CharacterBody2D" unique_id=762666805]
 y_sort_enabled = true
@@ -604,7 +604,7 @@ libraries/ = SubResource("AnimationLibrary_i3pqv")
 libraries/PlayerAnimations = SubResource("AnimationLibrary_i0yx3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51968823]
-position = Vector2(0, 1)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_4flbx")
 
 [node name="MainPlayerStateMachine" type="Node" parent="." unique_id=360248853]
@@ -649,7 +649,6 @@ collision_mask = 0
 script = ExtResource("14_itdfg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox" unique_id=552335980]
-position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_4flbx")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1576934257]

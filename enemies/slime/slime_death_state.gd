@@ -12,8 +12,8 @@ func init(p_state_machine: StateMachine) -> void:
 func on_enter() -> void:
   # enemy.invincible = true
   self.enemy.velocity = Vector2.ZERO
-  self.enemy.hurt_box.monitoring = false
-  self.enemy.hit_box.monitoring = false
+  self.enemy.hurt_box.disable()
+  self.enemy.disable_all_hit_boxes()
 
   self.enemy.hurt_box.set_collision_layer_value(2, false)
 

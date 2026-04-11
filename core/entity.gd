@@ -1,5 +1,7 @@
 class_name Entity extends CharacterBody2D
 
+const CONTACT_HITBOX_NAME: String = "CONTACT_HITBOX"
+
 signal damaged(hit_box: HitBox)
 signal died(hit_box: HitBox)
 
@@ -14,8 +16,8 @@ var effect_manager: EffectManager = EffectManager.new()
 # All entities should have a hurt box.
 var hurt_box: HurtBox
 
-# Typically only enemies will have a hit box set.
-var hit_box: HitBox
+# Used for storing references to hit boxes the entity has.
+var hit_boxes: Dictionary[String, HitBox] = {}
 
 # Current values for bar resources + signals for them.
 signal current_health_changed(new_current_health: float)
@@ -47,6 +49,11 @@ func _ready() -> void:
   self.derived_statistics.max_health.changed.connect(self._on_max_health_changed.bind(self.derived_statistics.max_health.total_value))
   self.derived_statistics.max_mana.changed.connect(self._on_max_mana_changed.bind(self.derived_statistics.max_mana.total_value))
   self.derived_statistics.max_stamina.changed.connect(self._on_max_stamina_changed.bind(self.derived_statistics.max_stamina.total_value))
+
+
+func disable_all_hit_boxes() -> void:
+  for hit_box in self.hit_boxes.values():
+    hit_box.disable()
 
 func _set_current_health(p_health: float) -> void:
   if p_health == current_health:

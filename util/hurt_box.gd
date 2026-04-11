@@ -17,3 +17,7 @@ func _ready() -> void:
 
 func receive_hit(hit_box: HitBox) -> void:
   Damage.apply_hit(hit_box.owning_entity, self.entity, hit_box)
+
+func disable() -> void:
+  self.set_collision_layer_value(2, false)
+  self.set_collision_layer_value(9, false)

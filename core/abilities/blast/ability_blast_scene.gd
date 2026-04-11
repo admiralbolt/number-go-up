@@ -7,7 +7,7 @@ func initialize(p_position: Vector2) -> void:
   self.position = p_position + PlayerManager.player.facing * 40
   self.hit_box.disable()
   self.hit_box.owning_entity = PlayerManager.player
-  self.hit_box.knockback = 200
+  self.hit_box.knockback = 555
 
   self.hit_box.damage_ranges = [
     HitBox.DamageRange.make_with_skill(Damage.DamageType.LIGHTNING, 100.0, 120.1, Skills.DESTRUCTION),
