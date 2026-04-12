@@ -28,7 +28,7 @@ const ALL_ATTRIBUTES: Array = [
 @export var agility: Attribute = Attribute.make(AGILITY, 50.0)
 @export var spirit: Attribute = Attribute.make(SPIRIT, 50.0)
 @export var wisdom: Attribute = Attribute.make(WISDOM, 50.0)
-@export var intelligence: Attribute = Attribute.make(INTELLIGENCE, 5000.0)
+@export var intelligence: Attribute = Attribute.make(INTELLIGENCE, 50.0)
 @export var charisma: Attribute = Attribute.make(CHARISMA, 50.0)
 @export var luck: Attribute = Attribute.make(LUCK, 50.0)
 
