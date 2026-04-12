@@ -48,6 +48,8 @@ func compute_total() -> void:
 func compute_total_description() -> Array[String]:
   var builder: Array[String] = []
   var val = self.base_value
+
+  builder.append("BaseValue: %.2f\n" % self.base_value)
   for attr_name in self.weights.keys():
     var attribute: Attribute = self.attr_references[attr_name]
     var weight: float = self.weights[attr_name]

@@ -54,10 +54,10 @@ func _calculate_derived_statistic_description(derived_statistic_name: String) ->
   var builder: Array[String] = []
   builder.append(Descriptions.DERIVED_STATISTIC_DESCRIPTIONS.get(derived_statistic_name, ""))
   builder.append("-----------------\n")
-  builder.append("BaseValue: %.2f\n" % self.derived_statistics.get("base_%s" % derived_statistic_name))
-
   for line in derived_statistic.compute_total_description():
     builder.append(line)
 
+  builder.append("")
   builder.append("TotalValue: %.2f" % derived_statistic.total_value)
+
   return "\n".join(builder)

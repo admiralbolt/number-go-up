@@ -55,8 +55,11 @@ func _calculate_skill_description(skill_name: String) -> String:
   builder.append(Descriptions.SKILL_DESCRIPTIONS.get(skill_name, ""))
   builder.append("-----------------\n")
 
-  for line in skill.compute_total_description():
-    builder.append(line)
+  for statistic in skill.get_sub_statistics():
+    builder.append("%s: +%.2f" % [statistic.pretty_name, statistic.total_value])
+    builder.append("=================\n")
+    for line in statistic.compute_total_description():
+      builder.append(line)
+    builder.append("\n\n")
 
-  builder.append("TotalValue: %.2f" % skill.total_value)
   return "\n".join(builder)

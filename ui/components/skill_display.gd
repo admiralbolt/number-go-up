@@ -4,7 +4,6 @@ var skill: Skill
 
 @onready var skill_name_label: Label = $SkillName
 @onready var skill_level_label: Label = $SkillLevel
-@onready var skill_value_label: Label = $SkillValue
 @onready var skill_xp_bar: ProgressBar = $SkillXPBar
 
 @export var display_as_int: bool = false
@@ -21,7 +20,6 @@ func set_skill(p_skill: Skill) -> void:
 
 func update() -> void:
   self.skill_level_label.text = "Lvl. %d" % self.skill.level
-  self.skill_value_label.text = ("+%.2f" % self.skill.total_value) if self.skill.total_value > 0 else ("-%.2f" % abs(self.skill.total_value))
   self.skill_xp_bar.min_value = self.skill.starting_xp_this_level
   self.skill_xp_bar.max_value = self.skill.total_xp_to_next_level
   self.skill_xp_bar.value = self.skill.xp

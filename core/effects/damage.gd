@@ -58,8 +58,8 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
   var total_damage: float = 0.0
   for damage_range in hit_box.damage_ranges:
     var governing_skill: Skill = owner.skills.get(damage_range.governing_skill)
-    var skill_bonus: float = 0.0 if governing_skill == null else governing_skill.total_value
-    var damage: float = randf_range(damage_range.min_damage, damage_range.max_damage) + skill_bonus
+    var damage: float = randf_range(damage_range.min_damage, damage_range.max_damage)
+    damage = damage if governing_skill == null else governing_skill.apply_damage_bonus(damage)
     var resistance: DerivedStatistic = target.derived_statistics.get(DAMAGE_TYPE_TO_RESISTANCE[damage_range.damage_type])
     var reduction: DerivedStatistic = target.derived_statistics.get(DAMAGE_TYPE_TO_REDUCTION[damage_range.damage_type])
 

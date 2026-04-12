@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://bvi3a1fmniov3" path="res://core/classes/slayer/skill_huntress.gd" id="11_acu36"]
 [ext_resource type="Script" uid="uid://cb1lmy521kqua" path="res://main_character/stat_ordering.gd" id="12_n14ce"]
 [ext_resource type="Script" uid="uid://bmfbvt3fb0ywl" path="res://core/stats/derived_statistics.gd" id="13_yirk2"]
-[ext_resource type="Script" uid="uid://cj8xlgfbjalfm" path="res://core/stats/skill.gd" id="14_tj1v2"]
-[ext_resource type="Script" uid="uid://dv757fpkfes2v" path="res://core/stats/skills.gd" id="15_b40j7"]
+[ext_resource type="Script" uid="uid://cj8xlgfbjalfm" path="res://core/skills/skill.gd" id="14_tj1v2"]
+[ext_resource type="Script" uid="uid://dv757fpkfes2v" path="res://core/skills/skills.gd" id="15_b40j7"]
 [ext_resource type="Script" uid="uid://cs34ioc1gflxf" path="res://util/globals/save_data.gd" id="16_4d0o0"]
 
 [sub_resource type="Resource" id="Resource_s4xc2"]

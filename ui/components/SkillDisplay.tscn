@@ -22,18 +22,7 @@ offset_right = 60.0
 offset_bottom = 18.0
 theme = ExtResource("1_xpo72")
 theme_override_font_sizes/font_size = 14
-text = "Max Health"
-vertical_alignment = 1
-
-[node name="SkillValue" type="Label" parent="." unique_id=908584421]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 2.0
-offset_right = 138.0
-offset_bottom = 19.0
-theme = ExtResource("1_xpo72")
-theme_override_font_sizes/font_size = 14
-text = "233"
+text = "Swords"
 vertical_alignment = 1
 
 [node name="SkillLevel" type="Label" parent="." unique_id=743443154]
@@ -50,7 +39,7 @@ vertical_alignment = 1
 [node name="SkillXPBar" type="ProgressBar" parent="." unique_id=834386656]
 layout_mode = 0
 offset_top = 15.0
-offset_right = 129.0
+offset_right = 102.0
 offset_bottom = 16.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_7y4pk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_cfvnm")
