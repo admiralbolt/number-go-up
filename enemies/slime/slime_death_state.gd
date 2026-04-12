@@ -11,7 +11,6 @@ func init(p_state_machine: StateMachine) -> void:
 
 func on_enter() -> void:
   # enemy.invincible = true
-  self.enemy.velocity = Vector2.ZERO
   self.enemy.hurt_box.disable()
   self.enemy.disable_all_hit_boxes()
 
@@ -27,6 +26,8 @@ func on_exit() -> void:
   self.enemy.animation_player.stop()
 
 func process(_delta: float) -> String:
+  self.enemy.velocity = Vector2.ZERO
+
   return State.NULL_STATE
 
 func _on_killed(_hit_box: HitBox) -> void:

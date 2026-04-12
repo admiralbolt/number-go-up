@@ -22,7 +22,7 @@ func _ready() -> void:
     HitBox.DamageRange.make_without_skill(Damage.DamageType.ACID, 5, 15)
   ]
   self.contact_hit_box.owning_entity = self
-  self.contact_hit_box.knockback = 290
+  self.contact_hit_box.knockback = 155
   self.contact_hit_box.enable(false)
 
   # By default the explode attack hit box should not be active.
@@ -32,7 +32,7 @@ func _ready() -> void:
     HitBox.DamageRange.make_without_skill(Damage.DamageType.ACID, 15.0, 30)
   ]
   self.explode_attack_hit_box.owning_entity = self
-  self.explode_attack_hit_box.knockback = 450
+  self.explode_attack_hit_box.knockback = 310
 
   self.derived_statistics.movement_speed.base_value = 70
   self.derived_statistics.movement_speed.compute_total()

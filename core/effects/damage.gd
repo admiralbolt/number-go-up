@@ -91,7 +91,7 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
   if target is Player:
     SignalBus.on_player_damaged.emit(final_event)
 
-  apply_knockback(target, hit_box)
+  target.physics_manager.apply_knockback(hit_box)
 
   target.current_health -= total_damage
   target.damaged.emit(hit_box)
@@ -101,14 +101,6 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
     if owner is Player:
       owner.add_xp(target.xp)
       SignalBus.on_player_killed_enemy.emit(final_event)
-
-static func apply_knockback(target: Entity, hit_box: HitBox) -> void:
-  var total_knockback: float = hit_box.knockback * (1 - target.derived_statistics.knockback_resistance.total_value)
-  var direction: Vector2 = target.global_position.direction_to(hit_box.global_position)
-  target.facing = direction.normalized()
-  target.velocity = -1 * direction * total_knockback
-  print("Applying knockback with base knockback: %f, total_knockback: %f, resulting velocity change: %s" % [hit_box.knockback, total_knockback, target.velocity])
-
 
 class DamageCalculationEvent:
   # Root objects incase we need to recalculate anything.

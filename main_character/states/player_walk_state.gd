@@ -25,8 +25,7 @@ func process(delta: float) -> String:
   if self.player.velocity.length() == 0 and self.walk_timer <= 0:
     return PlayerIdleState.NAME
 
-  var target_vector: Vector2 = self.player.held_direction * self.player.max_speed
-  self.player.velocity = PhysicsUtil.apply_acceleration(self.player.velocity, target_vector, self.player.max_speed, delta)
+  self.player.velocity = self.player.held_direction.normalized() * self.player.derived_statistics.movement_speed.total_value
   self.walk_timer -= delta
 
   if self.player.direction_name != direction_name:

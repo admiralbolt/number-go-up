@@ -35,11 +35,7 @@ func on_exit() -> void:
   self.player.weapon_renderer.hit_box.reset()
 
 func process(delta: float) -> String:
-  var target_vector: Vector2 = self.player.held_direction * self.player.max_speed * 0.5
-  if self.player.held_direction == Vector2.ZERO:
-    self.player.velocity = PhysicsUtil.apply_deceleration(self.player.velocity, self.player.derived_statistics.friction.total_value, delta)
-  else:
-    self.player.velocity = PhysicsUtil.apply_acceleration(self.player.velocity, target_vector, self.player.max_speed, delta)
+  self.player.velocity = self.player.held_direction.normalized() * self.player.derived_statistics.movement_speed.total_value * 0.5
   
   self.attack_timer -= delta
   if self.attack_timer <= (PlayerAnimator.ANIMATION_DURATION["attack"] * 0.4):

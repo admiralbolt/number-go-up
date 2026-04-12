@@ -2,7 +2,7 @@ class_name PlayerRollState extends PlayerState
 
 static var NAME: String = "roll"
 static var ROLL_STAMINA_COST: float = 25
-static var ROLL_SPEED_BOOST: float = 1.3
+static var ROLL_SPEED_BOOST: float = 1.5
 
 var roll_direction: Vector2
 var roll_timer: float
@@ -24,13 +24,14 @@ func on_enter() -> void:
   self.roll_timer = PlayerAnimator.ANIMATION_DURATION["roll"]
   # Lock the direction for the duration of the roll.
   self.roll_direction = self.player.facing
-  self.player.velocity = self.roll_direction * self.player.derived_statistics.movement_speed.total_value * ROLL_SPEED_BOOST
   self.player.animation_player.play("PlayerAnimations/roll_%s" % self.player.direction_name)
 
 func on_exit() -> void:
   self.player.animation_player.stop()
 
 func process(delta: float) -> String:
+  self.player.velocity = self.roll_direction * self.player.derived_statistics.movement_speed.total_value * ROLL_SPEED_BOOST
+
   self.roll_timer -= delta
   if self.roll_timer > 0:
     return State.NULL_STATE

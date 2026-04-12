@@ -12,6 +12,7 @@ signal died(hit_box: HitBox)
 
 var modifier_manager: ModifierManager = ModifierManager.new()
 var effect_manager: EffectManager = EffectManager.new()
+var physics_manager: PhysicsManager = PhysicsManager.new(self)
 
 # All entities should have a hurt box.
 var hurt_box: HurtBox
@@ -99,6 +100,12 @@ func _process(delta: float) -> void:
   self.current_health += self.derived_statistics.health_regen.total_value * delta
   self.current_mana += self.derived_statistics.mana_regen.total_value * delta
   self.current_stamina += self.derived_statistics.stamina_regen.total_value * delta
+
+func _physics_process(delta: float) -> void:
+  # Velocity and such should be set by _process(). Applying stuff from our
+  # physics manager here should happen *LAST*.
+  self.physics_manager.process_effects(delta)
+  self.move_and_slide()
 
 func _recompute_properties(recompute_targets: Dictionary[Modifier.ModifierTarget, ModifierManager.RecomputeTargetList]) -> void:
   for target_type in [Modifier.ModifierTarget.ATTRIBUTE, Modifier.ModifierTarget.DERIVED_STATISTIC, Modifier.ModifierTarget.SKILL]:

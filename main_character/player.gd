@@ -16,8 +16,6 @@ var direction_name: String = "down"
 var starting_xp_this_level: float = 0.0
 var total_xp_to_next_level: float = RPGUtil.total_xp_for_next_level(1)
 
-var max_speed: float = 0
-
 func _ready() -> void:
   self.main_player_state_machine.initialize()
   self.main_player_state_machine.change_state(PlayerIdleState.NAME)
@@ -25,7 +23,6 @@ func _ready() -> void:
 
   self.hurt_box = $PlayerHurtBox
   super._ready()
-  self.max_speed = self.derived_statistics.movement_speed.total_value
 
 func level_up() -> void:
   self.character_class.level_up()
@@ -61,10 +58,6 @@ func _process(_delta: float) -> void:
     self.main_player_state_machine.change_state(PlayerAttackState.NAME)
   elif held_direction != Vector2.ZERO:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)
-
-func _physics_process(_delta: float) -> void:
-  self.move_and_slide()
-
 
 func _test_buff_effect() -> void:
   var m: Modifier = Modifier.new()
