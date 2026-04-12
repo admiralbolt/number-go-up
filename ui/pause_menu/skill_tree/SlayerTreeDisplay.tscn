@@ -40,6 +40,13 @@ offset_top = 190.0
 offset_right = 51.0
 offset_bottom = 221.0
 
+[node name="Executioner" parent="ScrollContainer/Control" unique_id=806411572 instance=ExtResource("2_4uofy")]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 107.0
+offset_right = 201.0
+offset_bottom = 138.0
+
 [node name="InvestmentLabel" type="RichTextLabel" parent="." unique_id=1710389455]
 layout_mode = 0
 offset_left = 106.0

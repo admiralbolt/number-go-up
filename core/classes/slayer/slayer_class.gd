@@ -22,3 +22,4 @@ func _init() -> void:
   self.skill_tree = SkillTree.new()
   self.skill_tree.add_skill(SkillProwess.new())
   self.skill_tree.add_skill(SkillHuntress.new())
+  self.skill_tree.add_skill(SkillExecutioner.new())
