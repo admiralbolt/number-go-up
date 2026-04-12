@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://csamsy8itgmr6"]
+
+[ext_resource type="Script" uid="uid://dl4lo2g7ryuqo" path="res://ui/components/effect_manager_display.gd" id="1_4d5lr"]
+
+[node name="EffectManagerDisplay" type="Control" unique_id=984141562]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4d5lr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=783604777]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 4

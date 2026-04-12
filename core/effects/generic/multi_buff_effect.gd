@@ -27,6 +27,7 @@ func merge(target: Entity, other: Effect) -> void:
   # Reset the duration and timer of the entire effect.
   self.duration = modifiers_from_manager.map(func(m) -> float: return m.get_total_time_left()).max()
   self.timer = self.duration
+  self.changed.emit()
 
 func remove(target: Entity) -> void:
   for modifier in self.modifiers.modifiers:
@@ -37,6 +38,7 @@ func process(target: Entity, delta: float) -> bool:
     target.modifier_manager.update_modifier(modifier, delta)
 
   self.timer -= delta
+  self.changed.emit()
   return self.timer <= 0
 
 func get_unique_name() -> String:

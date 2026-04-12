@@ -1,5 +1,8 @@
 class_name EffectManager extends Resource
 
+signal effect_added(effect: Effect)
+signal effect_removed(effect: Effect)
+
 var entity: Entity
 var active_effects: Array[Effect] = []
 
@@ -19,6 +22,7 @@ func process(delta: float) -> void:
   for i in removal_indices.size():
     # Make sure we shift the index back since we're deleting as we go.
     var index: int = removal_indices[i] - i
+    self.effect_removed.emit(active_effects[index])
     active_effects[index].remove(self.entity)
     active_effects.remove_at(removal_indices[i] - i)
 
@@ -42,6 +46,7 @@ func apply_effect(effect: Effect) -> void:
   if existing_effect == null:
     effect.timer = effect.duration
     active_effects.append(effect)
+    self.effect_added.emit(effect)
     return
 
   existing_effect.merge(self.entity, effect)

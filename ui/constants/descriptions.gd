@@ -18,5 +18,6 @@ const DERIVED_STATISTIC_DESCRIPTIONS: Dictionary[String, String] = {
 }
 
 const SKILL_DESCRIPTIONS: Dictionary[String, String] = {
-  "swords": "Swords. Swords. Swords. Everybody likes having a sword. You can use it to cut things. Slay monsters. e.t.c"
+  "swords": "Swords. Swords. Swords. Everybody likes having a sword. You can use it to cut things. Slay monsters. e.t.c",
+  "destruction": "Destruction magic. Make the enemy go boom. The best defense is a good offense."
 }

@@ -9,6 +9,8 @@ static var REGEN_PER_RANK: float = 0.1
 static var DURATION_BASE: float = 4
 static var DURATION_PER_RANK: float = 0.4
 
+const HUNTRESS_EFFECT_ICON: Texture2D = preload("res://assets/effects/icons/unknown.png")
+
 func _init() -> void:
   self.name = NAME
   self.description = "On kill, increases movement speed and health regeneration."
@@ -64,6 +66,7 @@ func _create_on_kill_effect() -> MultiBuffEffect:
   modifier_list.modifiers.append(regen_mod)
 
   effect.modifiers = modifier_list
+  effect.icon = HUNTRESS_EFFECT_ICON
 
   return effect
 

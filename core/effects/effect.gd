@@ -17,6 +17,11 @@ enum EffectType {
 @export var duration: float = 0.0
 @export var timer: float = duration
 
+# The icon to display for this effect. We only render it if the icon is set.
+# Icon should be passed in as a texture, the thing creating the effect should
+# be responsible for loading/owning the resource.
+@export var icon: Texture2D = null
+
 func apply(_target: Entity) -> void:
   return
 

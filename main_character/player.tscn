@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bohi8b8eyfv86" path="res://util/hurt_box.gd" id="14_itdfg"]
 [ext_resource type="PackedScene" uid="uid://d1ov70lbgcbfr" path="res://ui/components/BasicManaBar.tscn" id="15_e0qqe"]
 [ext_resource type="Script" uid="uid://cnjcvq0ovhqlq" path="res://main_character/player_camera.gd" id="15_nxc8y"]
+[ext_resource type="PackedScene" uid="uid://csamsy8itgmr6" path="res://ui/components/EffectManagerDisplay.tscn" id="18_xj3nd"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfiix"]
 
@@ -653,3 +654,5 @@ shape = SubResource("CapsuleShape2D_4flbx")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1576934257]
 script = ExtResource("15_nxc8y")
+
+[node name="EffectManagerDisplay" parent="." unique_id=984141562 instance=ExtResource("18_xj3nd")]

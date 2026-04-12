@@ -21,6 +21,7 @@ func process(target: Entity, delta: float) -> bool:
   target.modifier_manager.update_modifier(modifier, delta)
   self.timer -= delta
 
+  self.changed.emit()
   return modifier.timer <= 0
 
 func get_unique_name() -> String:
