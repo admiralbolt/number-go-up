@@ -30,7 +30,6 @@ const MIND_SAVE: String = "mind_save"
 
 const ARMOR: String = "armor"
 const KNOCKBACK_RESISTANCE: String = "knockback_resistance"
-const FRICTION: String = "friction"
 const POISE: String = "poise"
 const FORCE_RESISTANCE: String = "force_resistance"
 const FIRE_RESISTANCE: String = "fire_resistance"
@@ -86,7 +85,6 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
   MIND_SAVE,
   ARMOR,
   KNOCKBACK_RESISTANCE,
-  FRICTION,
   POISE,
   FORCE_RESISTANCE,
   FIRE_RESISTANCE,
@@ -143,7 +141,6 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
 
 @export var base_armor: float = 0.0
 @export var base_knockback_resistance: float = 0.0
-@export var base_friction: float = 3.0
 @export var base_poise: float = 10.0
 @export var base_force_resistance: float = 0.0
 @export var base_fire_resistance: float = 0.0
@@ -205,7 +202,6 @@ var mind_save: DerivedStatistic
 
 var armor: DerivedStatistic
 var knockback_resistance: DerivedStatistic
-var friction: DerivedStatistic
 var poise: DerivedStatistic
 var force_resistance: DerivedStatistic
 var fire_resistance: DerivedStatistic
@@ -335,7 +331,6 @@ func initialize(p_entity: Entity) -> void:
 
   self.armor = DerivedStatistic.make(ARMOR, "Armor", base_armor, {}, p_entity)
   self.knockback_resistance = DerivedStatistic.make(KNOCKBACK_RESISTANCE, "Knockback Resistance", base_knockback_resistance, {}, p_entity)
-  self.friction = DerivedStatistic.make(FRICTION, "Friction", base_friction, {}, p_entity)
   self.poise = DerivedStatistic.make(POISE, "Poise", base_poise, {
     "constitution": 0.06,
     "strength": 0.04
