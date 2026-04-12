@@ -16,6 +16,8 @@ enum AbilityType {
 @export var ability_type: AbilityType = AbilityType.ACTIVE
 # The base cooldown of the ability in seconds.
 @export var cooldown: float = 0.25
+# The governing skill name.
+@export var governing_skill_name: String = Skills.NULL
 # The base costs of the ability.
 @export var health_cost: float = 0.0
 @export var mana_cost: float = 0.0
@@ -53,6 +55,9 @@ func use(_current_scene: Node) -> bool:
   PlayerManager.player.current_mana -= mana_cost
   PlayerManager.player.current_stamina -= stamina_cost
 
+  var skill: Skill = PlayerManager.player.skills.get(governing_skill_name)
+  var cooldown_multiplier: float = 1.0 if skill == null else skill.get_cooldown_reduction()
   # Set cooldown.
-  self.timer = self.max_cooldown
+  self.timer = self.max_cooldown * cooldown_multiplier
+
   return true

@@ -3,7 +3,7 @@ class_name Skills extends Resource
 const NULL: String = "this_should_never_be_a_real_skill_name"
 
 # Weapons
-const SWORDS: String = "swords"
+const SWORDS: String = SkillSwords.NAME
 const AXES: String = "axes"
 const HAMMERS: String = "hammers"
 const SPEARS: String = "spears"
@@ -14,7 +14,7 @@ const THROWING: String = "throwing"
 # Magic
 const ALTERATION: String = "alteration"
 const CONJURATION: String = "conjuration"
-const DESTRUCTION: String = "destruction"
+const DESTRUCTION: String = SkillDestruction.NAME
 const ENCHANTING: String = "enchanting"
 const ILLUSION: String = "illusion"
 const NECROMANCY: String = "necromancy"
@@ -50,7 +50,10 @@ const PERFORMANCE: String = "performance"
 const APPRAISAL: String = "appraisal"
 const PERCEPTION: String = "perception"
 
-const ALL_SKILLS: Array[String] = [SWORDS]
+const ALL_SKILLS: Array[String] = [
+  SWORDS,
+  DESTRUCTION,
+]
 
 # const ALL_SKILLS: Array[String] = [
 #   SWORDS, AXES, HAMMERS, SPEARS, BOWS, UNARMED, THROWING,
@@ -63,10 +66,6 @@ const ALL_SKILLS: Array[String] = [SWORDS]
 
 # Weapons
 @export var swords: SkillSwords = SkillSwords.new()
-# @export var swords: Skill = Skill.make_default(SWORDS, {
-#   Attributes.STRENGTH: 0.1,
-#   Attributes.DEXTERITY: 0.05,
-# })
 
 # @export var axes: Skill = Skill.make_default(AXES, {
 #   Attributes.STRENGTH: 0.14,
@@ -110,10 +109,7 @@ const ALL_SKILLS: Array[String] = [SWORDS]
 #   Attributes.CHARISMA: 0.05,
 # })
 
-# @export var destruction: Skill = Skill.make_default(DESTRUCTION, {
-#   Attributes.INTELLIGENCE: 0.05,
-#   Attributes.SPIRIT: 0.1,
-# })
+@export var destruction: SkillDestruction = SkillDestruction.new()
 
 # @export var enchanting: Skill = Skill.make_default(ENCHANTING, {
 #   Attributes.INTELLIGENCE: 0.12,

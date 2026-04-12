@@ -6,7 +6,6 @@ const MIN_DAMAGE_PER_LEVEL: float = 2
 const MAX_DAMAGE_PER_LEVEL: float = 3
 const PERCENT_DAMAGE_PER_LEVEL: float = 0.01
 
-# Skill values!
 const SWORD_MIN_DAMAGE_INCREASE: String = "sword_min_damage_increase"
 const SWORD_MAX_DAMAGE_INCREASE: String = "sword_max_damage_increase"
 const SWORD_PERCENT_DAMAGE_INCREASE: String = "sword_percent_damage_increase"

@@ -40,6 +40,13 @@ func add_xp(amount: float) -> void:
 func apply_damage_bonus(damage: float) -> float:
   return damage
 
+func get_cooldown_reduction() -> float:
+  """Returns a multiplier for total cooldown.
+
+  This should be a number between 0 and 1.
+  """
+  return 1.0
+
 func get_sub_statistics() -> Array[DerivedStatistic]:
   return []
 

@@ -7,6 +7,8 @@ func _init() -> void:
   self.ability_name = NAME
   self.description = "Bllaaaaast."
   self.cooldown = 2.0
+  self.governing_skill_name = SkillDestruction.NAME
+
   self.mana_cost = 65.0
   self.stamina_cost = 4.0
 
