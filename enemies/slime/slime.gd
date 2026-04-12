@@ -34,7 +34,7 @@ func _ready() -> void:
   self.explode_attack_hit_box.owning_entity = self
   self.explode_attack_hit_box.knockback = 310
 
-  self.derived_statistics.movement_speed.base_value = 70
+  self.derived_statistics.movement_speed.base_value = 104
   self.derived_statistics.movement_speed.compute_total()
 
   self.state_machine.initialize()
