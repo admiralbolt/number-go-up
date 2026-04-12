@@ -10,14 +10,20 @@ func on_enter() -> void:
   self.enemy.hit_boxes[Slime.EXPLODE_ATTACK_HITBOX_NAME].enable()
   self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_name)
 
+  # Trying a funny thing here, we simulate a slide by applying knockback
+  # in the direction we were moving.
+  # Turns out this actually works pretty well.
+  self.enemy.physics_manager.knockback_effects.append(PhysicsManager.KnockbackEffect.new(self.enemy.facing, 150, 0.3))
+
 func on_exit() -> void:
   self.enemy.hit_boxes[Slime.EXPLODE_ATTACK_HITBOX_NAME].disable()
   self.enemy.animation_player.stop()
 
-func process(delta: float) -> String:
+func process(_delta: float) -> String:
   var desired_facing: Vector2 = (PlayerManager.player.global_position - self.enemy.global_position).normalized()
   self.enemy.facing = self.enemy.facing.slerp(desired_facing, 0.01)
-  self.enemy.velocity = PhysicsUtil.apply_deceleration(Vector2.ZERO, self.enemy.derived_statistics.friction.total_value, delta)
+
+  self.enemy.velocity = Vector2.ZERO
 
   if self.enemy.animation_player.is_playing():
     return State.NULL_STATE

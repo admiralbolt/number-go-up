@@ -5,6 +5,8 @@ REMEMBER: YOU MUST RESET VELOCITY ON ALL PROCESS FRAMES.
 
 class_name PhysicsManager
 
+const MAGIC_DECELERATION_NUMBER: float = 1.5
+
 var owner: Entity
 
 var knockback_effects: Array[KnockbackEffect] = []
