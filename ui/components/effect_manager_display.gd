@@ -2,17 +2,21 @@ class_name EffectManagerDisplay extends Control
 
 static var EFFECT_DISPLAY_SCENE: PackedScene = preload("res://ui/components/EffectDisplay.tscn")
 
+var effect_manager: EffectManager
 var effect_to_display: Dictionary[String, EffectDisplay] = {}
 
 @onready var display_container: HBoxContainer = $HBoxContainer
 
 func _ready() -> void:
-  if owner is not Entity:
+  if self.effect_manager == null and owner is not Entity:
     self.visible = false
     return
 
-  owner.effect_manager.effect_added.connect(_on_effect_added)
-  owner.effect_manager.effect_removed.connect(_on_effect_removed)
+  if owner is Entity:
+    self.effect_manager = owner.effect_manager
+
+  self.effect_manager.effect_added.connect(_on_effect_added)
+  self.effect_manager.effect_removed.connect(_on_effect_removed)
 
 func _on_effect_added(effect: Effect) -> void:
   var display: EffectDisplay = EFFECT_DISPLAY_SCENE.instantiate()

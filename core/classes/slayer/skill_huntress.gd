@@ -9,7 +9,7 @@ static var REGEN_PER_RANK: float = 0.1
 static var DURATION_BASE: float = 4
 static var DURATION_PER_RANK: float = 0.4
 
-const HUNTRESS_EFFECT_ICON: Texture2D = preload("res://assets/effects/icons/unknown.png")
+const HUNTRESS_EFFECT_ICON: Texture2D = preload("res://assets/effects/icons/huntress.png")
 
 func _init() -> void:
   self.name = NAME
@@ -30,9 +30,8 @@ func dynamic_description() -> String:
 
   return "\n".join(lines)
 
-func _create_on_kill_effect() -> MultiBuffEffect:
-  var effect: MultiBuffEffect = MultiBuffEffect.new()
-  var modifier_list: ModifierList = ModifierList.new()
+func _create_on_kill_effect() -> BuffEffect:
+  var effect: BuffEffect = BuffEffect.new()
 
   var speed_mod = Modifier.new()
   speed_mod.source_name = self.name
@@ -40,13 +39,10 @@ func _create_on_kill_effect() -> MultiBuffEffect:
   speed_mod.target_type = Modifier.ModifierTarget.DERIVED_STATISTIC
   speed_mod.stat_name = DerivedStatistics.MOVEMENT_SPEED
   speed_mod.value = SPEED_BASE + (SPEED_PER_RANK * self.ranks)
+  speed_mod.base_value = speed_mod.value
   speed_mod.modifier_type = Modifier.ModifierType.ADDITIVE
   speed_mod.modifier_priority = Modifier.ModifierPriority.APPLY_ADDITIVE
   speed_mod.sentiment = Modifier.ModifierSentiment.BUFF
-  speed_mod.is_stackable = true
-  speed_mod.is_decaying = false
-  speed_mod.duration = DURATION_BASE + (DURATION_PER_RANK * self.ranks)
-  speed_mod.is_timed = true
 
   var regen_mod = Modifier.new()
   regen_mod.source_name = self.name
@@ -54,18 +50,17 @@ func _create_on_kill_effect() -> MultiBuffEffect:
   regen_mod.target_type = Modifier.ModifierTarget.DERIVED_STATISTIC
   regen_mod.stat_name = DerivedStatistics.HEALTH_REGEN
   regen_mod.value = REGEN_BASE + (REGEN_PER_RANK * self.ranks)
+  regen_mod.base_value = regen_mod.value
   regen_mod.modifier_type = Modifier.ModifierType.ADDITIVE
   regen_mod.modifier_priority = Modifier.ModifierPriority.APPLY_ADDITIVE
   regen_mod.sentiment = Modifier.ModifierSentiment.BUFF
-  regen_mod.is_stackable = true
-  regen_mod.is_decaying = false
-  regen_mod.duration = DURATION_BASE + (DURATION_PER_RANK * self.ranks)
-  regen_mod.is_timed = true
 
-  modifier_list.modifiers.append(speed_mod)
-  modifier_list.modifiers.append(regen_mod)
-
-  effect.modifiers = modifier_list
+  effect.is_stackable = true
+  effect.is_decaying = false
+  effect.duration = DURATION_BASE + (DURATION_PER_RANK * self.ranks)
+  effect.timer = effect.duration
+  effect.modifiers.modifiers.append(speed_mod)
+  effect.modifiers.modifiers.append(regen_mod)
   effect.icon = HUNTRESS_EFFECT_ICON
 
   return effect

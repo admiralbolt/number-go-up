@@ -29,6 +29,7 @@ func process(delta: float) -> void:
 func clear() -> void:
   for effect in self.active_effects:
     effect.remove(self.entity)
+    self.effect_removed.emit(effect)
 
   self.active_effects.clear()
 
@@ -44,7 +45,6 @@ func apply_effect(effect: Effect) -> void:
 
   var existing_effect: Effect = self.get_effect(effect)
   if existing_effect == null:
-    effect.timer = effect.duration
     active_effects.append(effect)
     self.effect_added.emit(effect)
     return

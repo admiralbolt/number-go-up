@@ -1,32 +1,15 @@
 class_name ModifierManager extends Node
 
-signal recomputes(recompute_targets: Dictionary[Modifier.ModifierTarget, RecomputeTargetList])
-
 @export var all_modifiers: ModifierList = ModifierList.new()
 
 var modifier_by_stat: Dictionary[String, ModifierPriorityQueue] = {}
 
 func add_modifiers(modifiers: Array[Modifier], debug: bool = false) -> void:
-  var recompute_targets: Dictionary[Modifier.ModifierTarget, RecomputeTargetList] = {}
   for modifier in modifiers:
-    if self.add_modifier(modifier, false, debug):
-      var target_list: RecomputeTargetList = recompute_targets.get(modifier.target_type)
-      if target_list == null:
-        target_list = RecomputeTargetList.new()
-        recompute_targets[modifier.target_type] = target_list
-      target_list.targets.append(RecomputeTarget.new(modifier.target_type, modifier.stat_name))
+    self.add_modifier(modifier, debug)
 
-  if recompute_targets.size() > 0:
-    if debug:
-      print("Emitting recomputes...")
-      for target_type in recompute_targets:
-        print("Target type: %s" % target_type)
-        for target in recompute_targets[target_type].targets:
-          print("\tStat name: %s" % target.stat_name)
-    self.recomputes.emit(recompute_targets)
-
-func add_modifier(modifier: Modifier, emit_recompute: bool = true, debug: bool = false) -> bool:
-  """Returns a bool value indicating if we need to recompute."""
+func add_modifier(modifier: Modifier, debug: bool = false) -> void:
+  """If we try to add a modifier that already exists, we ignore it."""
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(modifier.stat_name)
   if modifier_queue == null:
     modifier_queue = ModifierPriorityQueue.new()
@@ -40,29 +23,9 @@ func add_modifier(modifier: Modifier, emit_recompute: bool = true, debug: bool =
 
   if existing_modifier == null:
     self.all_modifiers.modifiers.append(modifier)
-    var should_emit: bool = modifier_queue.add_modifier(modifier)
-    if emit_recompute and should_emit:
-      self.recomputes.emit(emit_data(modifier))
-    return should_emit
-
-  # If we add a duplicate version of an existing modifier, the exact values
-  # may not match exactly. We want to update these to the highest number between
-  # the two. If we apply bleed, then get a buff that makes our bleed deal more
-  # damage and apply bleed again, we want it to update ALL stacks.
-  existing_modifier.value = max(existing_modifier.value, modifier.value)
-
-  if existing_modifier.is_stackable:
-    # Only refresh if the flag is set.
-    if existing_modifier.refresh_on_stack:
-      existing_modifier.timer = max(existing_modifier.duration, modifier.duration)
-    
-    existing_modifier.stack_count += modifier.stack_count
-    if emit_recompute:
-      self.recomputes.emit(emit_data(modifier))
-    return true
-
-  existing_modifier.timer = max(existing_modifier.duration, modifier.duration)
-  return false
+    modifier_queue.add_modifier(modifier)
+    SignalBus.modifier_changed.emit(modifier.stat_name)
+    return
 
 func get_modifier(modifier: Modifier) -> Modifier:
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(modifier.stat_name)
@@ -81,29 +44,6 @@ func get_modifier(modifier: Modifier) -> Modifier:
 
   return null
 
-func update_modifier(modifier: Modifier, delta: float) -> void:
-  if not modifier.is_timed:
-    return
-
-  modifier.timer -= delta
-  if modifier.timer <= 0:
-    # If it's a stackable modifier, we want to reduce the stack count, reset
-    # the timer, and emit a recompute.
-    if modifier.is_stackable and modifier.stack_count > 1:
-      modifier.stack_count -= 1
-      modifier.timer = modifier.duration
-      self.recomputes.emit(emit_data(modifier))
-      return
-
-    # Otherwise, it's either not stackable OR down to the last stack.
-    self.remove_modifier(modifier)
-    return
-
-  # Finally, if it's a decaying modifier, we do need to emit a recompute.
-  if modifier.is_decaying:
-    self.recomputes.emit(emit_data(modifier)) 
-  
-
 func remove_modifier(modifier: Modifier) -> void:
   var index: int = self.all_modifiers.get_index(modifier)
   if index == -1:
@@ -112,7 +52,7 @@ func remove_modifier(modifier: Modifier) -> void:
   self.all_modifiers.modifiers.remove_at(index)
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(modifier.stat_name)
   modifier_queue.remove_modifier(modifier)
-  self.recomputes.emit(emit_data(modifier))
+  SignalBus.modifier_changed.emit(modifier.stat_name)
 
 func compute_total(stat_name: String, base_value: float, debug: bool = false) -> float:
   var modifier_queue: ModifierPriorityQueue = modifier_by_stat.get(stat_name)
@@ -120,6 +60,7 @@ func compute_total(stat_name: String, base_value: float, debug: bool = false) ->
     print("Computing total for stat: %s with base value: %.2f" % [stat_name, base_value])
     print("List of keys in modifier_by_stat:")
     print(modifier_by_stat.keys())
+ 
   if modifier_queue == null:
     return base_value
 
@@ -160,7 +101,6 @@ func debug_print() -> void:
   for modifier in self.all_modifiers.modifiers:
     print(modifier)
 
-
 class ModifierPriorityQueue extends Resource:
   """A priority queue of modifiers to apply.
 
@@ -176,19 +116,18 @@ class ModifierPriorityQueue extends Resource:
   @export var multiplicative_modifiers: ModifierQueue = ModifierQueue.new()
   @export var last_modifiers: ModifierQueue = ModifierQueue.new()
 
-  func add_modifier(p_modifier: Modifier) -> bool:
+  func add_modifier(p_modifier: Modifier) -> void:
     match p_modifier.modifier_priority:
       Modifier.ModifierPriority.APPLY_FIRST:
-        return self.first_modifiers.add_modifier(p_modifier)
+        self.first_modifiers.add_modifier(p_modifier)
       Modifier.ModifierPriority.APPLY_ADDITIVE:
-        return self.additive_modifiers.add_modifier(p_modifier)
+        self.additive_modifiers.add_modifier(p_modifier)
       Modifier.ModifierPriority.APPLY_MULTIPLICATIVE:
-        return self.multiplicative_modifiers.add_modifier(p_modifier)
+        self.multiplicative_modifiers.add_modifier(p_modifier)
       Modifier.ModifierPriority.APPLY_LAST:
-        return self.last_modifiers.add_modifier(p_modifier)
+        self.last_modifiers.add_modifier(p_modifier)
 
-    return false
-
+    return
 
   func remove_modifier(p_modifier: Modifier) -> void:
     match p_modifier.modifier_priority:
@@ -226,20 +165,12 @@ class ModifierPriorityQueue extends Resource:
     """
     @export var modifiers_by_name: Dictionary[String, Modifier] = {}
 
-    func add_modifier(p_modifier: Modifier) -> bool:
+    func add_modifier(p_modifier: Modifier) -> void:
       var modifier: Modifier = self.modifiers_by_name.get(p_modifier.unique_name)
       if modifier == null:
         self.modifiers_by_name[p_modifier.unique_name] = p_modifier
-        return true
 
-      # Whether or not it can stack, we want to refresh the duration.
-      modifier.timer = max(modifier.duration, p_modifier.duration)
-
-      if modifier.can_stack(p_modifier):
-        modifier.stack_count += p_modifier.stack_count
-        return true
-
-      return false
+      return
 
     func remove_modifier(p_modifier: Modifier) -> void:
       self.modifiers_by_name.erase(p_modifier.unique_name)
@@ -258,27 +189,3 @@ class ModifierPriorityQueue extends Resource:
         val = modifier.apply(val)
 
       return descriptions
-
-
-static func emit_data(modifier: Modifier) -> Dictionary[Modifier.ModifierTarget, RecomputeTargetList]:
-  var target_list: RecomputeTargetList = RecomputeTargetList.new()
-  target_list.targets.append(RecomputeTarget.new(modifier.target_type, modifier.stat_name))
-  return {modifier.target_type: target_list}
-
-class RecomputeTargetList:
-  var targets: Array[RecomputeTarget] = []
-
-  func _to_string() -> String:
-    if targets.size() == 0:
-      return "RecomputeTargetList []"
-
-    var stat_names: String = ", ".join(targets.map(func(target: RecomputeTarget) -> String: return target.stat_name))
-    return "RecomputeTargetList [%s] -> %s" % [targets[0].target_type, stat_names]
-
-class RecomputeTarget:
-  var target_type: Modifier.ModifierTarget
-  var stat_name: String
-
-  func _init(p_target_type: Modifier.ModifierTarget, p_stat_name: String) -> void:
-    self.target_type = p_target_type
-    self.stat_name = p_stat_name

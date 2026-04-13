@@ -46,25 +46,12 @@ enum ModifierSentiment {
 @export var target_type: ModifierTarget = ModifierTarget.ATTRIBUTE
 @export var stat_name: String = ""
 @export var value: float = 1.0
+@export var base_value: float = 1.0
 @export var modifier_type: ModifierType = ModifierType.ADDITIVE
 @export var modifier_priority: ModifierPriority = ModifierPriority.APPLY_ADDITIVE
 @export var sentiment: ModifierSentiment = ModifierSentiment.NEUTRAL
 
-@export var duration: float = -1: set = _set_duration
-@export var timer: float = 0
-@export var is_decaying: bool = false
-@export var is_timed: bool = false
-@export var is_stackable: bool = false
-@export var refresh_on_stack: bool = false
-@export var stack_count: int = 1
-@export var stack_fall_off: int = 1
-
 var unique_name: String = "": get = _get_unique_name
-
-func _set_duration(p_duration: float) -> void:
-  duration = p_duration
-  is_timed = duration > 0
-  timer = duration
 
 func _get_unique_name() -> String:
   if unique_name == "":
@@ -74,36 +61,18 @@ func _get_unique_name() -> String:
 func eq(other: Modifier) -> bool:
   return self.unique_name == other.unique_name
 
-func can_stack(other: Modifier) -> bool:
-  return self.is_stackable and other.is_stackable and self.eq(other)
-
-func get_total_value() -> float:
-  if self.is_stackable:
-    return self.value * self.stack_count
-
-  if self.is_decaying:
-    return self.value * (self.timer / self.duration)
-
-  return self.value
-
-func apply(base_value: float) -> float:
+func apply(p_base_value: float) -> float:
   match self.modifier_type:
     ModifierType.ADDITIVE:
-      return base_value + self.get_total_value()
+      return p_base_value + self.value
     ModifierType.MULTIPLICATIVE:
-      return base_value * (1 + self.get_total_value())
+      return p_base_value * (1 + self.value)
 
   print("Unknown modifier type: %s" % self.modifier_type)
-  return base_value
-
-func get_total_time_left() -> float:
-  if not self.is_stackable:
-    return self.timer
-
-  return self.timer + (self.stack_count - 1) * self.duration
+  return p_base_value
 
 func _to_string() -> String:
-  return "Modifier(%s) %s, %s, %s, value: %.2f, type: %s, priority: %s, sentiment: %s, duration: %s, timer: %s, is_timed: %s, is_stackable: %s, stack_count: %s, stack_fall_off: %s" % [self.unique_name, self.source_name, ModifierSource.keys()[self.source_type], self.stat_name, self.value, ModifierType.keys()[self.modifier_type], ModifierPriority.keys()[self.modifier_priority], ModifierSentiment.keys()[self.sentiment], self.duration, self.timer, self.is_timed, self.is_stackable, self.stack_count, self.stack_fall_off]
+  return "Modifier(%s) %s, %s, %s, value: %.2f, type: %s, priority: %s, sentiment: %s" % [self.unique_name, self.source_name, ModifierSource.keys()[self.source_type], self.stat_name, self.value, ModifierType.keys()[self.modifier_type], ModifierPriority.keys()[self.modifier_priority], ModifierSentiment.keys()[self.sentiment]]
 
 func _get_mod_char() -> String:
   if self.modifier_type == ModifierType.ADDITIVE:
@@ -114,4 +83,4 @@ func _get_mod_char() -> String:
   return "?"
 
 func readable_string() -> String:
-  return "%s (%s%s)" % [self.source_name, self._get_mod_char(), self.get_total_value() + (1 if self.modifier_type == ModifierType.MULTIPLICATIVE else 0)]
+  return "%s (%s%s)" % [self.source_name, self._get_mod_char(), self.value + (1 if self.modifier_type == ModifierType.MULTIPLICATIVE else 0)]

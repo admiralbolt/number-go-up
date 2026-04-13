@@ -16,7 +16,7 @@ func _init() -> void:
   self.icon_path = "res://assets/classes/slayer/executioner.png"
   self.node_type = SkillNodeType.PASSIVE_MODIFIER
   self.max_ranks = 5
-  # self.required_level = 10
+  self.required_level = 10
 
   SignalBus.on_damage_pre_apply.connect(_on_damage_pre_apply)
 

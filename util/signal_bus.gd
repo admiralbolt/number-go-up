@@ -26,4 +26,7 @@ signal on_player_damaged(event: Damage.FinalDamageEvent)
 signal on_player_attack_landed(event: Damage.FinalDamageEvent)
 signal on_player_killed_enemy(event: Damage.FinalDamageEvent)
 
+### Modifier Manager Signals!
+signal modifier_changed(modifier_name: String)
+
 @warning_ignore_restore("unused_signal")

@@ -66,11 +66,13 @@ func _test_buff_effect() -> void:
   m.target_type = Modifier.ModifierTarget.ATTRIBUTE
   m.stat_name = Attributes.AGILITY
   m.value = 1200
-  m.duration = 10
-  m.is_timed = true
-  m.is_decaying = true
+  m.base_value = 1200
 
   var b: BuffEffect = BuffEffect.new()
-  b.modifier = m
+
+  b.duration = 10
+  b.timer = b.duration
+  b.is_decaying = true
+  b.modifiers.modifiers.append(m)
 
   self.effect_manager.apply_effect(b)

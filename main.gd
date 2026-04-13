@@ -8,13 +8,36 @@ signal test_signal(object: SignalObject)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-  test_signal.connect(signal_handler)
-  test_signal_stuff()
+  # test_signal.connect(signal_handler)
+  # test_signal_stuff()
+
+  test_computation_speed()
 
 func signal_handler(object: SignalObject) -> void:
   print("Signal handler processing.")
   object.some_value += 10
   print("Signal handler done processing.")
+
+
+
+func test_computation_speed() -> void:
+  var start_time = Time.get_unix_time_from_system()
+
+  # Calculate the value of a pretend derived statistics 1 million times.
+  for _i in range(1_000_000):
+    var _strength: float = (50.0 + 15) * 1.2
+
+  print("Elapsed time for 1 million calculations: %s" % (Time.get_unix_time_from_system() - start_time))
+
+  start_time = Time.get_unix_time_from_system()
+
+  # Introduce some randomness to see how much optimization is happening.
+  for _i in range(1_000_000):
+    var _strength: float = (50.0 + randf()) * (1 + randf())
+
+  print("Elapsed time for 1 million calculations with randomness: %s" % (Time.get_unix_time_from_system() - start_time))
+ 
+   
 
 
 func test_signal_stuff() -> void:

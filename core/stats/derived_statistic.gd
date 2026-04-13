@@ -30,6 +30,11 @@ func initialize(p_entity: Entity) -> void:
     # recompute the total value.
     attribute.changed.connect(self.compute_total)
   self.compute_total()
+  SignalBus.modifier_changed.connect(self._on_modifier_changed)
+
+func _on_modifier_changed(modifier_name: String) -> void:
+  if modifier_name == self.name:
+    self.compute_total()
 
 func compute_total() -> void:
   var val = self.base_value

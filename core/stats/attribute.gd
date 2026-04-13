@@ -5,16 +5,22 @@ class_name Attribute extends Resource
 var total_value: float = value
 var entity: Entity
 
+func _init() -> void:
+  SignalBus.modifier_changed.connect(self._on_modifier_changed)
+
 func _set_value(p_value: float) -> void:
-  if p_value == self.value:
+  if p_value == value:
     return
 
   value = p_value
   self.compute_total()
 
+func _on_modifier_changed(modifier_name: String) -> void:
+  if modifier_name == self.name:
+    self.compute_total()
+
 func compute_total() -> void:
   if self.entity == null:
-    self.total_value = self.value
     return
 
   var new_total: float = self.entity.modifier_manager.compute_total(self.name, self.value)
@@ -22,7 +28,7 @@ func compute_total() -> void:
     return
 
   self.total_value = new_total
-  self.emit_changed()
+  self.changed.emit()
 
 func compute_total_description() -> Array[String]:
   if self.entity == null:

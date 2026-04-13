@@ -1,33 +1,52 @@
 [gd_scene format=3 uid="uid://mr727f5g48sp"]
 
 [ext_resource type="Script" uid="uid://de6yoxpmbx0n1" path="res://ui/components/effect_display.gd" id="1_87kyf"]
-[ext_resource type="Texture2D" uid="uid://bc1xjokevpxy0" path="res://assets/effects/icons/bleed.png" id="2_c3xkq"]
-[ext_resource type="Texture2D" uid="uid://cdg34xx3u3sr4" path="res://assets/ui/components/progress_bar_under.png" id="3_c4b5t"]
-[ext_resource type="Texture2D" uid="uid://cqawqax5mbn1x" path="res://assets/ui/components/progress_bar_over.png" id="4_knhnu"]
-[ext_resource type="Texture2D" uid="uid://c030ghsrsck3j" path="res://assets/ui/components/gray_progress_bar.png" id="5_5fmx1"]
+[ext_resource type="Texture2D" uid="uid://dr5tyy765bhaj" path="res://assets/effects/icons/huntress.png" id="2_87kyf"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="4_85mvh"]
+[ext_resource type="Shader" uid="uid://beyad1uo04ynq" path="res://materials/radial.gdshader" id="6_c3xkq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4b5t"]
+resource_local_to_scene = true
+shader = ExtResource("6_c3xkq")
+shader_parameter/primary_color = Color(1, 1, 1, 1)
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/unfilled_color = Color(0.44313726, 0.44313726, 0.44313726, 1)
+shader_parameter/value = 0.0999999977648
+shader_parameter/smooth_ = 0.005
+shader_parameter/width_in = 0.89
+shader_parameter/width_out = 0.95
+shader_parameter/border_width = 0.01
 
 [node name="EffectDisplay" type="Control" unique_id=551257341]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
 script = ExtResource("1_87kyf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=413182974]
 position = Vector2(16.157694, 15.721138)
-scale = Vector2(0.3857888, 0.38578877)
-texture = ExtResource("2_c3xkq")
+scale = Vector2(0.23, 0.23)
+texture = ExtResource("2_87kyf")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=536905647]
+[node name="RadialProgressBar" type="ColorRect" parent="." unique_id=1984157224]
+modulate = Color(1, 1, 1, 0.7058824)
+material = SubResource("ShaderMaterial_c4b5t")
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-step = 0.01
-value = 33.0
-fill_mode = 4
-texture_under = ExtResource("3_c4b5t")
-texture_over = ExtResource("4_knhnu")
-texture_progress = ExtResource("5_5fmx1")
+
+[node name="StackCount" type="RichTextLabel" parent="." unique_id=1964547847]
+layout_mode = 0
+offset_right = 32.53755
+offset_bottom = 30.467678
+theme = ExtResource("4_85mvh")
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+text = "x3"
+horizontal_alignment = 1
+vertical_alignment = 2

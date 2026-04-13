@@ -44,16 +44,14 @@ func can_unlock() -> bool:
 func can_add_rank() -> bool:
   return self.max_ranks == -1 or self.ranks < min(self.max_ranks, PlayerManager.player.level - self.required_level + 1)
 
-func add_rank() -> void:
+func add_rank() -> bool:
   if not self.can_add_rank():
-    return
-
-  for modifier in self.create_modifiers().modifiers:
-    PlayerManager.player.modifier_manager.add_modifier(modifier)
+    return false
 
   PlayerManager.player.character_class.available_skill_points -= 1
   self.ranks += 1
   SignalBus.skill_node_rank_up.emit(self.name, self.ranks)
+  return true
 
 func remove_rank() -> void:
   if self.ranks <= 0:
