@@ -22,7 +22,7 @@ const ALL_ATTRIBUTES: Array = [
   LUCK,
 ]
 
-@export var strength: Attribute = Attribute.make(STRENGTH, 5000.0)
+@export var strength: Attribute = Attribute.make(STRENGTH, 50.0)
 @export var constitution: Attribute = Attribute.make(CONSTITUTION, 50.0)
 @export var dexterity: Attribute = Attribute.make(DEXTERITY, 50.0)
 @export var agility: Attribute = Attribute.make(AGILITY, 50.0)
