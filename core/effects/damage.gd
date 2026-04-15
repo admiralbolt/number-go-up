@@ -66,6 +66,7 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
     damage = damage if governing_skill == null else governing_skill.apply_damage_bonus(damage)
 
     var event: DamageEvent = DamageEvent.new(target, damage, damage_range.damage_type)
+    event.owner = owner
     event.governing_skill = governing_skill
 
     apply_damage(event)
@@ -137,6 +138,9 @@ class DamageEvent:
     self.target = p_target
     self.base_damage = p_base_damage
     self.damage_type = p_damage_type
+
+  func _to_string() -> String:
+    return "DamageEvent(target=%s, base_damage=%.2f, damage_type=%s, owner=%s, governing_skill=%s, resistance=%.2f, reduction=%.2f, total_damage=%.2f)" % [target.name, base_damage, str(damage_type), owner.entity_id if owner != null else "None", governing_skill.name if governing_skill != null else "None", resistance, reduction, total_damage]
 
 class FinalDamageEvent:
   var owner: Entity

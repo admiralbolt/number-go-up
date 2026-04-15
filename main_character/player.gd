@@ -37,6 +37,10 @@ func add_xp(amount: float) -> void:
   if self.xp >= self.total_xp_to_next_level:
     self.level_up()
 
+func kill() -> void:
+  # Override this function, and do nothing!
+  return
+
 func _process(_delta: float) -> void:
   super._process(_delta)
   held_direction = Input.get_vector("left", "right", "up", "down")

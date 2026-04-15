@@ -2,10 +2,12 @@ class_name SkillSlice extends SkillNode
 
 static var NAME: String = "Slice"
 
+static var BLEED_CHANCE_BASE: float = 0.2
+static var BLEED_CHANCE_PER_RANK: float = 0.02
 static var BLEED_DAMAGE_PER_SECOND_BASE: float = 5.0
 static var BLEED_DAMAGE_PER_SECOND_PER_RANK: float = 1.0
-static var BLEED_DURATION_BASE: float = 4.0
-static var BLEED_DURATION_PER_RANK: float = 0.5
+static var BLEED_DURATION_BASE: float = 2.0
+static var BLEED_DURATION_PER_RANK: float = 0.4
 
 func _init() -> void:
   self.name = NAME
@@ -17,6 +19,11 @@ func _init() -> void:
 
 func dynamic_description() -> String:
   var lines: Array[String] = []
+
+  lines.append("On hit, has a %.2f%% chance to apply Bleed. Deals %.2f damage per second for %.2f seconds." % [(BLEED_CHANCE_BASE + (BLEED_CHANCE_PER_RANK * self.ranks)) * 100, (BLEED_DAMAGE_PER_SECOND_BASE + (BLEED_DAMAGE_PER_SECOND_PER_RANK * self.ranks)), (BLEED_DURATION_BASE + (BLEED_DURATION_PER_RANK * self.ranks))])
+  lines.append("-----------")
+  lines.append(SKILL_NODE_TYPE_NAMES[self.node_type])
+  lines.append("")
 
   return "\n".join(lines)
 
@@ -32,4 +39,7 @@ func _on_attack_landed(event: Damage.HitEvent) -> void:
   if not self.is_unlocked():
     return
 
+  if randf() > (BLEED_CHANCE_BASE + (BLEED_CHANCE_PER_RANK * self.ranks)):
+    return
+  
   event.target.effect_manager.apply_effect(self._create_on_hit_effect())

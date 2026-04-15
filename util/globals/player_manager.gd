@@ -30,6 +30,7 @@ func set_as_parent(parent: Node) -> void:
   if self.player.get_parent():
     self.player.get_parent().remove_child(self.player)
   parent.add_child(self.player)
+  EntityManager.add_entity(self.player)
 
 func unparent_player(parent: Node) -> void:
   parent.remove_child(self.player)
