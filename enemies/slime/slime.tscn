@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://cuxlvq2iigixc" path="res://enemies/slime/slime_attack_state.gd" id="9_yuirh"]
 [ext_resource type="Script" uid="uid://diwr2tqkfpv15" path="res://enemies/slime/slime_hurt_state.gd" id="13_31cbr"]
 [ext_resource type="Script" uid="uid://de2lt2fr31bdo" path="res://enemies/slime/slime_death_state.gd" id="16_sypct"]
+[ext_resource type="PackedScene" uid="uid://csamsy8itgmr6" path="res://ui/components/EffectManagerDisplay.tscn" id="19_6jojl"]
 
 [sub_resource type="Animation" id="Animation_qxyj3"]
 length = 0.001
@@ -1577,3 +1578,5 @@ offset_right = 43.72055
 offset_bottom = -7.059168
 scale = Vector2(0.5, 0.5)
 metadata/_edit_use_anchors_ = true
+
+[node name="EffectManagerDisplay" parent="." unique_id=984141562 instance=ExtResource("19_6jojl")]

@@ -21,9 +21,9 @@ signal skill_node_rank_up(skill_node_name: String, new_rank: int)
 signal skill_node_rank_down(skill_node_name: String, new_rank: int)
 
 ### Damage Signals, but better.
-signal on_damage_pre_apply(event: Damage.DamageCalculationEvent)
+signal on_player_attack_landed(event: Damage.HitEvent)
+signal on_damage_pre_apply(event: Damage.DamageEvent)
 signal on_player_damaged(event: Damage.FinalDamageEvent)
-signal on_player_attack_landed(event: Damage.FinalDamageEvent)
 signal on_player_killed_enemy(event: Damage.FinalDamageEvent)
 
 ### Modifier Manager Signals!

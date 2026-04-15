@@ -5,6 +5,7 @@ const CONTACT_HITBOX_NAME: String = "CONTACT_HITBOX"
 signal damaged(hit_box: HitBox)
 signal died(hit_box: HitBox)
 
+@export var entity_id: String 
 @export var attributes: Attributes = Attributes.new()
 @export var derived_statistics: DerivedStatistics = DerivedStatistics.new()
 @export var skills: Skills = Skills.new()
@@ -34,6 +35,7 @@ var current_stamina: float = 100.0: set = _set_current_stamina
 func _init() -> void:
   self.initialize_stats()
 
+  self.entity_id = "%s_%d" % [self.name, randi_range(100_000, 999_999)]
   # Finally set the values based on the maxes.
   self.current_health = self.derived_statistics.max_health.total_value
   self.current_mana = self.derived_statistics.max_mana.total_value
@@ -50,6 +52,16 @@ func _ready() -> void:
   self.derived_statistics.max_health.changed.connect(self._on_max_health_changed.bind(self.derived_statistics.max_health.total_value))
   self.derived_statistics.max_mana.changed.connect(self._on_max_mana_changed.bind(self.derived_statistics.max_mana.total_value))
   self.derived_statistics.max_stamina.changed.connect(self._on_max_stamina_changed.bind(self.derived_statistics.max_stamina.total_value))
+
+  EntityManager.add_entity(self)
+
+func _exit_tree() -> void:
+  EntityManager.remove_entity(self)
+
+func kill() -> void:
+  self.dying = true
+  self.effect_manager.process_effects = false
+  self.died.emit(null)
 
 func disable_all_hit_boxes() -> void:
   for hit_box in self.hit_boxes.values():

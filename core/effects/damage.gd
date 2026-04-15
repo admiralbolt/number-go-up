@@ -55,78 +55,88 @@ static var DAMAGE_TYPE_TO_REDUCTION: Dictionary[DamageType, String] = {
 
 static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
   # print("Calculating damage from %s to %s with min_damage: %f, max_damage: %f, skill_bonus: %f" % [_owner.name, target.name, min_damage, max_damage, skill_bonus])
+  if owner is Player:
+    var hit_event: HitEvent = HitEvent.new(owner, target, hit_box)
+    SignalBus.on_player_attack_landed.emit(hit_event)
+  
   var total_damage: float = 0.0
   for damage_range in hit_box.damage_ranges:
     var governing_skill: Skill = owner.skills.get(damage_range.governing_skill)
     var damage: float = randf_range(damage_range.min_damage, damage_range.max_damage)
     damage = damage if governing_skill == null else governing_skill.apply_damage_bonus(damage)
-    var resistance: DerivedStatistic = target.derived_statistics.get(DAMAGE_TYPE_TO_RESISTANCE[damage_range.damage_type])
-    var reduction: DerivedStatistic = target.derived_statistics.get(DAMAGE_TYPE_TO_REDUCTION[damage_range.damage_type])
 
-    var event: DamageCalculationEvent = DamageCalculationEvent.make(owner, target, hit_box, damage_range.damage_type, governing_skill, damage, resistance.total_value, reduction.total_value)
-    SignalBus.on_damage_pre_apply.emit(event)
+    var event: DamageEvent = DamageEvent.new(target, damage, damage_range.damage_type)
+    event.governing_skill = governing_skill
 
-    # Make sure we refer to the values of the event object from here on out.
-
-    # First we apply resistances as % reduction with logarithmic scaling.
-    event.raw_damage *= (100 / (100 + event.resistance))
-    # Then we apply flat reductions.
-    event.raw_damage -= event.reduction
-    # Don't allow negative values.
-    event.raw_damage = max(event.raw_damage, 0)
-
-    if event.governing_skill != null:
-      event.governing_skill.add_xp(event.raw_damage)
-
-    total_damage += event.raw_damage
-
-  # Damage should be a minimum of 1.
-  total_damage = max(total_damage, 1)
-
-  var final_event: FinalDamageEvent = FinalDamageEvent.make(owner, target, hit_box, total_damage)
-  
-  if owner is Player:
-    SignalBus.on_player_attack_landed.emit(final_event)
-
-  if target is Player:
-    SignalBus.on_player_damaged.emit(final_event)
+    apply_damage(event)
+    total_damage += event.total_damage
 
   target.physics_manager.apply_knockback(hit_box)
 
-  target.current_health -= total_damage
-  target.damaged.emit(hit_box)
 
-  if target.current_health <= 0:
-    target.dying = true
-    target.died.emit(hit_box)
-    if owner is Player:
-      owner.add_xp(target.xp)
-      SignalBus.on_player_killed_enemy.emit(final_event)
+static func apply_damage(damage_event: DamageEvent) -> void:
+  # Can't deal damage to no one.
+  if damage_event.target == null:
+    push_error("DamageEvent has no target. Event: %s" % damage_event)
+    return
 
-class DamageCalculationEvent:
-  # Root objects incase we need to recalculate anything.
+  # Load our resistance / reduction.
+  damage_event.resistance = damage_event.target.derived_statistics.get(DAMAGE_TYPE_TO_RESISTANCE[damage_event.damage_type]).total_value
+  damage_event.reduction = damage_event.target.derived_statistics.get(DAMAGE_TYPE_TO_REDUCTION[damage_event.damage_type]).total_value
+
+  # Emit pre_apply() after loading resistance / reduction, before damage calc.
+  SignalBus.on_damage_pre_apply.emit(damage_event)
+
+  # First we apply resistances as % reduction with logarithmic scaling.
+  damage_event.total_damage = damage_event.base_damage * (100 / (100 + damage_event.resistance))
+  # Then we apply flat reductions.
+  damage_event.total_damage -= damage_event.reduction
+  # Don't allow negative values.
+  damage_event.total_damage = max(damage_event.total_damage, 0)
+
+  if damage_event.governing_skill != null:
+    damage_event.governing_skill.add_xp(damage_event.total_damage)
+
+  damage_event.target.current_health -= damage_event.total_damage
+
+  if damage_event.target.current_health <= 0:
+    damage_event.target.kill()
+    
+    if damage_event.owner != null and damage_event.owner is Player:
+      damage_event.owner.add_xp(damage_event.target.xp)
+      # CLEAN THIS UP.
+      SignalBus.on_player_killed_enemy.emit(FinalDamageEvent.make(damage_event.owner, damage_event.target, null, damage_event.total_damage))
+
+
+class HitEvent:
   var owner: Entity
   var target: Entity
   var hit_box: HitBox
 
-  # Individual values within a single damage range.
+  func _init(p_owner: Entity, p_target: Entity, p_hit_box: HitBox) -> void:
+    self.owner = p_owner
+    self.target = p_target
+    self.hit_box = p_hit_box
+
+class DamageEvent:
+  # REQUIRED values.
+  var target: Entity
+  var base_damage: float
   var damage_type: DamageType
+
+  # Optional values that can be set by the caller or by signals.
+  var owner: Entity
   var governing_skill: Skill
-  var raw_damage: float
+
+  # These get set automatically by calling apply_damage().
   var resistance: float
   var reduction: float
+  var total_damage: float
 
-  static func make(p_owner: Entity, p_target: Entity, p_hit_box: HitBox, p_damage_type: DamageType, p_governing_skill: Skill, p_raw_damage: float, p_resistance: float, p_reduction: float) -> DamageCalculationEvent:
-    var event = DamageCalculationEvent.new()
-    event.owner = p_owner
-    event.target = p_target
-    event.hit_box = p_hit_box
-    event.damage_type = p_damage_type
-    event.governing_skill = p_governing_skill
-    event.raw_damage = p_raw_damage
-    event.resistance = p_resistance
-    event.reduction = p_reduction
-    return event
+  func _init(p_target: Entity, p_base_damage: float, p_damage_type: DamageType) -> void:
+    self.target = p_target
+    self.base_damage = p_base_damage
+    self.damage_type = p_damage_type
 
 class FinalDamageEvent:
   var owner: Entity

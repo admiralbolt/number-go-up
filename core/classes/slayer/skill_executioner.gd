@@ -30,7 +30,7 @@ func dynamic_description() -> String:
 
   return "\n".join(lines)
 
-func _on_damage_pre_apply(event: Damage.DamageCalculationEvent) -> void:
+func _on_damage_pre_apply(event: Damage.DamageEvent) -> void:
   if not self.is_unlocked():
     return
 

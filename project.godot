@@ -29,6 +29,7 @@ SaveManager="*uid://cl4xqarhgi8bd"
 ThemeManager="*uid://cc3op3ntw3kw6"
 MaterialManager="*uid://cohud5py8spkb"
 AbilityManager="*uid://c5rck0vx6q6qj"
+EntityManager="*uid://d15lfnamg5l1g"
 
 [display]
 

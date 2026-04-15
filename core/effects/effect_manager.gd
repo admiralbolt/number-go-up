@@ -6,10 +6,15 @@ signal effect_removed(effect: Effect)
 var entity: Entity
 var active_effects: Array[Effect] = []
 
+var process_effects: bool = true
+
 func initialize(p_entity: Entity) -> void:
   self.entity = p_entity
 
 func process(delta: float) -> void:
+  if not self.process_effects:
+    return
+
   var removal_indices: Array[int] = []
 
   for i in active_effects.size():

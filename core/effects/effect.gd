@@ -15,6 +15,10 @@ enum EffectType {
 @export var effect_type: Effect.EffectType = Effect.EffectType.DAMAGE
 @export var is_instant: bool = false
 
+# Who owns this effect. This is important for something like a status effect
+# like bleed. The damage is applied by the player, so they should ultimately
+# get the XP if the bleed kills the enemy.
+@export var owner_entity_id: String
 @export var duration: float = 0.0
 @export var timer: float = duration
 
