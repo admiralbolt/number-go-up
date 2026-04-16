@@ -72,6 +72,9 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
     apply_damage(event)
     total_damage += event.total_damage
 
+  for effect in hit_box.effects:
+    target.effect_manager.apply_effect(effect)
+
   target.physics_manager.apply_knockback(hit_box)
 
 

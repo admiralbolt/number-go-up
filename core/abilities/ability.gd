@@ -42,7 +42,7 @@ func can_use() -> bool:
     PlayerManager.player.current_stamina > stamina_cost
   )
 
-func use(_current_scene: Node) -> bool:
+func use(_current_scene: Node, owner: Entity) -> bool:
   """This method should be overriden in children to actually do stuff.
 
   Always call super.use() in the child first.
@@ -51,11 +51,11 @@ func use(_current_scene: Node) -> bool:
     return false
 
   # Pay costs.
-  PlayerManager.player.current_health -= health_cost
-  PlayerManager.player.current_mana -= mana_cost
-  PlayerManager.player.current_stamina -= stamina_cost
+  owner.current_health -= health_cost
+  owner.current_mana -= mana_cost
+  owner.current_stamina -= stamina_cost
 
-  var skill: Skill = PlayerManager.player.skills.get(governing_skill_name)
+  var skill: Skill = owner.skills.get(governing_skill_name)
   var cooldown_multiplier: float = 1.0 if skill == null else skill.get_cooldown_reduction()
   # Set cooldown.
   self.timer = self.max_cooldown * cooldown_multiplier

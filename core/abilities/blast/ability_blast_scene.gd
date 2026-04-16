@@ -15,8 +15,8 @@ func initialize(p_position: Vector2) -> void:
 
 func play() -> void:
   self.hit_box.enable()
-  animation_player.animation_finished.connect(_done.unbind(1))
-  animation_player.play("explode")
+  self.animation_player.animation_finished.connect(_done.unbind(1))
+  self.animation_player.play("explode")
 
 func _done() -> void:
   queue_free()

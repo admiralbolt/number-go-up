@@ -15,6 +15,10 @@ var modifier_manager: ModifierManager = ModifierManager.new()
 var effect_manager: EffectManager = EffectManager.new()
 var physics_manager: PhysicsManager = PhysicsManager.new(self)
 
+# Which way we looking. Should always be normalized.
+var facing: Vector2 = Vector2.DOWN: set = _set_facing
+var facing_name: String = "down"
+
 var dying: bool = false
 
 # All entities should have a hurt box.
@@ -31,6 +35,10 @@ signal current_stamina_changed(new_stamina: float)
 var current_health: float = 100.0: set = _set_current_health
 var current_mana: float = 100.0: set = _set_current_mana
 var current_stamina: float = 100.0: set = _set_current_stamina
+
+func _set_facing(value: Vector2) -> void:
+  facing = value
+  facing_name = Directions.get_primary_direction_name(facing)
 
 func _init() -> void:
   self.initialize_stats()

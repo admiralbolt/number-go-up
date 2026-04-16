@@ -10,7 +10,6 @@ class_name Player extends Entity
 @export var character_class: CharacterClass = SlayerClass.new()
 
 var held_direction: Vector2 = Vector2.DOWN
-var facing: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
 
 var starting_xp_this_level: float = 0.0
@@ -48,11 +47,11 @@ func _process(_delta: float) -> void:
   if held_direction != Vector2.ZERO:
     # We only update facing if we are pressing something. This way, if we stop
     # pressing something the facing will still be up to date.
-    facing = held_direction
+    self.facing = held_direction
     direction_name = Directions.get_direction_name(facing)
 
   if Input.is_action_just_pressed("hotbar1"):
-    AbilityManager.use_ability(AbilityBlast.NAME)
+    AbilityManager.use_ability(self, AbilityRupture.NAME)
     return
 
   if Input.is_action_just_pressed("roll"):

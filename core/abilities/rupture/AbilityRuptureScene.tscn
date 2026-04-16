@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://w05wb0t856hx"]
+
+[ext_resource type="Script" uid="uid://ccfk4o5jhkevk" path="res://core/abilities/rupture/ability_rupture_scene.gd" id="1_ayye1"]
+[ext_resource type="Script" uid="uid://cvknglif0g3v1" path="res://util/hit_box.gd" id="2_8kyvb"]
+[ext_resource type="Texture2D" uid="uid://c6qt6i7s0lnt7" path="res://assets/effects/magic_arrow_001/1.png" id="2_yu6tt"]
+[ext_resource type="Texture2D" uid="uid://b26ppam0b6w6s" path="res://assets/effects/magic_arrow_001/2.png" id="4_jswxy"]
+[ext_resource type="Texture2D" uid="uid://b17ad50545m5f" path="res://assets/effects/magic_arrow_001/3.png" id="5_3cgk0"]
+[ext_resource type="Texture2D" uid="uid://c0aqa2u5ytj0e" path="res://assets/effects/magic_arrow_001/4.png" id="6_vd4ic"]
+[ext_resource type="Texture2D" uid="uid://chm05guljh6rq" path="res://assets/effects/magic_arrow_001/5.png" id="7_tbytb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_heiio"]
+radius = 16.000004
+height = 136.00111
+
+[sub_resource type="Animation" id="Animation_8kyvb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-169.00002, 18.000002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_yu6tt")]
+}
+
+[sub_resource type="Animation" id="Animation_a8obl"]
+resource_name = "rupture"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_yu6tt"), ExtResource("4_jswxy"), ExtResource("5_3cgk0"), ExtResource("6_vd4ic"), ExtResource("7_tbytb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-169.00002, 18.000002), Vector2(-100, 18), Vector2(-30, 15), Vector2(20, 15), Vector2(140, 15)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox/CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(1.6, 1.5), Vector2(2.1, 1.7), Vector2(2.1, 1.7), Vector2(1, 1.7)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jswxy"]
+_data = {
+&"RESET": SubResource("Animation_8kyvb"),
+&"rupture": SubResource("Animation_a8obl")
+}
+
+[node name="AbilityRuptureScene" type="Node2D" unique_id=603825121]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_ayye1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1187851229]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_yu6tt")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1657053058]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_8kyvb")
+metadata/_custom_type_script = "uid://cvknglif0g3v1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1047200630]
+position = Vector2(-169.00002, 18.000002)
+rotation = -1.5702538
+shape = SubResource("CapsuleShape2D_heiio")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=548136767]
+libraries/ = SubResource("AnimationLibrary_jswxy")

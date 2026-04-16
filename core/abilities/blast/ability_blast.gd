@@ -14,12 +14,12 @@ func _init() -> void:
 
   self.max_cooldown = self.cooldown
 
-func use(current_scene: Node) -> bool:
-  if not super.use(current_scene):
+func use(current_scene: Node, owner: Entity) -> bool:
+  if not super.use(current_scene, owner):
     return false
 
   var blast_scene = SCENE.instantiate() as AbilityBlastScene
   current_scene.add_child(blast_scene)
-  blast_scene.initialize(PlayerManager.player.global_position)
+  blast_scene.initialize(owner.global_position)
   blast_scene.play()
   return true
