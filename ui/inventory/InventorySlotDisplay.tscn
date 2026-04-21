@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dbb5js0n6hj7u"]
+
+[ext_resource type="Script" uid="uid://dqie33b15fi5y" path="res://ui/inventory/inventory_slot_display.gd" id="1_55ek7"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="2_sohxr"]
+[ext_resource type="Texture2D" uid="uid://be5ppdcviwx6x" path="res://assets/items/spritesheets/generic_icons_001.png" id="2_sswdc"]
+
+[node name="InventorySlotDisplay" type="Button" unique_id=186722460]
+custom_minimum_size = Vector2(16, 16)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_55ek7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=437593772]
+position = Vector2(8, 8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_sswdc")
+hframes = 16
+vframes = 27
+frame = 1
+
+[node name="QuantityLabel" type="RichTextLabel" parent="." unique_id=1492023798]
+layout_mode = 0
+offset_left = 1.5116158
+offset_top = 8.534851
+offset_right = 20.511616
+offset_bottom = 23.534851
+theme = ExtResource("2_sohxr")
+theme_override_font_sizes/normal_font_size = 8
+text = "x99"
+horizontal_alignment = 1

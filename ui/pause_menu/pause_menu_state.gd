@@ -23,3 +23,14 @@ var skill_focus_index: int = 0
 
 # Which item is focused in the overview sub menu.
 var overview_focus_index: int = 0
+
+# Focused tab index / item type for player inventory.
+var player_inventory_tab_index: int = 0
+var player_inventory_selected_item_type: Item.ItemType = Item.ItemType.EQUIPMENT
+
+# Focused item index in sub menu for player inventory.
+var player_inventory_sub_type_focus_index: Dictionary[Item.ItemType, int] = {
+  Item.ItemType.CONSUMABLE: 0,
+  Item.ItemType.EQUIPMENT: 0,
+  Item.ItemType.MATERIAL: 0,
+}

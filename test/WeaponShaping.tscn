@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dttqhkwiwb30g" path="res://test/weapon_shaping.gd" id="1_tpe81"]
 [ext_resource type="Resource" uid="uid://duhqwauketyki" path="res://items/weapons/swords/gold_sword_shape.tres" id="2_pjfh6"]
-[ext_resource type="Texture2D" uid="uid://b3y1pm61hdeu8" path="res://assets/items/gold_sword.png" id="3_f3ju7"]
+[ext_resource type="Texture2D" uid="uid://b3y1pm61hdeu8" path="res://assets/items/weapons/gold_sword.png" id="3_f3ju7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjfh6"]
 radius = 5.443368

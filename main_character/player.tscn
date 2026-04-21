@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://x2ahs0qcsk8e" path="res://main_character/player.gd" id="1_n18hu"]
 [ext_resource type="Script" uid="uid://chyf7wbrbvm8u" path="res://main_character/weapon_renderer.gd" id="2_cy1eu"]
-[ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/items/red_sword.png" id="3_e0qqe"]
+[ext_resource type="Texture2D" uid="uid://668wavp86y0h" path="res://assets/items/weapons/red_sword.png" id="3_e0qqe"]
 [ext_resource type="PackedScene" uid="uid://xr68kfqc3xxm" path="res://util/HitBox.tscn" id="4_xj3nd"]
 [ext_resource type="Script" uid="uid://8lj85d5udfx4" path="res://main_character/weapon_animator.gd" id="5_8li3l"]
 [ext_resource type="Script" uid="uid://cd5rcqyepd0bo" path="res://main_character/player_animator.gd" id="6_gabxs"]

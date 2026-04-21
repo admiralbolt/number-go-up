@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bgdfk4uo7p2yw"]
+
+[ext_resource type="Script" uid="uid://bw5nb47sjf710" path="res://ui/inventory/inventory_type_tab.gd" id="1_fyvq6"]
+[ext_resource type="Texture2D" uid="uid://cbksc32yxxp8n" path="res://assets/ui/inventory/armor-vest.svg" id="2_mkhdb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu1mw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.11764706, 0.11764706, 0.15686275, 1)
+
+[node name="InventoryTypeTab" type="Control" unique_id=2024083230]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 24.0
+offset_bottom = 24.0
+script = ExtResource("1_fyvq6")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1391535234]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uu1mw")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer" unique_id=520223926]
+modulate = Color(0.37254903, 0.37254903, 0.37254903, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_mkhdb")
+expand_mode = 1

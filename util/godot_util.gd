@@ -20,3 +20,9 @@ static func range(start: int, end: int) -> Array[int]:
   for i in range(start, end):
     result.append(i)
   return result
+
+static func wait_process_frames(scene_tree: SceneTree, frames: int = 1) -> void:
+  """Wait for a given number of process frames."""
+  for _i in range(frames):
+    await scene_tree.process_frame
+  return

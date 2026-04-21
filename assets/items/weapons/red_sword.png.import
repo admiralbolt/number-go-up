@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3y1pm61hdeu8"
-path="res://.godot/imported/gold_sword.png-94616e94b42b9b80ce0e128f8551b8bb.ctex"
+uid="uid://668wavp86y0h"
+path="res://.godot/imported/red_sword.png-21331b0379dfd985833497da51dc544d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/gold_sword.png"
-dest_files=["res://.godot/imported/gold_sword.png-94616e94b42b9b80ce0e128f8551b8bb.ctex"]
+source_file="res://assets/items/weapons/red_sword.png"
+dest_files=["res://.godot/imported/red_sword.png-21331b0379dfd985833497da51dc544d.ctex"]
 
 [params]
 

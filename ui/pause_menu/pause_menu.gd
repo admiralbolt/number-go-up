@@ -7,6 +7,7 @@ extends CanvasLayer
 const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
   "IOButton": preload("res://ui/pause_menu/IOMenu.tscn"),
   "CharacterButton": preload("res://ui/pause_menu/CharacterPanel.tscn"),
+  "InventoryButton": preload("res://ui/pause_menu/InventoryPanel.tscn"),
 }
 
 var first: bool = true
@@ -33,6 +34,7 @@ func _on_button_focused(_index: int, button_name: String) -> void:
 
 func _on_button_pressed(_index: int, _button_name: String) -> void:
   PauseMenuState.content_focused = true
+  print("Focusing content panel...")
   content_panel.grab_focus()
 
 func _on_content_panel_closed() -> void:

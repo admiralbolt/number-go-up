@@ -4,7 +4,7 @@ static var NAME: String = "red_sword"
 
 func _init():
   self.weapon_name = "Red Sword"
-  self.icon_path = "res://assets/items/red_sword.png"
+  self.icon_path = "res://assets/items/weapons/red_sword.png"
   self.sword_shape_path = "res://items/weapons/swords/red_sword_shape.tres"
   self.base_rotation_degrees = 45
   self.attack_animation_type = AttackAnimationType.SLASH

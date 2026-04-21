@@ -7,6 +7,7 @@ const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
   "AttributesButton": preload("res://ui/pause_menu/CharacterAttributesDisplay.tscn"),
   "StatisticsButton": preload("res://ui/pause_menu/CharacterDerivedStatisticsDisplay.tscn"),
   "SkillsButton": preload("res://ui/pause_menu/CharacterSkillsDisplay.tscn"),
+  "InventoryButton": preload("res://ui/inventory/InventoryDisplay.tscn")
 }
 
 signal button_focused(index: int, button_name: String)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://668wavp86y0h"
-path="res://.godot/imported/red_sword.png-1ba032e596a83610b84e74551852cefb.ctex"
+uid="uid://bpexh6geoqmuo"
+path="res://.godot/imported/ore.svg-22e8111c6d49d7c8177c7d33efe62c42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/red_sword.png"
-dest_files=["res://.godot/imported/red_sword.png-1ba032e596a83610b84e74551852cefb.ctex"]
+source_file="res://assets/ui/inventory/ore.svg"
+dest_files=["res://.godot/imported/ore.svg-22e8111c6d49d7c8177c7d33efe62c42.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

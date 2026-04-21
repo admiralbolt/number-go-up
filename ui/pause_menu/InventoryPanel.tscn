@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://lh0x1gfb6jkr"]
+
+[ext_resource type="Script" uid="uid://ofr5r1f0t8pm" path="res://inventory_panel.gd" id="1_jjhyk"]
+[ext_resource type="PackedScene" uid="uid://d4a5ux7y3qm7w" path="res://ui/inventory/InventoryDisplay.tscn" id="2_8duou"]
+
+[node name="InventoryPanel" type="Control" unique_id=1060995144]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_jjhyk")
+
+[node name="InventoryDisplay" parent="." unique_id=826791689 instance=ExtResource("2_8duou")]
+layout_mode = 1
+focus_mode = 2

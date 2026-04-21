@@ -18,6 +18,9 @@ enum AbilityType {
 @export var cooldown: float = 0.25
 # The governing skill name.
 @export var governing_skill_name: String = Skills.NULL
+# If true, the governing skill is loaded from the equipped weapon when the
+# skill is used.
+@export var is_weapon_skill: bool = false
 # The base costs of the ability.
 @export var health_cost: float = 0.0
 @export var mana_cost: float = 0.0
@@ -54,6 +57,11 @@ func use(_current_scene: Node, owner: Entity) -> bool:
   owner.current_health -= health_cost
   owner.current_mana -= mana_cost
   owner.current_stamina -= stamina_cost
+
+  if self.is_weapon_skill:
+    # Set based on the equipped weapon. Don't have an equipment manager yet.
+    # For now, we just pass.
+    pass
 
   var skill: Skill = owner.skills.get(governing_skill_name)
   var cooldown_multiplier: float = 1.0 if skill == null else skill.get_cooldown_reduction()

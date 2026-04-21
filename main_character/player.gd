@@ -8,6 +8,7 @@ class_name Player extends Entity
 # Character customization options.
 @export var level: int = 1
 @export var character_class: CharacterClass = SlayerClass.new()
+@export var inventory: Inventory = Inventory.new()
 
 var held_direction: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
@@ -19,6 +20,8 @@ func _ready() -> void:
   self.main_player_state_machine.initialize()
   self.main_player_state_machine.change_state(PlayerIdleState.NAME)
   PlayerManager.player = self
+
+  TestItemManager.initialize()
 
   self.hurt_box = $PlayerHurtBox
   super._ready()
@@ -58,6 +61,7 @@ func _process(_delta: float) -> void:
     self.main_player_state_machine.change_state(PlayerRollState.NAME)
     self._test_buff_effect()
   elif Input.is_action_just_pressed("attack"):
+    self.inventory.add_item(TestItemManager.all_test_items.pick_random(), randi_range(1, 7))
     self.main_player_state_machine.change_state(PlayerAttackState.NAME)
   elif held_direction != Vector2.ZERO:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)

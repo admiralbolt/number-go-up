@@ -29,4 +29,8 @@ signal on_player_killed_enemy(event: Damage.FinalDamageEvent)
 ### Modifier Manager Signals!
 signal modifier_changed(modifier_name: String)
 
+### Inventory Signals.
+signal item_removed(item: Item)
+signal items_resorted()
+
 @warning_ignore_restore("unused_signal")

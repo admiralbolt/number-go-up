@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://d4a5ux7y3qm7w"]
+
+[ext_resource type="Script" uid="uid://0rq7fyf5ygku" path="res://ui/inventory/inventory_display.gd" id="1_u6p5l"]
+[ext_resource type="PackedScene" uid="uid://bgdfk4uo7p2yw" path="res://ui/inventory/InventoryTypeTab.tscn" id="2_qvn1h"]
+[ext_resource type="Texture2D" uid="uid://cbksc32yxxp8n" path="res://assets/ui/inventory/armor-vest.svg" id="3_3ovu5"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="3_nd4q0"]
+[ext_resource type="Texture2D" uid="uid://d1elw7666ks2y" path="res://assets/ui/inventory/round-potion.svg" id="4_0sn4i"]
+[ext_resource type="Texture2D" uid="uid://bpexh6geoqmuo" path="res://assets/ui/inventory/ore.svg" id="5_36o56"]
+[ext_resource type="Texture2D" uid="uid://bglcmv80ew87j" path="res://assets/ui/inventory/vertical-banner.svg" id="6_yna1w"]
+[ext_resource type="Texture2D" uid="uid://vu4qsqrvij1x" path="res://assets/ui/inventory/key.svg" id="7_5m5dy"]
+[ext_resource type="Texture2D" uid="uid://bnpjs1dhmrlwy" path="res://assets/ui/inventory/open-treasure-chest.svg" id="8_5byqs"]
+[ext_resource type="Texture2D" uid="uid://d32rls4jm4id5" path="res://assets/ui/inventory/bolt-cutter.svg" id="9_tcwnt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y7tw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.23529412, 0.23529412, 0.27450982, 0.8235294)
+
+[node name="InventoryDisplay" type="Control" unique_id=826791689]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u6p5l")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=953460920]
+layout_mode = 0
+offset_right = 184.0
+offset_bottom = 115.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0y7tw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=607040353]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1348342323]
+layout_mode = 2
+
+[node name="TabContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=953594737]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="EquipmentTab" parent="PanelContainer/HBoxContainer/VBoxContainer/TabContainer" unique_id=2024083230 instance=ExtResource("2_qvn1h")]
+layout_mode = 2
+texture = ExtResource("3_3ovu5")
+
+[node name="ConsumablesTab" parent="PanelContainer/HBoxContainer/VBoxContainer/TabContainer" unique_id=1788088244 instance=ExtResource("2_qvn1h")]
+layout_mode = 2
+item_type = 1
+texture = ExtResource("4_0sn4i")
+
+[node name="MaterialsTab" parent="PanelContainer/HBoxContainer/VBoxContainer/TabContainer" unique_id=255687530 instance=ExtResource("2_qvn1h")]
+layout_mode = 2
+item_type = 2
+texture = ExtResource("5_36o56")
+
+[node name="QuestTab" parent="PanelContainer/HBoxContainer/VBoxContainer/TabContainer" unique_id=309834374 instance=ExtResource("2_qvn1h")]
+layout_mode = 2
+item_type = 5
+texture = ExtResource("6_yna1w")
+
+[node name="KeyItemsTab" parent="PanelContainer/HBoxContainer/VBoxContainer/TabContainer" unique_id=1768154852 instance=ExtResource("2_qvn1h")]
+layout_mode = 2
+item_type = 4
+texture = ExtResource("7_5m5dy")
+
+[node name="TreasureTab" parent="PanelContainer/HBoxContainer/VBoxContainer/TabContainer" unique_id=57580749 instance=ExtResource("2_qvn1h")]
+layout_mode = 2
+item_type = 6
+texture = ExtResource("8_5byqs")
+
+[node name="JunkTab" parent="PanelContainer/HBoxContainer/VBoxContainer/TabContainer" unique_id=1473855897 instance=ExtResource("2_qvn1h")]
+layout_mode = 2
+item_type = 8
+texture = ExtResource("9_tcwnt")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1076750952]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 10
+
+[node name="ItemInfoLabel" type="RichTextLabel" parent="PanelContainer/HBoxContainer" unique_id=1618760652]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("3_nd4q0")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[color=#ffff00]Some[/color] hovered item description!
+
+Lots of potential information in here!"
