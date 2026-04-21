@@ -17,12 +17,9 @@ const INVENTORY_SLOT_DISPLAY_SCENE: PackedScene = preload("res://ui/inventory/In
 
 func _ready() -> void:
   SignalBus.pause_menu_closed.connect(func() -> void: self.is_focused = false)
-  pass
+  return
 
 func _set_is_focused(p_is_focused: bool) -> void:
-  if p_is_focused == self.is_focused:
-    return
-    
   is_focused = p_is_focused
   if not is_focused:
     return
@@ -95,7 +92,7 @@ func render() -> void:
   var slot_list: Inventory.DynamicItemList = self.inventory.get_items(item_type)
   var all_children: Array[Node] = []
   for i in range(slot_list.size()):
-    var slot: Inventory.InventorySlot = slot_list.item_array[i]
+    var slot: InventorySlot = slot_list.item_array[i]
     var slot_ui: InventorySlotDisplay = INVENTORY_SLOT_DISPLAY_SCENE.instantiate()
     slot_ui.slot_data = slot
     slot_ui.index = i
@@ -148,25 +145,8 @@ func render() -> void:
     await GodotUtil.wait_process_frames(get_tree(), 2)
     self.inventory_grid.get_child(PauseMenuState.player_inventory_sub_type_focus_index.get(item_type, 0)).grab_focus()
 
-func _on_slot_focused(slot_data: Inventory.InventorySlot, index: int) -> void:
+func _on_slot_focused(slot_data: InventorySlot, index: int) -> void:
   PauseMenuState.player_inventory_sub_type_focus_index[slot_data.item.item_type] = index
-
-  # Update our display based on the focused item.
-  var builder: Array[String] = []
-  var color: Color = Item.RARITY_COLOR[slot_data.item.rarity]
-
-  builder.append("[color=#%s]%s[/color]" % [color.to_html(false), slot_data.item.name])
-  builder.append("---------------")
-  if slot_data.item.is_sellable:
-    builder.append("Price: %.2f" % slot_data.item.base_price)
-  if slot_data.item.is_stackable and slot_data.quantity > 1:
-    builder.append("Weight: %.2f. (%.2f each)" % [slot_data.item.weight * slot_data.quantity, slot_data.item.weight])
-  else:
-    builder.append("Weight: %.2f" % slot_data.item.weight)
-
-  builder.append("\n")
-  builder.append(slot_data.item.description)
-
-  self.item_info.text = "\n".join(builder)
+  self.item_info.text = slot_data.full_description()
 
   

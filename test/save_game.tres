@@ -1,0 +1,256 @@
+[gd_resource type="Resource" script_class="SaveData" format=3 uid="uid://c3tuhjb3gap6i"]
+
+[ext_resource type="Script" uid="uid://b2ar0jlsqv60m" path="res://core/effects/effect.gd" id="1_2bx37"]
+[ext_resource type="Script" uid="uid://dysd1lpotnrnw" path="res://core/effects/modifier.gd" id="2_s6x8u"]
+[ext_resource type="Script" uid="uid://b17og5u8nokwx" path="res://core/effects/modifier_list.gd" id="3_a2mgc"]
+[ext_resource type="Script" uid="uid://vto855qss6ps" path="res://core/effects/generic/buff_effect.gd" id="4_gbtiq"]
+[ext_resource type="Script" uid="uid://r46nrj1pav1l" path="res://core/stats/attribute.gd" id="5_acu36"]
+[ext_resource type="Script" uid="uid://d1u8cbsl3xgp6" path="res://core/stats/attributes.gd" id="6_n14ce"]
+[ext_resource type="Script" uid="uid://bpjuaw5ny4lod" path="res://core/classes/slayer/slayer_class.gd" id="7_yirk2"]
+[ext_resource type="Script" uid="uid://d3toxfm8er44p" path="res://core/classes/skill_tree.gd" id="8_tj1v2"]
+[ext_resource type="Script" uid="uid://c0i25vn0tgsrd" path="res://core/classes/skill_node.gd" id="9_b40j7"]
+[ext_resource type="Script" uid="uid://3xpt7j3vocve" path="res://core/classes/slayer/skill_prowess.gd" id="10_4d0o0"]
+[ext_resource type="Script" uid="uid://bvi3a1fmniov3" path="res://core/classes/slayer/skill_huntress.gd" id="11_s4xc2"]
+[ext_resource type="Script" uid="uid://dpsg2en2m54s8" path="res://core/classes/slayer/skill_executioner.gd" id="12_s2r1a"]
+[ext_resource type="Script" uid="uid://k65l6xjtk70e" path="res://core/classes/slayer/skill_slice.gd" id="13_c68mw"]
+[ext_resource type="Script" uid="uid://cb1lmy521kqua" path="res://main_character/stat_ordering.gd" id="14_e3ckm"]
+[ext_resource type="Script" uid="uid://bmfbvt3fb0ywl" path="res://core/stats/derived_statistics.gd" id="15_kewtv"]
+[ext_resource type="Script" uid="uid://2t10i2tnmk6w" path="res://core/items/inventory.gd" id="17_y7e31"]
+[ext_resource type="Script" uid="uid://bc2p75q5fwti0" path="res://core/stats/derived_statistic.gd" id="18_2pe0c"]
+[ext_resource type="Script" uid="uid://co3pv1dkxvurl" path="res://core/skills/skill_destruction.gd" id="19_i2tca"]
+[ext_resource type="Script" uid="uid://dv757fpkfes2v" path="res://core/skills/skills.gd" id="20_t4n1y"]
+[ext_resource type="Script" uid="uid://uohg2le4coak" path="res://core/skills/skill_swords.gd" id="21_rf44f"]
+[ext_resource type="Script" uid="uid://cs34ioc1gflxf" path="res://util/globals/save_data.gd" id="22_5e6v5"]
+
+[sub_resource type="Resource" id="Resource_1lls3"]
+script = ExtResource("2_s6x8u")
+source_name = "FIRE MANG"
+source_type = 2
+stat_name = "agility"
+value = 717.3952399999906
+base_value = 1200.0
+
+[sub_resource type="Resource" id="Resource_ua1pr"]
+script = ExtResource("3_a2mgc")
+modifiers = Array[ExtResource("2_s6x8u")]([SubResource("Resource_1lls3")])
+
+[sub_resource type="Resource" id="Resource_3sro4"]
+script = ExtResource("4_gbtiq")
+modifiers = SubResource("Resource_ua1pr")
+effect_type = 0
+duration = 10.0
+timer = 5.9782936666665885
+is_decaying = true
+
+[sub_resource type="Resource" id="Resource_y4swu"]
+script = ExtResource("3_a2mgc")
+
+[sub_resource type="Resource" id="Resource_vy68m"]
+script = ExtResource("5_acu36")
+name = "agility"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_k80r6"]
+script = ExtResource("5_acu36")
+name = "charisma"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_lqsxe"]
+script = ExtResource("5_acu36")
+name = "constitution"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_b5kv2"]
+script = ExtResource("5_acu36")
+name = "dexterity"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_v80hp"]
+script = ExtResource("5_acu36")
+name = "intelligence"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_h23cc"]
+script = ExtResource("5_acu36")
+name = "luck"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_1pfem"]
+script = ExtResource("5_acu36")
+name = "spirit"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_xd273"]
+script = ExtResource("5_acu36")
+name = "strength"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_kyfcp"]
+script = ExtResource("5_acu36")
+name = "wisdom"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_44agu"]
+script = ExtResource("6_n14ce")
+strength = SubResource("Resource_xd273")
+constitution = SubResource("Resource_lqsxe")
+dexterity = SubResource("Resource_b5kv2")
+agility = SubResource("Resource_vy68m")
+spirit = SubResource("Resource_1pfem")
+wisdom = SubResource("Resource_kyfcp")
+intelligence = SubResource("Resource_v80hp")
+charisma = SubResource("Resource_k80r6")
+luck = SubResource("Resource_h23cc")
+
+[sub_resource type="Resource" id="Resource_rx2rs"]
+script = ExtResource("12_s2r1a")
+name = "Executioner"
+description = "Deal more damage based on missing HP."
+icon_path = "res://assets/classes/slayer/executioner.png"
+max_ranks = 5
+required_level = 10
+
+[sub_resource type="Resource" id="Resource_w7y5i"]
+script = ExtResource("11_s4xc2")
+name = "Huntress"
+description = "On kill, increases movement speed and health regeneration."
+icon_path = "res://assets/classes/slayer/huntress.png"
+node_type = 1
+max_ranks = 10
+
+[sub_resource type="Resource" id="Resource_0012d"]
+script = ExtResource("2_s6x8u")
+source_name = "Prowess"
+source_type = 3
+stat_name = "dexterity"
+value = 0.01
+modifier_type = 1
+modifier_priority = 2
+sentiment = 0
+
+[sub_resource type="Resource" id="Resource_ctsbl"]
+script = ExtResource("2_s6x8u")
+source_name = "Prowess"
+source_type = 3
+stat_name = "strength"
+value = 0.01
+modifier_type = 1
+modifier_priority = 2
+sentiment = 0
+
+[sub_resource type="Resource" id="Resource_p0q2c"]
+script = ExtResource("10_4d0o0")
+strength_modifier = SubResource("Resource_ctsbl")
+dexterity_modifier = SubResource("Resource_0012d")
+name = "Prowess"
+description = "Increase strength and dexterity by 1% per stack."
+icon_path = "res://assets/classes/slayer/prowess.png"
+max_ranks = 10
+
+[sub_resource type="Resource" id="Resource_alqky"]
+script = ExtResource("13_c68mw")
+name = "Slice"
+description = "On hit, apply bleed."
+icon_path = "res://assets/classes/slayer/slice.png"
+node_type = 1
+max_ranks = 10
+
+[sub_resource type="Resource" id="Resource_ob6nv"]
+script = ExtResource("8_tj1v2")
+skill_nodes = Dictionary[String, ExtResource("9_b40j7")]({
+"Executioner": SubResource("Resource_rx2rs"),
+"Huntress": SubResource("Resource_w7y5i"),
+"Prowess": SubResource("Resource_p0q2c"),
+"Slice": SubResource("Resource_alqky")
+})
+
+[sub_resource type="Resource" id="Resource_7nl85"]
+script = ExtResource("14_e3ckm")
+stat_weights = Dictionary[String, float]({
+"agility": 11.0,
+"charisma": 4.0,
+"constitution": 8.0,
+"dexterity": 10.0,
+"intelligence": 9.0,
+"luck": 7.0,
+"spirit": 5.0,
+"strength": 12.0,
+"wisdom": 6.0
+})
+
+[sub_resource type="Resource" id="Resource_fywpa"]
+script = ExtResource("7_yirk2")
+name = "Slayer"
+stat_ordering = SubResource("Resource_7nl85")
+skill_tree = SubResource("Resource_ob6nv")
+health_per_level = 5.0
+mana_per_level = 2.0
+stamina_per_level = 3.0
+
+[sub_resource type="Resource" id="Resource_hh4at"]
+script = ExtResource("15_kewtv")
+
+[sub_resource type="GDScript" id="GDScript_45g2t"]
+
+[sub_resource type="Resource" id="Resource_1bjm0"]
+script = ExtResource("17_y7e31")
+
+[sub_resource type="Resource" id="Resource_otf5s"]
+script = ExtResource("18_2pe0c")
+base_value = 4.0
+
+[sub_resource type="Resource" id="Resource_a2ge7"]
+script = ExtResource("18_2pe0c")
+base_value = 0.01
+
+[sub_resource type="Resource" id="Resource_7o0lq"]
+script = ExtResource("19_i2tca")
+destruction_percent_damage_increase = SubResource("Resource_a2ge7")
+destruction_ability_haste = SubResource("Resource_otf5s")
+name = "destruction"
+
+[sub_resource type="Resource" id="Resource_rusrg"]
+script = ExtResource("18_2pe0c")
+base_value = 4.0
+
+[sub_resource type="Resource" id="Resource_4veck"]
+script = ExtResource("18_2pe0c")
+base_value = 3.0
+
+[sub_resource type="Resource" id="Resource_8xx05"]
+script = ExtResource("18_2pe0c")
+base_value = 2.0
+
+[sub_resource type="Resource" id="Resource_ugkpc"]
+script = ExtResource("18_2pe0c")
+base_value = 0.01
+
+[sub_resource type="Resource" id="Resource_43oml"]
+script = ExtResource("21_rf44f")
+sword_min_damage_increase = SubResource("Resource_8xx05")
+sword_max_damage_increase = SubResource("Resource_4veck")
+sword_percent_damage_increase = SubResource("Resource_ugkpc")
+sword_ability_haste = SubResource("Resource_rusrg")
+name = "swords"
+
+[sub_resource type="Resource" id="Resource_w662j"]
+script = ExtResource("20_t4n1y")
+swords = SubResource("Resource_43oml")
+destruction = SubResource("Resource_7o0lq")
+
+[resource]
+script = ExtResource("22_5e6v5")
+scene_path = "res://map/dungeon/Area2.tscn"
+player_attributes = SubResource("Resource_44agu")
+player_derived_statistics = SubResource("Resource_hh4at")
+player_skills = SubResource("Resource_w662j")
+player_class = SubResource("Resource_fywpa")
+player_level = 1
+player_inventory = SubResource("Resource_1bjm0")
+total_xp_to_next_level = 1500.0
+current_health = 206.5
+current_stamina = 100.96392171979988
+current_mana = 108.5
+player_position = Vector2(118.87316, 427.26486)
+active_static_modifiers = SubResource("Resource_y4swu")
+active_effects = Array[ExtResource("1_2bx37")]([SubResource("Resource_3sro4")])

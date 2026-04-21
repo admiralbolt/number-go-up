@@ -1,8 +1,8 @@
 class_name InventorySlotDisplay extends Control
 
-signal focused(slot_data: Inventory.InventorySlot, index: int)
+signal focused(slot_data: InventorySlot, index: int)
 
-var slot_data: Inventory.InventorySlot
+var slot_data: InventorySlot
 var index: int
 
 @onready var sprite: Sprite2D = $Sprite2D

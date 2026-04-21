@@ -11,12 +11,12 @@ func _init() -> void:
   self.item_type = Item.ItemType.CONSUMABLE
   self.rarity = Item.ItemRarity.COMMON
 
-  self.is_stackable = false
+  self.is_stackable = true
   self.weight = 0.1
   self.base_price = 1
   self.is_sellable = true
 
   self.is_usable = true
   self.effects = [
-    InstantHealEffect.new(HEAL_POWER)
+    InstantHealEffect.make(HEAL_POWER)
   ]

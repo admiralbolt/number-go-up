@@ -8,4 +8,5 @@ func _ready() -> void:
   self.focus_entered.connect(self._on_focus_entered)
 
 func _on_focus_entered() -> void:
-  self.inventory_display.is_focused = true
+  if inventory_display.inventory.size() > 0:
+    self.inventory_display.is_focused = true

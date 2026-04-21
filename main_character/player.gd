@@ -62,6 +62,7 @@ func _process(_delta: float) -> void:
     self._test_buff_effect()
   elif Input.is_action_just_pressed("attack"):
     self.inventory.add_item(TestItemManager.all_test_items.pick_random(), randi_range(1, 7))
+    self.inventory.add_item(ItemApple.new())
     self.main_player_state_machine.change_state(PlayerAttackState.NAME)
   elif held_direction != Vector2.ZERO:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)
