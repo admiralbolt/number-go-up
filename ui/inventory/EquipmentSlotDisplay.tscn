@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://diy8wy13keijd"]
+
+[ext_resource type="Script" uid="uid://j8lm7buyfem4" path="res://ui/inventory/equipment_slot_display.gd" id="1_uk8pe"]
+
+[node name="EquipmentSlotDisplay" type="Control" unique_id=404420204]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_uk8pe")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=991237167]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="BackgroundIcon" type="TextureRect" parent="PanelContainer" unique_id=647643015]
+layout_mode = 2
+expand_mode = 3
+
+[node name="ItemIcon" type="TextureRect" parent="PanelContainer" unique_id=691598789]
+layout_mode = 2
+expand_mode = 3

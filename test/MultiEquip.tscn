@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b1qryb74bex0t"]
+
+[ext_resource type="PackedScene" uid="uid://diy8wy13keijd" path="res://ui/inventory/EquipmentSlotDisplay.tscn" id="1_vltbd"]
+
+[node name="MultiEquip" type="Control" unique_id=303584847]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EquipmentSlotDisplay" parent="." unique_id=404420204 instance=ExtResource("1_vltbd")]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 13.0
+offset_right = 36.0
+offset_bottom = 29.0
+equipment_slot_type = 1
+
+[node name="EquipmentSlotDisplay2" parent="." unique_id=1537407671 instance=ExtResource("1_vltbd")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 12.0
+offset_right = 64.0
+offset_bottom = 28.0
+equipment_slot_type = 1
+
+[node name="EquipmentSlotDisplay3" parent="." unique_id=591329085 instance=ExtResource("1_vltbd")]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 12.0
+offset_right = 90.0
+offset_bottom = 28.0
+equipment_slot_type = 1
