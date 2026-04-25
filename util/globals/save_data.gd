@@ -15,6 +15,7 @@ class_name SaveData extends Resource
 @export var player_level: int
 
 @export var player_inventory_data: Array[InventorySlot]
+@export var player_equipment: Array[Equipment]
 
 @export var current_xp: float
 @export var starting_xp_this_level: float

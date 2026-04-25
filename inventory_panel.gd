@@ -1,6 +1,6 @@
 class_name InventoryPanel extends Control
 
-@onready var inventory_display: InventoryDisplay = $InventoryDisplay
+@onready var inventory_display: InventoryDisplay = $HBoxContainer/InventoryDisplay
 
 func _ready() -> void:
   self.process_mode = Node.PROCESS_MODE_ALWAYS

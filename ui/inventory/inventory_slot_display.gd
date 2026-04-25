@@ -1,15 +1,23 @@
-class_name InventorySlotDisplay extends Control
+class_name InventorySlotDisplay extends Button
 
 signal focused(slot_data: InventorySlot, index: int)
+signal used(slot_data: InventorySlot, index: int)
 
 var slot_data: InventorySlot
 var index: int
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var quantity_label: RichTextLabel = $QuantityLabel
+@onready var equipped_indiciator: Sprite2D = $EquippedIndicator
 
 func _ready() -> void:
   self.focus_entered.connect(self._on_focus_entered)
+  self.pressed.connect(self._use_item)
+  self.equipped_indiciator.visible = false
+  
+  if self.slot_data.item is Equipment:
+    self.slot_data.item.equip_changed.connect(self._equip_changed)
+
   self.slot_data.item.icon.render(self.sprite)
 
   if not self.slot_data.item.is_stackable:
@@ -22,3 +30,10 @@ func _ready() -> void:
 
 func _on_focus_entered() -> void:
   self.focused.emit(self.slot_data, self.index)
+
+func _use_item() -> void:
+  print("Using item: %s" % self.slot_data)
+  self.used.emit(self.slot_data, self.index)
+
+func _equip_changed() -> void:
+  self.equipped_indiciator.visible = self.slot_data.item.is_equipped

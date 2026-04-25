@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dqie33b15fi5y" path="res://ui/inventory/inventory_slot_display.gd" id="1_55ek7"]
 [ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="2_sohxr"]
 [ext_resource type="Texture2D" uid="uid://be5ppdcviwx6x" path="res://assets/items/spritesheets/generic_icons_001.png" id="2_sswdc"]
+[ext_resource type="Texture2D" uid="uid://ca6r1fukgvfdj" path="res://assets/ui/inventory/equipped_indicator.png" id="4_sswdc"]
 
 [node name="InventorySlotDisplay" type="Button" unique_id=186722460]
 custom_minimum_size = Vector2(16, 16)
@@ -27,3 +28,9 @@ theme = ExtResource("2_sohxr")
 theme_override_font_sizes/normal_font_size = 8
 text = "x99"
 horizontal_alignment = 1
+
+[node name="EquippedIndicator" type="Sprite2D" parent="." unique_id=673178841]
+texture_filter = 1
+position = Vector2(13.491577, 2.5029616)
+scale = Vector2(0.21400863, 0.21400863)
+texture = ExtResource("4_sswdc")

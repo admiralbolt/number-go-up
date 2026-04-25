@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1jbm07jskq8u"
-path="res://.godot/imported/helmet_slot.svg-22bac7c82c7814998e7247beb0a27b8e.ctex"
+uid="uid://ca6r1fukgvfdj"
+path="res://.godot/imported/equipped_indicator.png-98b432582e24741b805fe9ec51b89d4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/inventory/equip_background/helmet_slot.svg"
-dest_files=["res://.godot/imported/helmet_slot.svg-22bac7c82c7814998e7247beb0a27b8e.ctex"]
+source_file="res://assets/ui/inventory/equipped_indicator.png"
+dest_files=["res://.godot/imported/equipped_indicator.png-98b432582e24741b805fe9ec51b89d4c.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

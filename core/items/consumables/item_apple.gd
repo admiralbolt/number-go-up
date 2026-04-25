@@ -20,3 +20,4 @@ func _init() -> void:
   self.effects = [
     InstantHealEffect.make(HEAL_POWER)
   ]
+  self.init_uid()

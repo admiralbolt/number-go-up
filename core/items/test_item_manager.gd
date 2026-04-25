@@ -29,6 +29,7 @@ static func make_next() -> Item:
   item.weight = randf_range(0.1, 100.0)
   item.base_price = randf_range(1, 10_000)
   item.is_sellable = true if randf() < 0.6 else false
+  item.init_uid()
 
   frame += 1
   return item

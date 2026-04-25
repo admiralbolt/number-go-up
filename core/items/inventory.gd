@@ -66,34 +66,38 @@ func _to_string() -> String:
 class DynamicItemList extends Resource:
   # The array of items will be used for ordering in the UI.
   @export var item_array: Array[InventorySlot] = []
-  # Faster tracking for existence of items. Will be keyed by item name.
+  # Faster tracking for existence of items. Will be keyed by item uid.
   @export var item_dict: Dictionary[String, InventorySlot] = {}
+  # Keep track of which index an item is in the array. Keyed by item uid.
+  @export var item_array_indices: Dictionary[String, int] = {}
 
   func add_item(item: Item, quantity: int = 1) -> void:
     # If our item already exists, AND is stackable, just increase the quantity.
-    if item.name in self.item_dict and item.is_stackable:
-      self.item_dict[item.name].quantity += quantity
+    if item.uid in self.item_dict and item.is_stackable:
+      self.item_dict[item.uid].quantity += quantity
       return
 
     var slot: InventorySlot = InventorySlot.new()
     slot.item = item
     slot.quantity = quantity
-    self.item_dict[item.name] = slot
+    self.item_dict[item.uid] = slot
     self.item_array.append(slot)
+    self.item_array_indices[item.uid] = self.item_array.size() - 1
 
   func decrement_item(item: Item, count_used: int = 1) -> void:
-    if item.name not in self.item_dict:
+    if item.uid not in self.item_dict:
       return
 
-    self.item_dict[item.name].quantity -= count_used
-    if self.item_dict[item.name].quantity > 0:
+    self.item_dict[item.uid].quantity -= count_used
+    if self.item_dict[item.uid].quantity > 0:
       return
 
     # If we used the last stack of an item, we want to clear it from our
     # tracking state, and emit a signal that it's gone so that the UI can
     # redraw itself.
-    self.item_array.erase(item)
-    self.item_dict[item.name].erase(item)
+    self.item_array.remove_at(self.item_array_indices[item.uid])
+    self.item_dict.erase(item.uid)
+    self.item_array_indices.erase(item.uid)
     SignalBus.item_removed.emit(item)
 
   func sort_by(property_name: String) -> void:

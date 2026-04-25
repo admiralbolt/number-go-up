@@ -97,6 +97,7 @@ func render() -> void:
     slot_ui.slot_data = slot
     slot_ui.index = i
     slot_ui.focused.connect(self._on_slot_focused)
+    slot_ui.used.connect(self._on_slot_used)
     self.inventory_grid.add_child(slot_ui)
     all_children.append(slot_ui)
 
@@ -133,7 +134,6 @@ func render() -> void:
       left_index = all_children.size() - 1
     child.focus_neighbor_left = all_children[left_index].get_path()
 
-
     var right_index: int = (i + 1) % column_count + row_index * column_count
     if right_index >= all_children.size():
       right_index = row_index * column_count
@@ -149,4 +149,14 @@ func _on_slot_focused(slot_data: InventorySlot, index: int) -> void:
   PauseMenuState.player_inventory_sub_type_focus_index[slot_data.item.item_type] = index
   self.item_info.text = slot_data.full_description()
 
-  
+func _on_slot_used(slot_data: InventorySlot, _index: int) -> void:
+  print("Slot Used: %s" % slot_data) 
+  if slot_data.item.is_usable:
+    slot_data.item.use()
+    self.inventory.decrement_item(slot_data.item, 1)
+    return
+
+  if slot_data.item is not Equipment:
+    return
+
+  PlayerManager.player.equipment_manager.equip(slot_data.item)

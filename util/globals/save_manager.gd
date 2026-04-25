@@ -15,6 +15,7 @@ func save_game() -> void:
   save_data.player_level = PlayerManager.player.level
 
   save_data.player_inventory_data = PlayerManager.player.inventory.serialize()
+  save_data.player_equipment = PlayerManager.player.equipment_manager.get_equipped_items()
 
   save_data.current_xp = PlayerManager.player.xp
   save_data.starting_xp_this_level = PlayerManager.player.starting_xp_this_level
@@ -54,6 +55,7 @@ func load_game() -> void:
   PlayerManager.player.level = save_data.player_level
 
   PlayerManager.player.inventory.load_from_list(save_data.player_inventory_data)
+  PlayerManager.player.equipment_manager.reinitialize(save_data.player_equipment.duplicate(true))
 
   PlayerManager.player.xp = save_data.current_xp
   PlayerManager.player.starting_xp_this_level = save_data.starting_xp_this_level

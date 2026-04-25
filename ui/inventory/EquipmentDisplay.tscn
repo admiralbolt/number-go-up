@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://bfek2lw078bw1"]
+
+[ext_resource type="Script" uid="uid://c8pihr6ci8ayj" path="res://ui/inventory/equipment_display.gd" id="1_58w5h"]
+[ext_resource type="PackedScene" uid="uid://diy8wy13keijd" path="res://ui/inventory/EquipmentSlotDisplay.tscn" id="1_fldsu"]
+
+[node name="EquipmentDisplay" type="Control" unique_id=1005987231]
+custom_minimum_size = Vector2(76, 124)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 76.0
+offset_bottom = 124.0
+script = ExtResource("1_58w5h")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1193527199]
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 123.0
+color = Color(0.7058824, 0.7058824, 0.7058824, 0.23529412)
+
+[node name="HeadSlotDisplay" parent="." unique_id=404420204 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 3.0
+offset_right = 46.0
+offset_bottom = 19.0
+
+[node name="EarringsSlotDisplay" parent="." unique_id=1209638934 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 11.0
+offset_right = 66.0
+offset_bottom = 27.0
+equipment_slot_type = 9
+
+[node name="ShouldersSlotDisplay" parent="." unique_id=1959150599 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 26.0
+offset_bottom = 32.0
+equipment_slot_type = 6
+
+[node name="NeckSlotDisplay" parent="." unique_id=1098976438 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 23.0
+offset_right = 46.0
+offset_bottom = 39.0
+equipment_slot_type = 8
+
+[node name="BodySlotDisplay" parent="." unique_id=1555839753 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 43.0
+offset_right = 46.0
+offset_bottom = 59.0
+equipment_slot_type = 1
+
+[node name="ShieldSlotDisplay" parent="." unique_id=1947636568 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 39.0
+offset_right = 72.0
+offset_bottom = 55.0
+equipment_slot_type = 13
+
+[node name="WeaponSlotDisplay" parent="." unique_id=1733515064 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 39.0
+offset_right = 20.0
+offset_bottom = 55.0
+equipment_slot_type = 12
+
+[node name="WaistSlotDisplay" parent="." unique_id=2042706878 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 63.0
+offset_right = 46.0
+offset_bottom = 79.0
+equipment_slot_type = 7
+
+[node name="ArmsSlotDisplay" parent="." unique_id=1407189006 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 67.0
+offset_right = 26.0
+offset_bottom = 83.0
+equipment_slot_type = 4
+
+[node name="HandsSlotDisplay" parent="." unique_id=79039284 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 67.0
+offset_right = 66.0
+offset_bottom = 83.0
+equipment_slot_type = 5
+
+[node name="LegsSlotDisplay" parent="." unique_id=1461699266 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 83.0
+offset_right = 46.0
+offset_bottom = 99.0
+equipment_slot_type = 2
+
+[node name="RingLeftSlotDisplay" parent="." unique_id=634024672 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 88.0
+offset_right = 26.0
+offset_bottom = 104.0
+equipment_slot_type = 10
+
+[node name="RingRightSlotDisplay" parent="." unique_id=565507013 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 88.0
+offset_right = 66.0
+offset_bottom = 104.0
+equipment_slot_type = 11
+
+[node name="FeetSlotDisplay" parent="." unique_id=495197951 instance=ExtResource("1_fldsu")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 103.0
+offset_right = 46.0
+offset_bottom = 119.0
+equipment_slot_type = 3

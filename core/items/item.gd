@@ -42,6 +42,9 @@ static var RARITY_COLOR: Dictionary[ItemRarity, Color] = {
   ItemRarity.UNIQUE: Color.from_rgba8(0, 244, 201),
 }
 
+# After initialization an item, make sure to set this via self.init_uid()
+@export var uid: String
+
 # The name of the item! The name is used as an identifier, must be unique.
 @export var name: String = ""
 # The description of the item.
@@ -67,6 +70,13 @@ static var RARITY_COLOR: Dictionary[ItemRarity, Color] = {
 # The effects to apply!
 @export var effects: Array[Effect] = []
 
+func init_uid() -> void:
+  # If the item is stackable, every instance is the same.
+  if self.is_stackable:
+    self.uid = self.name
+    return
+
+  self.uid = "%s_%s_%d" % [self.name, GeneratorUtil.generate_random_word(6), randi_range(100_000, 999_999)]
 
 # Called when the item is used.
 func use() -> void:
