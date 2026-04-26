@@ -1,6 +1,6 @@
 class_name InstantHealEffect extends Effect
 
-var heal_amount: float = 0.0
+@export var heal_amount: float = 0.0
 
 static func make(p_heal_amount: float) -> InstantHealEffect:
   var effect: InstantHealEffect = InstantHealEffect.new()

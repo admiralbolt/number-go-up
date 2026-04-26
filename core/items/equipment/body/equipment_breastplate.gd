@@ -32,13 +32,15 @@ static func _make_modifiers() -> Array[Modifier]:
   armor_mod.stat_name = DerivedStatistics.ARMOR
   armor_mod.value = 40
   armor_mod.base_value = 40
+  armor_mod.sentiment = Modifier.ModifierSentiment.BUFF
 
   var agility_mod: Modifier = Modifier.new()
   agility_mod.source_name = NAME
-  armor_mod.source_type = Modifier.ModifierSource.EQUIPMENT
-  armor_mod.target_type = Modifier.ModifierTarget.ATTRIBUTE
-  armor_mod.stat_name = Attributes.AGILITY
-  armor_mod.value = -20
-  armor_mod.base_value = -20
+  agility_mod.source_type = Modifier.ModifierSource.EQUIPMENT
+  agility_mod.target_type = Modifier.ModifierTarget.ATTRIBUTE
+  agility_mod.stat_name = Attributes.AGILITY
+  agility_mod.value = -20
+  agility_mod.base_value = -20
+  agility_mod.sentiment = Modifier.ModifierSentiment.DEBUFF
 
   return [armor_mod, agility_mod]

@@ -150,7 +150,6 @@ func _on_slot_focused(slot_data: InventorySlot, index: int) -> void:
   self.item_info.text = slot_data.full_description()
 
 func _on_slot_used(slot_data: InventorySlot, _index: int) -> void:
-  print("Slot Used: %s" % slot_data) 
   if slot_data.item.is_usable:
     slot_data.item.use()
     self.inventory.decrement_item(slot_data.item, 1)

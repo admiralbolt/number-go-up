@@ -38,10 +38,11 @@ func _ready() -> void:
     Equipment.EquipmentSlot.FEET: self.feet_slot_display
   }
 
-  PlayerManager.create_player_for_test()
-
   PlayerManager.player.equipment_manager.equipment_equipped.connect(self._on_equip)
   PlayerManager.player.equipment_manager.equipment_removed.connect(self._on_remove)
+
+  for equipment in PlayerManager.player.equipment_manager.get_equipped_items():
+    self.slot_mapping[equipment.slot].equipment = equipment
 
 func _on_equip(equipment: Equipment) -> void:
   self.slot_mapping[equipment.slot].equipment = equipment

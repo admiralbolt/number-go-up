@@ -17,6 +17,7 @@ func _ready() -> void:
   
   if self.slot_data.item is Equipment:
     self.slot_data.item.equip_changed.connect(self._equip_changed)
+    self.equipped_indiciator.visible = self.slot_data.item.is_equipped
 
   self.slot_data.item.icon.render(self.sprite)
 
@@ -32,7 +33,6 @@ func _on_focus_entered() -> void:
   self.focused.emit(self.slot_data, self.index)
 
 func _use_item() -> void:
-  print("Using item: %s" % self.slot_data)
   self.used.emit(self.slot_data, self.index)
 
 func _equip_changed() -> void:

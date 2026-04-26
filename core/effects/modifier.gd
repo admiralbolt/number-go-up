@@ -76,9 +76,9 @@ func _to_string() -> String:
 
 func _get_mod_char() -> String:
   if self.modifier_type == ModifierType.ADDITIVE:
-    return "+" if self.value >= 0 else "-"
+    return "+" if self.value >= 0 else ""
   elif self.modifier_type == ModifierType.MULTIPLICATIVE:
-    return "x" if self.value >= 0 else "/"
+    return "x"
   
   return "?"
 

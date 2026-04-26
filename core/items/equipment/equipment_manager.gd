@@ -22,7 +22,6 @@ func is_type_equipped(equipment_type: Equipment.EquipmentSlot) -> bool:
   return self.equipped_items[equipment_type] != null
 
 func equip(equipment: Equipment) -> bool:
-  print("Trying to equip: %s" % equipment)
   if not equipment.can_equip(self.entity):
     return false
 
@@ -39,8 +38,6 @@ func equip(equipment: Equipment) -> bool:
 
   for slot in slots_to_remove:
     self.remove_equipment_by_slot(slot)
-
-  print("Actually equipping: %s" % equipment)
 
   # With all the other things removed, we can equip the item! Set it in the
   # slot, and apply all its modifiers.

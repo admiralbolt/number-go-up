@@ -85,13 +85,13 @@ func get_slots() -> Array[EquipmentSlot]:
 
 # When the thing is equipped. This should be called by children if overriden.
 func on_equip() -> void:
-  for modifier in modifiers:
+  for modifier in self.modifiers:
     PlayerManager.player.modifier_manager.add_modifier(modifier)
   self.is_equipped = true
 
 # When the thing is removed. This should be called by children if overriden.
 func on_remove() -> void:
-  for modifier in modifiers:
+  for modifier in self.modifiers:
     PlayerManager.player.modifier_manager.remove_modifier(modifier)
   self.is_equipped = false
 

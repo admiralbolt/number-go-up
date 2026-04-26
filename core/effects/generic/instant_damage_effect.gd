@@ -7,5 +7,4 @@ func _init() -> void:
   self.is_instant = true
 
 func apply(target: Entity) -> void:
-  print("Dealing %.2f instant damage to %s" % [damage_amount, target.name])
-  return
+  target.current_health -= damage_amount
