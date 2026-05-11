@@ -7,9 +7,9 @@
 
 [node name="IOMenu" type="Control" unique_id=818365196]
 layout_mode = 3
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 112.0
+offset_bottom = 100.0
 script = ExtResource("1_hh0kn")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=972563661]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cmq4c8cdkj2jt"]
 
-[ext_resource type="Script" uid="uid://brxytt1hl4e0b" path="res://ui/pause_menu/character_class_display.gd" id="1_e3hn5"]
+[ext_resource type="Script" uid="uid://brxytt1hl4e0b" path="res://ui/pause_menu/character/character_class_display.gd" id="1_e3hn5"]
 
 [node name="CharacterClassDisplay" type="Control" unique_id=997391616]
 layout_mode = 3

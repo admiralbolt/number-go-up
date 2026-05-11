@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://c68i7qqw11lut"]
+
+[ext_resource type="Script" uid="uid://db575mjbe3ob2" path="res://ui/pause_menu/components/selectable_tab_bar.gd" id="1_d714w"]
+[ext_resource type="PackedScene" uid="uid://dsg6emwmuk8ee" path="res://ui/pause_menu/components/SelectableIcon.tscn" id="2_sgny7"]
+[ext_resource type="Texture2D" uid="uid://4qnr07v2xkm8" path="res://assets/ui/pause_menu/character_panel/overview_tab.svg" id="3_0d07j"]
+[ext_resource type="Texture2D" uid="uid://da0bm7ov7ext5" path="res://assets/ui/pause_menu/character_panel/class_tab.svg" id="4_rix3u"]
+[ext_resource type="Texture2D" uid="uid://byui47wg344ef" path="res://assets/ui/pause_menu/character_panel/attributes_tab.svg" id="5_kv0ot"]
+[ext_resource type="Texture2D" uid="uid://b7atggcvaj4ca" path="res://assets/ui/pause_menu/character_panel/statistics_tab.svg" id="6_d714w"]
+[ext_resource type="Texture2D" uid="uid://bfb34rvnlmcut" path="res://assets/ui/pause_menu/character_panel/skills_tab.svg" id="7_sgny7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tvqt"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.87058824, 0.87058824, 0.87058824, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="Animation" id="Animation_ksixi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Outline:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.87058824, 0.87058824, 0.87058824, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_koebe"]
+resource_name = "flicker"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Outline:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.54901963, 0.74509805, 0.92156863, 1), Color(0.47058824, 0.74509805, 0.98039216, 1), Color(0.92156863, 0.92156863, 0.92156863, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tkij1"]
+_data = {
+&"RESET": SubResource("Animation_ksixi"),
+&"flicker": SubResource("Animation_koebe")
+}
+
+[node name="CharacterTabBar" type="Control" unique_id=137940502]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 144.0
+offset_bottom = 32.0
+script = ExtResource("1_d714w")
+
+[node name="Outline" type="Panel" parent="." unique_id=1153768320]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 141.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6tvqt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=22632392]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 484.0
+offset_bottom = 28.0
+
+[node name="OverviewTab" parent="HBoxContainer" unique_id=1624721873 instance=ExtResource("2_sgny7")]
+layout_mode = 2
+texture = ExtResource("3_0d07j")
+text = "Overview"
+
+[node name="ClassTab" parent="HBoxContainer" unique_id=731365720 instance=ExtResource("2_sgny7")]
+layout_mode = 2
+texture = ExtResource("4_rix3u")
+text = "Class"
+
+[node name="AttributesTab" parent="HBoxContainer" unique_id=738268364 instance=ExtResource("2_sgny7")]
+layout_mode = 2
+texture = ExtResource("5_kv0ot")
+text = "Attributes"
+
+[node name="StatisticsTab" parent="HBoxContainer" unique_id=935521227 instance=ExtResource("2_sgny7")]
+layout_mode = 2
+texture = ExtResource("6_d714w")
+text = "Statistics"
+
+[node name="SkillsTab" parent="HBoxContainer" unique_id=1065746893 instance=ExtResource("2_sgny7")]
+layout_mode = 2
+texture = ExtResource("7_sgny7")
+text = "Skills"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1140877104]
+libraries/ = SubResource("AnimationLibrary_tkij1")

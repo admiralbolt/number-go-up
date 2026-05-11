@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cg2gdct4c40h7"]
+
+[ext_resource type="Script" uid="uid://cia1shis4fmsw" path="res://ui/pause_menu/character/character_panel.gd" id="1_fggyi"]
+[ext_resource type="PackedScene" uid="uid://c68i7qqw11lut" path="res://ui/pause_menu/character/CharacterTabBar.tscn" id="2_2vi1c"]
+[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/pause_menu/components/content_panel.gd" id="2_hm050"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fggyi"]
+
+[node name="CharacterPanel" type="Control" unique_id=1444621635]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_fggyi")
+
+[node name="CharacterTabBar" parent="." unique_id=137940502 instance=ExtResource("2_2vi1c")]
+layout_mode = 1
+scale = Vector2(0.85, 0.85)
+
+[node name="CharacterContentPanel" type="PanelContainer" parent="." unique_id=1822809482]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 0
+offset_top = 29.0
+offset_right = 3840.0
+offset_bottom = 229.0
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fggyi")
+script = ExtResource("2_hm050")
+metadata/_custom_type_script = "uid://8q5s1rcnp7c7"

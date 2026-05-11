@@ -1,66 +1,71 @@
 extends CanvasLayer
 
-@onready var content_panel: PanelContainer = %ContentPanel
-@onready var button_sidebar: ButtonSidebar = %ButtonSidebar
-
-# Preload all our content panel scenes.
-const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
-  "IOButton": preload("res://ui/pause_menu/IOMenu.tscn"),
-  "CharacterButton": preload("res://ui/pause_menu/CharacterPanel.tscn"),
-  "InventoryButton": preload("res://ui/pause_menu/InventoryPanel.tscn"),
-}
+@onready var content_panel: PanelContainer = $ContentPanel
+@onready var tab_bar: SelectableTabBar = $PauseMenuPrimaryTabBar
 
 var first: bool = true
 
-func _ready() -> void:
-  # Importantly, this needs to be run here because this script *ALSO* runs in
-  # the editor.
-  self.visible = false
-  
-  if Engine.is_editor_hint():
-    return
+# Preload all our content panel scenes.
+const CONTENT_PANEL_MAPPING: Dictionary[String, PackedScene] = {
+  "IOTab": preload("res://ui/pause_menu/IOMenu.tscn"),
+  "CharacterTab": preload("res://ui/pause_menu/character/CharacterPanel.tscn"),
+  "InventoryTab": preload("res://ui/pause_menu/InventoryPanel.tscn"),
+}
 
+func _ready() -> void:
+  self.visible = false
   self.process_mode = Node.PROCESS_MODE_ALWAYS
 
-  button_sidebar.button_focused.connect(self._on_button_focused)
-  button_sidebar.button_pressed.connect(self._on_button_pressed)
-  content_panel.content_panel_closed.connect(self._on_content_panel_closed)
+  self.tab_bar.tab_selected.connect(self._on_tab_selected)
+  self.tab_bar.tab_activated.connect(self._on_tab_activated)
+  self.tab_bar.tab_bar_exit.connect(self._on_tab_bar_exited)
+
+  self.content_panel.closed.connect(self._on_content_panel_closed)
 
   SaveManager.game_loaded.connect(self._on_game_loaded)
 
-func _on_button_focused(_index: int, button_name: String) -> void:
-  var content_scene: PackedScene = CONTENT_PANEL_MAPPING.get(button_name, null)
-  content_panel.change_child(content_scene)
-
-func _on_button_pressed(_index: int, _button_name: String) -> void:
-  PauseMenuState.content_focused = true
-  print("Focusing content panel...")
-  content_panel.grab_focus()
+  self.tab_bar.set_focused(true)
 
 func _on_content_panel_closed() -> void:
-  PauseMenuState.content_focused = false
-  self.focus()
+  PauseMenuState.primary_tab_bar_focused = true
+  self.tab_bar.unfreeze()
+  self.tab_bar.set_focused(true)
+
+func _on_tab_selected(_index: int, tab_name: String) -> void:
+  var content_scene: PackedScene = CONTENT_PANEL_MAPPING.get(tab_name, null)
+  self.content_panel.change_child(content_scene)
+
+func _on_tab_activated(_index: int, tab_name: String) -> void:
+  if tab_name not in CONTENT_PANEL_MAPPING:
+    return
+  
+  self.tab_bar.freeze()
+  self.tab_bar.set_focused(false)
+  PauseMenuState.primary_tab_bar_focused = false
+  self.content_panel.grab_focus()
+
+func _on_tab_bar_exited() -> void:
+  self.close_menu()
 
 func open_menu() -> void:
   get_tree().paused = true
+  self.focus()
   self.visible = true
   SignalBus.pause_menu_opened.emit()
-  self.focus()
-
-func focus() -> void:
-  if PauseMenuState.content_focused:
-    content_panel.grab_focus()
-    return
-
-  button_sidebar.focus()
 
 func close_menu() -> void:
   get_tree().paused = false
   self.visible = false
   SignalBus.pause_menu_closed.emit()
 
+func focus() -> void:
+  if PauseMenuState.primary_tab_bar_focused:
+    self.tab_bar.set_focused(true)
+    return
+
+  self.content_panel.grab_focus()
+
 func _on_game_loaded() -> void:
-  PauseMenuState.content_focused = false
   self.close_menu()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -71,20 +76,3 @@ func _unhandled_input(event: InputEvent) -> void:
       self.open_menu()
     get_viewport().set_input_as_handled()
     return
-
-  # If the menu isn't open OR we're focused in the sub menu, we don't want to
-  # handle any input here.
-  if not self.visible or PauseMenuState.content_focused:
-    return
-
-  if event.is_action_pressed("ui_cancel"):
-    self.close_menu()
-    get_viewport().set_input_as_handled()
-    return
-
-  if event.is_action_pressed("ui_accept"):
-    PauseMenuState.content_focused = true
-    self.focus()
-    get_viewport().set_input_as_handled()
-    return
-  

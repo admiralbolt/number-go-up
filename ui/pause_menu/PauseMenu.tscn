@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://bi0j0pp4w8exd"]
 
 [ext_resource type="Script" uid="uid://dyetri0hrmpmm" path="res://ui/pause_menu/pause_menu.gd" id="1_1q10k"]
-[ext_resource type="PackedScene" uid="uid://csg8gnfcousg0" path="res://ui/pause_menu/ButtonSidebar.tscn" id="2_4dg4t"]
-[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/pause_menu/content_panel.gd" id="3_ptdjk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejwgg"]
+[ext_resource type="PackedScene" uid="uid://c2cux1hhb1xyu" path="res://ui/pause_menu/PauseMenuPrimaryTabBar.tscn" id="2_h8jb3"]
+[ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/pause_menu/components/content_panel.gd" id="3_ptdjk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fob5h"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=47176982]
 script = ExtResource("1_1q10k")
@@ -19,36 +21,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7058824)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1152653075]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 88.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+[node name="PauseMenuPrimaryTabBar" parent="." unique_id=1670089497 instance=ExtResource("2_h8jb3")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=394745350]
-layout_mode = 2
-focus_mode = 2
-theme_override_constants/separation = 120
-
-[node name="ButtonPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=783810894]
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ejwgg")
-
-[node name="ButtonSidebar" parent="MarginContainer/HBoxContainer/ButtonPanel" unique_id=1600686584 instance=ExtResource("2_4dg4t")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="ContentPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=813909074]
-unique_name_in_owner = true
-layout_mode = 2
+[node name="ContentPanel" type="PanelContainer" parent="." unique_id=813909074]
+offset_top = 30.0
+offset_right = 254.0
+offset_bottom = 119.0
 size_flags_horizontal = 3
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fob5h")
