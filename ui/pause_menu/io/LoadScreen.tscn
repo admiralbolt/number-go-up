@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://e438cj5a7b4p"]
+
+[ext_resource type="Script" uid="uid://c0xr4ngca2b2t" path="res://ui/pause_menu/io/load_screen.gd" id="1_rmra2"]
+[ext_resource type="PackedScene" uid="uid://drhkb81fos0iw" path="res://ui/pause_menu/io/SaveDataDisplay.tscn" id="1_wiuad"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmra2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[node name="LoadScreen" type="Control" unique_id=1496613997]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_rmra2")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1642325594]
+layout_mode = 0
+offset_right = 214.0
+offset_bottom = 187.0
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rmra2")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1320392512]
+layout_mode = 2
+focus_mode = 2
+
+[node name="SaveDataDisplay" parent="ScrollContainer/VBoxContainer" unique_id=633738054 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+
+[node name="SaveDataDisplay2" parent="ScrollContainer/VBoxContainer" unique_id=948670250 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 1
+
+[node name="SaveDataDisplay3" parent="ScrollContainer/VBoxContainer" unique_id=1166664554 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 2
+
+[node name="SaveDataDisplay4" parent="ScrollContainer/VBoxContainer" unique_id=1455494588 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 3
+
+[node name="SaveDataDisplay5" parent="ScrollContainer/VBoxContainer" unique_id=1811471228 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 4
+
+[node name="SaveDataDisplay6" parent="ScrollContainer/VBoxContainer" unique_id=210922943 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 5
+
+[node name="SaveDataDisplay7" parent="ScrollContainer/VBoxContainer" unique_id=1778558104 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 6
+
+[node name="SaveDataDisplay8" parent="ScrollContainer/VBoxContainer" unique_id=266816222 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 7
+
+[node name="SaveDataDisplay9" parent="ScrollContainer/VBoxContainer" unique_id=1572827163 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 8
+
+[node name="SaveDataDisplay10" parent="ScrollContainer/VBoxContainer" unique_id=580182473 instance=ExtResource("1_wiuad")]
+layout_mode = 2
+slot = 9

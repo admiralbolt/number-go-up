@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cn0cth5ci21gb"]
+
+[ext_resource type="Script" uid="uid://d27r2564p3oq3" path="res://ui/pause_menu/io/quit_screen.gd" id="1_pw7ao"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="2_461vh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_461vh"]
+bg_color = Color(0.15686275, 0.19607843, 0.21568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p86el"]
+bg_color = Color(0.3137255, 0.039215688, 0, 1)
+
+[node name="QuitScreen" type="Control" unique_id=1903362619]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_pw7ao")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=119538105]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 101.0
+offset_bottom = 72.0
+focus_mode = 2
+
+[node name="DoNothing" type="Button" parent="VBoxContainer" unique_id=314933677]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_461vh")
+text = "Do Nothing"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=117428829]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../DoNothing")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../DoNothing")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_p86el")
+text = "Quit"
+
+[node name="QuitText" type="RichTextLabel" parent="." unique_id=1611910574]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 6.0
+offset_right = 359.0
+offset_bottom = 249.0
+theme = ExtResource("2_461vh")
+bbcode_enabled = true
+text = "Take me away from this place.
+
+I no longer wish to be here."

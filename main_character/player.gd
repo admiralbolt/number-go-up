@@ -10,6 +10,9 @@ class_name Player extends Entity
 @export var character_class: CharacterClass = SlayerClass.new()
 @export var inventory: Inventory = Inventory.new()
 
+# Name, I guess.
+@export var character_name: String = GeneratorUtil.generate_random_word(6)
+
 var held_direction: Vector2 = Vector2.DOWN
 var direction_name: String = "down"
 

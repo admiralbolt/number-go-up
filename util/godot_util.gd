@@ -26,3 +26,24 @@ static func wait_process_frames(scene_tree: SceneTree, frames: int = 1) -> void:
   for _i in range(frames):
     await scene_tree.process_frame
   return
+
+static func format_timestamp(timestamp: float) -> String:
+  var date_time: Dictionary = Time.get_datetime_dict_from_unix_time(int(timestamp))
+
+  return "%s-%s-%s %s:%s:%s" % [date_time["year"], date_time["month"], date_time["day"], date_time["hour"], date_time["minute"], date_time["second"]]
+
+static func format_elapsed_time(total_seconds: float) -> String:
+  var accumulator: Array[float] = [total_seconds]
+  var int_value: Array[int] = [int(total_seconds) % 60]
+  for divisor in [60, 60, 24]:
+    var val: float = accumulator[-1] / divisor
+    accumulator.append(val)
+    int_value.append(int(val) % divisor)
+
+  if accumulator[3] > 1:
+    return "%dD %dH %dM %dS" % [int_value[3], int_value[2], int_value[1], int_value[0]]
+
+  if accumulator[2] > 1:
+    return "%dD %dH %dM %dS" % [int_value[2], int_value[1], int_value[0]]
+
+  return "%dM %dS" % [int_value[1], int_value[0]]

@@ -5,9 +5,15 @@ const SAVE_PATH: String = "user://"
 signal game_loaded
 signal game_saved
 
-func save_game() -> void:
+var starting_timestamp: float
+
+func _ready() -> void:
+  self.starting_timestamp = Time.get_unix_time_from_system()
+
+func save_game(slot: int) -> SaveData:
   var save_data: SaveData = SaveData.new()
   save_data.scene_path = get_tree().current_scene.scene_file_path
+  save_data.character_name = PlayerManager.player.character_name
   save_data.player_attributes = PlayerManager.player.attributes
   save_data.player_derived_statistics = PlayerManager.player.derived_statistics
   save_data.player_skills = PlayerManager.player.skills
@@ -28,18 +34,27 @@ func save_game() -> void:
   save_data.active_static_modifiers = PlayerManager.player.modifier_manager.get_static_modifiers().duplicate(true)
   save_data.active_effects = PlayerManager.player.effect_manager.active_effects.duplicate(true)
 
-  ResourceSaver.save(save_data, SAVE_PATH + "save_game.tres")
+  save_data.timestamp = Time.get_unix_time_from_system()
+  save_data.play_time = save_data.play_time + (save_data.timestamp - self.starting_timestamp)
+
+  ResourceSaver.save(save_data, "user://save_game_%s.tres" % slot)
   self.game_saved.emit()
 
-func load_game() -> void:
-  var save_data: Resource = ResourceLoader.load(SAVE_PATH + "save_game.tres", "SaveData", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
-  if save_data == null:
-    print("No save data found.")
-    return
+  return save_data
 
+func load_save_data(slot: int) -> SaveData:
+  if not FileAccess.file_exists("user://save_game_%s.tres" % slot):
+    return null
+  
+  var save_data: Resource = ResourceLoader.load("user://save_game_%s.tres" % slot, "SaveData", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
   if save_data is not SaveData:
     print("Save data is corrupted!")
-    return
+    return null
+
+  return save_data
+
+func load_game(slot: int) -> void:
+  var save_data: Resource = self.load_save_data(slot)
 
   LevelManager.load_new_level(save_data.scene_path, "", Vector2.ZERO, true)
   await SignalBus.level_load_started
@@ -47,6 +62,7 @@ func load_game() -> void:
   PlayerManager.player.modifier_manager.reinitialize(save_data.active_static_modifiers.duplicate(true))
   PlayerManager.player.effect_manager.reinitialize(save_data.active_effects.duplicate(true))
 
+  PlayerManager.player.character_name = save_data.character_name
   PlayerManager.player.attributes = save_data.player_attributes
   PlayerManager.player.derived_statistics = save_data.player_derived_statistics
   PlayerManager.player.skills = save_data.player_skills
@@ -67,4 +83,5 @@ func load_game() -> void:
 
   PlayerManager.player.position = save_data.player_position
 
+  self.starting_timestamp = Time.get_unix_time_from_system()
   self.game_loaded.emit()

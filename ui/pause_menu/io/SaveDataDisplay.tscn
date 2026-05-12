@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://drhkb81fos0iw"]
+
+[ext_resource type="Script" uid="uid://6fesreqi26kg" path="res://ui/pause_menu/io/save_data_display.gd" id="1_yf43t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf43t"]
+bg_color = Color(0.15686275, 0.19607843, 0.23529412, 0.8627451)
+
+[node name="SaveDataDisplay" type="Button" unique_id=633738054]
+custom_minimum_size = Vector2(189, 38)
+offset_right = 189.0
+offset_bottom = 38.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_yf43t")
+script = ExtResource("1_yf43t")
+
+[node name="CharacterName" type="Label" parent="." unique_id=187180477]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 95.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 9
+text = "Johnathan Bees"
+vertical_alignment = 1
+
+[node name="CharacterLevel" type="Label" parent="." unique_id=290631638]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 6
+text = "Lvl. 13"
+vertical_alignment = 1
+
+[node name="CharacterClass" type="Label" parent="." unique_id=827149447]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 27.0
+offset_right = 34.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 6
+text = "Slayer"
+vertical_alignment = 1
+
+[node name="LastSaved" type="Label" parent="." unique_id=933452274]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 16.0
+offset_right = 187.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 6
+text = "Some timestamp"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PlayTime" type="Label" parent="." unique_id=271408753]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 27.0
+offset_right = 187.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 6
+text = "Some timestamp"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Empty" type="Label" parent="." unique_id=249331552]
+layout_mode = 0
+offset_right = 189.0
+offset_bottom = 38.0
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1

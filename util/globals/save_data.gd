@@ -8,6 +8,7 @@ class_name SaveData extends Resource
 @export var scene_path: String
 
 # Player stuffs.
+@export var character_name: String
 @export var player_attributes: Attributes
 @export var player_derived_statistics: DerivedStatistics
 @export var player_skills: Skills
@@ -27,3 +28,7 @@ class_name SaveData extends Resource
 
 @export var active_static_modifiers: ModifierList
 @export var active_effects: Array[Effect]
+
+# Current time!
+@export var timestamp: float
+@export var play_time: float = 0

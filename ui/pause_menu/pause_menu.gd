@@ -110,14 +110,28 @@ const INVENTORY_TAB_TO_ITEM_TYPE: Dictionary[String, Item.ItemType] = {
   "Junk": Item.ItemType.JUNK
 }
 
+static var IO_TABS: Array[TabData] = [
+  TabData.new("Save", "res://assets/ui/pause_menu/io/save_tab.svg"),
+  TabData.new("Load", "res://assets/ui/pause_menu/io/load_tab.svg"),
+  TabData.new("Quit", "res://assets/ui/pause_menu/io/quit_tab.svg")
+]
+
+const IO_TAB_SCENE_MAPPING: Dictionary[String, PackedScene] = {
+  "Save": preload("res://ui/pause_menu/io/SaveScreen.tscn"),
+  "Load": preload("res://ui/pause_menu/io/LoadScreen.tscn"),
+  "Quit": preload("res://ui/pause_menu/io/QuitScreen.tscn"),
+}
+
 static var CHARACTER_TAB_MENU_INFO: PauseMenuInfo = PauseMenuInfo.new(CHARACTER_TABS, CHARACTER_TAB_SCENE_MAPPING)
 static var EQUIPMENT_TAB_MENU_INFO: PauseMenuInfo = PauseMenuInfo.new(EQUIPMENT_TABS, EQUIPMENT_TAB_SCENE_MAPPING)
 static var INVENTORY_TAB_MENU_INFO: PauseMenuInfo = PauseMenuInfo.new(INVENTORY_TABS, INVENTORY_TAB_SCENE_MAPPING)
+static var IO_TAB_MENU_INFO: PauseMenuInfo = PauseMenuInfo.new(IO_TABS, IO_TAB_SCENE_MAPPING)
 
 static var TAB_MAPPING: Dictionary[String, PauseMenuInfo] = {
   "Character": CHARACTER_TAB_MENU_INFO,
   "Equipment": EQUIPMENT_TAB_MENU_INFO,
   "Inventory": INVENTORY_TAB_MENU_INFO,
+  "IO": IO_TAB_MENU_INFO,
 }
 
 #############################
