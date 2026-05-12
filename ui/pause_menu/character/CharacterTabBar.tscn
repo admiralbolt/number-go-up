@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://c68i7qqw11lut"]
+[gd_scene format=3 uid="uid://sjon5f6665ky"]
 
 [ext_resource type="Script" uid="uid://db575mjbe3ob2" path="res://ui/pause_menu/components/selectable_tab_bar.gd" id="1_d714w"]
 [ext_resource type="PackedScene" uid="uid://dsg6emwmuk8ee" path="res://ui/pause_menu/components/SelectableIcon.tscn" id="2_sgny7"]
-[ext_resource type="Texture2D" uid="uid://4qnr07v2xkm8" path="res://assets/ui/pause_menu/character_panel/overview_tab.svg" id="3_0d07j"]
-[ext_resource type="Texture2D" uid="uid://da0bm7ov7ext5" path="res://assets/ui/pause_menu/character_panel/class_tab.svg" id="4_rix3u"]
-[ext_resource type="Texture2D" uid="uid://byui47wg344ef" path="res://assets/ui/pause_menu/character_panel/attributes_tab.svg" id="5_kv0ot"]
-[ext_resource type="Texture2D" uid="uid://b7atggcvaj4ca" path="res://assets/ui/pause_menu/character_panel/statistics_tab.svg" id="6_d714w"]
-[ext_resource type="Texture2D" uid="uid://bfb34rvnlmcut" path="res://assets/ui/pause_menu/character_panel/skills_tab.svg" id="7_sgny7"]
+[ext_resource type="Texture2D" uid="uid://4qnr07v2xkm8" path="res://assets/ui/pause_menu/character/overview_tab.svg" id="3_0d07j"]
+[ext_resource type="Texture2D" uid="uid://da0bm7ov7ext5" path="res://assets/ui/pause_menu/character/class_tab.svg" id="4_rix3u"]
+[ext_resource type="Texture2D" uid="uid://byui47wg344ef" path="res://assets/ui/pause_menu/character/attributes_tab.svg" id="5_kv0ot"]
+[ext_resource type="Texture2D" uid="uid://b7atggcvaj4ca" path="res://assets/ui/pause_menu/character/statistics_tab.svg" id="6_d714w"]
+[ext_resource type="Texture2D" uid="uid://bfb34rvnlmcut" path="res://assets/ui/pause_menu/character/skills_tab.svg" id="7_sgny7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tvqt"]
 bg_color = Color(0, 0, 0, 0)
@@ -101,3 +101,4 @@ text = "Skills"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1140877104]
 libraries/ = SubResource("AnimationLibrary_tkij1")
+autoplay = &"RESET"

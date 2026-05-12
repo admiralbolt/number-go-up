@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1qryb74bex0t"]
 
-[ext_resource type="PackedScene" uid="uid://diy8wy13keijd" path="res://ui/inventory/EquipmentSlotDisplay.tscn" id="1_vltbd"]
+[ext_resource type="PackedScene" uid="uid://diy8wy13keijd" path="res://ui/pause_menu/inventory/EquipmentSlotDisplay.tscn" id="1_vltbd"]
 
 [node name="MultiEquip" type="Control" unique_id=303584847]
 layout_mode = 3

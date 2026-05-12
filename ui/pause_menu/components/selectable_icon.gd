@@ -1,44 +1,44 @@
+@tool
 class_name SelectableIcon extends Control
 
-signal selected(name: String)
-
-@export var texture: Texture2D
-@export var text: String
+@export var texture: Texture2D: set = _set_texture
+@export var text: String: set = _set_text
 
 @onready var icon: TextureRect = $PanelContainer/TextureRect
 @onready var label: RichTextLabel = $RichTextLabel
 
-var is_selectable: bool = true
-var is_frozen: bool = false
+static var INACTIVE_COLOR: Color = Color.from_rgba8(85, 85, 85)
+static var ACTIVE_COLOR: Color = Color.from_rgba8(255, 255, 255)
+
+func _set_texture(p_texture: Texture2D) -> void:
+  texture = p_texture
+  if self.icon != null:
+    self.icon.texture = texture
+
+func _set_text(p_text: String) -> void:
+  text = p_text
+  if self.icon != null:
+    self.label.text = text
 
 func _ready() -> void:
+  if Engine.is_editor_hint():
+    return
+
   if self.text.is_empty():
     self.label.visible = false
 
+  self.focus_mode = Control.FOCUS_NONE
+
   self.icon.texture = texture
-  self.icon.modulate = self._get_color()
   self.label.text = self.text
-  self.label.modulate = self._get_color()
-  self.focus_entered.connect(self.select)
-  self.focus_exited.connect(self.deselect)
 
-func _get_color() -> Color:
-  if self.is_selectable:
-    return Color.from_rgba8(110, 110, 110)
-
-  return Color.from_rgba8(60, 60, 60)
+  self.icon.modulate = INACTIVE_COLOR
+  self.label.modulate = INACTIVE_COLOR
 
 func select() -> void:
-  if self.is_frozen:
-    return
-
-  self.icon.modulate = Color.from_rgba8(255, 255, 255)
-  self.label.modulate = Color.from_rgba8(255, 255, 255)
-  self.selected.emit(self.name)
+  self.icon.modulate = ACTIVE_COLOR
+  self.label.modulate = ACTIVE_COLOR
 
 func deselect() -> void:
-  if self.is_frozen:
-    return
-
-  self.icon.modulate = self._get_color()
-  self.label.modulate = self._get_color()
+  self.icon.modulate = INACTIVE_COLOR
+  self.label.modulate = INACTIVE_COLOR

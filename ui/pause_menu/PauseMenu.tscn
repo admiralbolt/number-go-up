@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://bi0j0pp4w8exd"]
 
 [ext_resource type="Script" uid="uid://dyetri0hrmpmm" path="res://ui/pause_menu/pause_menu.gd" id="1_1q10k"]
-[ext_resource type="PackedScene" uid="uid://c2cux1hhb1xyu" path="res://ui/pause_menu/PauseMenuPrimaryTabBar.tscn" id="2_h8jb3"]
+[ext_resource type="PackedScene" uid="uid://dsg6emwmuk8ee" path="res://ui/pause_menu/components/SelectableIcon.tscn" id="2_6olan"]
+[ext_resource type="Script" uid="uid://db575mjbe3ob2" path="res://ui/pause_menu/components/selectable_tab_bar.gd" id="2_81hft"]
+[ext_resource type="Texture2D" uid="uid://cw3111bl1qudh" path="res://assets/ui/pause_menu/map_tab.svg" id="3_81hft"]
 [ext_resource type="Script" uid="uid://8q5s1rcnp7c7" path="res://ui/pause_menu/components/content_panel.gd" id="3_ptdjk"]
+[ext_resource type="Texture2D" uid="uid://cgo55073dd4pc" path="res://assets/ui/pause_menu/character_tab.svg" id="4_2cfii"]
+[ext_resource type="Texture2D" uid="uid://bik4gjaxngixr" path="res://assets/ui/pause_menu/equipment_tab.svg" id="5_2g1xa"]
+[ext_resource type="Texture2D" uid="uid://34dxyhc7v6wf" path="res://assets/ui/pause_menu/inventory_tab.svg" id="6_2sqsf"]
+[ext_resource type="Texture2D" uid="uid://s7tjyw8ra3i" path="res://assets/ui/pause_menu/journal_tab.svg" id="7_ii0rf"]
+[ext_resource type="Texture2D" uid="uid://dwm88u6w64tqv" path="res://assets/ui/pause_menu/compendium_tab.svg" id="8_yab6x"]
+[ext_resource type="Texture2D" uid="uid://ebx37hlrh283" path="res://assets/ui/pause_menu/settings_tab.svg" id="9_4ankb"]
+[ext_resource type="Texture2D" uid="uid://dve5nryih7uk2" path="res://assets/ui/pause_menu/io_tab.svg" id="10_jnj6e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fob5h"]
 content_margin_left = 4.0
@@ -21,12 +30,126 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7058824)
 
-[node name="PauseMenuPrimaryTabBar" parent="." unique_id=1670089497 instance=ExtResource("2_h8jb3")]
+[node name="PrimaryTabBar" type="Control" parent="." unique_id=1749434299]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 248.0
+offset_bottom = 24.0
+script = ExtResource("2_81hft")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PrimaryTabBar" unique_id=86394631]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 250.0
+offset_bottom = 26.0
+
+[node name="MapTab" parent="PrimaryTabBar/HBoxContainer" unique_id=1624721873 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("3_81hft")
+text = "Map"
+
+[node name="CharacterTab" parent="PrimaryTabBar/HBoxContainer" unique_id=1005014212 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("4_2cfii")
+text = "Character"
+
+[node name="EquipmentTab" parent="PrimaryTabBar/HBoxContainer" unique_id=1819310123 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("5_2g1xa")
+text = "Equipment"
+
+[node name="InventoryTab" parent="PrimaryTabBar/HBoxContainer" unique_id=77852668 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("6_2sqsf")
+text = "Inventory"
+
+[node name="MagicTab" parent="PrimaryTabBar/HBoxContainer" unique_id=282473524 instance=ExtResource("2_6olan")]
+layout_mode = 2
+
+[node name="JournalTab" parent="PrimaryTabBar/HBoxContainer" unique_id=1864600417 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("7_ii0rf")
+text = "Journal"
+
+[node name="CompendiumTab" parent="PrimaryTabBar/HBoxContainer" unique_id=1026825984 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("8_yab6x")
+text = "Compendium"
+
+[node name="SettingsTab" parent="PrimaryTabBar/HBoxContainer" unique_id=1956973875 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("9_4ankb")
+text = "Settings"
+
+[node name="IOTab" parent="PrimaryTabBar/HBoxContainer" unique_id=1456182988 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("10_jnj6e")
+text = "IO"
+
+[node name="SecondaryTabBar" type="Control" parent="." unique_id=947915430]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.85, 0.85)
+script = ExtResource("2_81hft")
+left_action = "secondary_tab_left"
+right_action = "secondary_tab_right"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SecondaryTabBar" unique_id=1800414703]
+layout_mode = 0
+offset_left = 7.058824
+offset_top = 35.294117
+offset_right = 255.05882
+offset_bottom = 59.294117
+
+[node name="MapTab" parent="SecondaryTabBar/HBoxContainer" unique_id=747708766 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("3_81hft")
+text = "Map"
+
+[node name="CharacterTab" parent="SecondaryTabBar/HBoxContainer" unique_id=977330447 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("4_2cfii")
+text = "Character"
+
+[node name="EquipmentTab" parent="SecondaryTabBar/HBoxContainer" unique_id=974807977 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("5_2g1xa")
+text = "Equipment"
+
+[node name="InventoryTab" parent="SecondaryTabBar/HBoxContainer" unique_id=90563007 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("6_2sqsf")
+text = "Inventory"
+
+[node name="MagicTab" parent="SecondaryTabBar/HBoxContainer" unique_id=2141583065 instance=ExtResource("2_6olan")]
+layout_mode = 2
+
+[node name="JournalTab" parent="SecondaryTabBar/HBoxContainer" unique_id=1066290255 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("7_ii0rf")
+text = "Journal"
+
+[node name="CompendiumTab" parent="SecondaryTabBar/HBoxContainer" unique_id=67568558 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("8_yab6x")
+text = "Compendium"
+
+[node name="SettingsTab" parent="SecondaryTabBar/HBoxContainer" unique_id=1043305737 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("9_4ankb")
+text = "Settings"
+
+[node name="IOTab" parent="SecondaryTabBar/HBoxContainer" unique_id=283462367 instance=ExtResource("2_6olan")]
+layout_mode = 2
+texture = ExtResource("10_jnj6e")
+text = "IO"
 
 [node name="ContentPanel" type="PanelContainer" parent="." unique_id=813909074]
-offset_top = 30.0
-offset_right = 254.0
-offset_bottom = 119.0
+offset_left = 3.0
+offset_top = 51.0
+offset_right = 257.0
+offset_bottom = 140.0
 size_flags_horizontal = 3
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fob5h")

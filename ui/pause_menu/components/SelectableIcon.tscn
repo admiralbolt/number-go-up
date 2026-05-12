@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4no2akd1byng" path="res://ui/pause_menu/components/selectable_icon.gd" id="1_ag528"]
 [ext_resource type="Texture2D" uid="uid://dafvnmanmvj8f" path="res://assets/ui/pause_menu/magic_tab.svg" id="2_fcu2u"]
-[ext_resource type="Texture2D" uid="uid://cbksc32yxxp8n" path="res://assets/ui/inventory/armor-vest.svg" id="3_fcu2u"]
+[ext_resource type="Texture2D" uid="uid://cbksc32yxxp8n" path="res://assets/ui/pause_menu/inventory/equipment_tab.svg" id="3_fcu2u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccl4p"]
 content_margin_left = 4.0

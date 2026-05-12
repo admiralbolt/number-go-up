@@ -21,20 +21,20 @@ enum EquipmentSlot {
 }
 
 static var SLOT_ICONS: Dictionary[EquipmentSlot, Texture2D] = {
-  EquipmentSlot.HEAD: preload("res://assets/ui/inventory/equip_background/head_slot.svg"),
-  EquipmentSlot.BODY: preload("res://assets/ui/inventory/equip_background/body_slot.svg"),
-  EquipmentSlot.LEGS: preload("res://assets/ui/inventory/equip_background/legs_slot.svg"),
-  EquipmentSlot.FEET: preload("res://assets/ui/inventory/equip_background/feet_slot.svg"),
-  EquipmentSlot.ARMS: preload("res://assets/ui/inventory/equip_background/arms_slot.svg"),
-  EquipmentSlot.HANDS: preload("res://assets/ui/inventory/equip_background/hands_slot.svg"),
-  EquipmentSlot.SHOULDERS: preload("res://assets/ui/inventory/equip_background/shoulders_slot.svg"),
-  EquipmentSlot.WAIST: preload("res://assets/ui/inventory/equip_background/waist_slot.svg"),
-  EquipmentSlot.NECK: preload("res://assets/ui/inventory/equip_background/neck_slot.svg"),
-  EquipmentSlot.EARRINGS: preload("res://assets/ui/inventory/equip_background/earrings_slot.svg"),
-  EquipmentSlot.RING_LEFT: preload("res://assets/ui/inventory/equip_background/ring_left_slot.svg"),
-  EquipmentSlot.RING_RIGHT: preload("res://assets/ui/inventory/equip_background/ring_right_slot.svg"),
-  EquipmentSlot.WEAPON: preload("res://assets/ui/inventory/equip_background/weapon_slot.svg"),
-  EquipmentSlot.SHIELD: preload("res://assets/ui/inventory/equip_background/shield_slot.svg")
+  EquipmentSlot.HEAD: preload("res://assets/ui/pause_menu/equip/head_slot.svg"),
+  EquipmentSlot.BODY: preload("res://assets/ui/pause_menu/equip/body_slot.svg"),
+  EquipmentSlot.LEGS: preload("res://assets/ui/pause_menu/equip/legs_slot.svg"),
+  EquipmentSlot.FEET: preload("res://assets/ui/pause_menu/equip/feet_slot.svg"),
+  EquipmentSlot.ARMS: preload("res://assets/ui/pause_menu/equip/arms_slot.svg"),
+  EquipmentSlot.HANDS: preload("res://assets/ui/pause_menu/equip/hands_slot.svg"),
+  EquipmentSlot.SHOULDERS: preload("res://assets/ui/pause_menu/equip/shoulders_slot.svg"),
+  EquipmentSlot.WAIST: preload("res://assets/ui/pause_menu/equip/waist_slot.svg"),
+  EquipmentSlot.NECK: preload("res://assets/ui/pause_menu/equip/neck_slot.svg"),
+  EquipmentSlot.EARRINGS: preload("res://assets/ui/pause_menu/equip/earrings_slot.svg"),
+  EquipmentSlot.RING_LEFT: preload("res://assets/ui/pause_menu/equip/ring_left_slot.svg"),
+  EquipmentSlot.RING_RIGHT: preload("res://assets/ui/pause_menu/equip/ring_right_slot.svg"),
+  EquipmentSlot.WEAPON: preload("res://assets/ui/pause_menu/equip/weapon_slot.svg"),
+  EquipmentSlot.SHIELD: preload("res://assets/ui/pause_menu/equip/shield_slot.svg")
 }
 
 enum EquipmentType {
@@ -78,7 +78,7 @@ func can_remove() -> bool:
 
 func get_slots() -> Array[EquipmentSlot]:
   var slots: Array[EquipmentSlot] = [self.slot]
-  if self.secondary_slot != null:
+  if self.secondary_slot != EquipmentSlot.UNDEFINED:
     slots.append(self.secondary_slot)
 
   return slots

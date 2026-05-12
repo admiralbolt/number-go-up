@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://8nuved61jmq7"]
+
+[ext_resource type="PackedScene" uid="uid://bfek2lw078bw1" path="res://ui/pause_menu/inventory/EquipmentDisplay.tscn" id="1_gjmg3"]
+[ext_resource type="Script" uid="uid://csuhefockuc2k" path="res://ui/pause_menu/inventory/equip_screen.gd" id="1_vo6ky"]
+[ext_resource type="PackedScene" uid="uid://d4a5ux7y3qm7w" path="res://ui/pause_menu/inventory/InventoryDisplay.tscn" id="2_vo6ky"]
+
+[node name="EquipScreen" type="Control" unique_id=33425430]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_vo6ky")
+
+[node name="EquipmentDisplay" parent="." unique_id=1005987231 instance=ExtResource("1_gjmg3")]
+layout_mode = 0
+
+[node name="InventoryDisplay" parent="." unique_id=826791689 instance=ExtResource("2_vo6ky")]
+layout_mode = 0
+offset_left = 78.0
+offset_top = -1.0
+offset_right = 426.0
+offset_bottom = 252.0
+allow_equip = true

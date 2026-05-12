@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://cnlyyejc0yeun"]
+
+[ext_resource type="PackedScene" uid="uid://dsg6emwmuk8ee" path="res://ui/pause_menu/components/SelectableIcon.tscn" id="1_3nwta"]
+[ext_resource type="Script" uid="uid://db575mjbe3ob2" path="res://ui/pause_menu/components/selectable_tab_bar.gd" id="1_q8djo"]
+[ext_resource type="Texture2D" uid="uid://cbksc32yxxp8n" path="res://assets/ui/pause_menu/inventory/equipment_tab.svg" id="2_q8djo"]
+[ext_resource type="Texture2D" uid="uid://d1elw7666ks2y" path="res://assets/ui/pause_menu/inventory/consumables_tab.svg" id="3_666s6"]
+[ext_resource type="Texture2D" uid="uid://bpexh6geoqmuo" path="res://assets/ui/pause_menu/inventory/materials_tab.svg" id="4_lmt1c"]
+[ext_resource type="Texture2D" uid="uid://bglcmv80ew87j" path="res://assets/ui/pause_menu/inventory/quest_tab.svg" id="5_75kcx"]
+[ext_resource type="Texture2D" uid="uid://vu4qsqrvij1x" path="res://assets/ui/pause_menu/inventory/key_items_tab.svg" id="6_3j82w"]
+[ext_resource type="Texture2D" uid="uid://bnpjs1dhmrlwy" path="res://assets/ui/pause_menu/inventory/treasure_tab.svg" id="7_4trnj"]
+[ext_resource type="Texture2D" uid="uid://d32rls4jm4id5" path="res://assets/ui/pause_menu/inventory/junk_tab.svg" id="8_n6p0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u60tn"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.87058824, 0.87058824, 0.87058824, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="Animation" id="Animation_ksixi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Outline:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.87058824, 0.87058824, 0.87058824, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_koebe"]
+resource_name = "flicker"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Outline:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.54901963, 0.74509805, 0.92156863, 1), Color(0.47058824, 0.74509805, 0.98039216, 1), Color(0.92156863, 0.92156863, 0.92156863, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iqo1u"]
+_data = {
+&"RESET": SubResource("Animation_ksixi"),
+&"flicker": SubResource("Animation_koebe")
+}
+
+[node name="InventoryTabBar" type="Control" unique_id=1292321762]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 32.0
+script = ExtResource("1_q8djo")
+
+[node name="Outline" type="Panel" parent="." unique_id=181477400]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 196.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u60tn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=604466806]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 484.0
+offset_bottom = 28.0
+
+[node name="EquipmentTab" parent="HBoxContainer" unique_id=1624721873 instance=ExtResource("1_3nwta")]
+layout_mode = 2
+texture = ExtResource("2_q8djo")
+text = "Equipment"
+
+[node name="ConsumablesTab" parent="HBoxContainer" unique_id=1071704390 instance=ExtResource("1_3nwta")]
+layout_mode = 2
+texture = ExtResource("3_666s6")
+text = "Consumables"
+
+[node name="MaterialsTab" parent="HBoxContainer" unique_id=719389875 instance=ExtResource("1_3nwta")]
+layout_mode = 2
+texture = ExtResource("4_lmt1c")
+text = "Materials"
+
+[node name="QuestTab" parent="HBoxContainer" unique_id=1195602312 instance=ExtResource("1_3nwta")]
+layout_mode = 2
+texture = ExtResource("5_75kcx")
+text = "Quest"
+
+[node name="KeyItemsTab" parent="HBoxContainer" unique_id=1658918670 instance=ExtResource("1_3nwta")]
+layout_mode = 2
+texture = ExtResource("6_3j82w")
+text = "Key Items"
+
+[node name="TreasureTab" parent="HBoxContainer" unique_id=913292299 instance=ExtResource("1_3nwta")]
+layout_mode = 2
+texture = ExtResource("7_4trnj")
+text = "Treasure"
+
+[node name="JunkTab" parent="HBoxContainer" unique_id=2095672604 instance=ExtResource("1_3nwta")]
+layout_mode = 2
+texture = ExtResource("8_n6p0v")
+text = "Junk"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=484297286]
+libraries/ = SubResource("AnimationLibrary_iqo1u")

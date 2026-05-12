@@ -6,18 +6,123 @@ class SignalObject:
 
 signal test_signal(object: SignalObject)
 
+
+class TestGenericEffect:
+
+  func apply() -> float:
+    return 0
+
+
+class TestDamageEffect extends TestGenericEffect:
+
+  var value: float
+
+  func apply() -> float:
+    return value
+
+
+class TestHealEffect extends TestGenericEffect:
+
+  var value: float
+
+  func apply() -> float:
+    return value
+
+class TestBuffEffect extends TestGenericEffect:
+
+  var value: float
+
+  func apply() -> float:
+    return value
+
+
+class TestDataEffect:
+
+  enum EffectType {
+    DAMAGE,
+    HEAL,
+    BUFF
+  }
+  var effect_type: EffectType
+  var value: float
+
+  func apply() -> float:
+    return value
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
   # test_signal.connect(signal_handler)
   # test_signal_stuff()
-
-  test_computation_speed()
+  # test_computation_speed()
+  test_polymorphism()
 
 func signal_handler(object: SignalObject) -> void:
   print("Signal handler processing.")
   object.some_value += 10
   print("Signal handler done processing.")
 
+
+
+func test_polymorphism() -> void:
+  # Construct large arrays first.
+  var polymorphic_data: Array[TestGenericEffect] = []
+  var data_data: Array[TestDataEffect] = []
+
+  var start_time = Time.get_unix_time_from_system()
+
+  for _i in range(1_000_000):
+    var roll: float = randf()
+    if roll < 0.3:
+      var pd: TestGenericEffect = TestDamageEffect.new()
+      pd.value = randf()
+      polymorphic_data.append(pd)
+
+      var td: TestDataEffect = TestDataEffect.new()
+      td.effect_type = TestDataEffect.EffectType.DAMAGE
+      td.value = randf()
+      data_data.append(td)
+      continue
+
+    if roll < 0.6:
+      var pd: TestGenericEffect = TestHealEffect.new()
+      pd.value = randf()
+      polymorphic_data.append(pd)
+
+      var td: TestDataEffect = TestDataEffect.new()
+      td.effect_type = TestDataEffect.EffectType.HEAL
+      td.value = randf()
+      data_data.append(td)
+      continue
+
+    else:
+      var pd: TestGenericEffect = TestBuffEffect.new()
+      pd.value = randf()
+      polymorphic_data.append(pd)
+
+      var td: TestDataEffect = TestDataEffect.new()
+      td.effect_type = TestDataEffect.EffectType.BUFF
+      td.value = randf()
+      data_data.append(td)
+      continue
+
+  print("Data construction time for 1 million records: %s" % (Time.get_unix_time_from_system() - start_time))
+
+
+  # Call apply on each record.
+  start_time = Time.get_unix_time_from_system()
+
+  for val in polymorphic_data:
+    val.apply()
+
+  print("Elapsed time for 1 million polymorphic calculations: %s" % (Time.get_unix_time_from_system() - start_time))
+
+  start_time = Time.get_unix_time_from_system()
+
+  for val in data_data:
+    val.apply()
+
+  print("Elapsed time for 1 million NON-polymorphic calculations: %s" % (Time.get_unix_time_from_system() - start_time))
+  
 
 
 func test_computation_speed() -> void:

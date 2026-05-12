@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://d4a5ux7y3qm7w"]
+
+[ext_resource type="Script" uid="uid://0rq7fyf5ygku" path="res://ui/pause_menu/inventory/inventory_display.gd" id="1_u6p5l"]
+[ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="3_nd4q0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ercl"]
+bg_color = Color(0.47058824, 0.47058824, 0.47058824, 0.3137255)
+
+[node name="InventoryDisplay" type="Control" unique_id=826791689]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 348.0
+offset_bottom = 253.0
+focus_mode = 2
+script = ExtResource("1_u6p5l")
+
+[node name="Panel" type="Panel" parent="." unique_id=1734737603]
+layout_mode = 0
+offset_right = 349.0
+offset_bottom = 253.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ercl")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1076750952]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 214.0
+offset_bottom = 248.0
+focus_mode = 2
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 10
+
+[node name="ItemInfoLabel" type="RichTextLabel" parent="." unique_id=1618760652]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 0
+offset_left = 215.0
+offset_top = 3.0
+offset_right = 345.0
+offset_bottom = 227.0
+theme = ExtResource("3_nd4q0")
+theme_override_font_sizes/normal_font_size = 6
+bbcode_enabled = true
+text = "[color=#ffff00]Some[/color] hovered item description!
+
+Lots of potential information in here!"
