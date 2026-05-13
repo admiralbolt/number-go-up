@@ -168,7 +168,7 @@ func _on_primary_tab_selected(index: int, tab_name: String) -> void:
     self.secondary_tab_bar.tab_container.add_child(new_tab)
     new_tab.text = tab.name
     new_tab.texture = TextureManager.load_texture(tab.texture_path)
-    
+      
   GodotUtil.wait_process_frames(get_tree(), 1)
   self.secondary_tab_bar.reload_children()
   if self.secondary_tab_bar.tabs.size() > 0:

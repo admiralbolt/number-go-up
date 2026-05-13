@@ -28,7 +28,11 @@ func reload_children() -> void:
     self.tabs.append(child)
 
 func set_selected_index(index: int) -> void:
-  self.tabs[self.selected_index].deselect()
+  # Sometimes we change our children within a tab bar. Make sure indicies are
+  # valid before accessing.
+  if self.selected_index < self.tabs.size():
+    self.tabs[self.selected_index].deselect()
+
   self.selected_index = index
   self.selected_tab_name = self.tabs[self.selected_index].text
   self.tabs[self.selected_index].select()

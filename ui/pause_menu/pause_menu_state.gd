@@ -45,3 +45,11 @@ var overview_focus_index: int = 0
 var player_inventory_sub_type_focus_index: Dictionary[Item.ItemType, int] = {}
 
 var player_equipment_sub_type_focus_index: Dictionary[Equipment.EquipmentSlot, int] = {}
+
+func debug_print() -> void:
+  print("Primary\n-----")
+  print(primary_tab_focus_index)
+  print(primary_tab_focus_name)
+  print("\nSecondary\n-----")
+  print(secondary_tab_focus_index)
+  print(secondary_tab_focus_name)
