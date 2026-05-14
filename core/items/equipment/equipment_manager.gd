@@ -19,7 +19,22 @@ func reinitialize(equipment_list: Array[Equipment]) -> void:
     self.equip(equipment)
 
 func is_type_equipped(equipment_type: Equipment.EquipmentSlot) -> bool:
-  return self.equipped_items[equipment_type] != null
+  return self.equipped_items.get(equipment_type, null) != null
+
+func is_equipped(equipment: Equipment) -> bool:
+  return equipment in self.equipped_items.values()
+
+func unequip(equipment: Equipment) -> bool:
+  if not self.is_equipped(equipment):
+    return false
+
+  if not equipment.can_remove():
+    return false
+
+  for slot in equipment.get_slots():
+    self.remove_equipment_by_slot(slot)
+
+  return true
 
 func equip(equipment: Equipment) -> bool:
   if not equipment.can_equip(self.entity):
@@ -28,15 +43,11 @@ func equip(equipment: Equipment) -> bool:
   # In certain cases, a single piece of equipment takes up multiple slots.
   # First we check to see if any of the slots are already occupied AND they
   # can be removed.
-  var slots_to_remove: Array[Equipment.EquipmentSlot] = []
   for slot in equipment.get_slots():
     if self.is_type_equipped(slot) and not self.equipped_items[slot].can_remove():
       # If we find an item we can't remove, just exit immediately.
       return false
 
-    slots_to_remove.append(slot)
-
-  for slot in slots_to_remove:
     self.remove_equipment_by_slot(slot)
 
   # With all the other things removed, we can equip the item! Set it in the
@@ -49,7 +60,7 @@ func equip(equipment: Equipment) -> bool:
   return true
 
 func remove_equipment_by_slot(slot: Equipment.EquipmentSlot) -> bool:
-  if self.equipped_items[slot] == null:
+  if self.equipped_items.get(slot, null) == null:
     return false
 
   if not self.equipped_items[slot].can_remove():

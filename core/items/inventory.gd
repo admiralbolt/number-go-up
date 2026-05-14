@@ -95,9 +95,16 @@ class DynamicItemList extends Resource:
     # If we used the last stack of an item, we want to clear it from our
     # tracking state, and emit a signal that it's gone so that the UI can
     # redraw itself.
-    self.item_array.remove_at(self.item_array_indices[item.uid])
+    var removal_index: int = self.item_array_indices[item.uid]
+    self.item_array.remove_at(removal_index)
     self.item_dict.erase(item.uid)
     self.item_array_indices.erase(item.uid)
+    # Need to recalculate all indices after the erased index.
+    if removal_index < self.item_array.size():
+      for i in range(removal_index, self.item_array.size()):
+        var slot: InventorySlot = self.item_array[i]
+        self.item_array_indices[slot.item.uid] = i
+
     SignalBus.item_removed.emit(item)
 
   func sort_by(property_name: String) -> void:

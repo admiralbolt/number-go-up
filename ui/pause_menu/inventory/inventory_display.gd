@@ -9,6 +9,9 @@ var equipment_slot: Equipment.EquipmentSlot = Equipment.EquipmentSlot.UNDEFINED
 @onready var inventory_grid: GridContainer = $GridContainer
 @onready var item_info: RichTextLabel = $ItemInfoLabel
 
+var focused_index: int = -1
+var focused_item: Item = null
+
 const INVENTORY_SLOT_DISPLAY_SCENE: PackedScene = preload("res://ui/pause_menu/inventory/InventorySlotDisplay.tscn")
 
 func _ready() -> void:
@@ -23,15 +26,9 @@ func _on_inventory_updated(p_item_type: Item.ItemType) -> void:
   self.render()
 
 func _on_focus_entered() -> void:
-  if self.inventory_grid.get_child_count() == 0:
-    return
-
-  if self.equipment_slot != Equipment.EquipmentSlot.UNDEFINED:
-    self.inventory_grid.get_child(PauseMenuState.player_equipment_sub_type_focus_index.get(self.equipment_slot, 0)).grab_focus()
-  else:
-    self.inventory_grid.get_child(PauseMenuState.player_inventory_sub_type_focus_index.get(self.item_type, 0)).grab_focus()
-
-  
+  var focus_index: int = self._get_focus_index()
+  if focus_index >= 0:
+    self.inventory_grid.get_child(focus_index).grab_focus()
 
 func _set_inventory(p_inventory: Inventory) -> void:
   inventory = p_inventory
@@ -104,18 +101,34 @@ func render() -> void:
   # Seems like 2 frames is the right amount to wait. Might change depending on
   # the size of the inventory.
   await GodotUtil.wait_process_frames(get_tree(), 2)
-  if self.inventory_grid.get_child_count() > 0:
-    if self.equipment_slot != Equipment.EquipmentSlot.UNDEFINED:
-      self.inventory_grid.get_child(PauseMenuState.player_equipment_sub_type_focus_index.get(self.equipment_slot, 0)).grab_focus()
-    else:
-      self.inventory_grid.get_child(PauseMenuState.player_inventory_sub_type_focus_index.get(self.item_type, 0)).grab_focus()
+  var focus_index: int = self._get_focus_index()
+  if focus_index >= 0:
+    self.inventory_grid.get_child(focus_index).grab_focus()
+
+func _get_focus_index() -> int:
+  if self.inventory_grid.get_child_count() == 0:
+    return -1
+
+  if self.equipment_slot != Equipment.EquipmentSlot.UNDEFINED:
+    var focus_index: int = PauseMenuState.player_equipment_sub_type_focus_index.get(self.equipment_slot, 0)
+    if focus_index >= self.inventory_grid.get_child_count():
+      PauseMenuState.player_equipment_sub_type_focus_index[self.equipment_slot] = focus_index - 1
+      return focus_index - 1
+    return focus_index
+
+  var i_focus_index: int = PauseMenuState.player_inventory_sub_type_focus_index.get(self.item_type, 0)
+  if i_focus_index >= self.inventory_grid.get_child_count():
+    PauseMenuState.player_inventory_sub_type_focus_index[self.item_type] = i_focus_index - 1
+    return i_focus_index - 1
+  return i_focus_index
 
 func _on_slot_focused(slot_data: InventorySlot, index: int) -> void:
   if self.equipment_slot != Equipment.EquipmentSlot.UNDEFINED:
-    if slot_data.item is Equipment:
-      PauseMenuState.player_equipment_sub_type_focus_index[slot_data.item.slot] = index
+    PauseMenuState.player_equipment_sub_type_focus_index[self.equipment_slot] = index
   else:
     PauseMenuState.player_inventory_sub_type_focus_index[slot_data.item.item_type] = index
+  self.focused_item = slot_data.item
+  self.focused_index = index
   self.item_info.text = slot_data.full_description()
 
 func _on_slot_used(slot_data: InventorySlot, _index: int) -> void:
@@ -125,4 +138,22 @@ func _on_slot_used(slot_data: InventorySlot, _index: int) -> void:
     return
 
   if self.allow_equip and slot_data.item is Equipment:
+    # If our equipment is equipped, unequip it.
+    if PlayerManager.player.equipment_manager.is_equipped(slot_data.item):
+      PlayerManager.player.equipment_manager.unequip(slot_data.item)
+      return
+
+    # Otherwise put it on!
     PlayerManager.player.equipment_manager.equip(slot_data.item)
+
+func _unhandled_input(event: InputEvent) -> void:
+  if not PauseMenuState.pause_menu_open:
+    return
+
+  if self.inventory_grid.get_child_count() == 0:
+    return
+
+  if event.is_action_pressed("ui_cancel"):
+    # Discard the item / equipment. For now we don't have dropped items so we
+    # just decrement.
+    PlayerManager.player.inventory.decrement_item(self.focused_item)

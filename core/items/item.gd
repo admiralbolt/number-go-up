@@ -91,4 +91,4 @@ func on_pickup() -> void:
   return
     
 func _to_string() -> String:
-  return "Item(name=%s, item_type=%s)" % [self.name, self.item_type]
+  return "Item(name=%s, item_type=%s, uid=%s)" % [self.name, self.item_type, self.uid]
