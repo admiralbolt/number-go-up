@@ -11,6 +11,8 @@ signal died(hit_box: HitBox)
 @export var skills: Skills = Skills.new()
 @export var xp: float = 0.0
 
+var loot_tables: Array[LootTable] = []
+
 var modifier_manager: ModifierManager = ModifierManager.new()
 var effect_manager: EffectManager = EffectManager.new()
 var physics_manager: PhysicsManager = PhysicsManager.new(self)
@@ -68,7 +70,22 @@ func _ready() -> void:
 func _exit_tree() -> void:
   EntityManager.remove_entity(self)
 
-func kill() -> void:
+func spawn_loot(total_luck: float) -> void:
+  if self.loot_tables.size() == 0:
+    return
+
+  for table in self.loot_tables:
+    for item_name in table.roll_loot(total_luck):
+      var item_pickup: ItemPickup = ItemManager.make_item_pickup(item_name)
+      if item_pickup == null:
+        continue
+
+      item_pickup.global_position = self.global_position + Vector2(randf_range(-3, 3), randf_range(-3, 3))
+      item_pickup.velocity = self.velocity.rotated(randf_range(-PI / 4, PI / 4) * randf_range(0.7, 1.3))
+      self.get_parent().call_deferred("add_child", item_pickup)
+
+func kill(damage_event: Damage.DamageEvent) -> void:
+  self.spawn_loot(damage_event.owner.attributes.luck.total_value)
   self.dying = true
   self.effect_manager.process_effects = false
   self.died.emit(null)

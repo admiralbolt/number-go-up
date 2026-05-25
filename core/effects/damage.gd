@@ -104,7 +104,7 @@ static func apply_damage(damage_event: DamageEvent) -> void:
   damage_event.target.current_health -= damage_event.total_damage
 
   if damage_event.target.current_health <= 0:
-    damage_event.target.kill()
+    damage_event.target.kill(damage_event)
     
     if damage_event.owner != null and damage_event.owner is Player:
       damage_event.owner.add_xp(damage_event.target.xp)

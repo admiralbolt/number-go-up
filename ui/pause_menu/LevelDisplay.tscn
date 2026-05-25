@@ -1,6 +1,5 @@
-[gd_scene format=3 uid="uid://b6lw8a6wsbtha"]
+[gd_scene format=3 uid="uid://df8uhf1ttrcy7"]
 
-[ext_resource type="Script" uid="uid://b5gejhoqegpc1" path="res://ui/components/level_display.gd" id="1_m40mx"]
 [ext_resource type="Theme" uid="uid://dribuve6fn6db" path="res://ui/themes/rich_text_theme.tres" id="1_perwk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m40mx"]
@@ -13,7 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_m40mx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1710269639]
 layout_mode = 0

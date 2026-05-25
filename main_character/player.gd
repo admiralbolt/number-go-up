@@ -42,7 +42,7 @@ func add_xp(amount: float) -> void:
   if self.xp >= self.total_xp_to_next_level:
     self.level_up()
 
-func kill() -> void:
+func kill(_damage_event: Damage.DamageEvent) -> void:
   # Override this function, and do nothing!
   return
 

@@ -37,5 +37,13 @@ func _ready() -> void:
   self.derived_statistics.movement_speed.base_value = 104
   self.derived_statistics.movement_speed.compute_total()
 
+  # Loot!
+  var loot_entries: Array[LootEntry] = []
+  loot_entries.append(LootEntry.new(ItemApple.NAME, 1, 100, 1))
+  loot_entries.append(LootEntry.new(Item.NULL, 0, 500, -1))
+
+  var table: LootTable = LootTable.new(3, loot_entries)
+  self.loot_tables.append(table)
+
   self.state_machine.initialize()
   super._ready()

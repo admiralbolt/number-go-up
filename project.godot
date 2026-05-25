@@ -31,6 +31,7 @@ MaterialManager="*uid://cohud5py8spkb"
 AbilityManager="*uid://c5rck0vx6q6qj"
 EntityManager="*uid://d15lfnamg5l1g"
 TextureManager="*uid://pt6yedwc5lws"
+ItemManager="*uid://dl2esxf1tkk1v"
 
 [display]
 

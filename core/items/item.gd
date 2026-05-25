@@ -1,5 +1,7 @@
 class_name Item extends Resource
 
+const NULL: String = "NULL"
+
 enum ItemType {
   EQUIPMENT,
   CONSUMABLE,
