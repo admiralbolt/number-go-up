@@ -37,7 +37,3 @@ func make_item_pickup(item_name: String) -> ItemPickup:
   var item_pickup: ItemPickup = ITEM_PICKUP_SCENE.instantiate()
   item_pickup.item = item
   return item_pickup
-
-
-
-
