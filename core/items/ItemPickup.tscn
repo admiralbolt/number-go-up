@@ -10,7 +10,7 @@ radius = 12.0
 [node name="ItemPickup" type="CharacterBody2D" unique_id=1717839653]
 scale = Vector2(0.25, 0.25)
 collision_layer = 0
-collision_mask = 16
+collision_mask = 48
 motion_mode = 1
 script = ExtResource("1_2lrc1")
 
@@ -18,18 +18,21 @@ script = ExtResource("1_2lrc1")
 shape = SubResource("CircleShape2D_2lrc1")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1578801960]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1102010344]
 shape = SubResource("CircleShape2D_2lrc1")
 
 [node name="ShadowSprite" type="Sprite2D" parent="." unique_id=697034220]
-position = Vector2(0, 4)
+modulate = Color(0, 0, 0, 0.47058824)
+position = Vector2(0, 8)
 texture = ExtResource("1_s1sa0")
 
 [node name="ItemSprite" type="Sprite2D" parent="." unique_id=1036202216]
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=565044723]
 stream = ExtResource("3_w6mue")
-volume_db = -12.636
+volume_db = -9.234
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=485043677]

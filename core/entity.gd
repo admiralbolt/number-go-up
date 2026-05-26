@@ -80,8 +80,8 @@ func spawn_loot(total_luck: float) -> void:
       if item_pickup == null:
         continue
 
-      item_pickup.global_position = self.global_position + Vector2(randf_range(-3, 3), randf_range(-3, 3))
-      item_pickup.velocity = self.velocity.rotated(randf_range(-PI / 4, PI / 4) * randf_range(0.7, 1.3))
+      item_pickup.global_position = self.global_position + Vector2(randf_range(-1, 1), randf_range(-1, 1))
+      item_pickup.velocity = self.velocity.rotated(randf_range(-PI / 4, PI / 4) * randf_range(2.7, 4.3))
       self.get_parent().call_deferred("add_child", item_pickup)
 
 func kill(damage_event: Damage.DamageEvent) -> void:

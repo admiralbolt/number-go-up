@@ -8,6 +8,7 @@ var equipment_slot: Equipment.EquipmentSlot = Equipment.EquipmentSlot.UNDEFINED
 
 @onready var inventory_grid: GridContainer = $GridContainer
 @onready var item_info: RichTextLabel = $ItemInfoLabel
+@onready var coin_label: RichTextLabel = $CoinsLabel
 
 var focused_index: int = -1
 var focused_item: Item = null
@@ -16,10 +17,15 @@ const INVENTORY_SLOT_DISPLAY_SCENE: PackedScene = preload("res://ui/pause_menu/i
 
 func _ready() -> void:
   self.focus_entered.connect(self._on_focus_entered)
+  self.coin_label.text = "Coins: %s" % (0 if self.inventory == null else self.inventory.coins)
   self.render()
   return
   
 func _on_inventory_updated(p_item_type: Item.ItemType) -> void:
+  if p_item_type == Item.ItemType.CURRENCY:
+    self.coin_label.text = "Coins: %s" % (0 if self.inventory == null else self.inventory.coins)
+    return
+
   if p_item_type != self.item_type:
     return
 
@@ -32,7 +38,7 @@ func _on_focus_entered() -> void:
 
 func _set_inventory(p_inventory: Inventory) -> void:
   inventory = p_inventory
-  self.inventory.updated.connect(self._on_inventory_updated)
+  self.inventory.updated.connect(self._on_inventory_updated)  
 
 func render() -> void:
   if self.inventory == null:

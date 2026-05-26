@@ -2,7 +2,6 @@
 class_name ItemPickup extends CharacterBody2D
 
 @export var item: Item: set = _set_item
-@export var quantity: int = 1
 @export var override_icon: SpriteSheetIcon = null
 
 @onready var area: Area2D = $Area2D
@@ -14,7 +13,7 @@ func _ready() -> void:
   if Engine.is_editor_hint():
     return
 
-  area.body_entered.connect(_on_body_entered)
+  area.area_entered.connect(_on_area_entered)
 
 func _physics_process(delta: float) -> void:
   var collision_info: KinematicCollision2D = self.move_and_collide(self.velocity * delta)
@@ -36,15 +35,15 @@ func _set_item(p_item: Item) -> void:
   item = p_item
   self._update_texture()
 
-func _on_body_entered(body: Node) -> void:
-  if body is not Player:
+func _on_area_entered(p_area: Area2D) -> void:
+  if p_area.owner is not Player:
     return
 
   if not self.item:
     return
 
-  PlayerManager.player.inventory.add_item(self.item, self.quantity)
-  area.body_entered.disconnect(self._on_body_entered)
+  area.area_entered.disconnect(self._on_area_entered)
+  self.item.on_pickup(PlayerManager.player)
   self.visible = false
   self.audio_player.play()
   await audio_player.finished

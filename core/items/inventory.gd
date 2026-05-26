@@ -4,6 +4,7 @@ signal updated(item_type: Item.ItemType)
 
 @export var name: String
 @export var inventory: Dictionary[Item.ItemType, DynamicItemList]
+@export var coins: int = 0
 
 func _init() -> void:
   # Initialize our inventory structure for each of our item types.
@@ -15,10 +16,20 @@ func clear() -> void:
     self.inventory[item_type].clear()
 
 func add_item(item: Item, quantity: int = 1) -> void:
+  if item.item_type == Item.ItemType.CURRENCY:
+    self.coins += int(item.base_price)
+    self.updated.emit(Item.ItemType.CURRENCY)
+    return
+
   self.inventory[item.item_type].add_item(item, quantity)
   self.updated.emit(item.item_type)
 
 func decrement_item(item: Item, count_used: int = 1) -> void:
+  if item.item_type == Item.ItemType.CURRENCY:
+    self.coins -= count_used
+    self.updated.emit(Item.ItemType.CURRENCY)
+    return
+
   self.inventory[item.item_type].decrement_item(item, count_used)
   self.updated.emit(item.item_type)
 

@@ -565,6 +565,10 @@ _data = {
 radius = 4.0
 height = 10.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xj3nd"]
+radius = 13.0
+height = 26.0
+
 [node name="Player" type="CharacterBody2D" unique_id=762666805]
 y_sort_enabled = true
 collision_mask = 17
@@ -656,3 +660,12 @@ shape = SubResource("CapsuleShape2D_4flbx")
 script = ExtResource("15_nxc8y")
 
 [node name="EffectManagerDisplay" parent="." unique_id=984141562 instance=ExtResource("18_xj3nd")]
+
+[node name="ItemPickupBox" type="Area2D" parent="." unique_id=2146755338]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemPickupBox" unique_id=1505247150]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_xj3nd")
+debug_color = Color(0.35044846, 0.59618115, 0.48236156, 0.41960785)

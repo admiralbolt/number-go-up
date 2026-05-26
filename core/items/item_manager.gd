@@ -6,10 +6,28 @@ extends Node
 
 const ITEM_PICKUP_SCENE: PackedScene = preload("res://core/items/ItemPickup.tscn")
 
+const ITEM_BASE_PATH: String = "res://core/items"
+
+const ITEM_FOLDERS: Array[String] = [
+  "consumables",
+  "currency"
+]
+
 static var ALL_ITEMS: Dictionary[String, Item] = {}
 
+static func load_item(path: String) -> Item:
+  var script: Resource = load(path)
+  return script.new()
+
 func _init() -> void:
-  ALL_ITEMS[ItemApple.NAME] = ItemApple.new()
+  for folder in ITEM_FOLDERS:
+    for f in DirAccess.get_files_at("%s/%s/" % [ITEM_BASE_PATH, folder]):
+      if f.ends_with("uid"):
+        continue
+
+      var item: Item = load_item("%s/%s/%s" % [ITEM_BASE_PATH, folder, f])
+      ALL_ITEMS[item.name] = item
+      
 
 func make_item_pickup(item_name: String) -> ItemPickup:
   var item: Item = ALL_ITEMS.get(item_name)

@@ -89,8 +89,8 @@ func use() -> void:
     PlayerManager.player.effect_manager.apply_effect(effect)
 
 # Called when the item is picked up.
-func on_pickup() -> void:
-  return
+func on_pickup(player: Player) -> void:
+  player.inventory.add_item(self)
     
 func _to_string() -> String:
   return "Item(name=%s, item_type=%s, uid=%s)" % [self.name, self.item_type, self.uid]

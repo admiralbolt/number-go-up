@@ -5,7 +5,7 @@ const NAME: String = "Coin"
 func _init() -> void:
   self.name = NAME
   self.description = "You shouldn't ever see this..."
-  self.icon = TextureManager.GENERIC_ICONS_1.make_icon(224)
+  self.icon = TextureManager.GENERIC_ICONS_1.make_icon(199)
   self.item_type = Item.ItemType.CURRENCY
   self.rarity = Item.ItemRarity.COMMON
 
