@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dehorwm5rbqfv"]
+
+[ext_resource type="Script" uid="uid://bly8cfoqr6qvn" path="res://ui/pause_menu/inventory/inventory_screen.gd" id="1_cwmcp"]
+[ext_resource type="Texture2D" uid="uid://u4x4b40b13li" path="res://assets/ui/pause_menu/inventory/coins.svg" id="1_xh2on"]
+[ext_resource type="Texture2D" uid="uid://bxv12w47mw5hg" path="res://assets/ui/pause_menu/inventory/weight.svg" id="2_pti6p"]
+[ext_resource type="PackedScene" uid="uid://d4a5ux7y3qm7w" path="res://ui/pause_menu/inventory/InventoryDisplay.tscn" id="3_pti6p"]
+
+[node name="InventoryScreen" type="Control" unique_id=1710620963]
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("1_cwmcp")
+
+[node name="CoinIcon" type="TextureRect" parent="." unique_id=900221504]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("1_xh2on")
+expand_mode = 1
+
+[node name="CoinLabel" type="RichTextLabel" parent="." unique_id=729254240]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -1.0
+offset_right = 71.0
+offset_bottom = 12.0
+theme_override_font_sizes/normal_font_size = 6
+text = "12345"
+vertical_alignment = 1
+
+[node name="WeightIcon" type="TextureRect" parent="." unique_id=624262837]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 12.0
+offset_bottom = 28.0
+texture = ExtResource("2_pti6p")
+expand_mode = 1
+
+[node name="WeightLabel" type="RichTextLabel" parent="." unique_id=1120670560]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 17.0
+offset_right = 66.0
+offset_bottom = 29.0
+theme_override_font_sizes/normal_font_size = 6
+text = "0 / 120"
+vertical_alignment = 1
+
+[node name="InventoryDisplay" parent="." unique_id=826791689 instance=ExtResource("3_pti6p")]
+layout_mode = 0
+offset_left = 68.0
+offset_right = 416.0

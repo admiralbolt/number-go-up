@@ -57,6 +57,7 @@ const HOLY_REDUCTION: String = "holy_reduction"
 const DARK_REDUCTION: String = "dark_reduction"
 
 # Misc.
+const CARRYING_CAPACITY: String = "carrying_capacity"
 const MOVEMENT_SPEED: String = "movement_speed"
 const XP_MULTIPLIER: String = "xp_multiplier"
 
@@ -109,6 +110,7 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
   BLEED_REDUCTION,
   HOLY_REDUCTION,
   DARK_REDUCTION,
+  CARRYING_CAPACITY,
   MOVEMENT_SPEED,
   XP_MULTIPLIER,
   PROC_COEFFICIENT_MULTIPLIER,
@@ -168,6 +170,7 @@ const ALL_DERIVED_STATISTICS: Array[String] = [
 @export var base_dark_reduction: float = 0.0
 
 # Misc.
+@export var base_carrying_capacity: float = 100
 @export var base_movement_speed: float = 95.0
 @export var base_xp_multiplier: float = 1.0
 
@@ -229,6 +232,7 @@ var holy_reduction: DerivedStatistic
 var dark_reduction: DerivedStatistic
 
 # Misc.
+var carrying_capacity: DerivedStatistic
 var movement_speed: DerivedStatistic
 var xp_multiplier: DerivedStatistic
 
@@ -361,6 +365,11 @@ func initialize(p_entity: Entity) -> void:
   self.dark_reduction = DerivedStatistic.make(DARK_REDUCTION, "Dark Reduction", base_dark_reduction, {}, p_entity)
 
   # Misc.
+  self.carrying_capacity = DerivedStatistic.make(CARRYING_CAPACITY, "Carrying Capacity", base_carrying_capacity, {
+    "strength": 0.15,
+    "constitution": 0.04
+  }, p_entity)
+
   self.movement_speed = DerivedStatistic.make(MOVEMENT_SPEED, "Movement Speed", base_movement_speed, {
     "agility": 0.1,
     "dexterity": 0.02

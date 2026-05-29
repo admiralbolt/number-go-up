@@ -91,13 +91,13 @@ static var INVENTORY_TABS: Array[TabData] = [
 ]
 
 const INVENTORY_TAB_SCENE_MAPPING: Dictionary[String, PackedScene] = {
-  "Equipment": preload("res://ui/pause_menu/inventory/InventoryDisplay.tscn"),
-  "Consumables": preload("res://ui/pause_menu/inventory/InventoryDisplay.tscn"),
-  "Materials": preload("res://ui/pause_menu/inventory/InventoryDisplay.tscn"),
-  "Quest": preload("res://ui/pause_menu/inventory/InventoryDisplay.tscn"),
-  "Key Items": preload("res://ui/pause_menu/inventory/InventoryDisplay.tscn"),
-  "Treasure": preload("res://ui/pause_menu/inventory/InventoryDisplay.tscn"),
-  "Junk": preload("res://ui/pause_menu/inventory/InventoryDisplay.tscn"),
+  "Equipment": preload("res://ui/pause_menu/inventory/InventoryScreen.tscn"),
+  "Consumables": preload("res://ui/pause_menu/inventory/InventoryScreen.tscn"),
+  "Materials": preload("res://ui/pause_menu/inventory/InventoryScreen.tscn"),
+  "Quest": preload("res://ui/pause_menu/inventory/InventoryScreen.tscn"),
+  "Key Items": preload("res://ui/pause_menu/inventory/InventoryScreen.tscn"),
+  "Treasure": preload("res://ui/pause_menu/inventory/InventoryScreen.tscn"),
+  "Junk": preload("res://ui/pause_menu/inventory/InventoryScreen.tscn"),
 }
 
 const INVENTORY_TAB_TO_ITEM_TYPE: Dictionary[String, Item.ItemType] = {
@@ -199,14 +199,12 @@ func _on_secondary_tab_selected(index: int, tab_name: String) -> void:
     node.equipment_slot = EQUIPMENT_TAB_TO_SLOT_TYPE[tab_name]
 
   if PauseMenuState.primary_tab_focus_name == "Inventory":
-    if current_child is InventoryDisplay:
+    if current_child is InventoryScreen:
       current_child.item_type = INVENTORY_TAB_TO_ITEM_TYPE[tab_name]
-      current_child.render()
       return
 
     node.inventory = PlayerManager.player.inventory
     node.item_type = INVENTORY_TAB_TO_ITEM_TYPE[tab_name]
-    node.allow_equip = false
 
   self.content_panel.change_child(node)
 

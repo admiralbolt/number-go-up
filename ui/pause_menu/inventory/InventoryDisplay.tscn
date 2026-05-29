@@ -44,14 +44,3 @@ bbcode_enabled = true
 text = "[color=#ffff00]Some[/color] hovered item description!
 
 Lots of potential information in here!"
-
-[node name="CoinsLabel" type="RichTextLabel" parent="." unique_id=137569032]
-layout_mode = 0
-offset_right = 69.0
-offset_bottom = 13.0
-theme_override_font_sizes/normal_font_size = 8
-theme_override_font_sizes/bold_font_size = 8
-theme_override_font_sizes/bold_italics_font_size = 8
-theme_override_font_sizes/italics_font_size = 8
-theme_override_font_sizes/mono_font_size = 8
-text = "Coins: 12"
