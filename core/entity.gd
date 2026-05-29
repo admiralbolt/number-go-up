@@ -70,13 +70,13 @@ func _ready() -> void:
 func _exit_tree() -> void:
   EntityManager.remove_entity(self)
 
-func spawn_loot(total_luck: float) -> void:
+func spawn_loot(damage_event: Damage.DamageEvent) -> void:
   if self.loot_tables.size() == 0:
     return
 
   for table in self.loot_tables:
-    for item_name in table.roll_loot(total_luck):
-      var item_pickup: ItemPickup = ItemManager.make_item_pickup(item_name)
+    for item in table.roll_loot(damage_event):
+      var item_pickup: ItemPickup = ItemManager.make_item_pickup(item)
       if item_pickup == null:
         continue
 
@@ -85,7 +85,7 @@ func spawn_loot(total_luck: float) -> void:
       self.get_parent().call_deferred("add_child", item_pickup)
 
 func kill(damage_event: Damage.DamageEvent) -> void:
-  self.spawn_loot(damage_event.owner.attributes.luck.total_value)
+  self.spawn_loot(damage_event)
   self.dying = true
   self.effect_manager.process_effects = false
   self.died.emit(null)

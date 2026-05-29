@@ -54,7 +54,22 @@ func _ready() -> void:
   # test_signal.connect(signal_handler)
   # test_signal_stuff()
   # test_computation_speed()
-  test_polymorphism()
+  # test_polymorphism()
+  test_random_curve()
+
+
+func test_random_curve() -> void:
+  var total_luck: float = 400
+  var weights: Dictionary[int, int] = {}
+  for _i in range(1000):
+    var val: float = MathUtil.random_weighted(1, 4, total_luck)
+    var int_val: int = int(val)
+    if int_val not in weights:
+      weights[int_val] = 1
+    else:
+      weights[int_val] += 1
+
+  print(weights)
 
 func signal_handler(object: SignalObject) -> void:
   print("Signal handler processing.")
@@ -178,16 +193,3 @@ func test_new_char_stuff() -> void:
   await get_tree().create_timer(5.0).timeout
 
   hero.debug_print()
-
-
-
-func test_loot_pool() -> void:
-  var loot_table = LootTable.new()
-  loot_table.number_of_rolls = 3
-  loot_table.loot.append(LootTable.LootEntry.new("Sword of Flames", 10, 1.5))
-  loot_table.loot.append(LootTable.LootEntry.new("Shield of Ice", 50, 0.1))
-  loot_table.loot.append(LootTable.LootEntry.new("Potion of Healing", 100, -0.1))
-
-
-  for luck in [10, 50, 100]:
-    print("Rolling loot with total luck: ", luck, loot_table.roll_loot(luck))

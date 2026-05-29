@@ -22,6 +22,9 @@ signal skill_node_rank_down(skill_node_name: String, new_rank: int)
 
 ### Damage Signals, but better.
 signal on_player_attack_landed(event: Damage.HitEvent)
+
+# Damage pre_apply is called before damage is applied. Modifications should be
+# made to the event.base_damage at this point.
 signal on_damage_pre_apply(event: Damage.DamageEvent)
 signal on_player_damaged(event: Damage.FinalDamageEvent)
 signal on_player_killed_enemy(event: Damage.FinalDamageEvent)
@@ -32,5 +35,9 @@ signal modifier_changed(modifier_name: String)
 ### Inventory Signals.
 signal item_removed(item: Item)
 signal items_resorted()
+
+### Drop Event!
+signal loot_event_pre_roll(event: LootTable.LootEvent)
+signal loot_event_post_roll(event: LootTable.LootEvent)
 
 @warning_ignore_restore("unused_signal")

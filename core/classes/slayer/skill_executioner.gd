@@ -38,6 +38,6 @@ func _on_damage_pre_apply(event: Damage.DamageEvent) -> void:
   # damage sources. In the case of an enchanted weapon, we probably don't
   # want to increase the damage of the enchantment, just the base damage.
   # Don't have an easy way of differentiating that quite yet.
-  event.raw_damage *= (1 + (DAMAGE_INCREASE_PER_MISSING_HP_PERCENT_PER_RANK * self.ranks * (1 - (event.target.current_health / event.target.derived_statistics.max_health.total_value))))
+  event.base_damage *= (1 + (DAMAGE_INCREASE_PER_MISSING_HP_PERCENT_PER_RANK * self.ranks * (1 - (event.target.current_health / event.target.derived_statistics.max_health.total_value))))
 
   return

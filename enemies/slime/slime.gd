@@ -39,16 +39,14 @@ func _ready() -> void:
 
   # Loot!
   var loot_entries: Array[LootEntry] = []
-  loot_entries.append(LootEntry.new(ItemApple.NAME, 1, 100, 1))
-  loot_entries.append(LootEntry.new(Item.NULL, 0, 500, -1))
+  loot_entries.append(LootEntry.new(Item.NULL, 1000, -1, 1, 1))
+  loot_entries.append(LootEntry.new(ItemApple.NAME, 100, 1, 1, 1))
 
   var table: LootTable = LootTable.new(3, loot_entries)
 
   var loot_entries2: Array[LootEntry] = []
-  loot_entries2.append(LootEntry.new(Item.NULL, 0, 1000, -1))
-  loot_entries2.append(LootEntry.new(ItemCoin.NAME, 1, 100, 1))
-  loot_entries2.append(LootEntry.new(ItemCoin.NAME, 2, 100, 2))
-  loot_entries2.append(LootEntry.new(ItemCoin.NAME, 3, 100, 3))
+  loot_entries2.append(LootEntry.new(Item.NULL, 600, -1, 1, 1))
+  loot_entries2.append(LootEntry.new(ItemCoin.NAME, 100, 1, 1, 3))
 
   var table2: LootTable = LootTable.new(2, loot_entries2)
 

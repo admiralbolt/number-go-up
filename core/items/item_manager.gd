@@ -27,9 +27,24 @@ func _init() -> void:
 
       var item: Item = load_item("%s/%s/%s" % [ITEM_BASE_PATH, folder, f])
       ALL_ITEMS[item.name] = item
-      
 
-func make_item_pickup(item_name: String) -> ItemPickup:
+func get_n_items(item_name: String, amount: int) -> Array[Item]:
+  var item: Item = ALL_ITEMS.get(item_name)
+  if item == null:
+    return []
+
+  var items: Array[Item]
+  for _i in range(amount):
+    items.append(item.duplicate(true))
+
+  return items
+
+func make_item_pickup(item: Item) -> ItemPickup:
+  var item_pickup: ItemPickup = ITEM_PICKUP_SCENE.instantiate()
+  item_pickup.item = item
+  return item_pickup
+
+func make_item_pickup_from_name(item_name: String) -> ItemPickup:
   var item: Item = ALL_ITEMS.get(item_name)
   if item == null:
     return null
