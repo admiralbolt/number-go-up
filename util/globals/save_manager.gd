@@ -6,6 +6,7 @@ signal game_loaded
 signal game_saved
 
 var starting_timestamp: float
+var total_playtime: float
 
 func _ready() -> void:
   self.starting_timestamp = Time.get_unix_time_from_system()
@@ -36,7 +37,8 @@ func save_game(slot: int) -> SaveData:
   save_data.active_effects = PlayerManager.player.effect_manager.active_effects.duplicate(true)
 
   save_data.timestamp = Time.get_unix_time_from_system()
-  save_data.play_time = save_data.play_time + (save_data.timestamp - self.starting_timestamp)
+  save_data.play_time = self.total_playtime + (save_data.timestamp - self.starting_timestamp)
+  self.total_playtime = save_data.play_time
 
   ResourceSaver.save(save_data, "user://save_game_%s.tres" % slot)
   self.game_saved.emit()
@@ -86,4 +88,5 @@ func load_game(slot: int) -> void:
   PlayerManager.player.position = save_data.player_position
 
   self.starting_timestamp = Time.get_unix_time_from_system()
+  self.total_playtime = save_data.play_time
   self.game_loaded.emit()
