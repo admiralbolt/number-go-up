@@ -26,6 +26,9 @@ func _ready() -> void:
 
   TestItemManager.initialize()
 
+  self.inventory.updated.connect(self._apply_encumberance.unbind(1))
+  self.derived_statistics.carrying_capacity.changed.connect(self._apply_encumberance)
+
   self.hurt_box = $PlayerHurtBox
   super._ready()
 
@@ -88,3 +91,41 @@ func _test_buff_effect() -> void:
   b.modifiers.modifiers.append(m)
 
   self.effect_manager.apply_effect(b)
+
+func _apply_encumberance() -> void:
+  var multiplier: int = int(self.inventory.total_weight / self.derived_statistics.carrying_capacity.total_value)
+  var agility_penalty: int = (((multiplier + 7) ** 2 + (multiplier + 7)) / 2) - 21
+  var dexterity_penalty: int = (((multiplier + 2) ** 2 + (multiplier + 2)) / 2) - 1
+  # For each multiple we are over, we want to apply an increasing penalty
+  # to both agility and dexterity. The agility penalty will be harsher than
+  # the dexterity one.
+  var m: Modifier = Modifier.new()
+  m.source_name = "Over Encumbered"
+  m.source_type = Modifier.ModifierSource.ENCUMBERANCE
+  m.target_type = Modifier.ModifierTarget.ATTRIBUTE
+  m.stat_name = Attributes.AGILITY
+  m.modifier_type = Modifier.ModifierType.ADDITIVE
+  m.sentiment = Modifier.ModifierSentiment.DEBUFF
+  m.value = -1 * agility_penalty
+  m.base_value = -1 * agility_penalty
+
+  var m2: Modifier = Modifier.new()
+  m2.source_name = "Over Encumbered"
+  m2.source_type = Modifier.ModifierSource.ENCUMBERANCE
+  m2.target_type = Modifier.ModifierTarget.ATTRIBUTE
+  m2.stat_name = Attributes.DEXTERITY
+  m2.modifier_type = Modifier.ModifierType.ADDITIVE
+  m2.sentiment = Modifier.ModifierSentiment.DEBUFF
+  m2.value = -1 * dexterity_penalty
+  m2.base_value = -1 * dexterity_penalty
+
+  # Remove modifiers then re-apply.
+  self.modifier_manager.remove_modifier(m)
+  self.modifier_manager.remove_modifier(m2)
+
+  # Under our encumberance.
+  if self.inventory.total_weight < self.derived_statistics.carrying_capacity.total_value:
+    return
+
+  self.modifier_manager.add_modifier(m)
+  self.modifier_manager.add_modifier(m2)

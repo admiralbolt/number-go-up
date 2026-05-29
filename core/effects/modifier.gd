@@ -12,7 +12,8 @@ enum ModifierSource {
   EQUIPMENT,
   SPELL,
   SKILL_NODE_PASSIVE,
-  SKILL_NODE_TRIGGERED
+  SKILL_NODE_TRIGGERED,
+  ENCUMBERANCE
 }
 
 enum ModifierTarget {
