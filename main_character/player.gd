@@ -14,7 +14,6 @@ class_name Player extends Entity
 @export var character_name: String = GeneratorUtil.generate_random_word(6)
 
 var held_direction: Vector2 = Vector2.DOWN
-var direction_name: String = "down"
 
 var starting_xp_this_level: float = 0.0
 var total_xp_to_next_level: float = RPGUtil.total_xp_for_next_level(1)
@@ -57,7 +56,7 @@ func _process(_delta: float) -> void:
     # We only update facing if we are pressing something. This way, if we stop
     # pressing something the facing will still be up to date.
     self.facing = held_direction
-    direction_name = Directions.get_direction_name(facing)
+    self.weapon_renderer.hit_box.knockback_direction = self.facing
 
   if Input.is_action_just_pressed("hotbar1"):
     AbilityManager.use_ability(self, AbilityRupture.NAME)

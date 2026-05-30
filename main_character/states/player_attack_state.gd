@@ -2,7 +2,6 @@ class_name PlayerAttackState extends PlayerState
 
 static var NAME = "attack"
 
-var direction_name: String = "down"
 var attack_timer: float
 
 func _init() -> void:
@@ -23,9 +22,8 @@ func can_exit(next_state: State) -> bool:
 
 func on_enter() -> void:
   self.attack_timer = PlayerAnimator.ANIMATION_DURATION["attack"]
-  direction_name = self.player.direction_name
-  self.player.animation_player.play("PlayerAnimations/attack_%s" % direction_name)
-  self.player.weapon_renderer.animator.play("WeaponAnimations/slash_%s" % direction_name)
+  self.player.animation_player.play("PlayerAnimations/attack_%s" % self.player.facing_name)
+  self.player.weapon_renderer.animator.play("WeaponAnimations/slash_%s" % self.player.facing_name)
   self.player.weapon_renderer.hit_box.enable()
 
 func on_exit() -> void:

@@ -24,7 +24,7 @@ func on_enter() -> void:
   self.roll_timer = PlayerAnimator.ANIMATION_DURATION["roll"]
   # Lock the direction for the duration of the roll.
   self.roll_direction = self.player.facing
-  self.player.animation_player.play("PlayerAnimations/roll_%s" % self.player.direction_name)
+  self.player.animation_player.play("PlayerAnimations/roll_%s" % self.player.facing_name)
 
 func on_exit() -> void:
   self.player.animation_player.stop()

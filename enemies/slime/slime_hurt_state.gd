@@ -14,7 +14,7 @@ func init(p_state_machine: StateMachine) -> void:
 func on_enter() -> void:
   self.animation_finished = false
 
-  self.enemy.animation_player.play("EnemyAnimations/hurt_%s" % self.enemy.facing_name)
+  self.enemy.animation_player.play("EnemyAnimations/hurt_%s" % self.enemy.facing_primary_direction)
   self.enemy.animation_player.animation_finished.connect(self._on_animation_finished)
 
 func on_exit() -> void:

@@ -1,4 +1,4 @@
-class_name SlimeDeathState extends EnemyState
+class_name ArcherDeathState extends EnemyState
 
 static var NAME = "death"
 
@@ -19,7 +19,7 @@ func on_enter() -> void:
   self.enemy.set_collision_layer_value(5, false)
   self.enemy.set_collision_layer_value(9, false)
 
-  self.enemy.animation_player.play("EnemyAnimations/death_%s" % self.enemy.facing_primary_direction)
+  self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_name)
   self.enemy.animation_player.animation_finished.connect(self._on_animation_finished)
 
 func on_exit() -> void:

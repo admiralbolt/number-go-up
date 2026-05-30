@@ -9,6 +9,8 @@ func initialize(p_owner: Entity) -> void:
   self.hit_box.disable()
   self.hit_box.owning_entity = p_owner
   self.hit_box.knockback = 65
+  self.hit_box.knockback_type = HitBox.KnockbackType.FIXED
+  self.hit_box.knockback_direction = p_owner.facing
 
   self.hit_box.damage_ranges = [
     HitBox.DamageRange.make_with_skill(Damage.DamageType.PIERCING, 40.0, 60.0, Skills.SWORDS),

@@ -586,6 +586,7 @@ texture = ExtResource("3_e0qqe")
 [node name="HitBox" parent="WeaponRenderer/SpriteAndShape" unique_id=827173607 instance=ExtResource("4_xj3nd")]
 collision_layer = 0
 collision_mask = 2
+knockback_type = 1
 
 [node name="WeaponCollisionShape" type="CollisionShape2D" parent="WeaponRenderer/SpriteAndShape/HitBox" unique_id=123902274]
 debug_color = Color(1, 0.078431375, 0, 0.41960785)

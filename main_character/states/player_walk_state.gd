@@ -2,7 +2,7 @@ class_name PlayerWalkState extends PlayerState
 
 static var NAME = "walk"
 
-var direction_name: String = "down"
+var facing_name: String = "down"
 var walk_timer: float = 0.05
 
 
@@ -11,7 +11,7 @@ func _init() -> void:
 
 func on_enter() -> void:
   self.walk_timer = 0.05
-  direction_name = self.player.direction_name
+  self.facing_name = self.player.facing_name
   self._stop_and_play()
 
 func on_exit() -> void:
@@ -19,7 +19,7 @@ func on_exit() -> void:
 
 func _stop_and_play() -> void:
   self.player.animation_player.stop()
-  self.player.animation_player.play("PlayerAnimations/walk_%s" % direction_name)
+  self.player.animation_player.play("PlayerAnimations/walk_%s" % self.facing_name)
 
 func process(delta: float) -> String:
   if self.player.velocity.length() == 0 and self.walk_timer <= 0:
@@ -28,8 +28,8 @@ func process(delta: float) -> String:
   self.player.velocity = self.player.held_direction.normalized() * self.player.derived_statistics.movement_speed.total_value
   self.walk_timer -= delta
 
-  if self.player.direction_name != direction_name:
-    direction_name = self.player.direction_name
+  if self.player.facing_name != self.facing_name:
+    self.facing_name = self.player.facing_name
     self._stop_and_play()
 
   return State.NULL_STATE

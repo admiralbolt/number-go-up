@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnsg1pe6v0ou1"
-path="res://.godot/imported/Slime1_Walk_with_shadow.png-b5333aacc6f2d4fa469e3b7a157b91bc.ctex"
+uid="uid://0ndojlrejhau"
+path="res://.godot/imported/archer_walk.png-a42f5f034c3300aeb824be6026604eeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/monsters/slime1/Slime1_Walk_with_shadow.png"
-dest_files=["res://.godot/imported/Slime1_Walk_with_shadow.png-b5333aacc6f2d4fa469e3b7a157b91bc.ctex"]
+source_file="res://assets/enemies/archer/archer_walk.png"
+dest_files=["res://.godot/imported/archer_walk.png-a42f5f034c3300aeb824be6026604eeb.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c74g4s0k7krff"
-path="res://.godot/imported/Slime1_Run_with_shadow.png-aa7bb24aeedc79d46807b7294e9eef8c.ctex"
+uid="uid://bp4ebssknqjhe"
+path="res://.godot/imported/Slime1_Death_with_shadow.png-6d0d81e15f719546091220a83a425561.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/monsters/slime1/Slime1_Run_with_shadow.png"
-dest_files=["res://.godot/imported/Slime1_Run_with_shadow.png-aa7bb24aeedc79d46807b7294e9eef8c.ctex"]
+source_file="res://assets/enemies/slime1/Slime1_Death_with_shadow.png"
+dest_files=["res://.godot/imported/Slime1_Death_with_shadow.png-6d0d81e15f719546091220a83a425561.ctex"]
 
 [params]
 

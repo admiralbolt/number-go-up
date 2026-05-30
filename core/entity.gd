@@ -21,6 +21,7 @@ var equipment_manager: EquipmentManager = EquipmentManager.new(self)
 # Which way we looking. Should always be normalized.
 var facing: Vector2 = Vector2.DOWN: set = _set_facing
 var facing_name: String = "down"
+var facing_primary_direction: String = "down"
 
 var dying: bool = false
 
@@ -41,7 +42,8 @@ var current_stamina: float = 100.0: set = _set_current_stamina
 
 func _set_facing(value: Vector2) -> void:
   facing = value
-  facing_name = Directions.get_primary_direction_name(facing)
+  facing_name = Directions.get_direction_name(facing)
+  facing_primary_direction = Directions.get_primary_direction_name(facing)
 
 func _init() -> void:
   self.initialize_stats()

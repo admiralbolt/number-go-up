@@ -15,8 +15,14 @@ func _init(p_owner: Entity) -> void:
   self.owner = p_owner
 
 func apply_knockback(hit_box: HitBox, duration: float = 0.5) -> void:
-  # Might want to pass in direction eventually, for now we just calc.
-  var direction: Vector2 = -1 * self.owner.global_position.direction_to(hit_box.global_position)
+  var direction: Vector2 = Vector2.ZERO
+  if hit_box.knockback_type == HitBox.KnockbackType.DIRECTIONAL_OUTWARD:
+    direction = -1 * self.owner.global_position.direction_to(hit_box.global_position)
+  elif hit_box.knockback_type == HitBox.KnockbackType.DIRECTIONAL_INWARD:
+    direction = self.owner.global_position.direction_to(hit_box.global_position)
+  elif hit_box.knockback_type == HitBox.KnockbackType.FIXED:
+    direction = hit_box.knockback_direction
+  
   var knockback_strength: float = hit_box.knockback * (1 - self.owner.derived_statistics.knockback_resistance.total_value)
   var knockback_effect = KnockbackEffect.new(direction, knockback_strength, duration)
   self.knockback_effects.append(knockback_effect)

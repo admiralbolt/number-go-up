@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp4ebssknqjhe"
-path="res://.godot/imported/Slime1_Death_with_shadow.png-089f83b569e3a1b33867ab98193f8dec.ctex"
+uid="uid://m3igakykun2r"
+path="res://.godot/imported/archer_attack.png-24c8f9220c644c49d04453eed38cc669.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/monsters/slime1/Slime1_Death_with_shadow.png"
-dest_files=["res://.godot/imported/Slime1_Death_with_shadow.png-089f83b569e3a1b33867ab98193f8dec.ctex"]
+source_file="res://assets/enemies/archer/archer_attack.png"
+dest_files=["res://.godot/imported/archer_attack.png-24c8f9220c644c49d04453eed38cc669.ctex"]
 
 [params]
 

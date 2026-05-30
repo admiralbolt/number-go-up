@@ -8,7 +8,7 @@ func _init() -> void:
 
 func on_enter() -> void:
   self.enemy.hit_boxes[Slime.EXPLODE_ATTACK_HITBOX_NAME].enable()
-  self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_name)
+  self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_primary_direction)
 
   # Trying a funny thing here, we simulate a slide by applying knockback
   # in the direction we were moving.

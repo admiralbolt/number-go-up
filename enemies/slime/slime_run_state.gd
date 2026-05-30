@@ -12,7 +12,7 @@ func on_enter() -> void:
   # Run directly towards the player!
   self.enemy.facing = (PlayerManager.player.global_position - self.enemy.global_position).normalized()
 
-  self.enemy.animation_player.play("EnemyAnimations/run_%s" % self.enemy.facing_name)
+  self.enemy.animation_player.play("EnemyAnimations/run_%s" % self.enemy.facing_primary_direction)
 
 func on_exit() -> void:
   self.enemy.animation_player.stop()

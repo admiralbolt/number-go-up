@@ -18,6 +18,15 @@ var damage_ranges: Array[DamageRange]
 var effects: Array[Effect] = []
 var knockback: float
 
+enum KnockbackType {
+  DIRECTIONAL_OUTWARD,
+  FIXED,
+  DIRECTIONAL_INWARD,
+}
+
+@export var knockback_type: KnockbackType = KnockbackType.DIRECTIONAL_OUTWARD
+var knockback_direction: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
   # The collision shape should always be a child of the hit box.
   for child in get_children():

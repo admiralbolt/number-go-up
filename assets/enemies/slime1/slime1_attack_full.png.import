@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpq6jnr5jjsie"
-path="res://.godot/imported/Slime1_Attack_with_shadow.png-a37f846e1bd5f18d016eb924ae820047.ctex"
+uid="uid://dt52r88yqv0o3"
+path="res://.godot/imported/slime1_attack_full.png-0aeb74f72e1e75aab89e7d7f26cfe0e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/monsters/slime1/Slime1_Attack_with_shadow.png"
-dest_files=["res://.godot/imported/Slime1_Attack_with_shadow.png-a37f846e1bd5f18d016eb924ae820047.ctex"]
+source_file="res://assets/enemies/slime1/slime1_attack_full.png"
+dest_files=["res://.godot/imported/slime1_attack_full.png-0aeb74f72e1e75aab89e7d7f26cfe0e9.ctex"]
 
 [params]
 
