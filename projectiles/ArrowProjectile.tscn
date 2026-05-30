@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cq0w2acx5ih0i"]
+
+[ext_resource type="Texture2D" uid="uid://0vc113al12y1" path="res://assets/projectiles/arrow.png" id="1_5fc8p"]
+[ext_resource type="Script" uid="uid://b4lw3fxttfgv" path="res://projectiles/arrow_projectile.gd" id="1_pberp"]
+[ext_resource type="PackedScene" uid="uid://xr68kfqc3xxm" path="res://util/HitBox.tscn" id="2_pberp"]
+[ext_resource type="PackedScene" uid="uid://f18k057haeer" path="res://util/HurtBox.tscn" id="3_dmjlp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dmjlp"]
+radius = 3.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5fc8p"]
+radius = 3.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pberp"]
+radius = 8.0
+height = 26.0
+
+[node name="ArrowProjectile" type="CharacterBody2D" unique_id=140615818]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_pberp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1526519932]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_dmjlp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=531334083]
+texture = ExtResource("1_5fc8p")
+
+[node name="HitBox" parent="." unique_id=827173607 instance=ExtResource("2_pberp")]
+collision_layer = 0
+collision_mask = 256
+knockback_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=797488415]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_5fc8p")
+debug_color = Color(0.8602044, 0.34597385, 0.29428315, 0.41960785)
+
+[node name="HurtBox" parent="." unique_id=103616579 instance=ExtResource("3_dmjlp")]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1576313733]
+rotation = 1.5707767
+shape = SubResource("CapsuleShape2D_pberp")
+debug_color = Color(0.6951758, 0.49016917, 0.203433, 0.41960785)

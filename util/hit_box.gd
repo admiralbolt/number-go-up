@@ -10,6 +10,8 @@ For Enemies:
 """
 class_name HitBox extends Area2D
 
+signal on_hit()
+
 var owning_entity: Entity = null
 var collision_shape: CollisionShape2D
 var hit_log: HitLog
@@ -49,6 +51,7 @@ func _on_area_entered(area: Area2D) -> void:
       return
     self.hit_log.log_hit(hurt_box_owner)
 
+  self.on_hit.emit()
   area.receive_hit(self)
 
 func enable(with_hit_logging: bool = true) -> void:

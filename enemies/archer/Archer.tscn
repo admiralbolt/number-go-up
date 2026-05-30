@@ -11,6 +11,9 @@
 [ext_resource type="Script" uid="uid://bhyecq1is7uop" path="res://enemies/archer/archer_idle_state.gd" id="7_c1n06"]
 [ext_resource type="Script" uid="uid://dk025uyiv8vjh" path="res://enemies/archer/archer_death_state.gd" id="8_8gnwa"]
 [ext_resource type="PackedScene" uid="uid://f18k057haeer" path="res://util/HurtBox.tscn" id="8_kklt1"]
+[ext_resource type="Script" uid="uid://80pt4fwgkhy6" path="res://enemies/archer/archer_walk_state.gd" id="9_xp1bl"]
+[ext_resource type="Script" uid="uid://bylg4v4w5duit" path="res://enemies/archer/archer_lock_on_state.gd" id="10_dw081"]
+[ext_resource type="Script" uid="uid://de6apypwatufa" path="res://enemies/archer/archer_attack_state.gd" id="11_81j46"]
 
 [sub_resource type="Animation" id="Animation_8gnwa"]
 length = 0.8
@@ -1289,7 +1292,7 @@ radius = 7.1045113
 height = 23.180878
 
 [node name="Archer" type="CharacterBody2D" unique_id=710523411]
-collision_layer = 16
+collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_vbhq5")
 
@@ -1317,11 +1320,21 @@ script = ExtResource("7_c1n06")
 [node name="ArcherDeathState" type="Node" parent="ArcherStateMachine" unique_id=1531498481]
 script = ExtResource("8_8gnwa")
 
+[node name="ArcherWalkState" type="Node" parent="ArcherStateMachine" unique_id=1645592034]
+script = ExtResource("9_xp1bl")
+
+[node name="ArcherLockOnState" type="Node" parent="ArcherStateMachine" unique_id=1208868608]
+script = ExtResource("10_dw081")
+
+[node name="ArcherAttackState" type="Node" parent="ArcherStateMachine" unique_id=1092626770]
+script = ExtResource("11_81j46")
+
 [node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("3_f6b1d")]
-offset_left = -28.479881
-offset_top = -22.34347
-offset_right = 28.520119
-offset_bottom = -14.34347
+offset_left = -14.383701
+offset_top = -17.122663
+offset_right = 42.6163
+offset_bottom = -9.1226635
+scale = Vector2(0.5, 0.5)
 
 [node name="EffectManagerDisplay" parent="." unique_id=984141562 instance=ExtResource("4_8f41t")]
 offset_top = -2.0

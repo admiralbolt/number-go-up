@@ -1,0 +1,30 @@
+class_name ArrowProjectile extends CharacterBody2D
+
+@onready var hit_box: HitBox = $HitBox
+@onready var hurt_box: HurtBox = $HurtBox
+
+var owning_entity: Entity
+
+func _ready() -> void:
+  self.hit_box.on_hit.connect(queue_free)
+  self.hurt_box.on_hit.connect(queue_free)
+
+func initialize(p_owner: Entity, p_direction: Vector2, p_velocity: float) -> void:
+  self.owning_entity = p_owner
+  self.velocity = p_direction * p_velocity
+  self.position = p_owner.global_position + p_owner.facing * 5
+  self.rotation = p_owner.facing.angle()
+
+  self.hit_box.owning_entity = p_owner
+  self.hit_box.knockback = 140
+  self.hit_box.knockback_type = HitBox.KnockbackType.FIXED
+  self.hit_box.knockback_direction = p_owner.facing
+
+  self.hit_box.damage_ranges = [
+    HitBox.DamageRange.make_without_skill(Damage.DamageType.PIERCING, 25.0, 45.0),
+  ]
+
+func _physics_process(delta: float) -> void:
+  var collision: KinematicCollision2D = self.move_and_collide(self.velocity * delta)
+  if collision != null:
+    queue_free()

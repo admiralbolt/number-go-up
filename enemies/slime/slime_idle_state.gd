@@ -17,13 +17,11 @@ func on_exit() -> void:
   self.enemy.animation_player.stop()
 
 func process(delta: float) -> String:
-  self.enemy.velocity = Vector2.ZERO
-  return State.NULL_STATE
-  
+  self.enemy.velocity = Vector2.ZERO  
   self.timer -= delta
 
   # If the player is close-ish, start running.
-  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < 200:
+  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < 180:
     return SlimeRunState.NAME
 
   if self.timer > 0:
