@@ -16,12 +16,11 @@ func initialize(p_owner: Entity, p_direction: Vector2, p_velocity: float) -> voi
   self.rotation = p_owner.facing.angle()
 
   self.hit_box.owning_entity = p_owner
+  self.hit_box.knockback_direction = p_owner.facing
   self.hit_box.knockback = 140
   self.hit_box.knockback_type = HitBox.KnockbackType.FIXED
-  self.hit_box.knockback_direction = p_owner.facing
-
   self.hit_box.damage_ranges = [
-    HitBox.DamageRange.make_without_skill(Damage.DamageType.PIERCING, 25.0, 45.0),
+    HitBox.DamageRange.make_without_skill(Damage.DamageType.PIERCING, 40.0, 50.0),
   ]
 
 func _physics_process(delta: float) -> void:

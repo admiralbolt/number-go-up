@@ -24,7 +24,6 @@ func receive_hit(hit_box: HitBox) -> void:
 
   if self.entity != null:
     Damage.apply_hit(hit_box.owning_entity, self.entity, hit_box)
-    return
 
 func disable() -> void:
   self.set_collision_layer_value(2, false)

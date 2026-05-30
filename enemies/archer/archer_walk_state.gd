@@ -24,7 +24,7 @@ func process(delta: float) -> String:
   if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < Archer.LOCK_ON_RANGE:
     return ArcherLockOnState.NAME
 
-  self.enemy.velocity = self.enemy.facing * self.enemy.derived_statistics.movement_speed.total_value * randf_range(0.2, 0.4)
+  self.enemy.velocity = self.enemy.facing * self.enemy.derived_statistics.movement_speed.total_value * randf_range(0.3, 0.6)
   self.timer -= delta
   if self.timer <= 0:
     return ArcherIdleState.NAME

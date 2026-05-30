@@ -24,8 +24,7 @@ func process(_delta: float) -> String:
   if self.enemy.animation_player.is_playing():
     return State.NULL_STATE
 
-  # After the attack animation finishes we either attack again if the player
-  # is close enough, or go back to running at them.
+  # If we are still within lock on range, go back to locking on.
   if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < Archer.LOCK_ON_RANGE:
     return ArcherLockOnState.NAME
 
@@ -35,3 +34,9 @@ func _fire_arrow(_anim_name: String) -> void:
   var arrow_scene = SCENE.instantiate() as ArrowProjectile
   get_tree().current_scene.add_child(arrow_scene)
   arrow_scene.initialize(self.enemy, (PlayerManager.player.global_position - self.enemy.global_position).normalized(), 220)
+
+  # Need to do this a separate var for typing reasons.
+  var damage_ranges: Array[HitBox.DamageRange] = [
+    HitBox.DamageRange.make_without_skill(Damage.DamageType.PIERCING, 40.0, 50.0),
+  ]
+  arrow_scene.hit_box.damage_ranges = damage_ranges
