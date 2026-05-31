@@ -44,7 +44,7 @@ func _setup_hitboxes() -> void:
   self.explode_attack_hit_box.knockback = 310
 
 func _setup_stats() -> void:
-  self.xp = 100
+  self.xp = 10000
 
   self.attributes.strength.value = 20
   self.attributes.constitution.value = 40
