@@ -8,8 +8,8 @@ func _init() -> void:
   self.state_name = NAME
 
 func on_enter() -> void:
-  # Always wait exactly 3 seconds before firing.
-  self.timer = 3.0
+  # Always wait exactly 1 second before entering lock on.
+  self.timer = 1.0
   # Face the player!
   self.enemy.facing = (PlayerManager.player.global_position - self.enemy.global_position).normalized()
   self.enemy.animation_player.play("EnemyAnimations/walk_%s" % self.enemy.facing_name)

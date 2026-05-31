@@ -13,7 +13,7 @@ func initialize(p_owner: Entity, p_direction: Vector2, p_velocity: float) -> voi
   self.owning_entity = p_owner
   self.velocity = p_direction * p_velocity
   self.position = p_owner.global_position + p_owner.facing * 5
-  self.rotation = p_owner.facing.angle()
+  self.rotation = p_direction.angle()
 
   self.hit_box.owning_entity = p_owner
   self.hit_box.knockback_direction = p_owner.facing
