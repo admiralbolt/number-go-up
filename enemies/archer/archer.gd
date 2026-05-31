@@ -31,6 +31,7 @@ func _setup_stats() -> void:
   self.attributes.luck.value = 10
 
   self.derived_statistics.max_health.base_value = 98
+  self.derived_statistics.health_regen.base_value = 1
   self.derived_statistics.movement_speed.base_value = 30
 
 func _setup_loot() -> void:

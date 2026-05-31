@@ -30,7 +30,7 @@ func process(_delta: float) -> String:
 
   # After the attack animation finishes we either attack again if the player
   # is close enough, or go back to running at them.
-  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < 25:
+  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < Slime.ATTACK_RANGE:
     self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_name)
     return State.NULL_STATE
 

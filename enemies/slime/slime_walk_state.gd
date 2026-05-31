@@ -25,5 +25,9 @@ func process(delta: float) -> String:
   self.timer -= delta
   if self.timer <= 0:
     return SlimeIdleState.NAME
+
+  # If the player is close-ish, start running.
+  if self.enemy.global_position.distance_to(PlayerManager.player.global_position) < Slime.CHASE_RANGE:
+    return SlimeRunState.NAME
   
   return State.NULL_STATE

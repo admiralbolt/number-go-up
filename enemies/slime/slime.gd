@@ -1,5 +1,7 @@
 class_name Slime extends Enemy
 
+const CHASE_RANGE: float = 140.0
+const ATTACK_RANGE: float = 25.0
 const EXPLODE_ATTACK_HITBOX_NAME: String = "EXPLODE_ATTACK_HITBOX"
 
 @onready var slime_state_machine: StateMachine = $SlimeStateMachine
@@ -55,6 +57,7 @@ func _setup_stats() -> void:
   self.attributes.luck.value = 10
 
   self.derived_statistics.max_health.base_value = 146
+  self.derived_statistics.health_regen.base_value = 4
   self.derived_statistics.movement_speed.base_value = 104
 
 func _setup_loot() -> void:

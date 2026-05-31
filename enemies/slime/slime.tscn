@@ -1480,7 +1480,7 @@ _data = {
 radius = 6.969195
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwtj1"]
-radius = 9.126878
+radius = 9.502634
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ftag"]
 radius = 4.999591
@@ -1529,7 +1529,7 @@ script = ExtResource("5_v3fw7")
 metadata/_custom_type_script = "uid://cvknglif0g3v1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeAnimator/ContactHitBox" unique_id=1674269188]
-position = Vector2(0.5412197, -1.4077969)
+position = Vector2(0.5412197, 0.96759987)
 shape = SubResource("CircleShape2D_mwtj1")
 debug_color = Color(0.89411765, 0.38431373, 0, 0.41960785)
 

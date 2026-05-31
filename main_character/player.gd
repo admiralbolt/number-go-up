@@ -52,7 +52,7 @@ func _process(_delta: float) -> void:
   super._process(_delta)
   held_direction = Input.get_vector("left", "right", "up", "down")
   # Only update direction name if we are pressing something.
-  if held_direction != Vector2.ZERO:
+  if held_direction != Vector2.ZERO and self.main_player_state_machine.current_state.state_name != PlayerAttackState.NAME: 
     # We only update facing if we are pressing something. This way, if we stop
     # pressing something the facing will still be up to date.
     self.facing = held_direction
