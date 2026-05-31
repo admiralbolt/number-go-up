@@ -11,12 +11,19 @@ func _ready() -> void:
   self.state_machine = slime_state_machine
   self.state_machine.enemy = self
   self.animation_player = slime_animator.animator
-
   self.hurt_box = $HurtBox
+
+  self._setup_hitboxes()
+  self._setup_stats()
+  self._setup_loot()
+  
+  self.state_machine.initialize()
+  super._ready()
+
+func _setup_hitboxes() -> void:
   self.hit_boxes[CONTACT_HITBOX_NAME] = self.contact_hit_box
   self.hit_boxes[EXPLODE_ATTACK_HITBOX_NAME] = self.explode_attack_hit_box
 
-  # Setup our hitboxes.
   self.contact_hit_box.damage_ranges = [
     HitBox.DamageRange.make_without_skill(Damage.DamageType.BLUDGEONING, 5, 10),
     HitBox.DamageRange.make_without_skill(Damage.DamageType.ACID, 5, 15)
@@ -34,10 +41,23 @@ func _ready() -> void:
   self.explode_attack_hit_box.owning_entity = self
   self.explode_attack_hit_box.knockback = 310
 
-  self.derived_statistics.movement_speed.base_value = 104
-  self.derived_statistics.movement_speed.compute_total()
+func _setup_stats() -> void:
+  self.xp = 100
 
-  # Loot!
+  self.attributes.strength.value = 20
+  self.attributes.constitution.value = 40
+  self.attributes.dexterity.value = 10
+  self.attributes.agility.value = 30
+  self.attributes.spirit.value = 10
+  self.attributes.wisdom.value = 10
+  self.attributes.intelligence.value = 10
+  self.attributes.charisma.value = 10
+  self.attributes.luck.value = 10
+
+  self.derived_statistics.max_health.base_value = 146
+  self.derived_statistics.movement_speed.base_value = 104
+
+func _setup_loot() -> void:
   var loot_entries: Array[LootEntry] = []
   loot_entries.append(LootEntry.new(Item.NULL, 1000, -1, 1, 1))
   loot_entries.append(LootEntry.new(ItemApple.NAME, 100, 1, 1, 1))
@@ -52,6 +72,3 @@ func _ready() -> void:
 
   self.loot_tables.append(table)
   self.loot_tables.append(table2)
-
-  self.state_machine.initialize()
-  super._ready()

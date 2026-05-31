@@ -69,6 +69,13 @@ func _ready() -> void:
   self.entity_id = "%s_%d" % [self.name, randi_range(100_000, 999_999)]
   EntityManager.add_entity(self)
 
+  # Recompute all derived statistics. Many base values get set in the enemy
+  # initializers. Just make sure the correct totals have been calculated.
+  for stat_name in self.derived_statistics.ALL_DERIVED_STATISTICS:
+    var stat: DerivedStatistic = self.derived_statistics.get(stat_name)
+    stat.compute_total()
+
+
 func _exit_tree() -> void:
   EntityManager.remove_entity(self)
 

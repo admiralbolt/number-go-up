@@ -11,10 +11,29 @@ func _ready() -> void:
   self.animation_player = archer_animator.animator
   self.hurt_box = $HurtBox
 
-  self.derived_statistics.movement_speed.base_value = 30
-  self.derived_statistics.movement_speed.compute_total()
+  self._setup_stats()
+  self._setup_loot()
 
-  # Loot!
+  self.state_machine.initialize()
+  super._ready()
+
+func _setup_stats() -> void:
+  self.xp = 150
+
+  self.attributes.strength.value = 20
+  self.attributes.constitution.value = 20
+  self.attributes.dexterity.value = 40
+  self.attributes.agility.value = 40
+  self.attributes.spirit.value = 20
+  self.attributes.wisdom.value = 20
+  self.attributes.intelligence.value = 30
+  self.attributes.charisma.value = 10
+  self.attributes.luck.value = 10
+
+  self.derived_statistics.max_health.base_value = 98
+  self.derived_statistics.movement_speed.base_value = 30
+
+func _setup_loot() -> void:
   var loot_entries: Array[LootEntry] = []
   loot_entries.append(LootEntry.new(Item.NULL, 1000, -1, 1, 1))
   loot_entries.append(LootEntry.new(ItemApple.NAME, 100, 1, 1, 1))
@@ -29,6 +48,3 @@ func _ready() -> void:
 
   self.loot_tables.append(table)
   self.loot_tables.append(table2)
-
-  self.state_machine.initialize()
-  super._ready()
