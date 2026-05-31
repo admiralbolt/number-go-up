@@ -39,7 +39,7 @@ window/size/viewport_width=3840
 window/size/viewport_height=2160
 window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
-window/stretch/scale=6.0
+window/stretch/scale=8.0
 window/dpi/allow_hidpi=false
 
 [input]

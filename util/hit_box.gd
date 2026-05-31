@@ -13,7 +13,7 @@ class_name HitBox extends Area2D
 signal on_hit()
 
 var owning_entity: Entity = null
-var collision_shape: CollisionShape2D
+var collision_shapes: Array[CollisionShape2D] = []
 var hit_log: HitLog
 
 var damage_ranges: Array[DamageRange]
@@ -33,10 +33,9 @@ func _ready() -> void:
   # The collision shape should always be a child of the hit box.
   for child in get_children():
     if child is CollisionShape2D:
-      self.collision_shape = child
-      break
+      self.collision_shapes.append(child)
 
-  if self.collision_shape == null:
+  if self.collision_shapes.size() == 0:
     push_error("HitBox: %s does not have a CollisionShape2D child." % self.name)
   
   area_entered.connect(_on_area_entered)

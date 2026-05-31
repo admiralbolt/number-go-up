@@ -20,7 +20,7 @@ func change_weapon(weapon: Weapon) -> void:
 
   # Apply collision shape settings.
   self.hit_box.reset()
-  self.hit_box.collision_shape.shape = sword_shape.collision_shape
+  self.hit_box.collision_shapes[0].shape = sword_shape.collision_shape
   self.hit_box.position = sword_shape.shape_position
   self.hit_box.rotation = sword_shape.shape_rotation
   self.hit_box.scale = sword_shape.shape_scale

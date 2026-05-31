@@ -20,11 +20,9 @@ func _init() -> void:
   self.icon = BLEED_ICON
 
 func process(target: Entity, delta: float) -> bool:
-  super.process(target, delta)
-
   var event: Damage.DamageEvent = Damage.DamageEvent.new(target, self.damage_per_second * self.stack_count * delta, Damage.DamageType.BLEED)
   event.owner = self.owner
   Damage.apply_damage(event)
 
-  return self.timer <= 0
+  return super.process(target, delta)
 

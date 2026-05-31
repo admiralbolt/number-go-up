@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://chip2p6yekyqb" path="res://map/PlayerSpawner.tscn" id="2_eet6f"]
 [ext_resource type="PackedScene" uid="uid://bxby4uyjmvx1u" path="res://map/LevelTransition.tscn" id="4_bmov4"]
 [ext_resource type="PackedScene" uid="uid://ctd1xvqdv0hpm" path="res://enemies/archer/Archer.tscn" id="5_wxbqt"]
+[ext_resource type="PackedScene" uid="uid://cljhem8wxb87h" path="res://enemies/orc/Orc.tscn" id="6_8kuo2"]
 
 [node name="Area3" type="Node2D" unique_id=1415069185]
 script = ExtResource("1_qtly5")
@@ -27,5 +28,8 @@ target_transition_area = "LevelTransitionTop"
 size = 2
 side = 3
 
+[node name="Orc" parent="." unique_id=1649129050 instance=ExtResource("6_8kuo2")]
+position = Vector2(401, -96)
+
 [node name="Archer" parent="." unique_id=710523411 instance=ExtResource("5_wxbqt")]
-position = Vector2(164, -113)
+position = Vector2(127.99999, -67.99999)

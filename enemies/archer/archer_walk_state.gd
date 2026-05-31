@@ -9,6 +9,7 @@ func _init() -> void:
 
 func on_enter() -> void:
   # Pick a random direction to walk in!
+  self.enemy.archer_animator.sprite.hframes = 6
   self.enemy.facing = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 
   self.enemy.animation_player.play("EnemyAnimations/walk_%s" % self.enemy.facing_name)

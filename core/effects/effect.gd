@@ -70,6 +70,7 @@ func process(_target: Entity, delta: float) -> bool:
       self.stack_count -= self.stack_fall_off
       self.timer = self.duration
 
+  self.changed.emit()
   return self.timer <= 0
 
 func _to_string() -> String:
