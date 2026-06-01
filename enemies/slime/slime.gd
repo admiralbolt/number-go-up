@@ -11,15 +11,12 @@ const EXPLODE_ATTACK_HITBOX_NAME: String = "EXPLODE_ATTACK_HITBOX"
 
 func _ready() -> void:
   self.state_machine = slime_state_machine
-  self.state_machine.enemy = self
   self.animation_player = slime_animator.animator
-  self.hurt_box = $HurtBox
 
   self._setup_hitboxes()
   self._setup_stats()
   self._setup_loot()
   
-  self.state_machine.initialize()
   super._ready()
 
 func _setup_hitboxes() -> void:

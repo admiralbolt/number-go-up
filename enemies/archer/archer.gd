@@ -7,14 +7,11 @@ const LOCK_ON_RANGE: float = 170.0
 
 func _ready() -> void:
   self.state_machine = self.archer_state_machine
-  self.state_machine.enemy = self
   self.animation_player = archer_animator.animator
-  self.hurt_box = $HurtBox
 
   self._setup_stats()
   self._setup_loot()
 
-  self.state_machine.initialize()
   super._ready()
 
 func _setup_stats() -> void:

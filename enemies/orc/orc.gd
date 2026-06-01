@@ -12,16 +12,13 @@ const SLASH_HIT_BOX: String = "SLASH_ATTACK_HITBOX"
 @onready var slash_hit_box: HitBox = $OrcAnimator/SlashHitBox
 
 func _ready() -> void:
-  self.state_machine = orc_state_machine
-  self.state_machine.enemy = self
+  self.state_machine = self.orc_state_machine
   self.animation_player = orc_animator.animator
-  self.hurt_box = $HurtBox
 
   self._setup_hitboxes()
   self._setup_stats()
   self._setup_loot()
   
-  self.state_machine.initialize()
   super._ready()
 
 func _setup_hitboxes() -> void:
