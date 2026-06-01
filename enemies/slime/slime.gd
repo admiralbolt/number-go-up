@@ -61,17 +61,8 @@ func _setup_stats() -> void:
   self.derived_statistics.movement_speed.base_value = 104
 
 func _setup_loot() -> void:
-  var loot_entries: Array[LootEntry] = []
-  loot_entries.append(LootEntry.new(Item.NULL, 1000, -1, 1, 1))
-  loot_entries.append(LootEntry.new(ItemApple.NAME, 100, 1, 1, 1))
-
-  var table: LootTable = LootTable.new(3, loot_entries)
-
-  var loot_entries2: Array[LootEntry] = []
-  loot_entries2.append(LootEntry.new(Item.NULL, 600, -1, 1, 1))
-  loot_entries2.append(LootEntry.new(ItemCoin.NAME, 100, 1, 1, 3))
-
-  var table2: LootTable = LootTable.new(2, loot_entries2)
-
-  self.loot_tables.append(table)
-  self.loot_tables.append(table2)
+  self.loot_tables.append(LootTable.new(3, [
+    LootEntry.new(Item.NULL, 1000, -1, 1, 1),
+    LootEntry.new(ItemApple.NAME, 80, 1, 1, 1),
+  ]))
+  self.loot_tables.append(LootHelper.COIN_TABLE_L0)

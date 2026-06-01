@@ -1,6 +1,10 @@
-class_name LootHelper
+extends Node
 
-static var BASIC_COIN_TABLE: LootTable = LootTable.new(3, [
-  LootEntry.new(Item.NULL, 0, 1_000, -0.5),
-  LootEntry.new(ItemApple.NAME, 1, 30, 0.5),
-])
+static var COIN_TABLE_L0: LootTable
+
+func _ready() -> void:
+  ### Coin Tables! ###
+  COIN_TABLE_L0 = LootTable.new(2, [
+    LootEntry.new(Item.NULL, 600, -1, 1, 1),
+    LootEntry.new(ItemCoin.NAME, 100, 1, 1, 3)
+  ])
