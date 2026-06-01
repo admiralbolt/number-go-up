@@ -11,6 +11,7 @@ func _ready() -> void:
   self.state_machine = $SlimeStateMachine
   self.hurt_box = $HurtBox
   self.animation_player = $SlimeAnimator/AnimationPlayer
+  self.sprite = $SlimeAnimator/Sprite2D
 
   self._setup_hitboxes()
   self._setup_stats()

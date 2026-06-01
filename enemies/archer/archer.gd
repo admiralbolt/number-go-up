@@ -6,6 +6,7 @@ func _ready() -> void:
   self.state_machine = $ArcherStateMachine
   self.hurt_box = $HurtBox
   self.animation_player = $ArcherAnimator/AnimationPlayer
+  self.sprite = $ArcherAnimator/Sprite2D
 
   self._setup_stats()
   self._setup_loot()

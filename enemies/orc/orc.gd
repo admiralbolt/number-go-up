@@ -13,6 +13,7 @@ func _ready() -> void:
   self.state_machine = $OrcStateMachine
   self.hurt_box = $HurtBox
   self.animation_player = $OrcAnimator/AnimationPlayer
+  self.sprite = $OrcAnimator/Sprite2D
 
   self._setup_hitboxes()
   self._setup_stats()

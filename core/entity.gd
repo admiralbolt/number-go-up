@@ -75,7 +75,6 @@ func _ready() -> void:
     var stat: DerivedStatistic = self.derived_statistics.get(stat_name)
     stat.compute_total()
 
-
 func _exit_tree() -> void:
   EntityManager.remove_entity(self)
 
