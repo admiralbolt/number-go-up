@@ -2,12 +2,10 @@ class_name Archer extends Enemy
 
 const LOCK_ON_RANGE: float = 170.0
 
-@onready var archer_state_machine: StateMachine = $ArcherStateMachine
-@onready var archer_animator: ArcherAnimator = $ArcherAnimator
-
 func _ready() -> void:
-  self.state_machine = self.archer_state_machine
-  self.animation_player = archer_animator.animator
+  self.state_machine = $ArcherStateMachine
+  self.hurt_box = $HurtBox
+  self.animation_player = $ArcherAnimator/AnimationPlayer
 
   self._setup_stats()
   self._setup_loot()

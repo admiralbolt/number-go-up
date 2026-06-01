@@ -10,11 +10,11 @@ func _init() -> void:
 
 func _keep_at_it() -> void:
   self.attacks_left -= 1
+  self.enemy.hit_boxes[Orc.SLASH_HIT_BOX].reset()
   self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_primary_direction)
 
 func on_enter() -> void:
   self.attacks_left = 3
-  self.enemy.orc_animator.sprite.hframes = 8
   self.enemy.hit_boxes[Orc.SLASH_HIT_BOX].enable()
   self.enemy.facing = (PlayerManager.player.global_position - self.enemy.global_position).normalized()
   self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_primary_direction)
@@ -36,4 +36,3 @@ func process(_delta: float) -> String:
     return OrcStalkState.NAME
 
   return State.NULL_STATE
-

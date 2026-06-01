@@ -7,13 +7,12 @@ const CHASE_RANGE: float = 140.0
 const ATTACK_RANGE: float = 25.0
 const SLASH_HIT_BOX: String = "SLASH_ATTACK_HITBOX"
 
-@onready var orc_state_machine: StateMachine = $OrcStateMachine
-@onready var orc_animator: OrcAnimator = $OrcAnimator
 @onready var slash_hit_box: HitBox = $OrcAnimator/SlashHitBox
 
 func _ready() -> void:
-  self.state_machine = self.orc_state_machine
-  self.animation_player = orc_animator.animator
+  self.state_machine = $OrcStateMachine
+  self.hurt_box = $HurtBox
+  self.animation_player = $OrcAnimator/AnimationPlayer
 
   self._setup_hitboxes()
   self._setup_stats()

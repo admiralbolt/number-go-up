@@ -8,7 +8,6 @@ func _init() -> void:
   self.self_loop = true
 
 func on_enter() -> void:
-  self.enemy.archer_animator.sprite.hframes = 5
   self.enemy.animation_player.play("EnemyAnimations/attack_%s" % self.enemy.facing_name)
   self.enemy.animation_player.animation_finished.connect(self._fire_arrow)
 

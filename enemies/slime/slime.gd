@@ -4,14 +4,13 @@ const CHASE_RANGE: float = 140.0
 const ATTACK_RANGE: float = 25.0
 const EXPLODE_ATTACK_HITBOX_NAME: String = "EXPLODE_ATTACK_HITBOX"
 
-@onready var slime_state_machine: StateMachine = $SlimeStateMachine
-@onready var slime_animator: SlimeAnimator = $SlimeAnimator
 @onready var contact_hit_box: HitBox = $SlimeAnimator/ContactHitBox
 @onready var explode_attack_hit_box: HitBox = $SlimeAnimator/ExplodeAttackHitBox
 
 func _ready() -> void:
-  self.state_machine = slime_state_machine
-  self.animation_player = slime_animator.animator
+  self.state_machine = $SlimeStateMachine
+  self.hurt_box = $HurtBox
+  self.animation_player = $SlimeAnimator/AnimationPlayer
 
   self._setup_hitboxes()
   self._setup_stats()

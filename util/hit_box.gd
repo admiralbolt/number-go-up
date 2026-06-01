@@ -64,6 +64,7 @@ func disable() -> void:
 func reset() -> void:
   self.monitoring = false
   self.hit_log = null
+  self.enable()
 
 func has_hit() -> bool:
   return self.hit_log and self.hit_log.hits.size() > 0

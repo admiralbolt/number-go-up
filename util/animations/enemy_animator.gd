@@ -18,20 +18,20 @@ static func frame_change_animation(sprite_path: NodePath, entry: AnimationEntry)
   var h_frame_path: NodePath = "%s:hframes" % sprite_path
   var v_frame_path: NodePath = "%s:vframes" % sprite_path
 
-  var frame_track_id: int = anim.add_track(Animation.TYPE_VALUE)
+  # Set the texture and number of h/v frames at the start.
   var texture_track_id: int = anim.add_track(Animation.TYPE_VALUE)
   var h_frame_track_id: int = anim.add_track(Animation.TYPE_VALUE)
   var v_frame_track_id: int = anim.add_track(Animation.TYPE_VALUE)
-  anim.track_set_path(frame_track_id, sprite_frame_path)
+  var frame_track_id: int = anim.add_track(Animation.TYPE_VALUE)
   anim.track_set_path(texture_track_id, texture_path)
   anim.track_set_path(h_frame_track_id, h_frame_path)
   anim.track_set_path(v_frame_track_id, v_frame_path)
-  anim.value_track_set_update_mode(frame_track_id, Animation.UPDATE_DISCRETE)
+  anim.track_set_path(frame_track_id, sprite_frame_path)
   anim.value_track_set_update_mode(texture_track_id, Animation.UPDATE_DISCRETE)
   anim.value_track_set_update_mode(h_frame_track_id, Animation.UPDATE_DISCRETE)
   anim.value_track_set_update_mode(v_frame_track_id, Animation.UPDATE_DISCRETE)
+  anim.value_track_set_update_mode(frame_track_id, Animation.UPDATE_DISCRETE)
 
-  # Set the texture and number of h/v frames at the start.
   anim.track_insert_key(texture_track_id, 0, entry.texture)
   anim.track_insert_key(h_frame_track_id, 0, entry.texture_h_frames)
   anim.track_insert_key(v_frame_track_id, 0, entry.texture_v_frames)
