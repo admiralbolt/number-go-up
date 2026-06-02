@@ -1,12 +1,16 @@
 """A HIT BOX FOR AN ATTACK!
 
 For Players:
-  HitBox: Should have Collision Monitoring 2 set (and nothing else).
+  HitBox: Should have Collision Mask 2 set (for enemy hurtbox) and Mask 3 (for projectile hurtbox).
   HurtBox: Should have Collision Layer 9 set (and nothing else).
 
 For Enemies:
-  HitBox: Should have Collision Monitoring 9 set (and nothing else).
+  HitBox: Should have Collision Mask 9 set (for player hurtbox) and Mask 3 (for projectile hurtbox).
   HurtBox: Should have Collision Layer 2 set (and nothing else).
+
+For Projectiles:
+  HurtBox: Should have Collision Layer 3 set (and nothing else).
+  HitBox: Should have Collision Mask 2 set (for enemy hurtbox) and Mask 9 set (for player hurtbox).
 """
 class_name HitBox extends Area2D
 
@@ -19,6 +23,8 @@ var hit_log: HitLog
 var damage_ranges: Array[DamageRange]
 var effects: Array[Effect] = []
 var knockback: float
+
+var can_hit_self: bool = false
 
 enum KnockbackType {
   DIRECTIONAL_OUTWARD,
@@ -44,14 +50,21 @@ func _on_area_entered(area: Area2D) -> void:
   if area is not HurtBox:
     return
 
-  var hurt_box_owner = area.owner
+  self.hit_hurt_box(area)
+
+func hit_hurt_box(hurt_box: HurtBox) -> void:
+  var hurt_box_owner = hurt_box.owner
+
+  if not can_hit_self and hurt_box.entity.entity_id == self.owning_entity.entity_id:
+    return
+
   if self.hit_log:
     if self.hit_log.has_hit(hurt_box_owner):
       return
     self.hit_log.log_hit(hurt_box_owner)
 
   self.on_hit.emit()
-  area.receive_hit(self)
+  hurt_box.receive_hit(self)
 
 func enable(with_hit_logging: bool = true) -> void:
   self.monitoring = true

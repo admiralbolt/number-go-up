@@ -585,7 +585,9 @@ texture = ExtResource("3_e0qqe")
 
 [node name="HitBox" parent="WeaponRenderer/SpriteAndShape" unique_id=827173607 instance=ExtResource("4_xj3nd")]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
+monitoring = false
+monitorable = false
 knockback_type = 1
 
 [node name="WeaponCollisionShape" type="CollisionShape2D" parent="WeaponRenderer/SpriteAndShape/HitBox" unique_id=123902274]
@@ -650,7 +652,7 @@ offset_bottom = -23.0
 scale = Vector2(0.5, 0.5)
 
 [node name="PlayerHurtBox" type="Area2D" parent="." unique_id=211399231]
-collision_layer = 256
+collision_layer = 260
 collision_mask = 0
 script = ExtResource("14_itdfg")
 

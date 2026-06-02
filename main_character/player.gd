@@ -29,6 +29,8 @@ func _ready() -> void:
   self.derived_statistics.carrying_capacity.changed.connect(self._apply_encumberance)
 
   self.hurt_box = $PlayerHurtBox
+  self.weapon_renderer.hit_box.disable()
+  
   super._ready()
 
 func level_up() -> void:

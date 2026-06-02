@@ -1513,7 +1513,7 @@ libraries/EnemyAnimations = SubResource("AnimationLibrary_qxyj3")
 
 [node name="ExplodeAttackHitBox" type="Area2D" parent="SlimeAnimator" unique_id=264941924]
 collision_layer = 0
-collision_mask = 256
+collision_mask = 260
 script = ExtResource("5_v3fw7")
 metadata/_custom_type_script = "uid://cvknglif0g3v1"
 
@@ -1562,7 +1562,7 @@ script = ExtResource("16_sypct")
 
 [node name="HurtBox" parent="." unique_id=103616579 instance=ExtResource("7_bkm6f")]
 visible = false
-collision_layer = 2
+collision_layer = 6
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1503483212]

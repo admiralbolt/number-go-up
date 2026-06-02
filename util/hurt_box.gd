@@ -1,12 +1,16 @@
 """A HURT BOX FOR AN ENTITY!
 
 For Players:
-  HitBox: Should have Collision Monitoring 2 set (and nothing else).
+  HitBox: Should have Collision Mask 2 set (for enemy hurtbox) and Mask 3 (for projectile hurtbox).
   HurtBox: Should have Collision Layer 9 set (and nothing else).
 
 For Enemies:
-  HitBox: Should have Collision Monitoring 9 set (and nothing else).
+  HitBox: Should have Collision Mask 9 set (for player hurtbox) and Mask 3 (for projectile hurtbox).
   HurtBox: Should have Collision Layer 2 set (and nothing else).
+
+For Projectiles:
+  HurtBox: Should have Collision Layer 3 set (and nothing else).
+  HitBox: Should have Collision Mask 2 set (for enemy hurtbox) and Mask 9 set (for player hurtbox).
 """
 class_name HurtBox extends Area2D
 
@@ -27,4 +31,5 @@ func receive_hit(hit_box: HitBox) -> void:
 
 func disable() -> void:
   self.set_collision_layer_value(2, false)
+  self.set_collision_layer_value(3, false)
   self.set_collision_layer_value(9, false)

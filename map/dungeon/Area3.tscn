@@ -29,9 +29,7 @@ size = 2
 side = 3
 
 [node name="Orc" parent="." unique_id=1649129050 instance=ExtResource("6_8kuo2")]
-position = Vector2(401, -96)
+position = Vector2(239.00002, -78)
 
 [node name="Archer" parent="." unique_id=710523411 instance=ExtResource("5_wxbqt")]
 position = Vector2(127.99999, -67.99999)
-entity_id = null
-xp = null
