@@ -55,8 +55,9 @@ func _on_area_entered(area: Area2D) -> void:
 func hit_hurt_box(hurt_box: HurtBox) -> void:
   var hurt_box_owner = hurt_box.owner
 
-  if not can_hit_self and hurt_box.entity.entity_id == self.owning_entity.entity_id:
-    return
+  if hurt_box.entity != null and self.owning_entity != null:
+    if not can_hit_self and hurt_box.entity.entity_id == self.owning_entity.entity_id:
+      return
 
   if self.hit_log:
     if self.hit_log.has_hit(hurt_box_owner):
