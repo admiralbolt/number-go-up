@@ -14,7 +14,7 @@ func _ready() -> void:
   super._ready()
 
 func _setup_stats() -> void:
-  self.xp = 150
+  self.xp = 180
 
   self.attributes.strength.value = 20
   self.attributes.constitution.value = 20

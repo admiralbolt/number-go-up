@@ -33,3 +33,5 @@ position = Vector2(239.00002, -78)
 
 [node name="Archer" parent="." unique_id=710523411 instance=ExtResource("5_wxbqt")]
 position = Vector2(127.99999, -67.99999)
+entity_id = ""
+xp = 0.0

@@ -74,6 +74,7 @@ func enable(with_hit_logging: bool = true) -> void:
 
 func disable() -> void:
   self.monitoring = false
+  self.hit_log = null
 
 func reset() -> void:
   self.monitoring = false

@@ -28,6 +28,7 @@ func _ready() -> void:
   self.inventory.updated.connect(self._apply_encumberance.unbind(1))
   self.derived_statistics.carrying_capacity.changed.connect(self._apply_encumberance)
 
+  self.sprite = $PlayerAnimator/Sprite2D
   self.hurt_box = $PlayerHurtBox
   self.weapon_renderer.hit_box.disable()
   

@@ -28,7 +28,7 @@ func _setup_hitboxes() -> void:
     HitBox.DamageRange.make_without_skill(Damage.DamageType.SLASHING, 20, 30),
   ]
   self.slash_hit_box.owning_entity = self
-  self.slash_hit_box.knockback = 75
+  self.slash_hit_box.knockback = 85
   self.slash_hit_box.enable(false)
 
   var effect: BleedEffect = BleedEffect.new()
@@ -41,7 +41,7 @@ func _setup_hitboxes() -> void:
   self.slash_hit_box.disable()
 
 func _setup_stats() -> void:
-  self.xp = 400
+  self.xp = 550
 
   self.attributes.strength.value = 40
   self.attributes.constitution.value = 40

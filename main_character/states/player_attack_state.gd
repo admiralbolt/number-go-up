@@ -30,7 +30,7 @@ func on_exit() -> void:
   self.player.animation_player.stop()
   self.player.weapon_renderer.animator.stop()
   self.player.weapon_renderer.sprite_and_shape.visible = false
-  self.player.weapon_renderer.hit_box.reset()
+  self.player.weapon_renderer.hit_box.disable()
 
 func process(delta: float) -> String:
   self.player.velocity = self.player.held_direction.normalized() * self.player.derived_statistics.movement_speed.total_value * 0.5

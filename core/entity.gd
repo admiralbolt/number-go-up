@@ -23,6 +23,8 @@ var facing: Vector2 = Vector2.DOWN: set = _set_facing
 var facing_name: String = "down"
 var facing_primary_direction: String = "down"
 
+var sprite: Sprite2D
+var flash_tween: Tween
 var dying: bool = false
 
 # All entities should have a hurt box.
@@ -74,6 +76,8 @@ func _ready() -> void:
   for stat_name in self.derived_statistics.ALL_DERIVED_STATISTICS:
     var stat: DerivedStatistic = self.derived_statistics.get(stat_name)
     stat.compute_total()
+
+  self.hurt_box.on_hit.connect(self._flash_on_hit)
 
 func _exit_tree() -> void:
   EntityManager.remove_entity(self)
@@ -153,6 +157,14 @@ func _physics_process(delta: float) -> void:
   # physics manager here should happen *LAST*.
   self.physics_manager.process_effects(delta)
   self.move_and_slide()
+
+func _flash_on_hit() -> void:
+  if self.flash_tween and self.flash_tween.is_valid():
+    self.flash_tween.kill()
+
+  self.sprite.modulate = Color.from_rgba8(255, 100, 100)
+  self.flash_tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+  self.flash_tween.tween_property(self.sprite, "modulate", Color.from_rgba8(255, 255, 255), 0.6)
 
 func debug_print() -> void:
   self.attributes.debug_print()

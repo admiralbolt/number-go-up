@@ -43,7 +43,10 @@ func reinitialize(p_effects: Array[Effect]) -> void:
   for effect in p_effects:
     self.apply_effect(effect)
 
-func apply_effect(effect: Effect) -> void:
+func apply_effect(p_effect: Effect) -> void:
+  # Everything is done by reference, so we need to make sure we are adding a
+  # copy of the effect.
+  var effect: Effect = p_effect.duplicate(true)
   effect.apply(self.entity)
   if effect.is_instant:
     return
