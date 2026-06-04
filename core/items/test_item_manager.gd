@@ -30,7 +30,7 @@ static func make_next_equipment() -> Equipment:
   var item: Equipment = Equipment.new()
 
   item.name = GeneratorUtil.generate_random_word()
-  
+
   item.description = GeneratorUtil.generate_paragraph()
   item.icon = TextureManager.GENERIC_ICONS_1.make_icon(frame)
   item.rarity = Item.ItemRarity.values().pick_random()
@@ -38,7 +38,7 @@ static func make_next_equipment() -> Equipment:
   item.slot = Equipment.EquipmentSlot.values().pick_random()
 
   item.is_stackable = true if randf() < 0.5 else false
-  item.weight = randf_range(0.1, 100.0)
+  item.weight = randf_range(0.1, 30.0)
   item.base_price = randf_range(1, 10_000)
   item.is_sellable = true if randf() < 0.6 else false
   item.init_uid()

@@ -131,7 +131,7 @@ texture = ExtResource("2_yu6tt")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1657053058]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("2_8kyvb")
 metadata/_custom_type_script = "uid://cvknglif0g3v1"
 

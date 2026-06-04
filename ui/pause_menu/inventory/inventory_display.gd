@@ -154,6 +154,9 @@ func _unhandled_input(event: InputEvent) -> void:
     return
 
   if event.is_action_pressed("ui_cancel"):
-    # Discard the item / equipment. For now we don't have dropped items so we
-    # just decrement.
+    var item_pickup: ItemPickup = ItemManager.make_item_pickup(self.focused_item)
+    item_pickup.global_position = PlayerManager.player.global_position + PlayerManager.player.facing * 22
+    item_pickup.velocity = PlayerManager.player.facing
+    self.get_tree().get_current_scene().call_deferred("add_child", item_pickup)
+
     PlayerManager.player.inventory.decrement_item(self.focused_item)
