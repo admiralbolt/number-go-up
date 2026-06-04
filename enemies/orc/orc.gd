@@ -53,6 +53,7 @@ func _setup_stats() -> void:
   self.attributes.charisma.value = 10
   self.attributes.luck.value = 10
 
+  self.derived_statistics.armor.base_value = 20
   self.derived_statistics.max_health.base_value = 295
   self.derived_statistics.health_regen.base_value = 3
   self.derived_statistics.movement_speed.base_value = 110
