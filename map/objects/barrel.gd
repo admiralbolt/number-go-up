@@ -6,6 +6,8 @@ func _ready() -> void:
   self.is_pushable = true
   self.weight = 150.0
 
+  self.derived_statistics.piercing_reduction.base_value = 10
+  self.derived_statistics.slashing_reduction.base_value = 10
   super._ready()
 
   self.died.connect(self.queue_free.unbind(1))

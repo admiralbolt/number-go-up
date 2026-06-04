@@ -35,4 +35,4 @@ side = 1
 position = Vector2(100, 377)
 
 [node name="Archer" parent="." unique_id=710523411 instance=ExtResource("6_nx4m1")]
-position = Vector2(102.99999, 210.99998)
+position = Vector2(77.00001, 211.00002)
