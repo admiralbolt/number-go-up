@@ -7,7 +7,7 @@ var owning_entity: Entity
 
 func _ready() -> void:
   self.hit_box.on_hit.connect(queue_free)
-  self.hurt_box.on_hit.connect(queue_free)
+  self.hurt_box.on_hit.connect(queue_free.unbind(1))
 
 func initialize(p_owner: Entity, p_direction: Vector2, p_velocity: float) -> void:
   self.owning_entity = p_owner
@@ -30,6 +30,6 @@ func _physics_process(delta: float) -> void:
     # If we get here and we haven't queue freed yet, that means there is a
     # chance we are colliding with something that should take damage.
     # We need to apply damage in those cases before queue_free().
-    if collision.get_collider() is Entity:
+    if collision.get_collider() is Entity or collision.get_collider() is InteractableObject:
       self.hit_box.hit_hurt_box(collision.get_collider().hurt_box)
     queue_free()

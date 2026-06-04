@@ -77,7 +77,6 @@ static func apply_hit(owner: Entity, target: Entity, hit_box: HitBox) -> void:
 
   target.physics_manager.apply_knockback(hit_box)
 
-
 static func apply_damage(damage_event: DamageEvent) -> void:
   # Can't deal damage to no one.
   if damage_event.target == null:
@@ -98,7 +97,7 @@ static func apply_damage(damage_event: DamageEvent) -> void:
   # Don't allow negative values.
   damage_event.total_damage = max(damage_event.total_damage, 0)
 
-  if damage_event.governing_skill != null:
+  if damage_event.governing_skill != null and damage_event.target.gives_skill_xp:
     damage_event.governing_skill.add_xp(damage_event.total_damage)
 
   damage_event.target.current_health -= damage_event.total_damage

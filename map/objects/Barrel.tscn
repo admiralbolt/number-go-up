@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dk7g046p8hcqg"]
+
+[ext_resource type="Texture2D" uid="uid://bkvwhc7f6cgjj" path="res://assets/background/dungeon_tileset1/Objects.png" id="1_fm31l"]
+[ext_resource type="Script" uid="uid://dcoilalqs3cfe" path="res://map/objects/barrel.gd" id="1_vg5mm"]
+[ext_resource type="PackedScene" uid="uid://f18k057haeer" path="res://util/HurtBox.tscn" id="2_tsl2l"]
+[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/components/BasicHealthBar.tscn" id="4_n13v3"]
+[ext_resource type="PackedScene" uid="uid://csamsy8itgmr6" path="res://ui/components/EffectManagerDisplay.tscn" id="5_4rnw4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsl2l"]
+atlas = ExtResource("1_fm31l")
+region = Rect2(96, 64, 16, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vg5mm"]
+size = Vector2(16, 8)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vg5mm"]
+radius = 8.0
+height = 22.0
+
+[node name="Barrel" type="CharacterBody2D" unique_id=1947779097]
+collision_layer = 16
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_vg5mm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=559053839]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_tsl2l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1560810679]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_vg5mm")
+
+[node name="HurtBox" parent="." unique_id=103616579 instance=ExtResource("2_tsl2l")]
+collision_layer = 262
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1791186604]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_vg5mm")
+debug_color = Color(0.7059218, 0.4832232, 0.21150997, 0.41960785)
+
+[node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("4_n13v3")]
+offset_left = -11.000001
+offset_top = -24.0
+offset_right = 46.0
+offset_bottom = -16.0
+scale = Vector2(0.4, 0.4)
+
+[node name="EffectManagerDisplay" parent="." unique_id=984141562 instance=ExtResource("5_4rnw4")]

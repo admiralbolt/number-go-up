@@ -3,6 +3,9 @@ class_name MathUtil
 static func degrees_to_radians(degrees: float) -> float:
   return degrees * PI / 180
 
+static func radians_to_degrees(radians: float) -> float:
+  return radians * 180 / PI
+
 static func linear_rescale(value: float, old_min: float, old_max: float, new_min: float, new_max: float) -> float:
   return new_min + (new_max - new_min) * (value - old_min) / (old_max - old_min)
 

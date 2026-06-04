@@ -10,6 +10,9 @@ signal died(hit_box: HitBox)
 @export var derived_statistics: DerivedStatistics = DerivedStatistics.new()
 @export var skills: Skills = Skills.new()
 @export var xp: float = 0.0
+@export var gives_skill_xp: bool = true
+@export var is_pushable: bool = false
+@export var weight: float = 0.0
 
 var loot_tables: Array[LootTable] = []
 
@@ -77,7 +80,7 @@ func _ready() -> void:
     var stat: DerivedStatistic = self.derived_statistics.get(stat_name)
     stat.compute_total()
 
-  self.hurt_box.on_hit.connect(self._flash_on_hit)
+  self.hurt_box.on_hit.connect(self._flash_on_hit.unbind(1))
 
 func _exit_tree() -> void:
   EntityManager.remove_entity(self)

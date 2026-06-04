@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cr6r7y26stubu" path="res://map/DungeonTileSet1.tscn" id="2_05hot"]
 [ext_resource type="PackedScene" uid="uid://chip2p6yekyqb" path="res://map/PlayerSpawner.tscn" id="3_05hot"]
 [ext_resource type="PackedScene" uid="uid://bxby4uyjmvx1u" path="res://map/LevelTransition.tscn" id="4_r4agl"]
-[ext_resource type="PackedScene" uid="uid://ctd1xvqdv0hpm" path="res://enemies/archer/Archer.tscn" id="5_50kdo"]
+[ext_resource type="PackedScene" uid="uid://dk7g046p8hcqg" path="res://map/objects/Barrel.tscn" id="5_50kdo"]
+[ext_resource type="PackedScene" uid="uid://ctd1xvqdv0hpm" path="res://enemies/archer/Archer.tscn" id="6_nx4m1"]
 
 [node name="Area2" type="Node2D" unique_id=1078562583]
 script = ExtResource("1_cnn6u")
@@ -30,5 +31,8 @@ level = "uid://wje5ocvurssa"
 size = 2
 side = 1
 
-[node name="Archer" parent="." unique_id=710523411 instance=ExtResource("5_50kdo")]
-position = Vector2(88, 278)
+[node name="Barrel" parent="." unique_id=916362884 instance=ExtResource("5_50kdo")]
+position = Vector2(100, 377)
+
+[node name="Archer" parent="." unique_id=710523411 instance=ExtResource("6_nx4m1")]
+position = Vector2(102.99999, 210.99998)

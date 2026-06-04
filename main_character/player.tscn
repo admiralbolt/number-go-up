@@ -569,6 +569,9 @@ height = 10.0
 radius = 13.0
 height = 26.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xj3nd"]
+size = Vector2(6.6874466, 7)
+
 [node name="Player" type="CharacterBody2D" unique_id=762666805]
 y_sort_enabled = true
 collision_mask = 17
@@ -672,3 +675,14 @@ collision_mask = 0
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_xj3nd")
 debug_color = Color(0.35044846, 0.59618115, 0.48236156, 0.41960785)
+
+[node name="Interactions" type="Node2D" parent="." unique_id=1349925465]
+
+[node name="PushBox" type="Area2D" parent="Interactions" unique_id=340938099]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/PushBox" unique_id=1188664233]
+position = Vector2(0.056028366, 3.5)
+shape = SubResource("RectangleShape2D_xj3nd")
+debug_color = Color(0.7877827, 0.31290093, 0.7523584, 0.41960785)

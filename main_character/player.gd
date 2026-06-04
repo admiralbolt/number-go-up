@@ -5,6 +5,9 @@ class_name Player extends Entity
 @onready var weapon_renderer: WeaponRenderer = $WeaponRenderer
 @onready var main_player_state_machine: MainPlayerStateMachine = $MainPlayerStateMachine
 
+@onready var interactions: Node2D = $Interactions
+@onready var push_box: Area2D = $Interactions/PushBox
+
 # Character customization options.
 @export var level: int = 1
 @export var character_class: CharacterClass = SlayerClass.new()
@@ -14,6 +17,7 @@ class_name Player extends Entity
 @export var character_name: String = GeneratorUtil.generate_random_word(6)
 
 var held_direction: Vector2 = Vector2.DOWN
+var pushing_object: Entity = null
 
 var starting_xp_this_level: float = 0.0
 var total_xp_to_next_level: float = RPGUtil.total_xp_for_next_level(1)
@@ -31,6 +35,9 @@ func _ready() -> void:
   self.sprite = $PlayerAnimator/Sprite2D
   self.hurt_box = $PlayerHurtBox
   self.weapon_renderer.hit_box.disable()
+
+  self.push_box.body_entered.connect(self._push_area_entered)
+  self.push_box.body_exited.connect(self._push_area_exited)
   
   super._ready()
 
@@ -59,7 +66,17 @@ func _process(_delta: float) -> void:
     # We only update facing if we are pressing something. This way, if we stop
     # pressing something the facing will still be up to date.
     self.facing = held_direction
+    self.interactions.rotation = self.facing.angle() - PI / 2
     self.weapon_renderer.hit_box.knockback_direction = self.facing
+    if self.pushing_object != null:
+      # Compute the knockback based on the strength and target weight. The
+      # multiplier should max at 1.
+      var knockback_multiplier: float = clampf(self.attributes.strength.total_value / self.pushing_object.weight, 0.0, 1.0)
+      self.pushing_object.physics_manager.knockback_effects.append(
+        PhysicsManager.KnockbackEffect.new(
+          self.facing, 18 * knockback_multiplier, 0.1
+        )
+      )
 
   if Input.is_action_just_pressed("hotbar1"):
     AbilityManager.use_ability(self, AbilityRupture.NAME)
@@ -69,9 +86,9 @@ func _process(_delta: float) -> void:
     self.main_player_state_machine.change_state(PlayerRollState.NAME)
     # self._test_buff_effect()
   elif Input.is_action_just_pressed("attack"):
-    self.inventory.add_item(TestItemManager.get_item(), randi_range(1, 7))
-    self.inventory.add_item(ItemApple.new())
-    self.inventory.add_item(EquipmentBreastplate.new())
+    # self.inventory.add_item(TestItemManager.get_item(), randi_range(1, 7))
+    # self.inventory.add_item(ItemApple.new())
+    # self.inventory.add_item(EquipmentBreastplate.new())
     self.main_player_state_machine.change_state(PlayerAttackState.NAME)
   elif held_direction != Vector2.ZERO:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)
@@ -131,3 +148,24 @@ func _apply_encumberance() -> void:
 
   self.modifier_manager.add_modifier(m)
   self.modifier_manager.add_modifier(m2)
+
+func _push_area_entered(b: Node2D) -> void:
+  if b is not Entity:
+    return
+
+  if not b.is_pushable:
+    return
+
+  self.pushing_object = b
+
+func _push_area_exited(b: Node2D) -> void:
+  if b is not Entity:
+    return
+
+  if not b.is_pushable:
+    return
+
+  if b != self.pushing_object:
+    return
+
+  self.pushing_object = null

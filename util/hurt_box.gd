@@ -14,7 +14,7 @@ For Projectiles:
 """
 class_name HurtBox extends Area2D
 
-signal on_hit()
+signal on_hit(hit_box: HitBox)
 
 var entity: Entity
 
@@ -24,7 +24,7 @@ func _ready() -> void:
   monitoring = false
 
 func receive_hit(hit_box: HitBox) -> void:
-  self.on_hit.emit()
+  self.on_hit.emit(hit_box)
 
   if self.entity != null:
     Damage.apply_hit(hit_box.owning_entity, self.entity, hit_box)
