@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bgqfut17r5mkk"]
+
+[ext_resource type="PackedScene" uid="uid://f18k057haeer" path="res://util/HurtBox.tscn" id="1_iv7x6"]
+[ext_resource type="Texture2D" uid="uid://bkvwhc7f6cgjj" path="res://assets/background/dungeon_tileset1/Objects.png" id="1_l84ud"]
+[ext_resource type="Script" uid="uid://bqtbdd2fpo6sg" path="res://map/objects/crate.gd" id="1_uklco"]
+[ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/components/BasicHealthBar.tscn" id="2_l84ud"]
+[ext_resource type="PackedScene" uid="uid://csamsy8itgmr6" path="res://ui/components/EffectManagerDisplay.tscn" id="3_uklco"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uklco"]
+atlas = ExtResource("1_l84ud")
+region = Rect2(119, 68, 19, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tksg"]
+size = Vector2(16, 10.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l84ud"]
+size = Vector2(16, 22)
+
+[node name="Crate" type="CharacterBody2D" unique_id=1981148510]
+collision_layer = 16
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_uklco")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1875069294]
+texture = SubResource("AtlasTexture_uklco")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=706604007]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_0tksg")
+
+[node name="HurtBox" parent="." unique_id=103616579 instance=ExtResource("1_iv7x6")]
+collision_layer = 262
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=136134671]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_l84ud")
+debug_color = Color(0.7882052, 0.42868793, 0.11927498, 0.41960785)
+
+[node name="BasicHealthBar" parent="." unique_id=43895216 instance=ExtResource("2_l84ud")]
+offset_left = -11.000001
+offset_top = -19.0
+offset_right = 46.0
+offset_bottom = -11.0
+scale = Vector2(0.4, 0.4)
+
+[node name="EffectManagerDisplay" parent="." unique_id=984141562 instance=ExtResource("3_uklco")]

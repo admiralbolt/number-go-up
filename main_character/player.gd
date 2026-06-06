@@ -74,7 +74,7 @@ func _process(_delta: float) -> void:
       var knockback_multiplier: float = clampf(self.attributes.strength.total_value / self.pushing_object.weight, 0.0, 1.0)
       self.pushing_object.physics_manager.knockback_effects.append(
         PhysicsManager.KnockbackEffect.new(
-          self.facing, 18 * knockback_multiplier, 0.1
+          self.facing, (self.derived_statistics.movement_speed.total_value / 6) * knockback_multiplier, 0.1
         )
       )
 
@@ -84,7 +84,7 @@ func _process(_delta: float) -> void:
 
   if Input.is_action_just_pressed("roll"):
     self.main_player_state_machine.change_state(PlayerRollState.NAME)
-    # self._test_buff_effect()
+    self._test_buff_effect()
   elif Input.is_action_just_pressed("attack"):
     # self.inventory.add_item(TestItemManager.get_item(), randi_range(1, 7))
     # self.inventory.add_item(ItemApple.new())

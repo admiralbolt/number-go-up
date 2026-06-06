@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxby4uyjmvx1u" path="res://map/LevelTransition.tscn" id="4_r4agl"]
 [ext_resource type="PackedScene" uid="uid://dk7g046p8hcqg" path="res://map/objects/Barrel.tscn" id="5_50kdo"]
 [ext_resource type="PackedScene" uid="uid://ctd1xvqdv0hpm" path="res://enemies/archer/Archer.tscn" id="6_nx4m1"]
+[ext_resource type="PackedScene" uid="uid://bgqfut17r5mkk" path="res://map/objects/Crate.tscn" id="7_yqo7n"]
 
 [node name="Area2" type="Node2D" unique_id=1078562583]
 script = ExtResource("1_cnn6u")
@@ -36,3 +37,6 @@ position = Vector2(100, 377)
 
 [node name="Archer" parent="." unique_id=710523411 instance=ExtResource("6_nx4m1")]
 position = Vector2(77.00001, 211.00002)
+
+[node name="Crate" parent="." unique_id=1981148510 instance=ExtResource("7_yqo7n")]
+position = Vector2(75, 318)
