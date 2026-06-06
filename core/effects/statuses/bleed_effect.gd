@@ -1,5 +1,6 @@
 class_name BleedEffect extends Effect
 
+const NAME: String = "BLEED"
 const BLEED_ICON: Texture2D = preload("res://assets/effects/icons/bleed.png")
 
 @export var damage_per_second: float = 0.0
@@ -12,6 +13,7 @@ func _get_owner() -> Entity:
   return owner
 
 func _init() -> void:
+  self.name = NAME
   self.effect_type = EffectType.DAMAGE
   self.is_instant = false
   self.is_stackable = true

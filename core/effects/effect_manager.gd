@@ -44,9 +44,15 @@ func reinitialize(p_effects: Array[Effect]) -> void:
     self.apply_effect(effect)
 
 func apply_effect(p_effect: Effect) -> void:
+  # If we can't apply the effect, we are done here. We can technically do this
+  # before the copy to save some cycles.
+  if not p_effect.can_apply(self.entity):
+    return
+
   # Everything is done by reference, so we need to make sure we are adding a
   # copy of the effect.
   var effect: Effect = p_effect.duplicate(true)
+ 
   effect.apply(self.entity)
   if effect.is_instant:
     return

@@ -6,6 +6,8 @@ Resources don't save nicely when they extend a parent class though.
 """
 class_name Effect extends Resource
 
+@export var name: String = ""
+
 enum EffectType {
   BUFF,
   DEBUFF,
@@ -33,6 +35,9 @@ enum EffectType {
 # Icon should be passed in as a texture, the thing creating the effect should
 # be responsible for loading/owning the resource.
 @export var icon: Texture2D = null
+
+func can_apply(target: Entity) -> bool:
+  return self.name not in target.effect_immunities
 
 func apply(_target: Entity) -> void:
   return

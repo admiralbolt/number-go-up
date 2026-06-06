@@ -20,6 +20,8 @@ var modifier_manager: ModifierManager = ModifierManager.new()
 var effect_manager: EffectManager = EffectManager.new()
 var physics_manager: PhysicsManager = PhysicsManager.new(self)
 var equipment_manager: EquipmentManager = EquipmentManager.new(self)
+# The value doesn't actually matter, using this as set effectively.
+var effect_immunities: Dictionary[String, bool] = {}
 
 # Which way we looking. Should always be normalized.
 var facing: Vector2 = Vector2.DOWN: set = _set_facing

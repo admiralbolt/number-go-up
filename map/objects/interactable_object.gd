@@ -27,3 +27,5 @@ func _setup_stats() -> void:
   self.derived_statistics.health_regen.base_value = 0
   self.derived_statistics.movement_speed.base_value = 0
   self.derived_statistics.knockback_resistance.base_value = 0.98
+
+  self.effect_immunities[BleedEffect.NAME] = true
