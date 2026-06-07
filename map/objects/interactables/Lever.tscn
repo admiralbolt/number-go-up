@@ -20,7 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_7nsem"]
 resource_name = "switch_off"
-length = 0.3
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,7 +28,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06679998, 0.1336, 0.2004, 0.2672),
+"times": PackedFloat32Array(0, 0.03339999, 0.0668, 0.1002, 0.1336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [114, 113, 112, 111, 110]
@@ -36,7 +36,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5kc65"]
 resource_name = "switch_on"
-length = 0.3
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,7 +44,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0668, 0.1336, 0.20040001, 0.2672),
+"times": PackedFloat32Array(0, 0.0334, 0.0668, 0.100200005, 0.1336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [110, 111, 112, 113, 114]

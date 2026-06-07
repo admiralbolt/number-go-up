@@ -573,7 +573,7 @@ height = 26.0
 size = Vector2(6.6874466, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8li3l"]
-size = Vector2(15.949402, 15.823816)
+size = Vector2(23.105186, 17.840836)
 
 [node name="Player" type="CharacterBody2D" unique_id=762666805]
 y_sort_enabled = true
@@ -695,6 +695,6 @@ collision_layer = 0
 collision_mask = 136
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/InteractBox" unique_id=399954494]
-position = Vector2(2.9915981, 7.1350803)
+position = Vector2(0, 8.143509)
 shape = SubResource("RectangleShape2D_8li3l")
 debug_color = Color(0.25849634, 0.5513684, 0.84017485, 0.41960785)

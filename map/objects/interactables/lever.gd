@@ -12,10 +12,6 @@ func activate() -> void:
   if animation_player.is_playing():
     return
 
-  if self.state:
-    self.state = false
-    self.animation_player.play("switch_off")
-    return
-
-  self.state = true
-  self.animation_player.play("switch_on")
+  self.state = not self.state
+  self.animation_player.play("switch_%s" % ("on" if self.state else "off"))
+  self.state_changed.emit(self.state)

@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://b7e5bwgs0uev8"]
+
+[ext_resource type="Texture2D" uid="uid://rgququ2ga5he" path="res://assets/background/dungeon_tileset1/doors_lever_chest_animation.png" id="1_41s50"]
+[ext_resource type="Script" uid="uid://bhe0qnfq7ntk4" path="res://map/objects/interactables/portcullis.gd" id="1_vnxis"]
+
+[sub_resource type="Animation" id="Animation_41s50"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorwayCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bydfq"]
+resource_name = "close"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 13, 12, 11, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorwayCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vnxis"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorwayCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bydfq"]
+_data = {
+&"RESET": SubResource("Animation_41s50"),
+&"close": SubResource("Animation_bydfq"),
+&"open": SubResource("Animation_vnxis")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41s50"]
+size = Vector2(20, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnxis"]
+size = Vector2(6, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bydfq"]
+size = Vector2(6, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bourp"]
+size = Vector2(20, 5)
+
+[node name="Portcullis" type="StaticBody2D" unique_id=1901121646]
+script = ExtResource("1_vnxis")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=289351906]
+texture = ExtResource("1_41s50")
+hframes = 5
+vframes = 6
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2023366106]
+libraries/ = SubResource("AnimationLibrary_bydfq")
+
+[node name="DoorwayCollision" type="CollisionShape2D" parent="." unique_id=396477215]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_41s50")
+
+[node name="WallLeftShape" type="CollisionShape2D" parent="." unique_id=95004290]
+position = Vector2(-13, -1)
+shape = SubResource("RectangleShape2D_vnxis")
+
+[node name="WallRightShape" type="CollisionShape2D" parent="." unique_id=1295409125]
+position = Vector2(13, -1)
+shape = SubResource("RectangleShape2D_bydfq")
+
+[node name="WallTopShape" type="CollisionShape2D" parent="." unique_id=2114838464]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_bourp")
