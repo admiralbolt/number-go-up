@@ -570,7 +570,7 @@ radius = 13.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj3nd"]
-size = Vector2(6.6874466, 7)
+size = Vector2(6.051203, 6.9081)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8li3l"]
 size = Vector2(23.105186, 17.840836)
@@ -686,7 +686,7 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/PushBox" unique_id=1188664233]
-position = Vector2(0.056028366, 3.5)
+position = Vector2(0.11396122, 3.45405)
 shape = SubResource("RectangleShape2D_xj3nd")
 debug_color = Color(0.7877827, 0.31290093, 0.7523584, 0.41960785)
 
