@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dk7g046p8hcqg" path="res://map/objects/props/Barrel.tscn" id="5_50kdo"]
 [ext_resource type="PackedScene" uid="uid://c0l51h542gm0r" path="res://map/objects/interactables/Lever.tscn" id="7_86x6c"]
 [ext_resource type="PackedScene" uid="uid://bgqfut17r5mkk" path="res://map/objects/props/Crate.tscn" id="7_yqo7n"]
+[ext_resource type="PackedScene" uid="uid://dn4qli3wd83ag" path="res://map/objects/interactables/PressurePlate.tscn" id="8_86x6c"]
+[ext_resource type="PackedScene" uid="uid://ctd1xvqdv0hpm" path="res://enemies/archer/Archer.tscn" id="9_8ua0a"]
 
 [node name="Area2" type="Node2D" unique_id=1078562583]
 script = ExtResource("1_cnn6u")
@@ -36,7 +38,17 @@ side = 1
 position = Vector2(80, 353)
 
 [node name="Crate" parent="." unique_id=1981148510 instance=ExtResource("7_yqo7n")]
-position = Vector2(103, 358)
+position = Vector2(119, 371)
+
+[node name="Crate2" parent="." unique_id=1758591623 instance=ExtResource("7_yqo7n")]
+position = Vector2(120, 412)
 
 [node name="Lever" parent="." unique_id=1962858989 instance=ExtResource("7_86x6c")]
 position = Vector2(88, 421)
+
+[node name="PressurePlate" parent="." unique_id=487148818 instance=ExtResource("8_86x6c")]
+position = Vector2(115, 395)
+monitorable = false
+
+[node name="Archer" parent="." unique_id=710523411 instance=ExtResource("9_8ua0a")]
+position = Vector2(94, 389)

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dn4qli3wd83ag"]
+
+[ext_resource type="Texture2D" uid="uid://ch5nl8vbc3lrs" path="res://assets/background/dungeon_tileset1/dungeon_props.png" id="1_4ufj8"]
+[ext_resource type="Script" uid="uid://b2wquu1s8t4uk" path="res://map/objects/interactables/pressure_plate.gd" id="1_bbtee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnbdv"]
+size = Vector2(22.154762, 23.106201)
+
+[node name="PressurePlate" type="Area2D" unique_id=487148818]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_bbtee")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1419237493]
+texture = ExtResource("1_4ufj8")
+region_enabled = true
+region_rect = Rect2(416, 64, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1394821828]
+position = Vector2(0.24242783, -0.76288605)
+shape = SubResource("RectangleShape2D_cnbdv")

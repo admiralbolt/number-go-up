@@ -12,7 +12,7 @@ signal died(hit_box: HitBox)
 @export var xp: float = 0.0
 @export var gives_skill_xp: bool = true
 @export var is_pushable: bool = false
-@export var weight: float = 0.0
+@export var weight: float = 50.0
 
 var loot_tables: Array[LootTable] = []
 

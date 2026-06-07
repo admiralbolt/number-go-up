@@ -1293,11 +1293,9 @@ height = 23.180878
 
 [node name="Archer" type="CharacterBody2D" unique_id=710523411]
 scale = Vector2(0.8, 0.8)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_vbhq5")
-entity_id = null
-xp = null
 
 [node name="ArcherAnimator" type="Node2D" parent="." unique_id=1294295725]
 script = ExtResource("2_gkyu4")
