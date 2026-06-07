@@ -1,4 +1,4 @@
-class_name Barrel extends InteractableObject
+class_name Barrel extends EntityObject
 
 func _ready() -> void:
   self.hurt_box = $HurtBox

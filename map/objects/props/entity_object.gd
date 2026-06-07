@@ -1,4 +1,4 @@
-class_name InteractableObject extends Entity
+class_name EntityObject extends Entity
 
 @export var is_breakable: bool = false
 

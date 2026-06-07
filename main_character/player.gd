@@ -7,6 +7,7 @@ class_name Player extends Entity
 
 @onready var interactions: Node2D = $Interactions
 @onready var push_box: Area2D = $Interactions/PushBox
+@onready var interact_box: Area2D = $Interactions/InteractBox
 
 # Character customization options.
 @export var level: int = 1
@@ -18,6 +19,7 @@ class_name Player extends Entity
 
 var held_direction: Vector2 = Vector2.DOWN
 var pushing_object: Entity = null
+var interact_object: InteractableObject = null
 
 var starting_xp_this_level: float = 0.0
 var total_xp_to_next_level: float = RPGUtil.total_xp_for_next_level(1)
@@ -38,6 +40,9 @@ func _ready() -> void:
 
   self.push_box.body_entered.connect(self._push_area_entered)
   self.push_box.body_exited.connect(self._push_area_exited)
+
+  self.interact_box.body_entered.connect(self._interact_area_entered)
+  self.interact_box.body_exited.connect(self._interact_area_exited)
   
   super._ready()
 
@@ -90,6 +95,11 @@ func _process(_delta: float) -> void:
     # self.inventory.add_item(ItemApple.new())
     # self.inventory.add_item(EquipmentBreastplate.new())
     self.main_player_state_machine.change_state(PlayerAttackState.NAME)
+  elif Input.is_action_just_pressed("interact"):
+    if self.interact_object == null:
+      return
+
+    self.interact_object.activate()
   elif held_direction != Vector2.ZERO:
     self.main_player_state_machine.change_state(PlayerWalkState.NAME)
 
@@ -113,8 +123,8 @@ func _test_buff_effect() -> void:
 
 func _apply_encumberance() -> void:
   var multiplier: int = int(self.inventory.total_weight / self.derived_statistics.carrying_capacity.total_value)
-  var agility_penalty: int = (((multiplier + 7) ** 2 + (multiplier + 7)) / 2) - 21
-  var dexterity_penalty: int = (((multiplier + 2) ** 2 + (multiplier + 2)) / 2) - 1
+  var agility_penalty: int = int(((multiplier + 7) ** 2 + (multiplier + 7)) / 2) - 21
+  var dexterity_penalty: int = int(((multiplier + 2) ** 2 + (multiplier + 2)) / 2) - 1
   # For each multiple we are over, we want to apply an increasing penalty
   # to both agility and dexterity. The agility penalty will be harsher than
   # the dexterity one.
@@ -169,3 +179,17 @@ func _push_area_exited(b: Node2D) -> void:
     return
 
   self.pushing_object = null
+
+func _interact_area_entered(b: Node2D) -> void:
+  if b is not InteractableObject:
+    return
+
+  b.hovered = true
+  self.interact_object = b
+
+func _interact_area_exited(b: Node2D) -> void:
+  if b is not InteractableObject:
+    return
+
+  b.hovered = false
+  self.interact_object = null

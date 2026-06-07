@@ -1,4 +1,4 @@
-class_name Crate extends InteractableObject
+class_name Crate extends EntityObject
 
 func _ready() -> void:
   self.hurt_box = $HurtBox

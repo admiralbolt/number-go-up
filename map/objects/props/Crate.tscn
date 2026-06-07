@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bgqfut17r5mkk"]
 
+[ext_resource type="Script" uid="uid://cry2wkoht2fx" path="res://map/objects/props/crate.gd" id="1_i1rbe"]
 [ext_resource type="PackedScene" uid="uid://f18k057haeer" path="res://util/HurtBox.tscn" id="1_iv7x6"]
 [ext_resource type="Texture2D" uid="uid://bkvwhc7f6cgjj" path="res://assets/background/dungeon_tileset1/Objects.png" id="1_l84ud"]
-[ext_resource type="Script" uid="uid://bqtbdd2fpo6sg" path="res://map/objects/crate.gd" id="1_uklco"]
 [ext_resource type="PackedScene" uid="uid://c66loi4ua6wj7" path="res://ui/components/BasicHealthBar.tscn" id="2_l84ud"]
 [ext_resource type="PackedScene" uid="uid://csamsy8itgmr6" path="res://ui/components/EffectManagerDisplay.tscn" id="3_uklco"]
 
@@ -20,7 +20,7 @@ size = Vector2(16, 22)
 collision_layer = 16
 collision_mask = 16
 motion_mode = 1
-script = ExtResource("1_uklco")
+script = ExtResource("1_i1rbe")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1875069294]
 texture = SubResource("AtlasTexture_uklco")

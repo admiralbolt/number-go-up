@@ -30,6 +30,6 @@ func _physics_process(delta: float) -> void:
     # If we get here and we haven't queue freed yet, that means there is a
     # chance we are colliding with something that should take damage.
     # We need to apply damage in those cases before queue_free().
-    if collision.get_collider() is Entity or collision.get_collider() is InteractableObject:
+    if collision.get_collider() is Entity:
       self.hit_box.hit_hurt_box(collision.get_collider().hurt_box)
     queue_free()
