@@ -1,5 +1,7 @@
 class_name Player extends Entity
 
+const PUSH_LOCKOUT: float = 0.025
+
 @onready var player_animator: PlayerAnimator = $PlayerAnimator
 @onready var animation_player: AnimationPlayer = player_animator.animator
 @onready var weapon_renderer: WeaponRenderer = $WeaponRenderer
@@ -18,6 +20,7 @@ class_name Player extends Entity
 @export var character_name: String = GeneratorUtil.generate_random_word(6)
 
 var held_direction: Vector2 = Vector2.DOWN
+var push_lockout_timer: float = 0
 var pushing_object: Entity = null
 var interact_object: InteractableObject = null
 
@@ -63,20 +66,29 @@ func kill(_damage_event: Damage.DamageEvent) -> void:
   # Override this function, and do nothing!
   return
 
-func _process(_delta: float) -> void:
-  super._process(_delta)
+func _process(delta: float) -> void:
+  super._process(delta)
   held_direction = Input.get_vector("left", "right", "up", "down")
+  if self.push_lockout_timer > 0:
+    self.push_lockout_timer -= delta
+
   # Only update direction name if we are pressing something.
-  if held_direction != Vector2.ZERO and self.main_player_state_machine.current_state.state_name != PlayerAttackState.NAME: 
+  if held_direction != Vector2.ZERO and self.main_player_state_machine.current_state.state_name != PlayerAttackState.NAME:
     # We only update facing if we are pressing something. This way, if we stop
     # pressing something the facing will still be up to date.
+    if self.facing != held_direction:
+      self.push_lockout_timer = PUSH_LOCKOUT
+
     self.facing = held_direction
     self.interactions.rotation = self.facing.angle() - PI / 2
     self.weapon_renderer.hit_box.knockback_direction = self.facing
-    if self.pushing_object != null:
+
+    if self.pushing_object != null and self.push_lockout_timer <= 0:
       # Compute the knockback based on the strength and target weight. The
       # multiplier should max at 1.
-      var knockback_multiplier: float = clampf(self.attributes.strength.total_value / self.pushing_object.weight, 0.0, 1.0)
+      var knockback_multiplier: float = min(self.attributes.strength.total_value / self.pushing_object.weight, 1.0)
+      if knockback_multiplier < 0.16667:
+        knockback_multiplier = 0
       self.pushing_object.physics_manager.knockback_effects.append(
         PhysicsManager.KnockbackEffect.new(
           self.facing, (self.derived_statistics.movement_speed.total_value / 6) * knockback_multiplier, 0.1
