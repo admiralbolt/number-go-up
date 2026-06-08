@@ -10,10 +10,11 @@ size = Vector2(22.154762, 23.106201)
 z_index = -1
 scale = Vector2(0.5, 0.5)
 collision_layer = 0
-collision_mask = 3
+collision_mask = 19
 script = ExtResource("1_bbtee")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1419237493]
+modulate = Color(0.55080706, 0.76868415, 0.912483, 1)
 texture = ExtResource("1_4ufj8")
 region_enabled = true
 region_rect = Rect2(416, 64, 32, 32)

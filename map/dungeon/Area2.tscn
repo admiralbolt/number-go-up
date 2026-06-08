@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c0l51h542gm0r" path="res://map/objects/interactables/Lever.tscn" id="7_86x6c"]
 [ext_resource type="PackedScene" uid="uid://bgqfut17r5mkk" path="res://map/objects/props/Crate.tscn" id="7_yqo7n"]
 [ext_resource type="PackedScene" uid="uid://dn4qli3wd83ag" path="res://map/objects/interactables/PressurePlate.tscn" id="8_86x6c"]
-[ext_resource type="PackedScene" uid="uid://ctd1xvqdv0hpm" path="res://enemies/archer/Archer.tscn" id="9_8ua0a"]
+[ext_resource type="PackedScene" uid="uid://b7e5bwgs0uev8" path="res://map/objects/interactables/Portcullis.tscn" id="10_4qmpq"]
 
 [node name="Area2" type="Node2D" unique_id=1078562583]
 script = ExtResource("1_cnn6u")
@@ -50,5 +50,7 @@ position = Vector2(88, 421)
 position = Vector2(115, 395)
 monitorable = false
 
-[node name="Archer" parent="." unique_id=710523411 instance=ExtResource("9_8ua0a")]
-position = Vector2(94, 389)
+[node name="Portcullis" parent="." unique_id=1901121646 instance=ExtResource("10_4qmpq")]
+position = Vector2(112, 247)
+
+[connection signal="state_changed" from="PressurePlate" to="Portcullis" method="lever_changed"]
